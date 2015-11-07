@@ -25,6 +25,7 @@
 		7052CE851BE53192000D4446 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE841BE53192000D4446 /* CoreVideo.framework */; };
 		7052CE871BE55A84000D4446 /* cube.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7052CE861BE55A7F000D4446 /* cube.obj */; };
 		7052CE891BE572BE000D4446 /* monkey.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7052CE881BE572B1000D4446 /* monkey.obj */; };
+		70E3C5CF1BEE981F00E1DD90 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5CD1BEE981F00E1DD90 /* Mesh.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +80,8 @@
 		7052CE841BE53192000D4446 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7052CE861BE55A7F000D4446 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		7052CE881BE572B1000D4446 /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monkey.obj; sourceTree = "<group>"; };
+		70E3C5CD1BEE981F00E1DD90 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		70E3C5CE1BEE981F00E1DD90 /* Mesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 				7052CE821BE4E937000D4446 /* FlatMesh.hpp */,
 				702ED72E1BE93D0100961271 /* SmoothMesh.cpp */,
 				702ED72F1BE93D0100961271 /* SmoothMesh.hpp */,
+				70E3C5CD1BEE981F00E1DD90 /* Mesh.cpp */,
+				70E3C5CE1BEE981F00E1DD90 /* Mesh.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				7052CE721BE3ECA9000D4446 /* ObjLoader.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,
+				70E3C5CF1BEE981F00E1DD90 /* Mesh.cpp in Sources */,
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

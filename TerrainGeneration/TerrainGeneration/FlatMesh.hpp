@@ -9,28 +9,20 @@
 #ifndef FlatMesh_hpp
 #define FlatMesh_hpp
 
-#include <stdio.h>
-#include <vector>
-#include <glm/glm.hpp>
+#include "Mesh.hpp"
 
 using namespace std;
 using namespace glm;
 
-class FlatMesh {
+class FlatMesh : public Mesh{
 private:
-    vector<vec3> vertices;
-    vector<vec3> normals;
     
 public:
     FlatMesh(vector<vec3> vertices);
     FlatMesh(vector<vec3> vertices, vector<vec3> normals);
     
-    void setVertices(vector<vec3> vertices);
-    vector<vec3> getVertices();
-    void setNormals(vector<vec3> normals);
-    vector<vec3> getNormals();
+    void draw();
     void calculateNormals();
-    void print();
 };
 
 #endif /* FlatMesh_hpp */

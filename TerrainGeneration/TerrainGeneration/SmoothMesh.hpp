@@ -9,30 +9,25 @@
 #ifndef SmoothMesh_hpp
 #define SmoothMesh_hpp
 
-#include <stdio.h>
-#include <vector>
-#include <glm/glm.hpp>
+#include "Mesh.hpp"
 
 using namespace std;
 using namespace glm;
 
-class SmoothMesh {
+class SmoothMesh : public Mesh{
 private:
-    vector<vec3> vertices;
-    vector<vec3> normals;
     vector<unsigned int> indices;
+    GLuint ibo;
     
 public:
     SmoothMesh(vector<vec3> vertices, vector<unsigned int> indices);
     SmoothMesh(vector<vec3> vertices, vector<unsigned int> indices, vector<vec3> normals);
     
-    void setVertices(vector<vec3> vertices);
-    vector<vec3> getVertices();
     void setIndices(vector<unsigned int> indices);
     vector<unsigned int> getIndices();
-    void setNormals(vector<vec3> normals);
-    vector<vec3> getNormals();
     void calculateNormals();
+    void init();
+    void draw();
     void print();
 };
 

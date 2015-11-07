@@ -13,28 +13,14 @@ SmoothMesh::SmoothMesh(vector<vec3> vertices, vector<unsigned int> indices) {
     setVertices(vertices);
     setIndices(indices);
     calculateNormals();
+    init();
 }
 
 SmoothMesh::SmoothMesh(vector<vec3> vertices, vector<unsigned int> indices, vector<vec3> normals) {
     setVertices(vertices);
     setIndices(indices);
     setNormals(normals);
-}
-
-void SmoothMesh::setVertices(vector<vec3> vertices) {
-    this->vertices = vertices;
-}
-
-vector<vec3> SmoothMesh::getVertices() {
-    return vertices;
-}
-
-void SmoothMesh::setNormals(vector<vec3> normals) {
-    this->normals = normals;
-}
-
-vector<vec3> SmoothMesh::getNormals() {
-    return normals;
+    init();
 }
 
 void SmoothMesh::setIndices(vector<unsigned int> indices) {
@@ -62,6 +48,36 @@ void SmoothMesh::calculateNormals() {
         temporaryNormals[i] = normalize(temporaryNormals[i]);
     }
     normals = temporaryNormals;
+}
+
+void SmoothMesh::init() {
+    vao = 0;
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+    
+    vbo = 0;
+    glGenBuffers(1, &vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vec3), &vertices[0], GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    
+    nbo = 0;
+    glGenBuffers(1, &nbo);
+    glBindBuffer(GL_ARRAY_BUFFER, nbo);
+    glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(vec3), &normals[0], GL_STATIC_DRAW);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    
+    ibo = 0;
+    glGenBuffers(1, &ibo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
+}
+
+void SmoothMesh::draw() {
+    glBindVertexArray(vao);
+    glDrawElements(GL_TRIANGLES, (unsigned int)indices.size(), GL_UNSIGNED_INT, (void*)0);
 }
 
 void SmoothMesh::print() {

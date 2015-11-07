@@ -85,13 +85,6 @@ void update() {
 }
 
 int main() {
-    ObjLoader ol;
-    //FlatMesh cube = ol.loadFlatMesh("monkey.obj");
-    //cube = FlatMesh(cube.getVertices());
-    SmoothMesh cube = ol.loadSmoothMesh("monkey2.obj");
-    //cube = SmoothMesh(cube.getVertices(), cube.getIndices());
-    //cube.print();
-    
     // start GL context and O/S window using the GLFW helper library
     if(!glfwInit()) {
         fprintf (stderr, "ERROR: could not start GLFW3\n");
@@ -134,29 +127,12 @@ int main() {
     glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer"
     
     /* OTHER STUFF GOES HERE NEXT */
-    GLuint VAO = 0;
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
+    ObjLoader ol;
+    //FlatMesh flatMesh = ol.loadFlatMesh("monkey.obj");
+    //Mesh* mesh = &flatMesh;
+    SmoothMesh smoothMesh = ol.loadSmoothMesh("monkey2.obj");
+    Mesh* mesh = &smoothMesh;
     
-    GLuint cubeVBO = 0;
-    glGenBuffers(1, &cubeVBO);
-    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
-    glBufferData(GL_ARRAY_BUFFER, cube.getVertices().size() * sizeof(vec3), &cube.getVertices()[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-    
-    GLuint cubeNBO = 0;
-    glGenBuffers(1, &cubeNBO);
-    glBindBuffer(GL_ARRAY_BUFFER, cubeNBO);
-    glBufferData(GL_ARRAY_BUFFER, cube.getNormals().size() * sizeof(vec3), &cube.getNormals()[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-    
-    GLuint cubeIBO = 0;
-    glGenBuffers(1, &cubeIBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cubeIBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, cube.getIndices().size() * sizeof(unsigned int), &cube.getIndices()[0], GL_STATIC_DRAW);
-
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     
     glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
@@ -183,10 +159,8 @@ int main() {
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
         glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
         glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
-        glBindVertexArray(VAO);
-        // draw points 0-3 from the currently bound VAO with current in-use shader
-        //glDrawArrays(GL_TRIANGLES, 0, (unsigned int)cube.getVertices().size());
-        glDrawElements(GL_TRIANGLES, (unsigned int)cube.getIndices().size(), GL_UNSIGNED_INT, (void*)0);
+        
+        mesh->draw();
         // put the stuff we've been drawing onto the display
         glfwSwapBuffers(window);
         // update other events like input handling

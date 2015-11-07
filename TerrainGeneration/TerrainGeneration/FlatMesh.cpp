@@ -12,27 +12,13 @@
 FlatMesh::FlatMesh(vector<vec3> vertices) {
     setVertices(vertices);
     calculateNormals();
+    init();
 }
 
 FlatMesh::FlatMesh(vector<vec3> vertices, vector<vec3> normals) {
     setVertices(vertices);
     setNormals(normals);
-}
-
-void FlatMesh::setVertices(vector<vec3> vertices) {
-    this->vertices = vertices;
-}
-
-vector<vec3> FlatMesh::getVertices() {
-    return vertices;
-}
-
-void FlatMesh::setNormals(vector<vec3> normals) {
-    this->normals = normals;
-}
-
-vector<vec3> FlatMesh::getNormals() {
-    return normals;
+    init();
 }
 
 void FlatMesh::calculateNormals() {
@@ -48,13 +34,7 @@ void FlatMesh::calculateNormals() {
     normals = temporaryNormals;
 }
 
-void FlatMesh::print() {
-    cout << "vertices:" << endl;
-    for(int i = 0; i < vertices.size(); i++) {
-        cout << vertices[i].x << " " << vertices[i].y << " " << vertices[i].z << endl;
-    }
-    cout << "normals:" << endl;
-    for(int i = 0; i < normals.size(); i++) {
-        cout << normals[i].x << " " << normals[i].y << " " << normals[i].z << endl;
-    }
+void FlatMesh::draw() {
+    glBindVertexArray(vao);
+    glDrawArrays(GL_TRIANGLES, 0, (unsigned int)vertices.size());
 }
