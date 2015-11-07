@@ -1,0 +1,15 @@
+anwendungsgebiet künstlich erzeugter landschaften:
+- wissenschaftliche forschung
+- unterhaltung
+- bauwesen
+- flug- und fahrzeugsimulationen
+- spiele
+- filme
+
+ziel ist es nicht eine rein zufällige landschaft zu erstellen, sondern kontrolliert 
+mithilfe von definierbaren parametern, landschaftseigenschaften zu imitieren.
+
+beispielhafte parameter:
+- rauheit der landschaft
+- maximale höhe und tiefe
+- ...
