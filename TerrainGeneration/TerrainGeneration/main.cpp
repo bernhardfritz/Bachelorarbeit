@@ -127,9 +127,8 @@ int main() {
     /* OTHER STUFF GOES HERE NEXT */
     MeshLoader ml;
     Mesh mesh = ml.loadMesh("bunny.obj");
-    mesh.setSpecularReflectance(vec3(0.2, 0.2, 0.2));
     
-    Light light(vec3(2.0f, 2.0f, 2.0f), vec3(0.2f, 0.2f, 0.2f), vec3(0.7f, 0.7f, 0.7f), vec3(1.0f, 1.0f, 1.0f));
+    Light light(vec3(2.0f, 2.0f, 2.0f));
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     
@@ -174,10 +173,10 @@ int main() {
         glUniform3fv(lightDiffuseIntensity, 1, value_ptr(light.getDiffuseIntensity()));
         glUniform3fv(lightAmbientIntensity, 1, value_ptr(light.getAmbientIntensity()));
         
-        glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh.getSpecularReflectance()));
-        glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh.getDiffuseReflectance()));
-        glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh.getAmbientReflectance()));
-        glUniform1f(meshShininess, mesh.getShininess());
+        glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh.getMaterial()->getSpecularReflectance()));
+        glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh.getMaterial()->getDiffuseReflectance()));
+        glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh.getMaterial()->getAmbientReflectance()));
+        glUniform1f(meshShininess, mesh.getMaterial()->getShininess());
         
         
         mesh.draw();

@@ -21,6 +21,7 @@ private:
     vec3 specularIntensity;
     
 public:
+    Light(vec3 position);
     Light(vec3 position, vec3 ambientColor, vec3 diffuseColor, vec3 specularColor);
     void setPosition(vec3 position);
     vec3 getPosition();

@@ -28,6 +28,7 @@
 		70E3C5D81BEF89FA00E1DD90 /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E3C5D71BEF89FA00E1DD90 /* libassimp.3.1.1.dylib */; };
 		70E3C5E01BEFAE3800E1DD90 /* bunny.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5DF1BEFAE2300E1DD90 /* bunny.obj */; };
 		70E3C5E31BEFBCEF00E1DD90 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5E11BEFBCEF00E1DD90 /* Light.cpp */; };
+		70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5E41BEFD4DF00E1DD90 /* Material.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +88,8 @@
 		70E3C5DF1BEFAE2300E1DD90 /* bunny.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.obj; sourceTree = "<group>"; };
 		70E3C5E11BEFBCEF00E1DD90 /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
 		70E3C5E21BEFBCEF00E1DD90 /* Light.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Light.hpp; sourceTree = "<group>"; };
+		70E3C5E41BEFD4DF00E1DD90 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
+		70E3C5E51BEFD4DF00E1DD90 /* Material.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Material.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 				70E3C5D51BEF808500E1DD90 /* MeshLoader.hpp */,
 				70E3C5E11BEFBCEF00E1DD90 /* Light.cpp */,
 				70E3C5E21BEFBCEF00E1DD90 /* Light.hpp */,
+				70E3C5E41BEFD4DF00E1DD90 /* Material.cpp */,
+				70E3C5E51BEFD4DF00E1DD90 /* Material.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				702ED7301BE93D0100961271 /* Mesh.cpp in Sources */,
 				7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */,
 				70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */,
+				70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,

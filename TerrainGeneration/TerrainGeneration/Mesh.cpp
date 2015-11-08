@@ -12,7 +12,7 @@
 Mesh::Mesh(vector<vec3> vertices, vector<unsigned int> indices) {
     setVertices(vertices);
     setIndices(indices);
-    setDefaultMaterial();
+    setMaterial(new Material());
     calculateNormals(); // calculateNormals() calls init()
 }
 
@@ -20,7 +20,7 @@ Mesh::Mesh(vector<vec3> vertices, vector<unsigned int> indices, vector<vec3> nor
     setVertices(vertices);
     setIndices(indices);
     setNormals(normals);
-    setDefaultMaterial();
+    setMaterial(new Material());
     init();
 }
 
@@ -48,43 +48,12 @@ vector<unsigned int> Mesh::getIndices() {
     return indices;
 }
 
-void Mesh::setAmbientReflectance(vec3 ambientReflectance) {
-    this->ambientReflectance = ambientReflectance;
+void Mesh::setMaterial(Material* material) {
+    this->material = material;
 }
 
-vec3 Mesh::getAmbientReflectance() {
-    return ambientReflectance;
-}
-
-void Mesh::setDiffuseReflectance(vec3 diffuseReflectance) {
-    this->diffuseReflectance = diffuseReflectance;
-}
-
-vec3 Mesh::getDiffuseReflectance() {
-    return diffuseReflectance;
-}
-
-void Mesh::setSpecularReflectance(vec3 specularReflectance) {
-    this->specularReflectance = specularReflectance;
-}
-
-vec3 Mesh::getSpecularReflectance() {
-    return specularReflectance;
-}
-
-void Mesh::setShininess(float shininess) {
-    this->shininess = shininess;
-}
-
-float Mesh::getShininess() {
-    return shininess;
-}
-
-void Mesh::setDefaultMaterial() {
-    setAmbientReflectance(vec3(1.0f, 1.0f, 1.0f));
-    setDiffuseReflectance(vec3(1.0f, 1.0f, 1.0f));
-    setSpecularReflectance(vec3(1.0f, 1.0f, 1.0f));
-    setShininess(30.0f);
+Material* Mesh::getMaterial() {
+    return material;
 }
 
 void Mesh::calculateNormals() {
