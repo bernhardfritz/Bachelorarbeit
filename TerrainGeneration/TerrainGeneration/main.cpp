@@ -16,12 +16,12 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-#include <functional>
 #include "ShaderManager.hpp"
 #include "Camera.hpp"
 #include "Keyboard.hpp"
 #include "MeshLoader.hpp"
 #include "Mesh.hpp"
+#include "Light.hpp"
 
 using namespace std;
 using namespace glm;
@@ -109,7 +109,6 @@ int main() {
     glfwSetCursorPosCallback(window, mouse_callback);
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    glfwSetCursorPos(window, 640/2, 480/2);
     
     // start GLEW extension handler
     glewExperimental = GL_TRUE;
@@ -128,6 +127,9 @@ int main() {
     /* OTHER STUFF GOES HERE NEXT */
     MeshLoader ml;
     Mesh mesh = ml.loadMesh("bunny.obj");
+    mesh.setSpecularReflectance(vec3(0.2, 0.2, 0.2));
+    
+    Light light(vec3(2.0f, 2.0f, 2.0f), vec3(0.2f, 0.2f, 0.2f), vec3(0.7f, 0.7f, 0.7f), vec3(1.0f, 1.0f, 1.0f));
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     
@@ -151,10 +153,32 @@ int main() {
         int modelLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "model_mat");
         int viewLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "view_mat");
         int projLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "projection_mat");
+        
+        int lightPosition = glGetUniformLocation(shaderManager.getShaderProgram(), "light_position_world");
+        int lightSpecularIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ls");
+        int lightDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ld");
+        int lightAmbientIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "La");
+        
+        int meshSpecularIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ks");
+        int meshDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Kd");
+        int meshAmbientReflectance = glGetUniformLocation(shaderManager.getShaderProgram(), "Ka");
+        int meshShininess = glGetUniformLocation(shaderManager.getShaderProgram(), "specular_exponent");
+        
         glUseProgram(shaderManager.getShaderProgram());
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
         glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
         glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
+        
+        glUniform3fv(lightPosition, 1, value_ptr(light.getPosition()));
+        glUniform3fv(lightSpecularIntensity, 1, value_ptr(light.getSpecularIntensity()));
+        glUniform3fv(lightDiffuseIntensity, 1, value_ptr(light.getDiffuseIntensity()));
+        glUniform3fv(lightAmbientIntensity, 1, value_ptr(light.getAmbientIntensity()));
+        
+        glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh.getSpecularReflectance()));
+        glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh.getDiffuseReflectance()));
+        glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh.getAmbientReflectance()));
+        glUniform1f(meshShininess, mesh.getShininess());
+        
         
         mesh.draw();
         // put the stuff we've been drawing onto the display

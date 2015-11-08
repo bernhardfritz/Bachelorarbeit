@@ -4,16 +4,16 @@ in vec3 position_eye, normal_eye;
 uniform mat4 view_mat;
 
 // fixed point light properties
-vec3 light_position_world  = vec3 (2.0, 2.0, 2.0);
-vec3 Ls = vec3 (1.0, 1.0, 1.0); // specular light colour
-vec3 Ld = vec3 (0.7, 0.7, 0.7); // diffuse light colour
-vec3 La = vec3 (0.2, 0.2, 0.2); // ambient light colour
+uniform vec3 light_position_world;
+uniform vec3 Ls; // specular light colour
+uniform vec3 Ld; // diffuse light colour
+uniform vec3 La; // ambient light colour
 
 // surface reflectance
-vec3 Ks = vec3 (1.0, 1.0, 1.0); // specular surface reflectance
-vec3 Kd = vec3 (1.0, 1.0, 1.0); // diffuse surface reflectance
-vec3 Ka = vec3 (1.0, 1.0, 1.0); // ambient surface reflectance
-float specular_exponent = 100.0; // specular 'power'
+uniform vec3 Ks; // specular surface reflectance
+uniform vec3 Kd; // diffuse surface reflectance
+uniform vec3 Ka; // ambient surface reflectance
+uniform float specular_exponent; // specular 'power'
 
 out vec4 fragment_colour; // final colour of surface
 

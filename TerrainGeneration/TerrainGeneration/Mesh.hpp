@@ -25,6 +25,10 @@ private:
     GLuint vbo;
     GLuint nbo;
     GLuint ibo;
+    vec3 ambientReflectance;
+    vec3 diffuseReflectance;
+    vec3 specularReflectance;
+    float shininess;
     
 public:
     Mesh(vector<vec3> vertices, vector<unsigned int> indices);
@@ -36,6 +40,15 @@ public:
     vector<vec3> getNormals();
     void setIndices(vector<unsigned int> indices);
     vector<unsigned int> getIndices();
+    void setAmbientReflectance(vec3 ambientReflectance);
+    vec3 getAmbientReflectance();
+    void setDiffuseReflectance(vec3 diffuseReflectance);
+    vec3 getDiffuseReflectance();
+    void setSpecularReflectance(vec3 specularReflectance);
+    vec3 getSpecularReflectance();
+    void setShininess(float shininess);
+    float getShininess();
+    void setDefaultMaterial();
     void calculateNormals();
     void init();
     void draw();
