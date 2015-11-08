@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		702ED72D1BE917DC00961271 /* monkey2.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 702ED72C1BE917CF00961271 /* monkey2.obj */; };
-		702ED7301BE93D0100961271 /* SmoothMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 702ED72E1BE93D0100961271 /* SmoothMesh.cpp */; };
+		702ED7301BE93D0100961271 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 702ED72E1BE93D0100961271 /* Mesh.cpp */; };
 		7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE4C1BDD38AD000D4446 /* main.cpp */; };
 		7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE551BDD38F8000D4446 /* ShaderManager.cpp */; };
 		7052CE591BDD39A2000D4446 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE581BDD39A2000D4446 /* OpenGL.framework */; };
@@ -19,13 +19,14 @@
 		7052CE681BDD3B72000D4446 /* fragmentshader.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7052CE531BDD38D3000D4446 /* fragmentshader.glsl */; };
 		7052CE691BDD3B72000D4446 /* vertexshader.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7052CE541BDD38E2000D4446 /* vertexshader.glsl */; };
 		7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE6A1BE1297B000D4446 /* Camera.cpp */; };
-		7052CE721BE3ECA9000D4446 /* ObjLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE701BE3ECA9000D4446 /* ObjLoader.cpp */; };
 		7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE731BE3F877000D4446 /* Keyboard.cpp */; };
-		7052CE831BE4E937000D4446 /* FlatMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE811BE4E937000D4446 /* FlatMesh.cpp */; };
 		7052CE851BE53192000D4446 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE841BE53192000D4446 /* CoreVideo.framework */; };
 		7052CE871BE55A84000D4446 /* cube.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7052CE861BE55A7F000D4446 /* cube.obj */; };
 		7052CE891BE572BE000D4446 /* monkey.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7052CE881BE572B1000D4446 /* monkey.obj */; };
-		70E3C5CF1BEE981F00E1DD90 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5CD1BEE981F00E1DD90 /* Mesh.cpp */; };
+		70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D11BEF6A6900E1DD90 /* dragon.obj */; };
+		70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D01BEF6A5900E1DD90 /* buddha.obj */; };
+		70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */; };
+		70E3C5D81BEF89FA00E1DD90 /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E3C5D71BEF89FA00E1DD90 /* libassimp.3.1.1.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */,
+				70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */,
 				702ED72D1BE917DC00961271 /* monkey2.obj in CopyFiles */,
 				7052CE891BE572BE000D4446 /* monkey.obj in CopyFiles */,
 				7052CE871BE55A84000D4446 /* cube.obj in CopyFiles */,
@@ -56,8 +59,8 @@
 
 /* Begin PBXFileReference section */
 		702ED72C1BE917CF00961271 /* monkey2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monkey2.obj; sourceTree = "<group>"; };
-		702ED72E1BE93D0100961271 /* SmoothMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothMesh.cpp; sourceTree = "<group>"; };
-		702ED72F1BE93D0100961271 /* SmoothMesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmoothMesh.hpp; sourceTree = "<group>"; };
+		702ED72E1BE93D0100961271 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		702ED72F1BE93D0100961271 /* Mesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		7052CE491BDD38AD000D4446 /* TerrainGeneration */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TerrainGeneration; sourceTree = BUILT_PRODUCTS_DIR; };
 		7052CE4C1BDD38AD000D4446 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7052CE531BDD38D3000D4446 /* fragmentshader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentshader.glsl; sourceTree = "<group>"; };
@@ -71,17 +74,16 @@
 		7052CE601BDD39F1000D4446 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		7052CE6A1BE1297B000D4446 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		7052CE6B1BE1297B000D4446 /* Camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
-		7052CE701BE3ECA9000D4446 /* ObjLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjLoader.cpp; sourceTree = "<group>"; };
-		7052CE711BE3ECA9000D4446 /* ObjLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ObjLoader.hpp; sourceTree = "<group>"; };
 		7052CE731BE3F877000D4446 /* Keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Keyboard.cpp; sourceTree = "<group>"; };
 		7052CE741BE3F877000D4446 /* Keyboard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Keyboard.hpp; sourceTree = "<group>"; };
-		7052CE811BE4E937000D4446 /* FlatMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FlatMesh.cpp; sourceTree = "<group>"; };
-		7052CE821BE4E937000D4446 /* FlatMesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FlatMesh.hpp; sourceTree = "<group>"; wrapsLines = 1; };
 		7052CE841BE53192000D4446 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7052CE861BE55A7F000D4446 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		7052CE881BE572B1000D4446 /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monkey.obj; sourceTree = "<group>"; };
-		70E3C5CD1BEE981F00E1DD90 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
-		70E3C5CE1BEE981F00E1DD90 /* Mesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
+		70E3C5D01BEF6A5900E1DD90 /* buddha.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buddha.obj; sourceTree = "<group>"; };
+		70E3C5D11BEF6A6900E1DD90 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
+		70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshLoader.cpp; sourceTree = "<group>"; };
+		70E3C5D51BEF808500E1DD90 /* MeshLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshLoader.hpp; sourceTree = "<group>"; };
+		70E3C5D71BEF89FA00E1DD90 /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				7052CE851BE53192000D4446 /* CoreVideo.framework in Frameworks */,
 				7052CE5D1BDD39C7000D4446 /* libGLEW.1.11.0.dylib in Frameworks */,
 				7052CE5B1BDD39B7000D4446 /* libglfw3.3.1.dylib in Frameworks */,
+				70E3C5D81BEF89FA00E1DD90 /* libassimp.3.1.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +107,7 @@
 		7052CE401BDD38AD000D4446 = {
 			isa = PBXGroup;
 			children = (
+				70E3C5D71BEF89FA00E1DD90 /* libassimp.3.1.1.dylib */,
 				7052CE841BE53192000D4446 /* CoreVideo.framework */,
 				7052CE601BDD39F1000D4446 /* IOKit.framework */,
 				7052CE5E1BDD39EB000D4446 /* Cocoa.framework */,
@@ -126,6 +130,8 @@
 		7052CE4B1BDD38AD000D4446 /* TerrainGeneration */ = {
 			isa = PBXGroup;
 			children = (
+				70E3C5D11BEF6A6900E1DD90 /* dragon.obj */,
+				70E3C5D01BEF6A5900E1DD90 /* buddha.obj */,
 				702ED72C1BE917CF00961271 /* monkey2.obj */,
 				7052CE4C1BDD38AD000D4446 /* main.cpp */,
 				7052CE531BDD38D3000D4446 /* fragmentshader.glsl */,
@@ -136,16 +142,12 @@
 				7052CE6A1BE1297B000D4446 /* Camera.cpp */,
 				7052CE881BE572B1000D4446 /* monkey.obj */,
 				7052CE6B1BE1297B000D4446 /* Camera.hpp */,
-				7052CE701BE3ECA9000D4446 /* ObjLoader.cpp */,
-				7052CE711BE3ECA9000D4446 /* ObjLoader.hpp */,
 				7052CE731BE3F877000D4446 /* Keyboard.cpp */,
 				7052CE741BE3F877000D4446 /* Keyboard.hpp */,
-				7052CE811BE4E937000D4446 /* FlatMesh.cpp */,
-				7052CE821BE4E937000D4446 /* FlatMesh.hpp */,
-				702ED72E1BE93D0100961271 /* SmoothMesh.cpp */,
-				702ED72F1BE93D0100961271 /* SmoothMesh.hpp */,
-				70E3C5CD1BEE981F00E1DD90 /* Mesh.cpp */,
-				70E3C5CE1BEE981F00E1DD90 /* Mesh.hpp */,
+				702ED72E1BE93D0100961271 /* Mesh.cpp */,
+				702ED72F1BE93D0100961271 /* Mesh.hpp */,
+				70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */,
+				70E3C5D51BEF808500E1DD90 /* MeshLoader.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -207,13 +209,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7052CE831BE4E937000D4446 /* FlatMesh.cpp in Sources */,
-				702ED7301BE93D0100961271 /* SmoothMesh.cpp in Sources */,
+				702ED7301BE93D0100961271 /* Mesh.cpp in Sources */,
 				7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */,
-				7052CE721BE3ECA9000D4446 /* ObjLoader.cpp in Sources */,
+				70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,
-				70E3C5CF1BEE981F00E1DD90 /* Mesh.cpp in Sources */,
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +306,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/glfw3/3.1.1/lib,
 					/usr/local/Cellar/glew/1.11.0/lib,
+					/usr/local/Cellar/assimp/3.1.1/lib,
 				);
 				PRODUCT_NAME = TerrainGeneration;
 			};
@@ -319,6 +320,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/glfw3/3.1.1/lib,
 					/usr/local/Cellar/glew/1.11.0/lib,
+					/usr/local/Cellar/assimp/3.1.1/lib,
 				);
 				PRODUCT_NAME = TerrainGeneration;
 			};

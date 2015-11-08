@@ -20,9 +20,8 @@
 #include "ShaderManager.hpp"
 #include "Camera.hpp"
 #include "Keyboard.hpp"
-#include "ObjLoader.hpp"
-#include "FlatMesh.hpp"
-#include "SmoothMesh.hpp"
+#include "MeshLoader.hpp"
+#include "Mesh.hpp"
 
 using namespace std;
 using namespace glm;
@@ -127,11 +126,8 @@ int main() {
     glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer"
     
     /* OTHER STUFF GOES HERE NEXT */
-    ObjLoader ol;
-    //FlatMesh flatMesh = ol.loadFlatMesh("monkey.obj");
-    //Mesh* mesh = &flatMesh;
-    SmoothMesh smoothMesh = ol.loadSmoothMesh("monkey2.obj");
-    Mesh* mesh = &smoothMesh;
+    MeshLoader ml;
+    Mesh mesh = ml.loadMesh("cube.obj");
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     
@@ -160,7 +156,7 @@ int main() {
         glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
         glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
         
-        mesh->draw();
+        mesh.draw();
         // put the stuff we've been drawing onto the display
         glfwSwapBuffers(window);
         // update other events like input handling

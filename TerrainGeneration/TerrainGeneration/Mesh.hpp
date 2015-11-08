@@ -2,7 +2,7 @@
 //  Mesh.hpp
 //  TerrainGeneration
 //
-//  Created by Bernhard Fritz on 07/11/15.
+//  Created by Bernhard Fritz on 31/10/15.
 //  Copyright © 2015 Bernhard Fritz. All rights reserved.
 //
 
@@ -17,23 +17,29 @@ using namespace std;
 using namespace glm;
 
 class Mesh {
-protected:
+private:
     vector<vec3> vertices;
+    vector<unsigned int> indices;
     vector<vec3> normals;
     GLuint vao;
     GLuint vbo;
     GLuint nbo;
+    GLuint ibo;
     
 public:
+    Mesh(vector<vec3> vertices, vector<unsigned int> indices);
+    Mesh(vector<vec3> vertices, vector<unsigned int> indices, vector<vec3> normals);
+    
     void setVertices(vector<vec3> vertices);
     vector<vec3> getVertices();
     void setNormals(vector<vec3> normals);
     vector<vec3> getNormals();
-    virtual void calculateNormals() = 0;
-    virtual void init();
-    virtual void draw() = 0;
-    virtual void print();
-    virtual ~Mesh() {}
+    void setIndices(vector<unsigned int> indices);
+    vector<unsigned int> getIndices();
+    void calculateNormals();
+    void init();
+    void draw();
+    void print();
 };
 
 #endif /* Mesh_hpp */
