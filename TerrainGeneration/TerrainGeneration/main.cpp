@@ -127,7 +127,7 @@ int main() {
     
     /* OTHER STUFF GOES HERE NEXT */
     MeshLoader ml;
-    Mesh mesh = ml.loadMesh("cube.obj");
+    Mesh mesh = ml.loadMesh("bunny.obj");
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     
