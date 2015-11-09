@@ -29,6 +29,7 @@ private:
     Material* material;
     
 public:
+    Mesh();
     Mesh(vector<vec3> vertices, vector<unsigned int> indices);
     Mesh(vector<vec3> vertices, vector<unsigned int> indices, vector<vec3> normals);
     

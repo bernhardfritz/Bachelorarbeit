@@ -9,6 +9,10 @@
 #include <iostream>
 #include "Mesh.hpp"
 
+Mesh::Mesh() {
+    
+}
+
 Mesh::Mesh(vector<vec3> vertices, vector<unsigned int> indices) {
     setVertices(vertices);
     setIndices(indices);

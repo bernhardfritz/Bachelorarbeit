@@ -21,6 +21,7 @@
 #include "Keyboard.hpp"
 #include "MeshLoader.hpp"
 #include "Mesh.hpp"
+#include "Heightmap.hpp"
 #include "Light.hpp"
 
 using namespace std;
@@ -125,8 +126,9 @@ int main() {
     glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer"
     
     /* OTHER STUFF GOES HERE NEXT */
-    MeshLoader ml;
-    Mesh mesh = ml.loadMesh("bunny.obj");
+    //MeshLoader ml;
+    //Mesh mesh = ml.loadMesh("bunny.obj");
+    Heightmap mesh(20,20);
     
     Light light(vec3(2.0f, 2.0f, 2.0f));
     
