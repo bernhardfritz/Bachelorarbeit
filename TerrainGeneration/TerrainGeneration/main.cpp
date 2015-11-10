@@ -128,9 +128,14 @@ int main() {
     /* OTHER STUFF GOES HERE NEXT */
     //MeshLoader ml;
     //Mesh mesh = ml.loadMesh("bunny.obj");
-    Heightmap mesh(20,20);
+    //mesh.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
+    //mesh.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
+    //mesh.getMaterial()->setShininess(1.0f);
+    Heightmap mesh(50, 50);
+    mesh.loadHeightmap("terrain.png", 20.0f);
     
-    Light light(vec3(2.0f, 2.0f, 2.0f));
+    
+    Light light(vec3(0.0f, 20.0f, 0.0f));
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     

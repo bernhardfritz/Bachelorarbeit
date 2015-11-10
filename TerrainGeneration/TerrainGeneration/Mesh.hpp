@@ -18,10 +18,12 @@ using namespace std;
 using namespace glm;
 
 class Mesh {
-private:
+protected:
     vector<vec3> vertices;
     vector<unsigned int> indices;
     vector<vec3> normals;
+    
+private:
     GLuint vao;
     GLuint vbo;
     GLuint nbo;

@@ -30,6 +30,7 @@
 		70E3C5E31BEFBCEF00E1DD90 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5E11BEFBCEF00E1DD90 /* Light.cpp */; };
 		70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5E41BEFD4DF00E1DD90 /* Material.cpp */; };
 		70E3C5E91BF0E89600E1DD90 /* Heightmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5E71BF0E89600E1DD90 /* Heightmap.cpp */; };
+		70E3C5EF1BF27F7E00E1DD90 /* terrain.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5EE1BF27F7000E1DD90 /* terrain.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +49,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				70E3C5EF1BF27F7E00E1DD90 /* terrain.png in CopyFiles */,
 				70E3C5E01BEFAE3800E1DD90 /* bunny.obj in CopyFiles */,
 				70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */,
 				70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */,
@@ -93,6 +95,8 @@
 		70E3C5E51BEFD4DF00E1DD90 /* Material.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Material.hpp; sourceTree = "<group>"; };
 		70E3C5E71BF0E89600E1DD90 /* Heightmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Heightmap.cpp; sourceTree = "<group>"; };
 		70E3C5E81BF0E89600E1DD90 /* Heightmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Heightmap.hpp; sourceTree = "<group>"; };
+		70E3C5ED1BF273B100E1DD90 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		70E3C5EE1BF27F7000E1DD90 /* terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,10 +147,12 @@
 				70E3C5DF1BEFAE2300E1DD90 /* bunny.obj */,
 				70E3C5D01BEF6A5900E1DD90 /* buddha.obj */,
 				702ED72C1BE917CF00961271 /* monkey.obj */,
+				70E3C5EE1BF27F7000E1DD90 /* terrain.png */,
 				7052CE4C1BDD38AD000D4446 /* main.cpp */,
 				7052CE531BDD38D3000D4446 /* fragmentshader.glsl */,
 				7052CE541BDD38E2000D4446 /* vertexshader.glsl */,
 				7052CE861BE55A7F000D4446 /* cube.obj */,
+				70E3C5ED1BF273B100E1DD90 /* stb_image.h */,
 				7052CE551BDD38F8000D4446 /* ShaderManager.cpp */,
 				7052CE561BDD38F8000D4446 /* ShaderManager.hpp */,
 				7052CE6A1BE1297B000D4446 /* Camera.cpp */,
