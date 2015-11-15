@@ -1,0 +1,57 @@
+Erzeugung von Gebirgsketten
+
+Überblick
+  * Problembeschreibung
+  * Methoden zur Erzeugung von Gebirgen
+  * Geplante Herangehensweise zur Lösung des Problems
+
+Problembeschreibung
+  * Der von Kamal und Sarwar vorgeschlagene Algorithmus ermöglicht es einen
+    einzelnen Berg zu generieren. Dabei ist es möglich gewünschte Position, Höhe
+    und Ausbreitung des Berges durch Parameter zu festzulegen
+  * Aufbauend auf der Arbeit "Parametrically Controlled Terrain Generation" von
+    Kamal und Sarwar möchte ich einen Algorithmus entwickeln der es ermöglicht
+    ganze Gebirgsketten kontrolliert zu generieren
+
+Methoden zur Erzeugung von Gebirgen
+  Erzeugung von Gebirgen mithilfe von Höhenkarten
+    Bild heightmap.png
+    h = f(x,y)
+    Durch Samplen der Höhenkarte bekommt man im Falle eines schwarz-weiß Bilds mit
+    Farbtiefe 8-bit, 256 Höhenabstufungen. Diese Information kann nun verwendet
+    werden um aus dem 2D Bild eine 3D Landschaft zu generieren.
+    Bild heightmap_rendered.png
+  Erzeugung von Gebirgen mithilfe von Algorithmen
+    Midpoint displacement / Diamond-square Algorithmus (Fournier et al.)
+      * Das durch diesen Algorithmus erzeugte Gebirge kann mittels einer
+        Rauheitskonstante manipuliert werden
+      * Position der Bergspitzen wird durch Zufall bestimmt
+      Bild mpd.png
+    Erosions Algorithmus (Musgrave et al.)
+      * Ahmt den Einfluss von Wind und Wasser in der Natur nach
+      * Hoher Realismus
+      * Benötigt eine Basis (Höhenkarte)
+      Bild erosion.png
+    Fault algorithm (Krten)
+      * Es können sowohl schroffe als auch flache Berge erzeugt werden
+      * Position der Bergspitzen wird durch Zufall bestimmt
+      Bild fault.png
+    Bivariate normal model (Parry)
+      * Verwendet eine mehrdimensionale Normalverteilung zur Generierung einer
+        Landschaft
+      * Position der Bergspitzen kann bestimmt werden
+      * Landschaft schaut unrealistisch aus
+      Bild bivariatenormalmodel.png
+    Repeated magnification and probing (Kamal and Sarwar)
+      * Ermöglicht das Erzeugen eines einzelnen Berges
+      * Position, Höhe und Ausbreitung des Berges kann mit Parametern
+        manipuliert werden
+      Bild rmp.png
+
+Geplante Herangehensweise an das Problem
+  * Testen diverser Algorithmen und abwägen ob es möglich ist diese anzupassen
+  * Erweitern des von Kamal und Sarwar vorgeschlagenen Algorithmus um ganze
+    Gebirgsketten erzeugen zu können
+  * Kombinieren verschiedener Algorithmen zur Steigerung des Realismus
+
+Danke für die Aufmerksamkeit!

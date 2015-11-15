@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		702ED72D1BE917DC00961271 /* monkey.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 702ED72C1BE917CF00961271 /* monkey.obj */; };
 		702ED7301BE93D0100961271 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 702ED72E1BE93D0100961271 /* Mesh.cpp */; };
+		7043445D1BF8C345009DA402 /* heightmap.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7043445C1BF8C31D009DA402 /* heightmap.png */; };
 		7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE4C1BDD38AD000D4446 /* main.cpp */; };
 		7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE551BDD38F8000D4446 /* ShaderManager.cpp */; };
 		7052CE591BDD39A2000D4446 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE581BDD39A2000D4446 /* OpenGL.framework */; };
@@ -49,6 +50,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				7043445D1BF8C345009DA402 /* heightmap.png in CopyFiles */,
 				70E3C5EF1BF27F7E00E1DD90 /* terrain.png in CopyFiles */,
 				70E3C5E01BEFAE3800E1DD90 /* bunny.obj in CopyFiles */,
 				70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */,
@@ -66,6 +68,7 @@
 		702ED72C1BE917CF00961271 /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monkey.obj; sourceTree = "<group>"; };
 		702ED72E1BE93D0100961271 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		702ED72F1BE93D0100961271 /* Mesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
+		7043445C1BF8C31D009DA402 /* heightmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heightmap.png; sourceTree = "<group>"; };
 		7052CE491BDD38AD000D4446 /* TerrainGeneration */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TerrainGeneration; sourceTree = BUILT_PRODUCTS_DIR; };
 		7052CE4C1BDD38AD000D4446 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7052CE531BDD38D3000D4446 /* fragmentshader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentshader.glsl; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 				70E3C5DF1BEFAE2300E1DD90 /* bunny.obj */,
 				70E3C5D01BEF6A5900E1DD90 /* buddha.obj */,
 				702ED72C1BE917CF00961271 /* monkey.obj */,
+				7043445C1BF8C31D009DA402 /* heightmap.png */,
 				70E3C5EE1BF27F7000E1DD90 /* terrain.png */,
 				7052CE4C1BDD38AD000D4446 /* main.cpp */,
 				7052CE531BDD38D3000D4446 /* fragmentshader.glsl */,

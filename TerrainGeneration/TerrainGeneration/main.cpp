@@ -55,10 +55,20 @@ void updateFpsCounter(GLFWwindow* window) {
 }
 
 void keyboard_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    static bool once1 = false;
+    static bool once2 = true;
     if(mods & GLFW_MOD_SHIFT) {
-        camera.setSpeed(4.0f);
+        if(!once1) {
+            camera.setSpeed(camera.getSpeed() * 2.0f);
+            once1 = true;
+            once2 = false;
+        }
     } else {
-        camera.setSpeed(2.0f);
+        if(!once2) {
+            camera.setSpeed(camera.getSpeed() / 2.0f);
+            once1 = false;
+            once2 = true;
+        }
     }
     keyboard.update(key, action!=GLFW_RELEASE);
 }
@@ -73,6 +83,10 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     camera.incPitch(deltaY * sensitivity);
     lastX = xpos;
     lastY = ypos;
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+    if(camera.getSpeed()-yoffset > 0) camera.setSpeed(camera.getSpeed()-yoffset);
 }
 
 void update() {
@@ -108,6 +122,7 @@ int main() {
     
     glfwSetKeyCallback(window, keyboard_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     
@@ -131,11 +146,11 @@ int main() {
     //mesh.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
     //mesh.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
     //mesh.getMaterial()->setShininess(1.0f);
-    Heightmap mesh(50, 50);
-    mesh.loadHeightmap("terrain.png", 20.0f);
+    Heightmap mesh(256, 256);
+    mesh.loadHeightmap("heightmap.png", 32.0f);
+    mesh.getMaterial()->setSpecularReflectance(0.0f);
     
-    
-    Light light(vec3(0.0f, 20.0f, 0.0f));
+    Light light(vec3(128.0f, 64.0f, 128.0f));
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     

@@ -1,0 +1,118 @@
+\documentclass{beamer}
+\usepackage{beamerthemesplit}
+\usepackage[T1]{fontenc}
+\usepackage[austrian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{listings}
+
+\u
+
+\title{Debugging für parallele Programme}
+\author{Bernhard Fritz}
+\date{\today}
+\logo{\includegraphics[height=1.5cm]{../Bilder/Uni_Logo_4C.pdf}}
+
+\input{navigationbarfix}
+
+\begin{document}
+
+  \frame{\titlepage}
+
+  \section*{Überblick}
+  \frame{
+    \frametitle{Überblick}
+    \tableofcontents
+  }
+
+  \section{Ursprung der parallelen Programmierung}
+
+  \frame{
+    \frametitle{Ursprung der parallelen Programmierung}
+    \begin{itemize}
+      \item Sequentielle Programme wurden immer leistungshungriger
+      \item Chiphersteller reagieren auf die Anforderungen der Programmierer
+      \item Erhöhen der Anzahl an Transistoren
+      \item Erhöhen der Taktrate
+    \end{itemize}
+    Problem? $\rightarrow$ Abwärme \\
+    Lösung? $\rightarrow$ Mehrprozessorsysteme
+  }
+
+  \frame{
+    \frametitle{Ursprung der parallelen Programmierung}
+    \begin{itemize}
+      \item Verwenden eines Mehrprozessorsystems heißt nicht automatisch
+      Leistungszuwachs
+      \item Programmierer reagieren auf die Anforderungen der Chiphersteller
+      \item Parallele Programme sind fehleranfällig
+      \item Debuggen paralleler Programme ist schwer
+    \end{itemize}
+  }
+
+  \section{Probleme beim Debuggen paralleler Programme}
+  \frame{
+    \frametitle{Probleme beim Debuggen paralleler Programme}
+    \begin{itemize}
+      \item Fehler können nur schwer reproduziert werden
+      \item Je nach Grad der Parallelität ist das Debuggen mit enormen
+      Zeitaufwand verbunden
+      \item Durch das Verwenden eines Debuggers leidet die
+      Ausführungsgeschwindigkeit des Programms und es können neue Fehler
+      auftreten oder vorhandene Fehler verschwinden
+    \end{itemize}
+  }
+
+  \section{Arten von Fehlern}
+  \frame{
+    \frametitle{Arten von Fehlern}
+    \begin{itemize}
+      \item<1->{\only<2>{\color{blue}} Race Conditions}
+      \only<2>{\\2+ Prozesse/Threads haben unsynchronisierten Zugriffen auf eine
+      Variable}
+      \item<1->{\only<3>{\color{blue}} Deadlock}
+      \only<3>{\\2+ Prozesse/Threads blockieren sich gegenseitig}
+      \item<1->{\only<4>{\color{blue}} Livelock}
+      \only<4>{\\2+ Prozesse/Threads verhindern die weitere Ausführung des
+      Programms}
+      \item<1->{\only<5>{\color{blue}} Starvation}
+      \only<5>{\\Ein Prozess/Thread verhungert, falls dieser nicht mehr zum Zug
+      kommt}
+      \item<1->{\only<6>{\color{blue}} Heisenbug}
+      \only<6>{\\Fehler, die durch das Debuggen verschwinden oder hervorgerufen
+      werden}
+    \end{itemize}
+  }
+
+  \section{Debugging Strategien}
+  \frame{
+    \frametitle{Debugging Strategien}
+    \begin{itemize}
+      \item<1->{\only<2>{\color{blue}} Single-Step Debugging}
+      \only<2>{\\Schrittweises Debuggen, Zeile für Zeile}
+      \item<1->{\only<3>{\color{blue}} Breakpointing}
+      \only<3>{\\Stoppen des Programms an einem gewissen Punkt}
+      \item<1->{\only<4>{\color{blue}} Checkpointing}
+      \only<4>{\\Einbauen von Sicherungspunkten}
+      \item<1->{\only<5>{\color{blue}} Cyclic Debugging}
+      \only<5>{\\Wiederholtes Ausführen des Programms zum Finden der
+      Fehlerursache}
+      \item<1->{\only<6>{\color{blue}} Reverse Debugging}
+      \only<6>{\\Schrittweises Rückwartsdebuggen}
+      \item<1->{\only<7>{\color{blue}} Record/Replay}
+      \only<7>{\\Aufzeichnen und Abspielen eines Programms unter denselben
+      Vorraussetzungen}
+      \item<1->{\only<8>{\color{blue}} Program Slicing}
+      \only<8>{\\Abstrahieren eines Programmteils um die Fehlersuche
+      einzuschränken}
+    \end{itemize}
+  }
+
+  \section*{Fragen?}
+  \frame{
+    \begin{center}
+      \Huge Fragen?
+    \end{center}
+  }
+
+\end{document}
