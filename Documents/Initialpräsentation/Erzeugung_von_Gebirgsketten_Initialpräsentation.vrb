@@ -90,4 +90,11 @@ Wiederhole solange Segmente nicht zu klein:
   }
 \end{figure}
 }
+\only<8>{
+\begin{figure}[t]
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=3cm]{../Bilder/rmp.png}
+  }
+\end{figure}
+}
 \end{itemize}
