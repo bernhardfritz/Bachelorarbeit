@@ -3,7 +3,7 @@ Erzeugung von Gebirgsketten
 Überblick
   * Problembeschreibung
   * Methoden zur Erzeugung von Gebirgen
-  * Geplante Herangehensweise zur Lösung des Problems
+  * Geplante Herangehensweise
 
 Problembeschreibung
   * Der von Kamal und Sarwar vorgeschlagene Algorithmus ermöglicht es einen
@@ -48,7 +48,7 @@ Methoden zur Erzeugung von Gebirgen
         manipuliert werden
       Bild rmp.png
 
-Geplante Herangehensweise an das Problem
+Geplante Herangehensweise
   * Testen diverser Algorithmen und abwägen ob es möglich ist diese anzupassen
   * Erweitern des von Kamal und Sarwar vorgeschlagenen Algorithmus um ganze
     Gebirgsketten erzeugen zu können

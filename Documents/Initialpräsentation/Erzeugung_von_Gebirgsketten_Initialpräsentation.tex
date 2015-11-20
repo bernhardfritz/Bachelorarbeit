@@ -4,16 +4,23 @@
 \usepackage[austrian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{subfig}
 \usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
 
-\u
-
-\title{Debugging für parallele Programme}
+\title{Erzeugung von Gebirgsketten}
 \author{Bernhard Fritz}
-\date{\today}
+\date{01. Dezember 2015}
 \logo{\includegraphics[height=1.5cm]{../Bilder/Uni_Logo_4C.pdf}}
 
 \input{navigationbarfix}
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\captionsetup[subfigure]{labelformat=empty}
 
 \begin{document}
 
@@ -25,86 +32,145 @@
     \tableofcontents
   }
 
-  \section{Ursprung der parallelen Programmierung}
+  \section{Problembeschreibung}
 
   \frame{
-    \frametitle{Ursprung der parallelen Programmierung}
+    \frametitle{Problembeschreibung}
     \begin{itemize}
-      \item Sequentielle Programme wurden immer leistungshungriger
-      \item Chiphersteller reagieren auf die Anforderungen der Programmierer
-      \item Erhöhen der Anzahl an Transistoren
-      \item Erhöhen der Taktrate
-    \end{itemize}
-    Problem? $\rightarrow$ Abwärme \\
-    Lösung? $\rightarrow$ Mehrprozessorsysteme
-  }
-
-  \frame{
-    \frametitle{Ursprung der parallelen Programmierung}
-    \begin{itemize}
-      \item Verwenden eines Mehrprozessorsystems heißt nicht automatisch
-      Leistungszuwachs
-      \item Programmierer reagieren auf die Anforderungen der Chiphersteller
-      \item Parallele Programme sind fehleranfällig
-      \item Debuggen paralleler Programme ist schwer
+      \item Das von Kamal und Sarwar veröffentlichte Paper ``Parametrically Controlled Terrain Generation'' stellt einen Algorithmus zur Generierung eines einzelnen Berges vor
+      \item Ziel ist es den vorgeschlagenen Algorithmus zu erweitern um es zu ermöglichen ganze Gebirgsketten kontrolliert generieren zu können
     \end{itemize}
   }
 
-  \section{Probleme beim Debuggen paralleler Programme}
+  \section{Methoden zur Erzeugung von Gebirgen}
+
   \frame{
-    \frametitle{Probleme beim Debuggen paralleler Programme}
+    \frametitle{Erzeugen von Gebirgen mithilfe von Höhenkarten}
     \begin{itemize}
-      \item Fehler können nur schwer reproduziert werden
-      \item Je nach Grad der Parallelität ist das Debuggen mit enormen
-      Zeitaufwand verbunden
-      \item Durch das Verwenden eines Debuggers leidet die
-      Ausführungsgeschwindigkeit des Programms und es können neue Fehler
-      auftreten oder vorhandene Fehler verschwinden
+      \item Schwarz-weiß Bild als Datenträger
+      \item 1 Byte pro Pixel bedeutet 256 mögliche Höhenabstufungen
+      \item \( h = f(x,y) \)
+      \begin{figure}[t]
+        \subfloat[Kamal, Sarwar]{%
+          \includegraphics[height=3cm]{../Bilder/heightmap.png}
+        }
+        \hspace{1cm}
+        \subfloat[Kamal, Sarwar]{%
+          \includegraphics[height=3cm]{../Bilder/heightmap_rendered.png}
+        }
+      \end{figure}
     \end{itemize}
   }
 
-  \section{Arten von Fehlern}
-  \frame{
-    \frametitle{Arten von Fehlern}
-    \begin{itemize}
-      \item<1->{\only<2>{\color{blue}} Race Conditions}
-      \only<2>{\\2+ Prozesse/Threads haben unsynchronisierten Zugriffen auf eine
-      Variable}
-      \item<1->{\only<3>{\color{blue}} Deadlock}
-      \only<3>{\\2+ Prozesse/Threads blockieren sich gegenseitig}
-      \item<1->{\only<4>{\color{blue}} Livelock}
-      \only<4>{\\2+ Prozesse/Threads verhindern die weitere Ausführung des
-      Programms}
-      \item<1->{\only<5>{\color{blue}} Starvation}
-      \only<5>{\\Ein Prozess/Thread verhungert, falls dieser nicht mehr zum Zug
-      kommt}
-      \item<1->{\only<6>{\color{blue}} Heisenbug}
-      \only<6>{\\Fehler, die durch das Debuggen verschwinden oder hervorgerufen
-      werden}
-    \end{itemize}
+\begin{frame}[fragile]
+\frametitle{Erzeugen von Gebirgen mithilfe von Algorithmen}
+\begin{itemize}
+\item<1->{\only<2-5>{\color{blue}} Midpoint displacement / Diamond-square Algorithm}
+\begin{onlyenv}<2-5>
+\begin{footnotesize}
+\begin{verbatim}
+Wiederhole solange Segmente nicht zu klein:
+  Für jedes Segment:
+    Teile das Segment in der Mitte
+    Erhöhe den Mittelpunkt um x aus [-R, R]
+  Halbiere R
+\end{verbatim}
+\end{footnotesize}
+\end{onlyenv}
+\item<1->{\only<6>{\color{blue}} Erosion algorithm}
+\only<6>{
+\begin{itemize}
+\item Ahmt den Einfluss von Wind und Wasser nach
+\item Benötigt eine Ausgangsbasis
+\end{itemize}
+}
+\item<1->{\only<7>{\color{blue}} Fault algorithm}
+\item<1->{\only<8>{\color{blue}} Repeated magnification and probing}
+\only<8>{
+\begin{itemize}
+\item Ermöglicht das Erzeugen eines einzelnen Berges
+\item Position, Höhe und Ausbreitung des Berges kann mit Parametern bestimmt werden
+\end{itemize}
+}
+\only<2>{
+\begin{figure}[t]
+  \subfloat[]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd_1.png}
   }
+  \hspace{1cm}
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd.png}
+  }
+\end{figure}
+}
+\only<3>{
+\begin{figure}[t]
+  \subfloat[]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd_2.png}
+  }
+  \hspace{1cm}
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd.png}
+  }
+\end{figure}
+}
+\only<4>{
+\begin{figure}[t]
+  \subfloat[]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd_3.png}
+  }
+  \hspace{1cm}
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd.png}
+  }
+\end{figure}
+}
+\only<5>{
+\begin{figure}[t]
+  \subfloat[]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd_4.png}
+  }
+  \hspace{1cm}
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd.png}
+  }
+\end{figure}
+}
+\only<6>{
+\begin{figure}[t]
+\subfloat[Kamal, Sarwar]{%
+  \includegraphics[height=3cm]{../Bilder/erosion.png}
+}
+\centering
+\end{figure}
+}
+\only<7>{
+\begin{figure}[t]
+  \subfloat[lighthouse3d.com]{%
+    \includegraphics[height=2.5cm]{../Bilder/fault_1.png}
+  }
+  \hspace{1cm}
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=2.5cm]{../Bilder/fault.png}
+  }
+\end{figure}
+}
+\end{itemize}
+\end{frame}
 
-  \section{Debugging Strategien}
+  \section{Geplante Herangehensweise}
   \frame{
-    \frametitle{Debugging Strategien}
+    \frametitle{Geplante Herangehensweise}
     \begin{itemize}
-      \item<1->{\only<2>{\color{blue}} Single-Step Debugging}
-      \only<2>{\\Schrittweises Debuggen, Zeile für Zeile}
-      \item<1->{\only<3>{\color{blue}} Breakpointing}
-      \only<3>{\\Stoppen des Programms an einem gewissen Punkt}
-      \item<1->{\only<4>{\color{blue}} Checkpointing}
-      \only<4>{\\Einbauen von Sicherungspunkten}
-      \item<1->{\only<5>{\color{blue}} Cyclic Debugging}
-      \only<5>{\\Wiederholtes Ausführen des Programms zum Finden der
-      Fehlerursache}
-      \item<1->{\only<6>{\color{blue}} Reverse Debugging}
-      \only<6>{\\Schrittweises Rückwartsdebuggen}
-      \item<1->{\only<7>{\color{blue}} Record/Replay}
-      \only<7>{\\Aufzeichnen und Abspielen eines Programms unter denselben
-      Vorraussetzungen}
-      \item<1->{\only<8>{\color{blue}} Program Slicing}
-      \only<8>{\\Abstrahieren eines Programmteils um die Fehlersuche
-      einzuschränken}
+      \item Testen diverser Algorithmen und abwägen ob es möglich ist diese anzupassen
+      \item Erweitern des von Kamal und Sarwar vorgeschlagenen Algorithmus um ganze
+        Gebirgsketten kontrolliert erzeugen zu können
+      \begin{itemize}
+        \item Verlauf,
+        \item Höhe und
+        \item Ausbreitung des Gebirges soll definierbar sein
+      \end{itemize}
+      \item Kombinieren vorgestellter Algorithmen zur Steigerung des Realismus
     \end{itemize}
   }
 
