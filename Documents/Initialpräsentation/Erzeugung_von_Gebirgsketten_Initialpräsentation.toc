@@ -1,5 +1,0 @@
-\beamer@endinputifotherversion {3.36pt}
-\select@language {austrian}
-\beamer@sectionintoc {2}{Problembeschreibung}{3}{0}{1}
-\beamer@sectionintoc {3}{Methoden zur Erzeugung von Gebirgen}{4}{0}{2}
-\beamer@sectionintoc {4}{Geplante Herangehensweise}{13}{0}{3}

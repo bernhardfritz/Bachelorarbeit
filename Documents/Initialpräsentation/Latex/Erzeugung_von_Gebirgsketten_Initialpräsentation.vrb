@@ -1,0 +1,100 @@
+\frametitle{Erzeugen von Gebirgen mithilfe von Algorithmen}
+\begin{itemize}
+\item<1->{\only<2-5>{\color{blue}} Midpoint displacement / Diamond-square Algorithm}
+\begin{onlyenv}<2-5>
+\begin{footnotesize}
+\begin{verbatim}
+Wiederhole solange Segmente nicht zu klein:
+  Für jedes Segment:
+    Teile das Segment in der Mitte
+    Erhöhe den Mittelpunkt um x aus [-R, R]
+  Halbiere R
+\end{verbatim}
+\end{footnotesize}
+\end{onlyenv}
+\item<1->{\only<6>{\color{blue}} Erosion algorithm}
+\only<6>{
+\begin{itemize}
+\item Ahmt den Einfluss von Wind und Wasser nach
+\item Benötigt eine Ausgangsbasis
+\end{itemize}
+}
+\item<1->{\only<7>{\color{blue}} Fault algorithm}
+\item<1->{\only<8>{\color{blue}} Repeated magnification and probing}
+\only<8>{
+\begin{itemize}
+\item Ermöglicht das Erzeugen eines einzelnen Berges
+\item Position, Höhe und Ausbreitung des Berges kann mit Parametern bestimmt werden
+\end{itemize}
+}
+\only<2>{
+\begin{figure}[t]
+  \subfloat[]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd_1.png}
+  }
+  \hspace{1cm}
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd.png}
+  }
+\end{figure}
+}
+\only<3>{
+\begin{figure}[t]
+  \subfloat[]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd_2.png}
+  }
+  \hspace{1cm}
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd.png}
+  }
+\end{figure}
+}
+\only<4>{
+\begin{figure}[t]
+  \subfloat[]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd_3.png}
+  }
+  \hspace{1cm}
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd.png}
+  }
+\end{figure}
+}
+\only<5>{
+\begin{figure}[t]
+  \subfloat[]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd_4.png}
+  }
+  \hspace{1cm}
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=2.25cm]{../Bilder/mpd.png}
+  }
+\end{figure}
+}
+\only<6>{
+\begin{figure}[t]
+\subfloat[Kamal, Sarwar]{%
+  \includegraphics[height=3cm]{../Bilder/erosion.png}
+}
+\centering
+\end{figure}
+}
+\only<7>{
+\begin{figure}[t]
+  \subfloat[lighthouse3d.com]{%
+    \includegraphics[height=2.5cm]{../Bilder/fault_1.png}
+  }
+  \hspace{1cm}
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=2.5cm]{../Bilder/fault.png}
+  }
+\end{figure}
+}
+\only<8>{
+\begin{figure}[t]
+  \subfloat[Kamal, Sarwar]{%
+    \includegraphics[height=3cm]{../Bilder/rmp.png}
+  }
+\end{figure}
+}
+\end{itemize}
