@@ -20,6 +20,7 @@ private:
     int rows;
     
 public:
+    Heightmap() {};
     Heightmap(int columns, int rows);
     
     void setColumns(int columns);
@@ -27,6 +28,7 @@ public:
     void setRows(int rows);
     int getRows();
     void setHeightAt(int column, int row, float height);
+    float getHeightAt(int column, int row);
     void loadHeightmap(string file_name, int max_height);
 };
 

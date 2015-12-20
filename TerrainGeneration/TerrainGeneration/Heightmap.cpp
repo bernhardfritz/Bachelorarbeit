@@ -64,6 +64,13 @@ void Heightmap::setHeightAt(int column, int row, float height) {
     }
 }
 
+float Heightmap::getHeightAt(int column, int row) {
+    if(column <= columns && row <= rows) {
+        return vertices[row * (columns + 1) + column].y;
+    }
+    return 0.0f;
+}
+
 void Heightmap::loadHeightmap(string filename, int maxHeight) {
     int width, height, channels;
     unsigned char* data = stbi_load(filename.c_str(), &width, &height, &channels, 1); // force 1 channel

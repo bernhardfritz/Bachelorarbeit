@@ -23,13 +23,14 @@
 #include "Mesh.hpp"
 #include "Heightmap.hpp"
 #include "Light.hpp"
+#include "DiamondSquare.hpp"
 
 using namespace std;
 using namespace glm;
 
 GLFWwindow* window;
 
-Camera camera(0.0f, 0.0f, 2.0f, 0.0f, -half_pi<float>(), 2.0f);
+Camera camera(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 Keyboard keyboard;
 
 int frameCount;
@@ -99,6 +100,7 @@ void update() {
 }
 
 int main() {
+    srand48(time(NULL));
     // start GL context and O/S window using the GLFW helper library
     if(!glfwInit()) {
         fprintf (stderr, "ERROR: could not start GLFW3\n");
@@ -146,17 +148,19 @@ int main() {
     //mesh.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
     //mesh.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
     //mesh.getMaterial()->setShininess(1.0f);
-    Heightmap mesh(256, 256);
-    mesh.loadHeightmap("heightmap.png", 32.0f);
-    mesh.getMaterial()->setSpecularReflectance(0.0f);
+    //Heightmap mesh(256, 256);
+    //mesh.loadHeightmap("heightmap.png", 32.0f);
+    //mesh.getMaterial()->setSpecularReflectance(0.0f);
+    Heightmap mesh(128, 128);
+    DiamondSquare::perform(mesh, 16.0f);
     
-    Light light(vec3(128.0f, 64.0f, 128.0f));
+    Light light(vec3(64.0f, 64.0f, 64.0f));
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     
     glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // nowireframe
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // nowireframe
     
     glEnable(GL_CULL_FACE); // cull face
     glCullFace(GL_BACK); // cull back face
