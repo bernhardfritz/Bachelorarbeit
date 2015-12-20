@@ -66,8 +66,6 @@ void DiamondSquare::diamondSquare(Heightmap &heightmap, float roughness, int lef
     DiamondSquare::squareStep(heightmap, roughness, left, right, top, bottom);
 }
 
-/**/
-
 float DiamondSquare::average(vector<float> values) {
     float sum = 0.0f;
     for (int i = 0; i < values.size(); i++) {
