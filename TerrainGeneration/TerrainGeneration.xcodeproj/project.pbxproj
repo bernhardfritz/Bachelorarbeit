@@ -22,7 +22,7 @@
 		7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE731BE3F877000D4446 /* Keyboard.cpp */; };
 		7052CE851BE53192000D4446 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE841BE53192000D4446 /* CoreVideo.framework */; };
 		7052CE871BE55A84000D4446 /* cube.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7052CE861BE55A7F000D4446 /* cube.obj */; };
-		7096543B1C25EF83005BB137 /* DiamondSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654391C25EF83005BB137 /* DiamondSquare.cpp */; };
+		709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096543F1C264A98005BB137 /* DiamondSquare.cpp */; };
 		70BF607E1BF91D2700319D05 /* heightmap.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70BF607D1BF91D1C00319D05 /* heightmap.png */; };
 		70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D11BEF6A6900E1DD90 /* dragon.obj */; };
 		70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D01BEF6A5900E1DD90 /* buddha.obj */; };
@@ -86,8 +86,8 @@
 		7052CE741BE3F877000D4446 /* Keyboard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Keyboard.hpp; sourceTree = "<group>"; };
 		7052CE841BE53192000D4446 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7052CE861BE55A7F000D4446 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
-		709654391C25EF83005BB137 /* DiamondSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DiamondSquare.cpp; path = ../DiamondSquare.cpp; sourceTree = "<group>"; };
-		7096543A1C25EF83005BB137 /* DiamondSquare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DiamondSquare.hpp; path = ../DiamondSquare.hpp; sourceTree = "<group>"; };
+		7096543F1C264A98005BB137 /* DiamondSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiamondSquare.cpp; sourceTree = "<group>"; };
+		709654401C264A98005BB137 /* DiamondSquare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DiamondSquare.hpp; sourceTree = "<group>"; };
 		70BF607D1BF91D1C00319D05 /* heightmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heightmap.png; sourceTree = "<group>"; };
 		70E3C5D01BEF6A5900E1DD90 /* buddha.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buddha.obj; sourceTree = "<group>"; };
 		70E3C5D11BEF6A6900E1DD90 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
@@ -176,8 +176,8 @@
 				70E3C5E51BEFD4DF00E1DD90 /* Material.hpp */,
 				70E3C5E71BF0E89600E1DD90 /* Heightmap.cpp */,
 				70E3C5E81BF0E89600E1DD90 /* Heightmap.hpp */,
-				709654391C25EF83005BB137 /* DiamondSquare.cpp */,
-				7096543A1C25EF83005BB137 /* DiamondSquare.hpp */,
+				7096543F1C264A98005BB137 /* DiamondSquare.cpp */,
+				709654401C264A98005BB137 /* DiamondSquare.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -246,7 +246,7 @@
 				70E3C5E91BF0E89600E1DD90 /* Heightmap.cpp in Sources */,
 				70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
-				7096543B1C25EF83005BB137 /* DiamondSquare.cpp in Sources */,
+				709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */,
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,
 			);
