@@ -24,13 +24,14 @@
 #include "Heightmap.hpp"
 #include "Light.hpp"
 #include "DiamondSquare.hpp"
+#include "Fault.hpp"
 
 using namespace std;
 using namespace glm;
 
 GLFWwindow* window;
 
-Camera camera(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+Camera camera(64.0f, 64.0f, 64.0f, 0.0f, 0.0f, 0.0f);
 Keyboard keyboard;
 
 int frameCount;
@@ -151,8 +152,9 @@ int main() {
     //Heightmap mesh(256, 256);
     //mesh.loadHeightmap("heightmap.png", 32.0f);
     //mesh.getMaterial()->setSpecularReflectance(0.0f);
-    Heightmap mesh(128, 128);
-    DiamondSquare::perform(mesh, 16.0f);
+    Heightmap mesh(256, 256);
+    //DiamondSquare::perform(mesh, 32.0f);
+    Fault::perform(mesh, 0.5f, 512);
     
     Light light(vec3(64.0f, 64.0f, 64.0f));
     
