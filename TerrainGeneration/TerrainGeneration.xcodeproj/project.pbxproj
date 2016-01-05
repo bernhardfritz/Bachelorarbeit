@@ -24,6 +24,8 @@
 		7052CE871BE55A84000D4446 /* cube.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7052CE861BE55A7F000D4446 /* cube.obj */; };
 		709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096543F1C264A98005BB137 /* DiamondSquare.cpp */; };
 		709654441C2D916A005BB137 /* Fault.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654421C2D916A005BB137 /* Fault.cpp */; };
+		709654471C3C2AF5005BB137 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654451C3C2AF5005BB137 /* Graph.cpp */; };
+		7096544D1C3C3BAB005BB137 /* RMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096544B1C3C3BAB005BB137 /* RMP.cpp */; };
 		70BF607E1BF91D2700319D05 /* heightmap.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70BF607D1BF91D1C00319D05 /* heightmap.png */; };
 		70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D11BEF6A6900E1DD90 /* dragon.obj */; };
 		70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D01BEF6A5900E1DD90 /* buddha.obj */; };
@@ -34,6 +36,7 @@
 		70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5E41BEFD4DF00E1DD90 /* Material.cpp */; };
 		70E3C5E91BF0E89600E1DD90 /* Heightmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5E71BF0E89600E1DD90 /* Heightmap.cpp */; };
 		70E3C5EF1BF27F7E00E1DD90 /* terrain.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5EE1BF27F7000E1DD90 /* terrain.png */; };
+		70FA2FC81C3C63D600A53B93 /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70FA2FC61C3C63D600A53B93 /* Line.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -91,6 +94,10 @@
 		709654401C264A98005BB137 /* DiamondSquare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DiamondSquare.hpp; sourceTree = "<group>"; };
 		709654421C2D916A005BB137 /* Fault.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fault.cpp; sourceTree = "<group>"; };
 		709654431C2D916A005BB137 /* Fault.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Fault.hpp; sourceTree = "<group>"; };
+		709654451C3C2AF5005BB137 /* Graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
+		709654461C3C2AF5005BB137 /* Graph.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Graph.hpp; sourceTree = "<group>"; };
+		7096544B1C3C3BAB005BB137 /* RMP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RMP.cpp; sourceTree = "<group>"; };
+		7096544C1C3C3BAB005BB137 /* RMP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RMP.hpp; sourceTree = "<group>"; };
 		70BF607D1BF91D1C00319D05 /* heightmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heightmap.png; sourceTree = "<group>"; };
 		70E3C5D01BEF6A5900E1DD90 /* buddha.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buddha.obj; sourceTree = "<group>"; };
 		70E3C5D11BEF6A6900E1DD90 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
@@ -106,6 +113,8 @@
 		70E3C5E81BF0E89600E1DD90 /* Heightmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Heightmap.hpp; sourceTree = "<group>"; };
 		70E3C5ED1BF273B100E1DD90 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		70E3C5EE1BF27F7000E1DD90 /* terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain.png; sourceTree = "<group>"; };
+		70FA2FC61C3C63D600A53B93 /* Line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
+		70FA2FC71C3C63D600A53B93 /* Line.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +192,12 @@
 				709654401C264A98005BB137 /* DiamondSquare.hpp */,
 				709654421C2D916A005BB137 /* Fault.cpp */,
 				709654431C2D916A005BB137 /* Fault.hpp */,
+				709654451C3C2AF5005BB137 /* Graph.cpp */,
+				709654461C3C2AF5005BB137 /* Graph.hpp */,
+				7096544B1C3C3BAB005BB137 /* RMP.cpp */,
+				7096544C1C3C3BAB005BB137 /* RMP.hpp */,
+				70FA2FC61C3C63D600A53B93 /* Line.cpp */,
+				70FA2FC71C3C63D600A53B93 /* Line.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -245,11 +260,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				70E3C5E31BEFBCEF00E1DD90 /* Light.cpp in Sources */,
+				70FA2FC81C3C63D600A53B93 /* Line.cpp in Sources */,
 				702ED7301BE93D0100961271 /* Mesh.cpp in Sources */,
 				7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */,
 				70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */,
+				709654471C3C2AF5005BB137 /* Graph.cpp in Sources */,
 				70E3C5E91BF0E89600E1DD90 /* Heightmap.cpp in Sources */,
 				70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */,
+				7096544D1C3C3BAB005BB137 /* RMP.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
 				709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */,
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,
