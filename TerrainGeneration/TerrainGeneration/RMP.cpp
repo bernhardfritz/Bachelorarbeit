@@ -11,6 +11,22 @@
 #include "Graph.hpp"
 #include "Line.hpp"
 
+bool isPointInPolygon(vec2 point, vector<vec2> polygon) {
+    int j = (int)polygon.size() - 1;
+    bool oddNodes=false;
+    
+    for(int i = 0; i < polygon.size(); i++) {
+        if((polygon[i].y < point.y && polygon[j].y >= point.y) || (polygon[j].y < point.y && polygon[i].y >= point.y)) {
+            if(polygon[i].x + (point.y - polygon[i].y) / (polygon[j].y - polygon[i].y) * (polygon[j].x - polygon[i].x) < point.x) {
+                oddNodes = !oddNodes;
+            }
+        }
+        j = i;
+    }
+    
+    return oddNodes;
+}
+
 void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
     for(int i = 0; i < n; i++) {
         Graph g;
@@ -32,7 +48,7 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
             vector<vec2> intersectionsOfLine;
             for(Line line2 : lines) {
                 if(line1 == line2) continue;
-                vec2 intersection = line1.intersection(line2);
+                vec2 intersection = line1.getIntersection(line2);
                 if(intersection.x >= 0 && intersection.x <= heightmap.getColumns() &&
                    intersection.y >= 0 && intersection.y <= heightmap.getRows()) intersectionsOfLine.push_back(intersection);
             }
@@ -58,9 +74,9 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
             }
         }
         
-        for(vec2 intersection : intersections) {
+        /*for(vec2 intersection : intersections) {
             heightmap.setHeightAt(floor(intersection.x), floor(intersection.y), heightmap.getHeightAt(floor(intersection.x), floor(intersection.y))+1);
-        }
+        }*/
         
         cout << intersections.size() << " intersections:" << endl;
         for(int j = 0; j < intersections.size(); j++) {
@@ -84,6 +100,28 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
             }
             cout << endl;
         }
+        
+        vector<vector<vec2>> polygons;
+        for(vector<int> cycle : cycles) {
+            vector<vec2> polygon;
+            for(int index : cycle) {
+                polygon.push_back(intersections[index]);
+            }
+            polygons.push_back(polygon);
+        }
+        
+        int count = 0;
+        for(vector<vec2> polygon : polygons) {
+            for(int row = 0; row <= heightmap.getRows(); row++) {
+                for(int column = 0; column <= heightmap.getColumns(); column++) {
+                    if(isPointInPolygon(vec2(column, row), polygon)) heightmap.setHeightAt(column, row, count);
+                }
+            }
+            count += 2;
+        }
+        
+        // TODO: build graph with polygons represented as vertices. vertices are connected if polygons share edge.
+        // TODO: perform probing algorithm
     }
     heightmap.init();
 }

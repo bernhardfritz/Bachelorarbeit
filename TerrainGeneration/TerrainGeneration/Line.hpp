@@ -23,11 +23,12 @@ private:
     
 public:
     Line(vec2 v1, vec2 v2);
-    vec2 intersection(Line l);
+    vec2 getIntersection(Line l);
+    bool intersects(Line l);
     vec2 getOrigin();
     vec2 getDirection();
     void sortIntersections(vector<vec2>& intersectionsOfLine);
-    bool compareIntersections(vec2 v1, vec2 v2);
+    bool pointOnLine(vec2 v, float maxX, float maxY);
     bool operator==(Line l);
 };
 
