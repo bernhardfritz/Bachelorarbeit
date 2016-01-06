@@ -6,13 +6,10 @@
 //  Copyright © 2016 Bernhard Fritz. All rights reserved.
 //
 
+#include <iostream>
 #include "RMP.hpp"
 #include "Graph.hpp"
 #include "Line.hpp"
-
-bool compare(vec2 v1, vec2 v2) {
-    return v1.x < v2.x;
-}
 
 void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
     for(int i = 0; i < n; i++) {
@@ -39,14 +36,14 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
                 if(intersection.x >= 0 && intersection.x <= heightmap.getColumns() &&
                    intersection.y >= 0 && intersection.y <= heightmap.getRows()) intersectionsOfLine.push_back(intersection);
             }
-            sort(intersectionsOfLine.begin(), intersectionsOfLine.end(), compare);
+            line1.sortIntersections(intersectionsOfLine);
             int prev = -1;
             for(vec2 intersectionOfLine : intersectionsOfLine) {
                 bool cont = false;
                 for(int j = 0; j < intersections.size(); j++) {
                     float dx = abs(intersections[j].x - intersectionOfLine.x);
                     float dy = abs(intersections[j].y - intersectionOfLine.y);
-                    if(dx < 0.001 &&  dy < 0.001) {
+                    if(dx < 0.001 && dy < 0.001) {
                         if(prev != -1) g.addEdge(prev, j);
                         prev = j;
                         cont = true;
@@ -54,8 +51,8 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
                     }
                 }
                 if(cont) continue;
-                int index = (int)intersections.size() - 1;
                 intersections.push_back(intersectionOfLine);
+                int index = (int)intersections.size() - 1;
                 if(prev != -1) g.addEdge(prev, index);
                 prev = index;
             }
@@ -63,6 +60,29 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
         
         for(vec2 intersection : intersections) {
             heightmap.setHeightAt(floor(intersection.x), floor(intersection.y), heightmap.getHeightAt(floor(intersection.x), floor(intersection.y))+1);
+        }
+        
+        cout << intersections.size() << " intersections:" << endl;
+        for(int j = 0; j < intersections.size(); j++) {
+            cout << "[" << j << "] = " << intersections[j].x << ", " << intersections[j].y << endl;
+        }
+        
+        g.print();
+        
+        cout << "DFS: ";
+        vector<int> dfs = g.DFS();
+        for(int j = 0; j < dfs.size(); j++) {
+            cout << dfs[j] << " ";
+        }
+        cout << endl;
+        
+        cout << "Cycles: " << endl;
+        vector<vector<int>> cycles = g.getMinimalCycles();
+        for(int j = 0; j < cycles.size(); j++) {
+            for(int k = 0; k < cycles[j].size(); k++) {
+                cout << cycles[j][k] << " ";
+            }
+            cout << endl;
         }
     }
     heightmap.init();

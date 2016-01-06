@@ -22,6 +22,9 @@ public:
     void addEdge(int i, int j);
     void removeEdge(int i, int j);
     bool isEdge(int i, int j);
+    vector<int> DFS();
+    vector<vector<int>> getMinimalCycles();
+    void print();
 };
 
 #endif /* Graph_hpp */

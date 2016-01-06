@@ -34,6 +34,24 @@ vec2 Line::getDirection() {
     return direction;
 }
 
+void Line::sortIntersections(vector<vec2>& intersectionsOfLine) {
+    for(int n = (int)intersectionsOfLine.size(); n > 1; n--) {
+        for(int i = 0; i < n - 1; i++) {
+            float a = length(intersectionsOfLine[i] - origin);
+            float b = length(intersectionsOfLine[i+1] - origin);
+            if(a > b) {
+                vec2 tmp = intersectionsOfLine[i];
+                intersectionsOfLine[i] = intersectionsOfLine[i+1];
+                intersectionsOfLine[i+1] = tmp;
+            }
+        }
+    }
+}
+
+bool Line::compareIntersections(vec2 v1, vec2 v2) {
+    return (v1 - origin).length() < (v2 - origin).length();
+}
+
 bool Line::operator==(Line l) {
     return origin == l.getOrigin() && direction == l.getDirection();
 }

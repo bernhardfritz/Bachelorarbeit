@@ -10,8 +10,10 @@
 #define Line_hpp
 
 #include <stdio.h>
+#include <vector>
 #include <glm/glm.hpp>
 
+using namespace std;
 using namespace glm;
 
 class Line {
@@ -24,6 +26,8 @@ public:
     vec2 intersection(Line l);
     vec2 getOrigin();
     vec2 getDirection();
+    void sortIntersections(vector<vec2>& intersectionsOfLine);
+    bool compareIntersections(vec2 v1, vec2 v2);
     bool operator==(Line l);
 };
 
