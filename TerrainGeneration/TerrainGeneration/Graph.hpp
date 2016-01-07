@@ -22,8 +22,9 @@ public:
     void addEdge(int i, int j);
     void removeEdge(int i, int j);
     bool isEdge(int i, int j);
-    vector<int> DFS();
+    vector<int> DFS(int start = 0);
     vector<vector<int>> getMinimalCycles();
+    vector<vector<int>> findAllCycles();
     void print();
 };
 

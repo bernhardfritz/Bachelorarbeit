@@ -156,7 +156,7 @@ int main() {
     Heightmap mesh(32, 32);
     //DiamondSquare::perform(mesh, 32.0f);
     //Fault::perform(mesh, 0.5f, 512);
-    RMP::perform(mesh, 1, 1, 1);
+    RMP::perform(mesh, 25, 3, 1);
     
     Light light(vec3(64.0f, 64.0f, 64.0f));
     

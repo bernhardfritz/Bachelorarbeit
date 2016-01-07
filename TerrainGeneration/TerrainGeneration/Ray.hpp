@@ -1,13 +1,13 @@
 //
-//  Line.hpp
+//  Ray.hpp
 //  TerrainGeneration
 //
 //  Created by Bernhard Fritz on 05/01/16.
 //  Copyright © 2016 Bernhard Fritz. All rights reserved.
 //
 
-#ifndef Line_hpp
-#define Line_hpp
+#ifndef Ray_hpp
+#define Ray_hpp
 
 #include <stdio.h>
 #include <vector>
@@ -16,20 +16,19 @@
 using namespace std;
 using namespace glm;
 
-class Line {
+class Ray {
 private:
     vec2 origin;
     vec2 direction;
     
 public:
-    Line(vec2 v1, vec2 v2);
-    vec2 getIntersection(Line l);
-    bool intersects(Line l);
+    Ray(vec2 v1, vec2 v2);
+    vec2 getIntersection(Ray ray);
+    bool intersects(Ray ray);
     vec2 getOrigin();
     vec2 getDirection();
-    void sortIntersections(vector<vec2>& intersectionsOfLine);
-    bool pointOnLine(vec2 v, float maxX, float maxY);
-    bool operator==(Line l);
+    void sortIntersections(vector<vec2>& intersectionsOfRay);
+    bool operator==(Ray ray);
 };
 
-#endif /* Line_hpp */
+#endif /* Ray_hpp */
