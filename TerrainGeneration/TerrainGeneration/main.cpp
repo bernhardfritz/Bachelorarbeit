@@ -153,10 +153,10 @@ int main() {
     //Heightmap mesh(256, 256);
     //mesh.loadHeightmap("heightmap.png", 32.0f);
     //mesh.getMaterial()->setSpecularReflectance(0.0f);
-    Heightmap mesh(32, 32);
+    Heightmap mesh(64, 64);
     //DiamondSquare::perform(mesh, 32.0f);
-    //Fault::perform(mesh, 0.5f, 512);
-    RMP::perform(mesh, 25, 3, 1);
+    //Fault::perform(mesh, 1.0f, 512);
+    RMP::perform(mesh, 50, 3, 1);
     
     Light light(vec3(64.0f, 64.0f, 64.0f));
     
