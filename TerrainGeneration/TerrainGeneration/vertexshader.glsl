@@ -6,8 +6,10 @@ layout (location = 2) in vec2 vertex_texture; // per vertex texture coordinates
 uniform mat4 projection_mat, view_mat, model_mat;
 out vec3 position_eye, normal_eye;
 out vec2 texture_coordinates;
+out vec3 position;
 
 void main () {
+    position = vertex_position;
     position_eye = vec3 (view_mat * model_mat * vec4 (vertex_position, 1.0));
     normal_eye = vec3 (view_mat * model_mat * vec4 (vertex_normal, 0.0));
     texture_coordinates = vertex_texture;

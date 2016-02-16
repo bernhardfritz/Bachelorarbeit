@@ -63,6 +63,8 @@ int Heightmap::getRows() {
 void Heightmap::setHeightAt(int column, int row, float height) {
     if(column <= columns && row <= rows) {
         vertices[row * (columns + 1) + column].y = height;
+        if(height < minHeight) minHeight = height;
+        if(height > maxHeight) maxHeight = height;
     }
 }
 
@@ -73,7 +75,7 @@ float Heightmap::getHeightAt(int column, int row) {
     return 0.0f;
 }
 
-void Heightmap::loadHeightmap(string filename, int maxHeight) {
+void Heightmap::loadHeightmap(string filename, int strength) {
     TextureLoader tl;
     Texture t = tl.loadTexture(filename, 1);
     
@@ -87,9 +89,17 @@ void Heightmap::loadHeightmap(string filename, int maxHeight) {
     
     for(int row = 0; row <= rows; row++) {
         for(int column = 0; column <= columns; column++) {
-            setHeightAt(column, row, (t.getData()[row * t.getWidth() * dy + column * dx] / 255.0f) * maxHeight);
+            setHeightAt(column, row, (t.getData()[row * t.getWidth() * dy + column * dx] / 255.0f) * strength);
         }
     }
     
     calculateNormals();
+}
+
+float Heightmap::getMinHeight() {
+    return minHeight;
+}
+
+float Heightmap::getMaxHeight() {
+    return maxHeight;
 }

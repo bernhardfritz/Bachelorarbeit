@@ -19,6 +19,8 @@ class Heightmap : public Mesh{
 private:
     int columns;
     int rows;
+    float minHeight = 0.0f;
+    float maxHeight = 0.0f;
     
 public:
     Heightmap() {};
@@ -30,7 +32,9 @@ public:
     int getRows();
     void setHeightAt(int column, int row, float height);
     float getHeightAt(int column, int row);
-    void loadHeightmap(string file_name, int max_height);
+    void loadHeightmap(string filename, int strength);
+    float getMinHeight();
+    float getMaxHeight();
 };
 
 #endif /* Heightmap_hpp */

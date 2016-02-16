@@ -149,26 +149,26 @@ int main() {
     
     /* OTHER STUFF GOES HERE NEXT */
     TextureLoader tl;
-    Texture t0 = tl.loadTexture("aztec_grass.png");
+    Texture t0 = tl.loadTexture("sand.png");
     t0.assignToSlot(0);
-    Texture t1 = tl.loadTexture("ng_aztec_dirt.png");
+    Texture t1 = tl.loadTexture("grass.png");
     t1.assignToSlot(1);
-    Texture t2 = tl.loadTexture("ng_mossy_cliff.png");
+    Texture t2 = tl.loadTexture("rock.png");
     t2.assignToSlot(2);
-    Texture t3 = tl.loadTexture("ng_mountain_rocks.png");
+    Texture t3 = tl.loadTexture("snow.png");
     t3.assignToSlot(3);
     //MeshLoader ml;
     //Mesh obj = ml.loadMesh("bunny.obj");
     //obj.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
     //obj.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
     //obj.getMaterial()->setShininess(1.0f);
-    Heightmap hm(256, 256);
-    hm.loadHeightmap("heightmap.png", 32.0f);
+    //Heightmap hm(256, 256);
+    //hm.loadHeightmap("terrain.png", 32.0f);
     //hm.getMaterial()->setSpecularReflectance(0.0f);
-    //Heightmap hm(64, 64);
+    Heightmap hm(64, 64);
     //DiamondSquare::perform(hm, 50.0f);
-    //Fault::perform(hm, 0.5f, 256);
-    //RMP::perform(hm, 50, 3, 1);
+    //Fault::perform(hm, 1.0f, 512);
+    RMP::perform(hm, 50, 3, 1);
     vector<Mesh> meshes;
     meshes.push_back(hm);
     /*
@@ -178,9 +178,10 @@ int main() {
         meshes.push_back(tmp);
     }*/
     
-    Light light(vec3(50.0f, 100.0f, 50.0f));
+    Light light(vec3(hm.getColumns()/2.0f, hm.getMaxHeight() * 2.0f, hm.getRows()/2.0f));
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
+    glUseProgram(shaderManager.getShaderProgram());
     
     glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe
@@ -190,12 +191,33 @@ int main() {
     glCullFace(GL_BACK); // cull back face
     glFrontFace(GL_CCW); // GL_CCW for counter clock-wise
     
+    int layer0 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer0");
+    int layer1 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer1");
+    int layer2 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer2");
+    int layer3 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer3");
+    
+    glUniform1i(layer0, 0);
+    glUniform1i(layer1, 1);
+    glUniform1i(layer2, 2);
+    glUniform1i(layer3, 3);
+    
+    int threshold0 = glGetUniformLocation(shaderManager.getShaderProgram(), "threshold0");
+    int threshold1 = glGetUniformLocation(shaderManager.getShaderProgram(), "threshold1");
+    int threshold2 = glGetUniformLocation(shaderManager.getShaderProgram(), "threshold2");
+    int delta = glGetUniformLocation(shaderManager.getShaderProgram(), "delta");
+    
+    float difference = hm.getMaxHeight() - hm.getMinHeight();
+    glUniform1f(threshold0, (difference / 4.0f) * 1);
+    glUniform1f(threshold1, (difference / 4.0f) * 2);
+    glUniform1f(threshold2, (difference / 4.0f) * 3);
+    glUniform1f(delta, difference / 4.0f);
+    
     while(!glfwWindowShouldClose(window)) {
         updateFpsCounter(window);
         
-        mat4 model = translate(mat4(1.0f), vec3(0.5f, 0.0f, 0.f));
+        mat4 model = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
         mat4 view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
-        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.1f, 256.0f);
+        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.1f, 0.0f + glm::max(hm.getColumns(), hm.getRows()) * 2);
         
         // wipe the drawing surface clear
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -212,14 +234,7 @@ int main() {
         int meshDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Kd");
         int meshAmbientReflectance = glGetUniformLocation(shaderManager.getShaderProgram(), "Ka");
         int meshShininess = glGetUniformLocation(shaderManager.getShaderProgram(), "specular_exponent");
-
-        int layer0 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer0");
-        int layer1 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer1");
-        int layer2 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer2");
-        int layer3 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer3");
-        int layer4 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer4");
         
-        glUseProgram(shaderManager.getShaderProgram());
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
         glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
         glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
@@ -236,12 +251,6 @@ int main() {
             glUniform1f(meshShininess, mesh.getMaterial()->getShininess());
             mesh.draw();
         }
-        
-        glUniform1i(layer0, 0);
-        glUniform1i(layer1, 1);
-        glUniform1i(layer2, 2);
-        glUniform1i(layer3, 3);
-        glUniform1i(layer4, 4);
         
         // put the stuff we've been drawing onto the display
         glfwSwapBuffers(window);

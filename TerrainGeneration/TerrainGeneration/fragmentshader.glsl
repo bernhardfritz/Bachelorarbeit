@@ -1,6 +1,7 @@
 #version 410
 in vec3 position_eye, normal_eye;
 in vec2 texture_coordinates;
+in vec3 position;
 
 uniform mat4 view_mat;
 
@@ -22,17 +23,28 @@ uniform sampler2D layer0;
 uniform sampler2D layer1;
 uniform sampler2D layer2;
 uniform sampler2D layer3;
-uniform sampler2D layer4;
+
+uniform float threshold0;
+uniform float threshold1;
+uniform float threshold2;
+uniform float delta;
 
 void main () {
     vec4 color0 = texture(layer0, texture_coordinates);
     vec4 color1 = texture(layer1, texture_coordinates);
     vec4 color2 = texture(layer2, texture_coordinates);
     vec4 color3 = texture(layer3, texture_coordinates);
-    vec4 alpha = texture(layer4, texture_coordinates);
     
-    //vec4 texel = alpha[0] * color0 + alpha[1] * color1 + alpha[2] * color2 + alpha[3] * color3;
-    vec4 texel = color1;
+    vec4 texel = vec4(0.0, 0.0, 0.0, 0.0);
+    float half_delta = delta / 2.0;
+    if(position.y < threshold0 - half_delta) texel = color0;
+    if(position.y >= threshold0 - half_delta && position.y < threshold0 + half_delta) texel = mix(color1, color0, (threshold0 + half_delta - position.y) / delta);
+    if(position.y >= threshold0 + half_delta && position.y < threshold1 - half_delta) texel = color1;
+    if(position.y >= threshold1 - half_delta && position.y < threshold1 + half_delta) texel = mix(color2, color1, (threshold1 + half_delta - position.y) / delta);
+    if(position.y >= threshold1 + half_delta && position.y < threshold2 - half_delta) texel = color2;
+    if(position.y >= threshold2 - half_delta && position.y < threshold2 + half_delta) texel = mix(color3, color2, (threshold2 + half_delta - position.y) / delta);
+    if(position.y >= threshold2 + half_delta) texel = color3;
+    //vec4 texel = color1;
     
     // ambient intensity
     vec3 Ia = La * Ka;

@@ -11,20 +11,22 @@
 #include "Graph.hpp"
 #include "Ray.hpp"
 
-bool isPointInPolygon(vec2 point, vector<vec2> polygon) {
-    int j = (int)polygon.size() - 1;
-    bool oddNodes=false;
-    
-    for(int i = 0; i < polygon.size(); i++) {
-        if((polygon[i].y < point.y && polygon[j].y >= point.y) || (polygon[j].y < point.y && polygon[i].y >= point.y)) {
-            if(polygon[i].x + (point.y - polygon[i].y) / (polygon[j].y - polygon[i].y) * (polygon[j].x - polygon[i].x) < point.x) {
-                oddNodes = !oddNodes;
-            }
+bool pnpoly(vec2 point, vector<vec2> polygon) {
+    int nvert = (int)polygon.size();
+    int i, j;
+    float e = 0.001f;
+    bool c = false;
+    for (i = 0, j = nvert-1; i < nvert; j = i++) {
+        if(fabs(polygon[i].y - polygon[j].y) <= e && fabs(polygon[j].y - point.y) <= e && (polygon[i].x > point.x) != (polygon[j].x >= point.x)) {
+            return true;
         }
-        j = i;
+        if(polygon[i].y > point.y != polygon[j].y > point.y) {
+            double d = (polygon[j].x-polygon[i].x) * (point.y-polygon[i].y) / (polygon[j].y-polygon[i].y) + polygon[i].x;
+            if(fabs(point.x - d) <= e) return true;
+            if(point.x < d) c = !c;
+        }
     }
-    
-    return oddNodes;
+    return c;
 }
 
 void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
@@ -155,7 +157,7 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
         vector<int> dfs2;
         for(int j = 0; j < polygons.size(); j++) {
             vector<vec2> polygon = polygons[j];
-            if(isPointInPolygon(vec2(heightmap.getColumns()/2, heightmap.getRows()/2), polygon)) {
+            if(pnpoly(vec2(heightmap.getColumns()/2, heightmap.getRows()/2), polygon)) {
                 cout << "DFS: ";
                 dfs2 = g2.DFS(j);
                 for(int j = 0; j < dfs2.size(); j++) {
@@ -171,10 +173,10 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
             vector<vec2> polygon = polygons[dfs2[j]];
             for(int row = 0; row <= heightmap.getRows(); row++) {
                 for(int column = 0; column <= heightmap.getColumns(); column++) {
-                    if(isPointInPolygon(vec2(column, row), polygon)) heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + height);
+                    if(pnpoly(vec2(column, row), polygon)) heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + height);
                 }
             }
-            //height /= 2.0f;
+            height *= 0.9f;
         }
         
     }

@@ -25,10 +25,10 @@
 		708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58491C71E7DF00B26E7A /* Cone.cpp */; };
 		708F584E1C732BA300B26E7A /* TextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F584C1C732BA300B26E7A /* TextureLoader.cpp */; };
 		708F58531C7344A900B26E7A /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58511C7344A900B26E7A /* Texture.cpp */; };
-		708F58601C7362CE00B26E7A /* aztec_grass.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F585C1C7362A400B26E7A /* aztec_grass.png */; };
-		708F58611C7362CE00B26E7A /* ng_aztec_dirt.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F585D1C7362A400B26E7A /* ng_aztec_dirt.png */; };
-		708F58621C7362CE00B26E7A /* ng_mossy_cliff.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F585E1C7362A400B26E7A /* ng_mossy_cliff.png */; };
-		708F58631C7362CE00B26E7A /* ng_mountain_rocks.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F585F1C7362A400B26E7A /* ng_mountain_rocks.png */; };
+		708F58681C738B1C00B26E7A /* snow.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58641C7389F900B26E7A /* snow.png */; };
+		708F58691C738B1C00B26E7A /* grass.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58651C738A7500B26E7A /* grass.png */; };
+		708F586A1C738B1C00B26E7A /* sand.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58661C738AAA00B26E7A /* sand.png */; };
+		708F586B1C738B1C00B26E7A /* rock.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58671C738AFD00B26E7A /* rock.png */; };
 		709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096543F1C264A98005BB137 /* DiamondSquare.cpp */; };
 		709654441C2D916A005BB137 /* Fault.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654421C2D916A005BB137 /* Fault.cpp */; };
 		709654471C3C2AF5005BB137 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654451C3C2AF5005BB137 /* Graph.cpp */; };
@@ -62,10 +62,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				708F58601C7362CE00B26E7A /* aztec_grass.png in CopyFiles */,
-				708F58611C7362CE00B26E7A /* ng_aztec_dirt.png in CopyFiles */,
-				708F58621C7362CE00B26E7A /* ng_mossy_cliff.png in CopyFiles */,
-				708F58631C7362CE00B26E7A /* ng_mountain_rocks.png in CopyFiles */,
+				708F58681C738B1C00B26E7A /* snow.png in CopyFiles */,
+				708F58691C738B1C00B26E7A /* grass.png in CopyFiles */,
+				708F586A1C738B1C00B26E7A /* sand.png in CopyFiles */,
+				708F586B1C738B1C00B26E7A /* rock.png in CopyFiles */,
 				70BF607E1BF91D2700319D05 /* heightmap.png in CopyFiles */,
 				70E3C5EF1BF27F7E00E1DD90 /* terrain.png in CopyFiles */,
 				70E3C5E01BEFAE3800E1DD90 /* bunny.obj in CopyFiles */,
@@ -107,10 +107,10 @@
 		708F584D1C732BA300B26E7A /* TextureLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextureLoader.hpp; sourceTree = "<group>"; };
 		708F58511C7344A900B26E7A /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		708F58521C7344A900B26E7A /* Texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
-		708F585C1C7362A400B26E7A /* aztec_grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aztec_grass.png; sourceTree = "<group>"; };
-		708F585D1C7362A400B26E7A /* ng_aztec_dirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ng_aztec_dirt.png; sourceTree = "<group>"; };
-		708F585E1C7362A400B26E7A /* ng_mossy_cliff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ng_mossy_cliff.png; sourceTree = "<group>"; };
-		708F585F1C7362A400B26E7A /* ng_mountain_rocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ng_mountain_rocks.png; sourceTree = "<group>"; };
+		708F58641C7389F900B26E7A /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
+		708F58651C738A7500B26E7A /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
+		708F58661C738AAA00B26E7A /* sand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand.png; sourceTree = "<group>"; };
+		708F58671C738AFD00B26E7A /* rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock.png; sourceTree = "<group>"; };
 		7096543F1C264A98005BB137 /* DiamondSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiamondSquare.cpp; sourceTree = "<group>"; };
 		709654401C264A98005BB137 /* DiamondSquare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DiamondSquare.hpp; sourceTree = "<group>"; };
 		709654421C2D916A005BB137 /* Fault.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fault.cpp; sourceTree = "<group>"; };
@@ -182,10 +182,10 @@
 		7052CE4B1BDD38AD000D4446 /* TerrainGeneration */ = {
 			isa = PBXGroup;
 			children = (
-				708F585C1C7362A400B26E7A /* aztec_grass.png */,
-				708F585D1C7362A400B26E7A /* ng_aztec_dirt.png */,
-				708F585E1C7362A400B26E7A /* ng_mossy_cliff.png */,
-				708F585F1C7362A400B26E7A /* ng_mountain_rocks.png */,
+				708F58661C738AAA00B26E7A /* sand.png */,
+				708F58651C738A7500B26E7A /* grass.png */,
+				708F58671C738AFD00B26E7A /* rock.png */,
+				708F58641C7389F900B26E7A /* snow.png */,
 				70E3C5D11BEF6A6900E1DD90 /* dragon.obj */,
 				70E3C5DF1BEFAE2300E1DD90 /* bunny.obj */,
 				70E3C5D01BEF6A5900E1DD90 /* buddha.obj */,
