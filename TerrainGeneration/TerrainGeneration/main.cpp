@@ -5,7 +5,8 @@
 //  Created by Bernhard Fritz on 25/10/15.
 //  Copyright © 2015 Bernhard Fritz. All rights reserved.
 //
-
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 #include <GL/glew.h> // include GLEW and new version of GL on Windows
 #include <GLFW/glfw3.h> // GLFW helper library
 #include <glm/glm.hpp>
@@ -26,6 +27,8 @@
 #include "DiamondSquare.hpp"
 #include "Fault.hpp"
 #include "RMP.hpp"
+#include "Cone.hpp"
+#include "TextureLoader.hpp"
 
 using namespace std;
 using namespace glm;
@@ -145,26 +148,43 @@ int main() {
     glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer"
     
     /* OTHER STUFF GOES HERE NEXT */
+    TextureLoader tl;
+    Texture t0 = tl.loadTexture("aztec_grass.png");
+    t0.assignToSlot(0);
+    Texture t1 = tl.loadTexture("ng_aztec_dirt.png");
+    t1.assignToSlot(1);
+    Texture t2 = tl.loadTexture("ng_mossy_cliff.png");
+    t2.assignToSlot(2);
+    Texture t3 = tl.loadTexture("ng_mountain_rocks.png");
+    t3.assignToSlot(3);
     //MeshLoader ml;
-    //Mesh mesh = ml.loadMesh("bunny.obj");
-    //mesh.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
-    //mesh.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
-    //mesh.getMaterial()->setShininess(1.0f);
-    //Heightmap mesh(256, 256);
-    //mesh.loadHeightmap("heightmap.png", 32.0f);
-    //mesh.getMaterial()->setSpecularReflectance(0.0f);
-    Heightmap mesh(64, 64);
-    //DiamondSquare::perform(mesh, 32.0f);
-    //Fault::perform(mesh, 1.0f, 512);
-    RMP::perform(mesh, 50, 3, 1);
+    //Mesh obj = ml.loadMesh("bunny.obj");
+    //obj.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
+    //obj.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
+    //obj.getMaterial()->setShininess(1.0f);
+    Heightmap hm(256, 256);
+    hm.loadHeightmap("heightmap.png", 32.0f);
+    //hm.getMaterial()->setSpecularReflectance(0.0f);
+    //Heightmap hm(64, 64);
+    //DiamondSquare::perform(hm, 50.0f);
+    //Fault::perform(hm, 0.5f, 256);
+    //RMP::perform(hm, 50, 3, 1);
+    vector<Mesh> meshes;
+    meshes.push_back(hm);
+    /*
+    for(int i = 0; i < 100; i++) {
+        Cone tmp(100.0f, 50.0f, 64);
+        tmp.translate(drand48()*100.0f, 0.0f, drand48()*100.0f);
+        meshes.push_back(tmp);
+    }*/
     
-    Light light(vec3(64.0f, 64.0f, 64.0f));
+    Light light(vec3(50.0f, 100.0f, 50.0f));
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     
     glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // nowireframe
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // nowireframe
     
     glEnable(GL_CULL_FACE); // cull face
     glCullFace(GL_BACK); // cull back face
@@ -175,7 +195,7 @@ int main() {
         
         mat4 model = translate(mat4(1.0f), vec3(0.5f, 0.0f, 0.f));
         mat4 view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
-        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.1f, 100.0f);
+        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.1f, 256.0f);
         
         // wipe the drawing surface clear
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -192,6 +212,12 @@ int main() {
         int meshDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Kd");
         int meshAmbientReflectance = glGetUniformLocation(shaderManager.getShaderProgram(), "Ka");
         int meshShininess = glGetUniformLocation(shaderManager.getShaderProgram(), "specular_exponent");
+
+        int layer0 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer0");
+        int layer1 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer1");
+        int layer2 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer2");
+        int layer3 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer3");
+        int layer4 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer4");
         
         glUseProgram(shaderManager.getShaderProgram());
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
@@ -203,13 +229,20 @@ int main() {
         glUniform3fv(lightDiffuseIntensity, 1, value_ptr(light.getDiffuseIntensity()));
         glUniform3fv(lightAmbientIntensity, 1, value_ptr(light.getAmbientIntensity()));
         
-        glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh.getMaterial()->getSpecularReflectance()));
-        glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh.getMaterial()->getDiffuseReflectance()));
-        glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh.getMaterial()->getAmbientReflectance()));
-        glUniform1f(meshShininess, mesh.getMaterial()->getShininess());
+        for(Mesh mesh : meshes) {
+            glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh.getMaterial()->getSpecularReflectance()));
+            glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh.getMaterial()->getDiffuseReflectance()));
+            glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh.getMaterial()->getAmbientReflectance()));
+            glUniform1f(meshShininess, mesh.getMaterial()->getShininess());
+            mesh.draw();
+        }
         
+        glUniform1i(layer0, 0);
+        glUniform1i(layer1, 1);
+        glUniform1i(layer2, 2);
+        glUniform1i(layer3, 3);
+        glUniform1i(layer4, 4);
         
-        mesh.draw();
         // put the stuff we've been drawing onto the display
         glfwSwapBuffers(window);
         // update other events like input handling

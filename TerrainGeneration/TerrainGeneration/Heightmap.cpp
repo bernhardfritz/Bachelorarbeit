@@ -9,8 +9,7 @@
 #include <string>
 #include <iostream>
 #include "Heightmap.hpp"
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include "TextureLoader.hpp"
 
 Heightmap::Heightmap(int columns, int rows) {
     setColumns(columns);
@@ -18,9 +17,11 @@ Heightmap::Heightmap(int columns, int rows) {
     
     vector<vec3> vertices;
     vector<unsigned int> indices;
+    vector<vec2> texcoords;
     for(int z = 0; z <= rows; z++) {
         for(int x = 0; x <= columns; x++) {
             vertices.push_back(vec3(x, 0, z));
+            texcoords.push_back(vec2(x % 2 == 0 ? 0.0f : 1.0f, z % 2 == 0 ? 0.0f : 1.0f));
         }
     }
     
@@ -37,9 +38,10 @@ Heightmap::Heightmap(int columns, int rows) {
     
     setVertices(vertices);
     setIndices(indices);
+    setTexcoords(texcoords);
     setMaterial(new Material());
+    getMaterial()->setSpecularReflectance(0);
     calculateNormals();
-    init();
 }
 
 void Heightmap::setColumns(int columns) {
@@ -72,25 +74,22 @@ float Heightmap::getHeightAt(int column, int row) {
 }
 
 void Heightmap::loadHeightmap(string filename, int maxHeight) {
-    int width, height, channels;
-    unsigned char* data = stbi_load(filename.c_str(), &width, &height, &channels, 1); // force 1 channel
+    TextureLoader tl;
+    Texture t = tl.loadTexture(filename, 1);
     
-    if(width < columns || height < rows) {
-        cout << "The provided file " << filename << " (" << width << "x" << height << ") is too small and cannot be used for this heightmap (" << columns << "x" << rows << ")" << endl;
-        stbi_image_free(data);
+    if(t.getWidth() < columns || t.getHeight() < rows) {
+        cout << "The provided file " << filename << " (" << t.getWidth() << "x" << t.getHeight() << ") is too small and cannot be used for this heightmap (" << columns << "x" << rows << ")" << endl;
         return;
     }
     
-    int dx = width/columns;
-    int dy = height/rows;
+    int dx = t.getWidth()/columns;
+    int dy = t.getHeight()/rows;
     
-    for(int row = 0; row < rows; row++) {
-        for(int column = 0; column < columns; column++) {
-            setHeightAt(column, row, (data[row * width * dy + column * dx] / 255.0f) * maxHeight);
+    for(int row = 0; row <= rows; row++) {
+        for(int column = 0; column <= columns; column++) {
+            setHeightAt(column, row, (t.getData()[row * t.getWidth() * dy + column * dx] / 255.0f) * maxHeight);
         }
     }
     
-    stbi_image_free(data);
-    
-    init();
+    calculateNormals();
 }

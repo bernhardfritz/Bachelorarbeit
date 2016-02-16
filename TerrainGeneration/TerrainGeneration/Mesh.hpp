@@ -22,11 +22,13 @@ protected:
     vector<vec3> vertices;
     vector<unsigned int> indices;
     vector<vec3> normals;
+    vector<vec2> texcoords;
     
 private:
     GLuint vao;
     GLuint vbo;
     GLuint nbo;
+    GLuint tbo;
     GLuint ibo;
     Material* material;
     
@@ -39,12 +41,15 @@ public:
     vector<vec3> getVertices();
     void setNormals(vector<vec3> normals);
     vector<vec3> getNormals();
+    void setTexcoords(vector<vec2> texcoords);
+    vector<vec2> getTexcoords();
     void setIndices(vector<unsigned int> indices);
     vector<unsigned int> getIndices();
     void setMaterial(Material* material);
     Material* getMaterial();
     void calculateNormals();
     void init();
+    void translate(float x, float y, float z);
     void draw();
     void print();
 };

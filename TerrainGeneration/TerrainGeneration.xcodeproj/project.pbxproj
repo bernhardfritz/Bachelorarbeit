@@ -22,6 +22,13 @@
 		7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE731BE3F877000D4446 /* Keyboard.cpp */; };
 		7052CE851BE53192000D4446 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE841BE53192000D4446 /* CoreVideo.framework */; };
 		7052CE871BE55A84000D4446 /* cube.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7052CE861BE55A7F000D4446 /* cube.obj */; };
+		708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58491C71E7DF00B26E7A /* Cone.cpp */; };
+		708F584E1C732BA300B26E7A /* TextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F584C1C732BA300B26E7A /* TextureLoader.cpp */; };
+		708F58531C7344A900B26E7A /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58511C7344A900B26E7A /* Texture.cpp */; };
+		708F58601C7362CE00B26E7A /* aztec_grass.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F585C1C7362A400B26E7A /* aztec_grass.png */; };
+		708F58611C7362CE00B26E7A /* ng_aztec_dirt.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F585D1C7362A400B26E7A /* ng_aztec_dirt.png */; };
+		708F58621C7362CE00B26E7A /* ng_mossy_cliff.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F585E1C7362A400B26E7A /* ng_mossy_cliff.png */; };
+		708F58631C7362CE00B26E7A /* ng_mountain_rocks.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F585F1C7362A400B26E7A /* ng_mountain_rocks.png */; };
 		709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096543F1C264A98005BB137 /* DiamondSquare.cpp */; };
 		709654441C2D916A005BB137 /* Fault.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654421C2D916A005BB137 /* Fault.cpp */; };
 		709654471C3C2AF5005BB137 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654451C3C2AF5005BB137 /* Graph.cpp */; };
@@ -55,6 +62,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				708F58601C7362CE00B26E7A /* aztec_grass.png in CopyFiles */,
+				708F58611C7362CE00B26E7A /* ng_aztec_dirt.png in CopyFiles */,
+				708F58621C7362CE00B26E7A /* ng_mossy_cliff.png in CopyFiles */,
+				708F58631C7362CE00B26E7A /* ng_mountain_rocks.png in CopyFiles */,
 				70BF607E1BF91D2700319D05 /* heightmap.png in CopyFiles */,
 				70E3C5EF1BF27F7E00E1DD90 /* terrain.png in CopyFiles */,
 				70E3C5E01BEFAE3800E1DD90 /* bunny.obj in CopyFiles */,
@@ -90,6 +101,16 @@
 		7052CE741BE3F877000D4446 /* Keyboard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Keyboard.hpp; sourceTree = "<group>"; };
 		7052CE841BE53192000D4446 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7052CE861BE55A7F000D4446 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
+		708F58491C71E7DF00B26E7A /* Cone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cone.cpp; sourceTree = "<group>"; };
+		708F584A1C71E7DF00B26E7A /* Cone.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cone.hpp; sourceTree = "<group>"; };
+		708F584C1C732BA300B26E7A /* TextureLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureLoader.cpp; sourceTree = "<group>"; };
+		708F584D1C732BA300B26E7A /* TextureLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextureLoader.hpp; sourceTree = "<group>"; };
+		708F58511C7344A900B26E7A /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		708F58521C7344A900B26E7A /* Texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		708F585C1C7362A400B26E7A /* aztec_grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aztec_grass.png; sourceTree = "<group>"; };
+		708F585D1C7362A400B26E7A /* ng_aztec_dirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ng_aztec_dirt.png; sourceTree = "<group>"; };
+		708F585E1C7362A400B26E7A /* ng_mossy_cliff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ng_mossy_cliff.png; sourceTree = "<group>"; };
+		708F585F1C7362A400B26E7A /* ng_mountain_rocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ng_mountain_rocks.png; sourceTree = "<group>"; };
 		7096543F1C264A98005BB137 /* DiamondSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiamondSquare.cpp; sourceTree = "<group>"; };
 		709654401C264A98005BB137 /* DiamondSquare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DiamondSquare.hpp; sourceTree = "<group>"; };
 		709654421C2D916A005BB137 /* Fault.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fault.cpp; sourceTree = "<group>"; };
@@ -161,6 +182,10 @@
 		7052CE4B1BDD38AD000D4446 /* TerrainGeneration */ = {
 			isa = PBXGroup;
 			children = (
+				708F585C1C7362A400B26E7A /* aztec_grass.png */,
+				708F585D1C7362A400B26E7A /* ng_aztec_dirt.png */,
+				708F585E1C7362A400B26E7A /* ng_mossy_cliff.png */,
+				708F585F1C7362A400B26E7A /* ng_mountain_rocks.png */,
 				70E3C5D11BEF6A6900E1DD90 /* dragon.obj */,
 				70E3C5DF1BEFAE2300E1DD90 /* bunny.obj */,
 				70E3C5D01BEF6A5900E1DD90 /* buddha.obj */,
@@ -198,6 +223,12 @@
 				7096544C1C3C3BAB005BB137 /* RMP.hpp */,
 				70FA2FC61C3C63D600A53B93 /* Ray.cpp */,
 				70FA2FC71C3C63D600A53B93 /* Ray.hpp */,
+				708F58491C71E7DF00B26E7A /* Cone.cpp */,
+				708F584A1C71E7DF00B26E7A /* Cone.hpp */,
+				708F584C1C732BA300B26E7A /* TextureLoader.cpp */,
+				708F584D1C732BA300B26E7A /* TextureLoader.hpp */,
+				708F58511C7344A900B26E7A /* Texture.cpp */,
+				708F58521C7344A900B26E7A /* Texture.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -266,13 +297,16 @@
 				70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */,
 				709654471C3C2AF5005BB137 /* Graph.cpp in Sources */,
 				70E3C5E91BF0E89600E1DD90 /* Heightmap.cpp in Sources */,
+				708F58531C7344A900B26E7A /* Texture.cpp in Sources */,
 				70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */,
 				7096544D1C3C3BAB005BB137 /* RMP.cpp in Sources */,
+				708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
 				709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */,
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,
 				709654441C2D916A005BB137 /* Fault.cpp in Sources */,
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,
+				708F584E1C732BA300B26E7A /* TextureLoader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

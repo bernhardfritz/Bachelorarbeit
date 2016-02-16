@@ -23,5 +23,5 @@ void Fault::perform(Heightmap &heightmap, float roughness, int iterations) {
         }
         roughness *= 1.0f - 1.0f / iterations;
     }
-    heightmap.init();
+    heightmap.calculateNormals();
 }

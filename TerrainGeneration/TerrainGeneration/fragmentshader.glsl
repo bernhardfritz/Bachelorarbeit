@@ -1,5 +1,6 @@
 #version 410
 in vec3 position_eye, normal_eye;
+in vec2 texture_coordinates;
 
 uniform mat4 view_mat;
 
@@ -17,7 +18,22 @@ uniform float specular_exponent; // specular 'power'
 
 out vec4 fragment_colour; // final colour of surface
 
+uniform sampler2D layer0;
+uniform sampler2D layer1;
+uniform sampler2D layer2;
+uniform sampler2D layer3;
+uniform sampler2D layer4;
+
 void main () {
+    vec4 color0 = texture(layer0, texture_coordinates);
+    vec4 color1 = texture(layer1, texture_coordinates);
+    vec4 color2 = texture(layer2, texture_coordinates);
+    vec4 color3 = texture(layer3, texture_coordinates);
+    vec4 alpha = texture(layer4, texture_coordinates);
+    
+    //vec4 texel = alpha[0] * color0 + alpha[1] * color1 + alpha[2] * color2 + alpha[3] * color3;
+    vec4 texel = color1;
+    
     // ambient intensity
     vec3 Ia = La * Ka;
     
@@ -28,7 +44,8 @@ void main () {
     vec3 direction_to_light_eye = normalize (distance_to_light_eye);
     float dot_prod = dot (direction_to_light_eye, normal_eye);
     dot_prod = max (dot_prod, 0.0);
-    vec3 Id = Ld * Kd * dot_prod; // final diffuse intensity
+    //vec3 Id = Ld * Kd * dot_prod; // final diffuse intensity
+    vec3 Id = Ld * texel.rgb * dot_prod; // final diffuse intensity
     
     // specular intensity
     vec3 surface_to_viewer_eye = normalize (-position_eye);
@@ -39,5 +56,5 @@ void main () {
     vec3 Is = Ls * Ks * specular_factor; // final specular intensity
     
     // final colour
-    fragment_colour = vec4 (Is + Id + Ia, 1.0);
+    fragment_colour = vec4 (Is + Id + Ia, texel.a);
 }

@@ -178,5 +178,5 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
         }
         
     }
-    heightmap.init();
+    heightmap.calculateNormals();
 }

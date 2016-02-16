@@ -11,6 +11,7 @@
 
 #include <vector>
 #include "Mesh.hpp"
+#include "Texture.hpp"
 
 using namespace std;
 

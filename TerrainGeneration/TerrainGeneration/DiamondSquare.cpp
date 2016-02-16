@@ -94,5 +94,5 @@ void DiamondSquare::perform(Heightmap& heightmap, float roughness) {
         rows/=2.0f;
     }
 
-    heightmap.init();
+    heightmap.calculateNormals();
 }

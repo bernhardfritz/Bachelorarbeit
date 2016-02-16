@@ -8,6 +8,8 @@
 
 #include <iostream>
 #include "Mesh.hpp"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 Mesh::Mesh() {
     
@@ -42,6 +44,14 @@ void Mesh::setNormals(vector<vec3> normals) {
 
 vector<vec3> Mesh::getNormals() {
     return normals;
+}
+
+void Mesh::setTexcoords(vector<vec2> texcoords) {
+    this->texcoords = texcoords;
+}
+
+vector<vec2> Mesh::getTexcoords() {
+    return texcoords;
 }
 
 void Mesh::setIndices(vector<unsigned int> indices) {
@@ -99,10 +109,29 @@ void Mesh::init() {
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
     
+    tbo = 0;
+    glGenBuffers(1, &tbo);
+    glBindBuffer(GL_ARRAY_BUFFER, tbo);
+    glBufferData(GL_ARRAY_BUFFER, texcoords.size() * sizeof(vec2), &texcoords[0], GL_STATIC_DRAW);
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+    
     ibo = 0;
     glGenBuffers(1, &ibo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
+}
+
+void Mesh::translate(float x, float y, float z) {
+    glm::mat4 translate = glm::translate(glm::mat4(1.f), glm::vec3(x, y, z));
+    for(int i = 0; i < vertices.size(); i++) {
+        glm::vec4 vector(vertices[i], 1.f);
+        vector = translate * vector;
+        vertices[i].x = vector.x;
+        vertices[i].y = vector.y;
+        vertices[i].z = vector.z;
+    }
+    init();
 }
 
 void Mesh::draw() {
