@@ -29,6 +29,8 @@
 #include "RMP.hpp"
 #include "Cone.hpp"
 #include "TextureLoader.hpp"
+#include "Cube.hpp"
+#include "Skybox.hpp"
 
 using namespace std;
 using namespace glm;
@@ -149,36 +151,38 @@ int main() {
     
     /* OTHER STUFF GOES HERE NEXT */
     TextureLoader tl;
-    Texture t0 = tl.loadTexture("sand.png");
+    Texture t0 = tl.loadTexture("sand2.png");
     t0.assignToSlot(0);
-    Texture t1 = tl.loadTexture("grass.png");
+    Texture t1 = tl.loadTexture("grass2.png");
     t1.assignToSlot(1);
-    Texture t2 = tl.loadTexture("rock.png");
+    Texture t2 = tl.loadTexture("rock2.png");
     t2.assignToSlot(2);
-    Texture t3 = tl.loadTexture("snow.png");
+    Texture t3 = tl.loadTexture("snow2.png");
     t3.assignToSlot(3);
     //MeshLoader ml;
     //Mesh obj = ml.loadMesh("bunny.obj");
     //obj.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
     //obj.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
     //obj.getMaterial()->setShininess(1.0f);
-    //Heightmap hm(256, 256);
-    //hm.loadHeightmap("terrain.png", 32.0f);
+    Heightmap hm(256, 256);
+    hm.loadHeightmap("terrain.png", 40.0f);
     //hm.getMaterial()->setSpecularReflectance(0.0f);
-    Heightmap hm(64, 64);
+    //Heightmap hm(64, 64);
     //DiamondSquare::perform(hm, 50.0f);
     //Fault::perform(hm, 1.0f, 512);
-    RMP::perform(hm, 50, 3, 1);
+    //RMP::perform(hm, 50, 3, 1);
     vector<Mesh> meshes;
     meshes.push_back(hm);
-    /*
-    for(int i = 0; i < 100; i++) {
+    
+    /*for(int i = 0; i < 100; i++) {
         Cone tmp(100.0f, 50.0f, 64);
-        tmp.translate(drand48()*100.0f, 0.0f, drand48()*100.0f);
+        tmp.translate(drand48()*100.0f, 10.0f, drand48()*100.0f);
         meshes.push_back(tmp);
     }*/
     
+    
     Light light(vec3(hm.getColumns()/2.0f, hm.getMaxHeight() * 2.0f, hm.getRows()/2.0f));
+    Skybox skybox;
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     glUseProgram(shaderManager.getShaderProgram());
@@ -217,10 +221,14 @@ int main() {
         
         mat4 model = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
         mat4 view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
-        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.1f, 0.0f + glm::max(hm.getColumns(), hm.getRows()) * 2);
+        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.1f, 0.0f + glm::max(hm.getColumns(), hm.getRows()) * 2.0f);
         
         // wipe the drawing surface clear
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        skybox.draw(value_ptr(translate(mat4(1.0f), camera.getEye())), value_ptr(view), value_ptr(proj));
+        
+        glUseProgram(shaderManager.getShaderProgram());
+        
         int modelLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "model_mat");
         int viewLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "view_mat");
         int projLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "projection_mat");
@@ -234,6 +242,8 @@ int main() {
         int meshDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Kd");
         int meshAmbientReflectance = glGetUniformLocation(shaderManager.getShaderProgram(), "Ka");
         int meshShininess = glGetUniformLocation(shaderManager.getShaderProgram(), "specular_exponent");
+        
+        int textured = glGetUniformLocation(shaderManager.getShaderProgram(), "textured");
         
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
         glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
@@ -249,6 +259,7 @@ int main() {
             glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh.getMaterial()->getDiffuseReflectance()));
             glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh.getMaterial()->getAmbientReflectance()));
             glUniform1f(meshShininess, mesh.getMaterial()->getShininess());
+            glUniform1i(textured, mesh.isTextured() ? 1 : 0);
             mesh.draw();
         }
         

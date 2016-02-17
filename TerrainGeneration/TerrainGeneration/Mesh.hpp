@@ -43,10 +43,12 @@ public:
     vector<vec3> getNormals();
     void setTexcoords(vector<vec2> texcoords);
     vector<vec2> getTexcoords();
+    bool isTextured();
     void setIndices(vector<unsigned int> indices);
     vector<unsigned int> getIndices();
     void setMaterial(Material* material);
     Material* getMaterial();
+    GLuint getVAO();
     void calculateNormals();
     void init();
     void translate(float x, float y, float z);

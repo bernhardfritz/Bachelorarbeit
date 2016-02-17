@@ -29,6 +29,8 @@ uniform float threshold1;
 uniform float threshold2;
 uniform float delta;
 
+uniform int textured;
+
 void main () {
     vec4 color0 = texture(layer0, texture_coordinates);
     vec4 color1 = texture(layer1, texture_coordinates);
@@ -56,8 +58,9 @@ void main () {
     vec3 direction_to_light_eye = normalize (distance_to_light_eye);
     float dot_prod = dot (direction_to_light_eye, normal_eye);
     dot_prod = max (dot_prod, 0.0);
-    //vec3 Id = Ld * Kd * dot_prod; // final diffuse intensity
-    vec3 Id = Ld * texel.rgb * dot_prod; // final diffuse intensity
+    vec3 Id;
+    if(textured == 0) Id = Ld * Kd * dot_prod; // final diffuse intensity
+    else Id = Ld * texel.rgb * dot_prod; // final diffuse intensity
     
     // specular intensity
     vec3 surface_to_viewer_eye = normalize (-position_eye);

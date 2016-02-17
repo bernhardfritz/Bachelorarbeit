@@ -54,6 +54,10 @@ vector<vec2> Mesh::getTexcoords() {
     return texcoords;
 }
 
+bool Mesh::isTextured() {
+    return !texcoords.empty();
+}
+
 void Mesh::setIndices(vector<unsigned int> indices) {
     this->indices = indices;
 }
@@ -68,6 +72,10 @@ void Mesh::setMaterial(Material* material) {
 
 Material* Mesh::getMaterial() {
     return material;
+}
+
+GLuint Mesh::getVAO() {
+    return vao;
 }
 
 void Mesh::calculateNormals() {
@@ -109,12 +117,14 @@ void Mesh::init() {
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
     
-    tbo = 0;
-    glGenBuffers(1, &tbo);
-    glBindBuffer(GL_ARRAY_BUFFER, tbo);
-    glBufferData(GL_ARRAY_BUFFER, texcoords.size() * sizeof(vec2), &texcoords[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+    if(isTextured()) {
+        tbo = 0;
+        glGenBuffers(1, &tbo);
+        glBindBuffer(GL_ARRAY_BUFFER, tbo);
+        glBufferData(GL_ARRAY_BUFFER, texcoords.size() * sizeof(vec2), &texcoords[0], GL_STATIC_DRAW);
+        glEnableVertexAttribArray(2);
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+    }
     
     ibo = 0;
     glGenBuffers(1, &ibo);
