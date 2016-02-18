@@ -16,6 +16,7 @@ class RMP {
 private:
 public:
     static void perform(Heightmap& heightmap, int n, int l, int r);
+    static void perform(Heightmap& heightmap, int n);
 };
 
 #endif /* RMP_hpp */

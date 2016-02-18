@@ -40,7 +40,7 @@ Heightmap::Heightmap(int columns, int rows) {
     setIndices(indices);
     setTexcoords(texcoords);
     setMaterial(new Material());
-    getMaterial()->setSpecularReflectance(0);
+    getMaterial()->setSpecularReflectance(0.0f);
     calculateNormals();
 }
 

@@ -8,15 +8,15 @@
 
 #ifndef Skybox_hpp
 #define Skybox_hpp
-#include "Cube.hpp"
 
-#include "gl_utils.h"
+#include <GL/glew.h>
+#include "ShaderManager.hpp"
 
 class Skybox {
 private:
     GLuint cube_vao;
     GLuint cube_map_texture;
-    GLuint cube_sp;
+    ShaderManager shaderManager;
     int cube_M_location;
     int cube_V_location;
     int cube_P_location;

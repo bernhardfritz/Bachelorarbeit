@@ -10,6 +10,7 @@
 #include "RMP.hpp"
 #include "Graph.hpp"
 #include "Ray.hpp"
+#include "Voronoi.hpp"
 
 bool pnpoly(vec2 point, vector<vec2> polygon) {
     int nvert = (int)polygon.size();
@@ -179,6 +180,24 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
             height *= 0.9f;
         }
         
+    }
+    heightmap.calculateNormals();
+}
+
+void RMP::perform(Heightmap &heightmap, int n) {
+    float height = 1.0f;
+    for(int i = 0; i < n; i++) {
+        Voronoi voronoi(4);
+        voronoi.draw();
+        //glFinish();
+        for(int row = 0; row <= heightmap.getRows(); row++) {
+            for(int column = 0; column <= heightmap.getColumns(); column++) {
+                if(voronoi.isPositionInRegion(column, row, heightmap.getColumns()/2, heightmap.getRows()/2, heightmap.getColumns(), heightmap.getRows())) {
+                    heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + height);
+                }
+            }
+        }
+        height *= (1.0f - 1.0f/n);
     }
     heightmap.calculateNormals();
 }

@@ -42,7 +42,6 @@
 		708F58921C74F27200B26E7A /* top2.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F588C1C74F21400B26E7A /* top2.tga */; };
 		708F58931C74F2FB00B26E7A /* skybox_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58851C74EDBA00B26E7A /* skybox_vs.glsl */; };
 		708F58941C74F2FB00B26E7A /* skybox_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58861C74EDCA00B26E7A /* skybox_fs.glsl */; };
-		708F58A31C7511CA00B26E7A /* gl_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58A11C7511CA00B26E7A /* gl_utils.cpp */; };
 		708F58A61C7519A200B26E7A /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58A41C7519A200B26E7A /* Skybox.cpp */; };
 		708F58AD1C752C5F00B26E7A /* back.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58A71C752C2000B26E7A /* back.tga */; };
 		708F58AE1C752C5F00B26E7A /* bottom.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58A81C752C2000B26E7A /* bottom.tga */; };
@@ -62,6 +61,9 @@
 		708F58C81C753C3E00B26E7A /* left4.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58C21C753BFB00B26E7A /* left4.png */; };
 		708F58C91C753C3E00B26E7A /* right4.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58C31C753BFB00B26E7A /* right4.png */; };
 		708F58CA1C753C3E00B26E7A /* top4.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58C41C753BFB00B26E7A /* top4.png */; };
+		708F58CD1C75EAA100B26E7A /* Voronoi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58CB1C75EAA100B26E7A /* Voronoi.cpp */; };
+		708F58D01C75FAA000B26E7A /* voronoi_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58CE1C75F40500B26E7A /* voronoi_vs.glsl */; };
+		708F58D11C75FAA000B26E7A /* voronoi_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58CF1C75F41100B26E7A /* voronoi_fs.glsl */; };
 		709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096543F1C264A98005BB137 /* DiamondSquare.cpp */; };
 		709654441C2D916A005BB137 /* Fault.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654421C2D916A005BB137 /* Fault.cpp */; };
 		709654471C3C2AF5005BB137 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654451C3C2AF5005BB137 /* Graph.cpp */; };
@@ -95,6 +97,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				708F58D01C75FAA000B26E7A /* voronoi_vs.glsl in CopyFiles */,
+				708F58D11C75FAA000B26E7A /* voronoi_fs.glsl in CopyFiles */,
 				708F58C51C753C3E00B26E7A /* back4.png in CopyFiles */,
 				708F58C61C753C3E00B26E7A /* bottom4.png in CopyFiles */,
 				708F58C71C753C3E00B26E7A /* front4.png in CopyFiles */,
@@ -188,8 +192,6 @@
 		708F588A1C74F21400B26E7A /* left2.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = left2.tga; sourceTree = "<group>"; };
 		708F588B1C74F21400B26E7A /* right2.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = right2.tga; sourceTree = "<group>"; };
 		708F588C1C74F21400B26E7A /* top2.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = top2.tga; sourceTree = "<group>"; };
-		708F58A11C7511CA00B26E7A /* gl_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gl_utils.cpp; sourceTree = "<group>"; };
-		708F58A21C7511CA00B26E7A /* gl_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl_utils.h; sourceTree = "<group>"; };
 		708F58A41C7519A200B26E7A /* Skybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skybox.cpp; sourceTree = "<group>"; };
 		708F58A51C7519A200B26E7A /* Skybox.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Skybox.hpp; sourceTree = "<group>"; };
 		708F58A71C752C2000B26E7A /* back.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = back.tga; sourceTree = "<group>"; };
@@ -210,6 +212,10 @@
 		708F58C21C753BFB00B26E7A /* left4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left4.png; sourceTree = "<group>"; };
 		708F58C31C753BFB00B26E7A /* right4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right4.png; sourceTree = "<group>"; };
 		708F58C41C753BFB00B26E7A /* top4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top4.png; sourceTree = "<group>"; };
+		708F58CB1C75EAA100B26E7A /* Voronoi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Voronoi.cpp; sourceTree = "<group>"; };
+		708F58CC1C75EAA100B26E7A /* Voronoi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Voronoi.hpp; sourceTree = "<group>"; };
+		708F58CE1C75F40500B26E7A /* voronoi_vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = voronoi_vs.glsl; sourceTree = "<group>"; };
+		708F58CF1C75F41100B26E7A /* voronoi_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = voronoi_fs.glsl; sourceTree = "<group>"; };
 		7096543F1C264A98005BB137 /* DiamondSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiamondSquare.cpp; sourceTree = "<group>"; };
 		709654401C264A98005BB137 /* DiamondSquare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DiamondSquare.hpp; sourceTree = "<group>"; };
 		709654421C2D916A005BB137 /* Fault.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fault.cpp; sourceTree = "<group>"; };
@@ -358,12 +364,14 @@
 				708F58521C7344A900B26E7A /* Texture.hpp */,
 				708F587F1C74CC7900B26E7A /* Cube.cpp */,
 				708F58801C74CC7900B26E7A /* Cube.hpp */,
-				708F58A11C7511CA00B26E7A /* gl_utils.cpp */,
-				708F58A21C7511CA00B26E7A /* gl_utils.h */,
 				708F58851C74EDBA00B26E7A /* skybox_vs.glsl */,
 				708F58861C74EDCA00B26E7A /* skybox_fs.glsl */,
 				708F58A41C7519A200B26E7A /* Skybox.cpp */,
 				708F58A51C7519A200B26E7A /* Skybox.hpp */,
+				708F58CB1C75EAA100B26E7A /* Voronoi.cpp */,
+				708F58CC1C75EAA100B26E7A /* Voronoi.hpp */,
+				708F58CE1C75F40500B26E7A /* voronoi_vs.glsl */,
+				708F58CF1C75F41100B26E7A /* voronoi_fs.glsl */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -437,8 +445,8 @@
 				708F58531C7344A900B26E7A /* Texture.cpp in Sources */,
 				70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */,
 				7096544D1C3C3BAB005BB137 /* RMP.cpp in Sources */,
+				708F58CD1C75EAA100B26E7A /* Voronoi.cpp in Sources */,
 				708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */,
-				708F58A31C7511CA00B26E7A /* gl_utils.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
 				709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */,
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,

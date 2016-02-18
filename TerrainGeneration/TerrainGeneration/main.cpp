@@ -31,6 +31,7 @@
 #include "TextureLoader.hpp"
 #include "Cube.hpp"
 #include "Skybox.hpp"
+#include "Voronoi.hpp"
 
 using namespace std;
 using namespace glm;
@@ -149,6 +150,14 @@ int main() {
     glEnable (GL_DEPTH_TEST); // enable depth-testing
     glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer"
     
+    glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // nowireframe
+    
+    glEnable(GL_CULL_FACE); // cull face
+    glCullFace(GL_BACK); // cull back face
+    glFrontFace(GL_CCW); // GL_CCW for counter clock-wise
+    
     /* OTHER STUFF GOES HERE NEXT */
     TextureLoader tl;
     Texture t0 = tl.loadTexture("sand2.png");
@@ -164,13 +173,14 @@ int main() {
     //obj.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
     //obj.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
     //obj.getMaterial()->setShininess(1.0f);
-    Heightmap hm(256, 256);
-    hm.loadHeightmap("terrain.png", 40.0f);
+    //Heightmap hm(256, 256);
+    //hm.loadHeightmap("terrain.png", 40.0f);
     //hm.getMaterial()->setSpecularReflectance(0.0f);
-    //Heightmap hm(64, 64);
+    Heightmap hm(128, 128);
     //DiamondSquare::perform(hm, 50.0f);
-    //Fault::perform(hm, 1.0f, 512);
+    //Fault::perform(hm, 0.5f, 512);
     //RMP::perform(hm, 50, 3, 1);
+    RMP::perform(hm, 100);
     vector<Mesh> meshes;
     meshes.push_back(hm);
     
@@ -183,17 +193,10 @@ int main() {
     
     Light light(vec3(hm.getColumns()/2.0f, hm.getMaxHeight() * 2.0f, hm.getRows()/2.0f));
     Skybox skybox;
+    Voronoi voronoi(5);
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     glUseProgram(shaderManager.getShaderProgram());
-    
-    glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // nowireframe
-    
-    glEnable(GL_CULL_FACE); // cull face
-    glCullFace(GL_BACK); // cull back face
-    glFrontFace(GL_CCW); // GL_CCW for counter clock-wise
     
     int layer0 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer0");
     int layer1 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer1");
@@ -226,6 +229,7 @@ int main() {
         // wipe the drawing surface clear
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         skybox.draw(value_ptr(translate(mat4(1.0f), camera.getEye())), value_ptr(view), value_ptr(proj));
+        //voronoi.draw();
         
         glUseProgram(shaderManager.getShaderProgram());
         

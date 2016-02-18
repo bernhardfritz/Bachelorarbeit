@@ -139,23 +139,22 @@ void Skybox::create_cube_map(const char* front, const char* back, const char* to
     glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 }
 
-Skybox::Skybox() {
+Skybox::Skybox() : shaderManager(ShaderManager(CUBE_VERT_FILE, CUBE_FRAG_FILE)) {
     cube_vao = make_big_cube();
     create_cube_map (FRONT, BACK, TOP, BOTTOM, LEFT, RIGHT, &cube_map_texture);
-    cube_sp = create_programme_from_files (CUBE_VERT_FILE, CUBE_FRAG_FILE);
-    cube_M_location = glGetUniformLocation (cube_sp, "M");
-    cube_V_location = glGetUniformLocation (cube_sp, "V");
-    cube_P_location = glGetUniformLocation (cube_sp, "P");
+    cube_M_location = glGetUniformLocation (shaderManager.getShaderProgram(), "M");
+    cube_V_location = glGetUniformLocation (shaderManager.getShaderProgram(), "V");
+    cube_P_location = glGetUniformLocation (shaderManager.getShaderProgram(), "P");
 }
 
 void Skybox::draw(const GLfloat *M, const GLfloat *V, const GLfloat *P) {
-    glUseProgram (cube_sp);
+    glUseProgram (shaderManager.getShaderProgram());
     glUniformMatrix4fv (cube_M_location, 1, GL_FALSE, M);
     glUniformMatrix4fv (cube_V_location, 1, GL_FALSE, V);
     glUniformMatrix4fv (cube_P_location, 1, GL_FALSE, P);
     
     glDepthMask (GL_FALSE);
-    glUseProgram (cube_sp);
+    glUseProgram (shaderManager.getShaderProgram());
     glActiveTexture (GL_TEXTURE0);
     glBindTexture (GL_TEXTURE_CUBE_MAP, cube_map_texture);
     glBindVertexArray (cube_vao);

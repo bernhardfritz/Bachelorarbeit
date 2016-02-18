@@ -71,5 +71,6 @@ void main () {
     vec3 Is = Ls * Ks * specular_factor; // final specular intensity
     
     // final colour
-    fragment_colour = vec4 (Is + Id + Ia, texel.a);
+    if(textured == 0) fragment_colour = vec4 (Is + Id + Ia, 1.0);
+    else fragment_colour = vec4 (Is + Id + Ia, texel.a);
 }

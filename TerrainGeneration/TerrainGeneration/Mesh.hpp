@@ -52,6 +52,7 @@ public:
     void calculateNormals();
     void init();
     void translate(float x, float y, float z);
+    void rotate(float alpha, float beta, float gamma);
     void draw();
     void print();
 };

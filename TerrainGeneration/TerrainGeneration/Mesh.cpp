@@ -144,6 +144,20 @@ void Mesh::translate(float x, float y, float z) {
     init();
 }
 
+void Mesh::rotate(float alpha, float beta, float gamma) {
+    glm::mat4 rotate = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(1, 0, 0));
+    rotate = glm::rotate(rotate, beta, glm::vec3(0, 1, 0));
+    rotate = glm::rotate(rotate, gamma, glm::vec3(0, 0, 1));
+    for(int i = 0; i < vertices.size(); i++) {
+        glm::vec4 vector(vertices[i], 1.f);
+        vector = rotate * vector;
+        vertices[i].x = vector.x;
+        vertices[i].y = vector.y;
+        vertices[i].z = vector.z;
+    }
+    init();
+}
+
 void Mesh::draw() {
     glBindVertexArray(vao);
     glDrawElements(GL_TRIANGLES, (unsigned int)indices.size(), GL_UNSIGNED_INT, (void*)0);
