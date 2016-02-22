@@ -2,6 +2,7 @@
 in vec3 position_eye, normal_eye;
 in vec2 texture_coordinates;
 in vec3 position;
+in vec3 normal;
 
 uniform mat4 view_mat;
 
@@ -37,16 +38,37 @@ void main () {
     vec4 color2 = texture(layer2, texture_coordinates);
     vec4 color3 = texture(layer3, texture_coordinates);
     
+    float t0 = 0.75;
+    float t1 = 0.5;
+    float t2 = 0.25;
+    float d = 0.1;
+    
     vec4 texel = vec4(0.0, 0.0, 0.0, 0.0);
-    float half_delta = delta / 2.0;
-    if(position.y < threshold0 - half_delta) texel = color0;
-    if(position.y >= threshold0 - half_delta && position.y < threshold0 + half_delta) texel = mix(color1, color0, (threshold0 + half_delta - position.y) / delta);
-    if(position.y >= threshold0 + half_delta && position.y < threshold1 - half_delta) texel = color1;
-    if(position.y >= threshold1 - half_delta && position.y < threshold1 + half_delta) texel = mix(color2, color1, (threshold1 + half_delta - position.y) / delta);
-    if(position.y >= threshold1 + half_delta && position.y < threshold2 - half_delta) texel = color2;
-    if(position.y >= threshold2 - half_delta && position.y < threshold2 + half_delta) texel = mix(color3, color2, (threshold2 + half_delta - position.y) / delta);
-    if(position.y >= threshold2 + half_delta) texel = color3;
-    //vec4 texel = color1;
+    if(position.y < threshold0) texel = color0;
+    if(position.y >= threshold0 && position.y < threshold0 + delta) texel = mix(color0, color1, (position.y - threshold0) / delta);
+    if(position.y >= threshold0 + delta && position.y < threshold1) texel = color1;
+    if(position.y >= threshold1 && position.y < threshold1 + delta) texel = mix(color1, color2, (position.y - threshold1) / delta);
+    if(position.y >= threshold1 + delta && position.y < threshold2) texel = color2;
+    if(position.y >= threshold2 && position.y < threshold2 + delta) texel = mix(color2, color3, (position.y - threshold2) / delta);
+    if(position.y >= threshold2 + delta) texel = color3;
+    
+    if(position.y >= threshold1 && position.y < threshold2) {
+        if(normal.y >= t0) texel = mix(texel, color1, (threshold2 - position.y)/(threshold2 - threshold1));
+        if(normal.y < t0 && normal.y >= t0 - d) texel = mix(texel, mix(color1, texel, (t0 - normal.y)/d), (threshold2 - position.y)/(threshold2 - threshold1));
+    }
+    
+    if(position.y >= threshold0 && position.y < threshold1 + delta) {
+        if(normal.y < t1 && normal.y >= t1 - d) texel = mix(mix(texel, color2, (t1 - normal.y)/d), texel, (threshold1 + delta - position.y)/(threshold1 + delta - threshold0));
+        if(normal.y < t1 - d) texel = mix(color2, texel, (threshold1 + delta - position.y)/(threshold1 + delta - threshold0));
+    }
+    
+    /*if(normal.y >= t0) texel = color0;
+    if(normal.y < t0 && normal.y >= t0 - d) texel = mix(color0, color1, (t0 - normal.y)/d);
+    if(normal.y < t0 - d && normal.y >= t1) texel = color1;
+    if(normal.y < t1 && normal.y >= t1 - d) texel = mix(color1, color2, (t1 - normal.y)/d);
+    if(normal.y < t1 - d && normal.y >= t2) texel = color2;
+    if(normal.y < t2 && normal.y >= t2 - d) texel = mix(color2, color3, (t2 - normal.y)/d);
+    if(normal.y < t2 - d) texel = color3;*/
     
     // ambient intensity
     vec3 Ia = La * Ka;
