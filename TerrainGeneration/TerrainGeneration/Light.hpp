@@ -14,17 +14,13 @@
 using namespace glm;
 
 class Light {
-private:
-    vec3 position;
+protected:
     vec3 ambientIntensity;
     vec3 diffuseIntensity;
     vec3 specularIntensity;
     
 public:
-    Light(vec3 position);
-    Light(vec3 position, vec3 ambientColor, vec3 diffuseColor, vec3 specularColor);
-    void setPosition(vec3 position);
-    vec3 getPosition();
+    Light();
     void setAmbientIntensity(vec3 ambientIntensity);
     vec3 getAmbientIntensity();
     void setDiffuseIntensity(vec3 diffuseIntensity);

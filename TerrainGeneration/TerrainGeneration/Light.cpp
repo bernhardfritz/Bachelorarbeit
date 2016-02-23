@@ -8,26 +8,8 @@
 
 #include "Light.hpp"
 
-Light::Light(vec3 position) {
-    setPosition(position);
-    setAmbientIntensity(vec3(0.2f, 0.2f, 0.2f));
-    setDiffuseIntensity(vec3(0.7f, 0.7f, 0.7f));
-    setSpecularIntensity(vec3(1.0f, 1.0f, 1.0f));
-}
-
-Light::Light(vec3 position, vec3 ambientIntensity, vec3 diffuseIntensity, vec3 specularIntensity) {
-    setPosition(position);
-    setAmbientIntensity(ambientIntensity);
-    setDiffuseIntensity(diffuseIntensity);
-    setSpecularIntensity(specularIntensity);
-}
-
-void Light::setPosition(vec3 position) {
-    this->position = position;
-}
-
-vec3 Light::getPosition() {
-    return position;
+Light::Light() {
+    
 }
 
 void Light::setAmbientIntensity(vec3 ambientIntensity) {

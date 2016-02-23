@@ -7,10 +7,14 @@ in vec3 normal;
 uniform mat4 view_mat;
 
 // fixed point light properties
-uniform vec3 light_position_world;
+uniform vec3 light_direction;
 uniform vec3 Ls; // specular light colour
 uniform vec3 Ld; // diffuse light colour
 uniform vec3 La; // ambient light colour
+
+uniform float fog_near;
+uniform float fog_far;
+uniform vec3 fog_color;
 
 // surface reflectance
 uniform vec3 Ks; // specular surface reflectance
@@ -52,9 +56,9 @@ void main () {
     if(position.y >= threshold2 && position.y < threshold2 + delta) texel = mix(color2, color3, (position.y - threshold2) / delta);
     if(position.y >= threshold2 + delta) texel = color3;
     
-    if(position.y >= threshold1 && position.y < threshold2) {
-        if(normal.y >= t0) texel = mix(texel, color1, (threshold2 - position.y)/(threshold2 - threshold1));
-        if(normal.y < t0 && normal.y >= t0 - d) texel = mix(texel, mix(color1, texel, (t0 - normal.y)/d), (threshold2 - position.y)/(threshold2 - threshold1));
+    if(position.y >= threshold1 && position.y < threshold2 + delta) {
+        if(normal.y >= t0) texel = mix(texel, color1, (threshold2 + delta - position.y)/(threshold2 + delta - threshold1));
+        if(normal.y < t0 && normal.y >= t0 - d) texel = mix(texel, mix(color1, texel, (t0 - normal.y)/d), (threshold2 + delta - position.y)/(threshold2 + delta - threshold1));
     }
     
     if(position.y >= threshold0 && position.y < threshold1 + delta) {
@@ -75,9 +79,10 @@ void main () {
     
     // diffuse intensity
     // raise light position to eye space
-    vec3 light_position_eye = vec3 (view_mat * vec4 (light_position_world, 1.0));
+    /*vec3 light_position_eye = vec3 (view_mat * vec4 (light_position_world, 1.0));
     vec3 distance_to_light_eye = light_position_eye - position_eye;
-    vec3 direction_to_light_eye = normalize (distance_to_light_eye);
+    vec3 direction_to_light_eye = normalize (distance_to_light_eye);*/ // point light
+    vec3 direction_to_light_eye = normalize(vec3(view_mat * vec4(vec3(light_direction), 0.0))); // directional light
     float dot_prod = dot (direction_to_light_eye, normal_eye);
     dot_prod = max (dot_prod, 0.0);
     vec3 Id;
@@ -95,4 +100,14 @@ void main () {
     // final colour
     if(textured == 0) fragment_colour = vec4 (Is + Id + Ia, 1.0);
     else fragment_colour = vec4 (Is + Id + Ia, texel.a);
+    
+    // work out distance from camera to point
+    float dist = length (-position_eye);
+    // get a fog factor (thickness of fog) based on the distance
+    float fog_fac = (dist - fog_near) / (fog_far - fog_near);
+    // constrain the fog factor between 0 and 1
+    fog_fac = clamp (fog_fac, 0.0, 1.0);
+    
+    // blend the fog colour with the lighting colour, based on the fog factor
+    fragment_colour.rgb = mix (fragment_colour.rgb, fog_color, fog_fac);
 }

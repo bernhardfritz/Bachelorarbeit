@@ -23,7 +23,7 @@
 #include "MeshLoader.hpp"
 #include "Mesh.hpp"
 #include "Heightmap.hpp"
-#include "Light.hpp"
+#include "DirectionalLight.hpp"
 #include "DiamondSquare.hpp"
 #include "Fault.hpp"
 #include "RMP.hpp"
@@ -32,13 +32,15 @@
 #include "Cube.hpp"
 #include "Skybox.hpp"
 #include "Voronoi.hpp"
+#include "Fog.hpp"
 
 using namespace std;
 using namespace glm;
 
 GLFWwindow* window;
 
-Camera camera(64.0f, 64.0f, 64.0f, 0.0f, 0.0f, 0.0f);
+Camera camera(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+DirectionalLight light(1.24f, 1.22f);
 Keyboard keyboard;
 
 int frameCount;
@@ -98,6 +100,8 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
     if(camera.getSpeed()-yoffset > 0) camera.setSpeed(camera.getSpeed()-yoffset);
 }
 
+int thetaOrPhi = -1;
+
 void update() {
     if(keyboard.getState(GLFW_KEY_ESCAPE)) glfwSetWindowShouldClose(window, 1);
     if(keyboard.getState(GLFW_KEY_W)) camera.moveForward(elapsedSeconds);
@@ -105,6 +109,20 @@ void update() {
     if(keyboard.getState(GLFW_KEY_S)) camera.moveBackward(elapsedSeconds);
     if(keyboard.getState(GLFW_KEY_D)) camera.moveRight(elapsedSeconds);
     if(keyboard.getState(GLFW_KEY_SPACE)) camera.moveUp(elapsedSeconds);
+    if(keyboard.getState(GLFW_KEY_T)) thetaOrPhi = 0;
+    if(keyboard.getState(GLFW_KEY_P)) thetaOrPhi = 1;
+    if(keyboard.getState(GLFW_KEY_MINUS)) {
+        switch(thetaOrPhi) {
+            case 0: light.setTheta(light.getTheta() - radians(1.0f)); break;
+            case 1: light.setPhi(light.getPhi() - radians(1.0f)); break;
+        }
+    }
+    if(keyboard.getState(GLFW_KEY_EQUAL)) {
+        switch(thetaOrPhi) {
+            case 0: light.setTheta(light.getTheta() + radians(1.0f)); break;
+            case 1: light.setPhi(light.getPhi() + radians(1.0f)); break;
+        }
+    }
 }
 
 int main() {
@@ -173,10 +191,10 @@ int main() {
     //obj.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
     //obj.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
     //obj.getMaterial()->setShininess(1.0f);
-    //Heightmap hm(256, 256);
-    //hm.loadHeightmap("terrain.png", 40.0f);
+    Heightmap hm(256, 256);
+    hm.loadHeightmap("terrain.png", 35.0f);
     //hm.getMaterial()->setSpecularReflectance(0.0f);
-    Heightmap hm(128, 128);
+    //Heightmap hm(128, 128);
     //DiamondSquare::perform(hm, 50.0f);
     //Fault::perform(hm, 0.5f, 512);
     //RMP::perform(hm, 50, 3, 1);
@@ -190,8 +208,10 @@ int main() {
         meshes.push_back(tmp);
     }*/
     
-    
-    Light light(vec3(hm.getColumns()/2.0f, hm.getMaxHeight() * 2.0f, hm.getRows()/2.0f));
+    camera.setX(hm.getColumns()/2.0f);
+    camera.setY(hm.getMaxHeight()*1.1f);
+    camera.setZ(hm.getRows()/2.0f);
+    Fog fog(glm::max(hm.getColumns(), hm.getRows())*0.67f, glm::max(hm.getColumns(), hm.getRows())*1.5f);
     Skybox skybox;
     Voronoi voronoi(5);
     
@@ -224,7 +244,7 @@ int main() {
         
         mat4 model = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
         mat4 view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
-        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.1f, 0.0f + glm::max(hm.getColumns(), hm.getRows()) * 2.0f);
+        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.1f, fog.getFar());
         
         // wipe the drawing surface clear
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -237,10 +257,14 @@ int main() {
         int viewLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "view_mat");
         int projLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "projection_mat");
         
-        int lightPosition = glGetUniformLocation(shaderManager.getShaderProgram(), "light_position_world");
+        int lightDirection = glGetUniformLocation(shaderManager.getShaderProgram(), "light_direction");
         int lightSpecularIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ls");
         int lightDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ld");
         int lightAmbientIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "La");
+        
+        int fogNear = glGetUniformLocation(shaderManager.getShaderProgram(), "fog_near");
+        int fogFar = glGetUniformLocation(shaderManager.getShaderProgram(), "fog_far");
+        int fogColor = glGetUniformLocation(shaderManager.getShaderProgram(), "fog_color");
         
         int meshSpecularIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ks");
         int meshDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Kd");
@@ -253,10 +277,14 @@ int main() {
         glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
         glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
         
-        glUniform3fv(lightPosition, 1, value_ptr(light.getPosition()));
+        glUniform3fv(lightDirection, 1, value_ptr(light.getDirection()));
         glUniform3fv(lightSpecularIntensity, 1, value_ptr(light.getSpecularIntensity()));
         glUniform3fv(lightDiffuseIntensity, 1, value_ptr(light.getDiffuseIntensity()));
         glUniform3fv(lightAmbientIntensity, 1, value_ptr(light.getAmbientIntensity()));
+        
+        glUniform1f(fogNear, fog.getNear());
+        glUniform1f(fogFar, fog.getFar());
+        glUniform3fv(fogColor, 1, value_ptr(fog.getColor()));
         
         for(Mesh mesh : meshes) {
             glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh.getMaterial()->getSpecularReflectance()));

@@ -64,6 +64,9 @@
 		708F58CD1C75EAA100B26E7A /* Voronoi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58CB1C75EAA100B26E7A /* Voronoi.cpp */; };
 		708F58D01C75FAA000B26E7A /* voronoi_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58CE1C75F40500B26E7A /* voronoi_vs.glsl */; };
 		708F58D11C75FAA000B26E7A /* voronoi_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58CF1C75F41100B26E7A /* voronoi_fs.glsl */; };
+		708F58D41C7CD37500B26E7A /* Fog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58D21C7CD37500B26E7A /* Fog.cpp */; };
+		708F58D71C7CEECF00B26E7A /* DirectionalLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58D51C7CEECF00B26E7A /* DirectionalLight.cpp */; };
+		708F58DA1C7CEF2900B26E7A /* PointLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58D81C7CEF2900B26E7A /* PointLight.cpp */; };
 		709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096543F1C264A98005BB137 /* DiamondSquare.cpp */; };
 		709654441C2D916A005BB137 /* Fault.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654421C2D916A005BB137 /* Fault.cpp */; };
 		709654471C3C2AF5005BB137 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654451C3C2AF5005BB137 /* Graph.cpp */; };
@@ -216,6 +219,12 @@
 		708F58CC1C75EAA100B26E7A /* Voronoi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Voronoi.hpp; sourceTree = "<group>"; };
 		708F58CE1C75F40500B26E7A /* voronoi_vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = voronoi_vs.glsl; sourceTree = "<group>"; };
 		708F58CF1C75F41100B26E7A /* voronoi_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = voronoi_fs.glsl; sourceTree = "<group>"; };
+		708F58D21C7CD37500B26E7A /* Fog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fog.cpp; sourceTree = "<group>"; };
+		708F58D31C7CD37500B26E7A /* Fog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Fog.hpp; sourceTree = "<group>"; };
+		708F58D51C7CEECF00B26E7A /* DirectionalLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DirectionalLight.cpp; sourceTree = "<group>"; };
+		708F58D61C7CEECF00B26E7A /* DirectionalLight.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DirectionalLight.hpp; sourceTree = "<group>"; };
+		708F58D81C7CEF2900B26E7A /* PointLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointLight.cpp; sourceTree = "<group>"; };
+		708F58D91C7CEF2900B26E7A /* PointLight.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PointLight.hpp; sourceTree = "<group>"; };
 		7096543F1C264A98005BB137 /* DiamondSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiamondSquare.cpp; sourceTree = "<group>"; };
 		709654401C264A98005BB137 /* DiamondSquare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DiamondSquare.hpp; sourceTree = "<group>"; };
 		709654421C2D916A005BB137 /* Fault.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fault.cpp; sourceTree = "<group>"; };
@@ -342,6 +351,10 @@
 				70E3C5D51BEF808500E1DD90 /* MeshLoader.hpp */,
 				70E3C5E11BEFBCEF00E1DD90 /* Light.cpp */,
 				70E3C5E21BEFBCEF00E1DD90 /* Light.hpp */,
+				708F58D81C7CEF2900B26E7A /* PointLight.cpp */,
+				708F58D91C7CEF2900B26E7A /* PointLight.hpp */,
+				708F58D51C7CEECF00B26E7A /* DirectionalLight.cpp */,
+				708F58D61C7CEECF00B26E7A /* DirectionalLight.hpp */,
 				70E3C5E41BEFD4DF00E1DD90 /* Material.cpp */,
 				70E3C5E51BEFD4DF00E1DD90 /* Material.hpp */,
 				70E3C5E71BF0E89600E1DD90 /* Heightmap.cpp */,
@@ -372,6 +385,8 @@
 				708F58CC1C75EAA100B26E7A /* Voronoi.hpp */,
 				708F58CE1C75F40500B26E7A /* voronoi_vs.glsl */,
 				708F58CF1C75F41100B26E7A /* voronoi_fs.glsl */,
+				708F58D21C7CD37500B26E7A /* Fog.cpp */,
+				708F58D31C7CD37500B26E7A /* Fog.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -433,10 +448,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				708F58D41C7CD37500B26E7A /* Fog.cpp in Sources */,
 				708F58811C74CC7900B26E7A /* Cube.cpp in Sources */,
 				70E3C5E31BEFBCEF00E1DD90 /* Light.cpp in Sources */,
 				708F58A61C7519A200B26E7A /* Skybox.cpp in Sources */,
 				70FA2FC81C3C63D600A53B93 /* Ray.cpp in Sources */,
+				708F58D71C7CEECF00B26E7A /* DirectionalLight.cpp in Sources */,
 				702ED7301BE93D0100961271 /* Mesh.cpp in Sources */,
 				7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */,
 				70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */,
@@ -452,6 +469,7 @@
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,
 				709654441C2D916A005BB137 /* Fault.cpp in Sources */,
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,
+				708F58DA1C7CEF2900B26E7A /* PointLight.cpp in Sources */,
 				708F584E1C732BA300B26E7A /* TextureLoader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
