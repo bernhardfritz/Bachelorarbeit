@@ -21,7 +21,7 @@ Heightmap::Heightmap(int columns, int rows) {
     for(int z = 0; z <= rows; z++) {
         for(int x = 0; x <= columns; x++) {
             vertices.push_back(vec3(x, 0, z));
-            texcoords.push_back(vec2(x % 2 == 0 ? 0.0f : 1.0f, z % 2 == 0 ? 0.0f : 1.0f));
+            texcoords.push_back(vec2(x, z));
         }
     }
     
@@ -73,6 +73,13 @@ void Heightmap::setHeightAt(int column, int row, float height) {
 float Heightmap::getHeightAt(int column, int row) {
     if(column <= columns && row <= rows) {
         return vertices[row * (columns + 1) + column].y;
+    }
+    return 0.0f;
+}
+
+float Heightmap::getSlopeAt(int column, int row) {
+    if(column <= columns && row <= rows) {
+        return normals[row * (columns + 1) + column].y;
     }
     return 0.0f;
 }

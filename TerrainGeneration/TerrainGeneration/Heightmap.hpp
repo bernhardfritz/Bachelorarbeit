@@ -16,7 +16,7 @@
 using namespace std;
 
 class Heightmap : public Mesh{
-private:
+protected:
     int columns;
     int rows;
     float minHeight = 0.0f;
@@ -32,6 +32,7 @@ public:
     int getRows();
     void setHeightAt(int column, int row, float height);
     float getHeightAt(int column, int row);
+    float getSlopeAt(int column, int row);
     void loadHeightmap(string filename, int strength);
     float getMinHeight();
     float getMaxHeight();

@@ -28,6 +28,7 @@ uniform sampler2D layer0;
 uniform sampler2D layer1;
 uniform sampler2D layer2;
 uniform sampler2D layer3;
+uniform sampler2D layer4;
 
 uniform float threshold0;
 uniform float threshold1;
@@ -35,12 +36,15 @@ uniform float threshold2;
 uniform float delta;
 
 uniform int textured;
+uniform int is_water;
+uniform float time;
 
 void main () {
     vec4 color0 = texture(layer0, texture_coordinates);
     vec4 color1 = texture(layer1, texture_coordinates);
     vec4 color2 = texture(layer2, texture_coordinates);
     vec4 color3 = texture(layer3, texture_coordinates);
+    vec4 color4 = texture(layer4, texture_coordinates+vec2(-time, -time));
     
     float t0 = 0.75;
     float t1 = 0.5;
@@ -65,6 +69,8 @@ void main () {
         if(normal.y < t1 && normal.y >= t1 - d) texel = mix(mix(texel, color2, (t1 - normal.y)/d), texel, (threshold1 + delta - position.y)/(threshold1 + delta - threshold0));
         if(normal.y < t1 - d) texel = mix(color2, texel, (threshold1 + delta - position.y)/(threshold1 + delta - threshold0));
     }
+    
+    if(is_water == 1) texel = color4;
     
     /*if(normal.y >= t0) texel = color0;
     if(normal.y < t0 && normal.y >= t0 - d) texel = mix(color0, color1, (t0 - normal.y)/d);
@@ -99,7 +105,10 @@ void main () {
     
     // final colour
     if(textured == 0) fragment_colour = vec4 (Is + Id + Ia, 1.0);
-    else fragment_colour = vec4 (Is + Id + Ia, texel.a);
+    else {
+        fragment_colour = vec4 (Is + Id + Ia, texel.a);
+        if(is_water == 1) fragment_colour.a = 0.80;
+    }
     
     // work out distance from camera to point
     float dist = length (-position_eye);

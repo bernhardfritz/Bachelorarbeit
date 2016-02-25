@@ -67,6 +67,11 @@
 		708F58D41C7CD37500B26E7A /* Fog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58D21C7CD37500B26E7A /* Fog.cpp */; };
 		708F58D71C7CEECF00B26E7A /* DirectionalLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58D51C7CEECF00B26E7A /* DirectionalLight.cpp */; };
 		708F58DA1C7CEF2900B26E7A /* PointLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58D81C7CEF2900B26E7A /* PointLight.cpp */; };
+		708F58E21C7DEA1200B26E7A /* ThermalErosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58E01C7DEA1200B26E7A /* ThermalErosion.cpp */; };
+		708F58E51C7F72F700B26E7A /* Water.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58E31C7F72F700B26E7A /* Water.cpp */; };
+		708F58EA1C7F7F8700B26E7A /* water.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58E81C7F7F4400B26E7A /* water.png */; };
+		708F58EB1C7F7F8700B26E7A /* water2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58E91C7F7F6C00B26E7A /* water2.png */; };
+		708F58ED1C7FA36E00B26E7A /* test.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 708F58EC1C7FA35D00B26E7A /* test.png */; };
 		709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096543F1C264A98005BB137 /* DiamondSquare.cpp */; };
 		709654441C2D916A005BB137 /* Fault.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654421C2D916A005BB137 /* Fault.cpp */; };
 		709654471C3C2AF5005BB137 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654451C3C2AF5005BB137 /* Graph.cpp */; };
@@ -100,6 +105,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				708F58ED1C7FA36E00B26E7A /* test.png in CopyFiles */,
+				708F58EA1C7F7F8700B26E7A /* water.png in CopyFiles */,
+				708F58EB1C7F7F8700B26E7A /* water2.png in CopyFiles */,
 				708F58D01C75FAA000B26E7A /* voronoi_vs.glsl in CopyFiles */,
 				708F58D11C75FAA000B26E7A /* voronoi_fs.glsl in CopyFiles */,
 				708F58C51C753C3E00B26E7A /* back4.png in CopyFiles */,
@@ -225,6 +233,13 @@
 		708F58D61C7CEECF00B26E7A /* DirectionalLight.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DirectionalLight.hpp; sourceTree = "<group>"; };
 		708F58D81C7CEF2900B26E7A /* PointLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointLight.cpp; sourceTree = "<group>"; };
 		708F58D91C7CEF2900B26E7A /* PointLight.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PointLight.hpp; sourceTree = "<group>"; };
+		708F58E01C7DEA1200B26E7A /* ThermalErosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThermalErosion.cpp; sourceTree = "<group>"; };
+		708F58E11C7DEA1200B26E7A /* ThermalErosion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ThermalErosion.hpp; sourceTree = "<group>"; };
+		708F58E31C7F72F700B26E7A /* Water.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Water.cpp; sourceTree = "<group>"; };
+		708F58E41C7F72F700B26E7A /* Water.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Water.hpp; sourceTree = "<group>"; };
+		708F58E81C7F7F4400B26E7A /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
+		708F58E91C7F7F6C00B26E7A /* water2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water2.png; sourceTree = "<group>"; };
+		708F58EC1C7FA35D00B26E7A /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		7096543F1C264A98005BB137 /* DiamondSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiamondSquare.cpp; sourceTree = "<group>"; };
 		709654401C264A98005BB137 /* DiamondSquare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DiamondSquare.hpp; sourceTree = "<group>"; };
 		709654421C2D916A005BB137 /* Fault.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fault.cpp; sourceTree = "<group>"; };
@@ -296,6 +311,71 @@
 		7052CE4B1BDD38AD000D4446 /* TerrainGeneration */ = {
 			isa = PBXGroup;
 			children = (
+				7052CE6A1BE1297B000D4446 /* Camera.cpp */,
+				7052CE6B1BE1297B000D4446 /* Camera.hpp */,
+				708F58491C71E7DF00B26E7A /* Cone.cpp */,
+				708F584A1C71E7DF00B26E7A /* Cone.hpp */,
+				708F587F1C74CC7900B26E7A /* Cube.cpp */,
+				708F58801C74CC7900B26E7A /* Cube.hpp */,
+				7096543F1C264A98005BB137 /* DiamondSquare.cpp */,
+				709654401C264A98005BB137 /* DiamondSquare.hpp */,
+				708F58D51C7CEECF00B26E7A /* DirectionalLight.cpp */,
+				708F58D61C7CEECF00B26E7A /* DirectionalLight.hpp */,
+				709654421C2D916A005BB137 /* Fault.cpp */,
+				709654431C2D916A005BB137 /* Fault.hpp */,
+				708F58D21C7CD37500B26E7A /* Fog.cpp */,
+				708F58D31C7CD37500B26E7A /* Fog.hpp */,
+				709654451C3C2AF5005BB137 /* Graph.cpp */,
+				709654461C3C2AF5005BB137 /* Graph.hpp */,
+				70E3C5E71BF0E89600E1DD90 /* Heightmap.cpp */,
+				70E3C5E81BF0E89600E1DD90 /* Heightmap.hpp */,
+				708F58DE1C7DE92F00B26E7A /* Heightmaps */,
+				7052CE731BE3F877000D4446 /* Keyboard.cpp */,
+				7052CE741BE3F877000D4446 /* Keyboard.hpp */,
+				70E3C5E11BEFBCEF00E1DD90 /* Light.cpp */,
+				70E3C5E21BEFBCEF00E1DD90 /* Light.hpp */,
+				7052CE4C1BDD38AD000D4446 /* main.cpp */,
+				70E3C5E41BEFD4DF00E1DD90 /* Material.cpp */,
+				70E3C5E51BEFD4DF00E1DD90 /* Material.hpp */,
+				702ED72E1BE93D0100961271 /* Mesh.cpp */,
+				702ED72F1BE93D0100961271 /* Mesh.hpp */,
+				708F58DD1C7DE92300B26E7A /* Meshes */,
+				70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */,
+				70E3C5D51BEF808500E1DD90 /* MeshLoader.hpp */,
+				708F58D81C7CEF2900B26E7A /* PointLight.cpp */,
+				708F58D91C7CEF2900B26E7A /* PointLight.hpp */,
+				70FA2FC61C3C63D600A53B93 /* Ray.cpp */,
+				70FA2FC71C3C63D600A53B93 /* Ray.hpp */,
+				7096544B1C3C3BAB005BB137 /* RMP.cpp */,
+				7096544C1C3C3BAB005BB137 /* RMP.hpp */,
+				7052CE551BDD38F8000D4446 /* ShaderManager.cpp */,
+				7052CE561BDD38F8000D4446 /* ShaderManager.hpp */,
+				708F58DF1C7DE94400B26E7A /* Shaders */,
+				708F58A41C7519A200B26E7A /* Skybox.cpp */,
+				708F58A51C7519A200B26E7A /* Skybox.hpp */,
+				708F58DC1C7DE90C00B26E7A /* Skyboxes */,
+				70E3C5ED1BF273B100E1DD90 /* stb_image.h */,
+				708F58511C7344A900B26E7A /* Texture.cpp */,
+				708F58521C7344A900B26E7A /* Texture.hpp */,
+				708F584C1C732BA300B26E7A /* TextureLoader.cpp */,
+				708F584D1C732BA300B26E7A /* TextureLoader.hpp */,
+				708F58DB1C7DE8FC00B26E7A /* Textures */,
+				708F58E01C7DEA1200B26E7A /* ThermalErosion.cpp */,
+				708F58E11C7DEA1200B26E7A /* ThermalErosion.hpp */,
+				708F58CB1C75EAA100B26E7A /* Voronoi.cpp */,
+				708F58CC1C75EAA100B26E7A /* Voronoi.hpp */,
+				708F58E31C7F72F700B26E7A /* Water.cpp */,
+				708F58E41C7F72F700B26E7A /* Water.hpp */,
+			);
+			path = TerrainGeneration;
+			sourceTree = "<group>";
+		};
+		708F58DB1C7DE8FC00B26E7A /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				708F58EC1C7FA35D00B26E7A /* test.png */,
+				708F58E81C7F7F4400B26E7A /* water.png */,
+				708F58E91C7F7F6C00B26E7A /* water2.png */,
 				708F58781C74B0E400B26E7A /* sand2.png */,
 				708F58741C74AE7600B26E7A /* grass2.png */,
 				708F58791C74B13000B26E7A /* rock2.png */,
@@ -304,6 +384,13 @@
 				708F58651C738A7500B26E7A /* grass.png */,
 				708F58671C738AFD00B26E7A /* rock.png */,
 				708F58641C7389F900B26E7A /* snow.png */,
+			);
+			name = Textures;
+			sourceTree = "<group>";
+		};
+		708F58DC1C7DE90C00B26E7A /* Skyboxes */ = {
+			isa = PBXGroup;
+			children = (
 				708F58BF1C753BFB00B26E7A /* back4.png */,
 				708F58C01C753BFB00B26E7A /* bottom4.png */,
 				708F58C11C753BFB00B26E7A /* front4.png */,
@@ -328,67 +415,42 @@
 				708F58AA1C752C2000B26E7A /* left.tga */,
 				708F58AB1C752C2000B26E7A /* right.tga */,
 				708F58AC1C752C2000B26E7A /* top.tga */,
+			);
+			name = Skyboxes;
+			sourceTree = "<group>";
+		};
+		708F58DD1C7DE92300B26E7A /* Meshes */ = {
+			isa = PBXGroup;
+			children = (
+				7052CE861BE55A7F000D4446 /* cube.obj */,
 				70E3C5D11BEF6A6900E1DD90 /* dragon.obj */,
 				70E3C5DF1BEFAE2300E1DD90 /* bunny.obj */,
 				70E3C5D01BEF6A5900E1DD90 /* buddha.obj */,
 				702ED72C1BE917CF00961271 /* monkey.obj */,
+			);
+			name = Meshes;
+			sourceTree = "<group>";
+		};
+		708F58DE1C7DE92F00B26E7A /* Heightmaps */ = {
+			isa = PBXGroup;
+			children = (
 				70BF607D1BF91D1C00319D05 /* heightmap.png */,
 				70E3C5EE1BF27F7000E1DD90 /* terrain.png */,
-				7052CE4C1BDD38AD000D4446 /* main.cpp */,
+			);
+			name = Heightmaps;
+			sourceTree = "<group>";
+		};
+		708F58DF1C7DE94400B26E7A /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
 				7052CE531BDD38D3000D4446 /* fragmentshader.glsl */,
 				7052CE541BDD38E2000D4446 /* vertexshader.glsl */,
-				7052CE861BE55A7F000D4446 /* cube.obj */,
-				70E3C5ED1BF273B100E1DD90 /* stb_image.h */,
-				7052CE551BDD38F8000D4446 /* ShaderManager.cpp */,
-				7052CE561BDD38F8000D4446 /* ShaderManager.hpp */,
-				7052CE6A1BE1297B000D4446 /* Camera.cpp */,
-				7052CE6B1BE1297B000D4446 /* Camera.hpp */,
-				7052CE731BE3F877000D4446 /* Keyboard.cpp */,
-				7052CE741BE3F877000D4446 /* Keyboard.hpp */,
-				702ED72E1BE93D0100961271 /* Mesh.cpp */,
-				702ED72F1BE93D0100961271 /* Mesh.hpp */,
-				70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */,
-				70E3C5D51BEF808500E1DD90 /* MeshLoader.hpp */,
-				70E3C5E11BEFBCEF00E1DD90 /* Light.cpp */,
-				70E3C5E21BEFBCEF00E1DD90 /* Light.hpp */,
-				708F58D81C7CEF2900B26E7A /* PointLight.cpp */,
-				708F58D91C7CEF2900B26E7A /* PointLight.hpp */,
-				708F58D51C7CEECF00B26E7A /* DirectionalLight.cpp */,
-				708F58D61C7CEECF00B26E7A /* DirectionalLight.hpp */,
-				70E3C5E41BEFD4DF00E1DD90 /* Material.cpp */,
-				70E3C5E51BEFD4DF00E1DD90 /* Material.hpp */,
-				70E3C5E71BF0E89600E1DD90 /* Heightmap.cpp */,
-				70E3C5E81BF0E89600E1DD90 /* Heightmap.hpp */,
-				7096543F1C264A98005BB137 /* DiamondSquare.cpp */,
-				709654401C264A98005BB137 /* DiamondSquare.hpp */,
-				709654421C2D916A005BB137 /* Fault.cpp */,
-				709654431C2D916A005BB137 /* Fault.hpp */,
-				709654451C3C2AF5005BB137 /* Graph.cpp */,
-				709654461C3C2AF5005BB137 /* Graph.hpp */,
-				7096544B1C3C3BAB005BB137 /* RMP.cpp */,
-				7096544C1C3C3BAB005BB137 /* RMP.hpp */,
-				70FA2FC61C3C63D600A53B93 /* Ray.cpp */,
-				70FA2FC71C3C63D600A53B93 /* Ray.hpp */,
-				708F58491C71E7DF00B26E7A /* Cone.cpp */,
-				708F584A1C71E7DF00B26E7A /* Cone.hpp */,
-				708F584C1C732BA300B26E7A /* TextureLoader.cpp */,
-				708F584D1C732BA300B26E7A /* TextureLoader.hpp */,
-				708F58511C7344A900B26E7A /* Texture.cpp */,
-				708F58521C7344A900B26E7A /* Texture.hpp */,
-				708F587F1C74CC7900B26E7A /* Cube.cpp */,
-				708F58801C74CC7900B26E7A /* Cube.hpp */,
 				708F58851C74EDBA00B26E7A /* skybox_vs.glsl */,
 				708F58861C74EDCA00B26E7A /* skybox_fs.glsl */,
-				708F58A41C7519A200B26E7A /* Skybox.cpp */,
-				708F58A51C7519A200B26E7A /* Skybox.hpp */,
-				708F58CB1C75EAA100B26E7A /* Voronoi.cpp */,
-				708F58CC1C75EAA100B26E7A /* Voronoi.hpp */,
 				708F58CE1C75F40500B26E7A /* voronoi_vs.glsl */,
 				708F58CF1C75F41100B26E7A /* voronoi_fs.glsl */,
-				708F58D21C7CD37500B26E7A /* Fog.cpp */,
-				708F58D31C7CD37500B26E7A /* Fog.hpp */,
 			);
-			path = TerrainGeneration;
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -462,7 +524,9 @@
 				708F58531C7344A900B26E7A /* Texture.cpp in Sources */,
 				70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */,
 				7096544D1C3C3BAB005BB137 /* RMP.cpp in Sources */,
+				708F58E51C7F72F700B26E7A /* Water.cpp in Sources */,
 				708F58CD1C75EAA100B26E7A /* Voronoi.cpp in Sources */,
+				708F58E21C7DEA1200B26E7A /* ThermalErosion.cpp in Sources */,
 				708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
 				709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */,

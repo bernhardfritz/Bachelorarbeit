@@ -35,7 +35,11 @@ vec3 DirectionalLight::getDirection() {
 }
 
 void DirectionalLight::setTheta(float theta) {
-    if(0 <= theta && theta <= pi<float>()) this->theta = theta;
+    float f = theta * one_over_two_pi<float>();
+    f = f - (int)f;
+    theta = f * two_pi<float>();
+    if(theta < 0) theta += two_pi<float>();
+    this->theta = theta;
     //print();
 }
 
@@ -44,7 +48,11 @@ float DirectionalLight::getTheta() {
 }
 
 void DirectionalLight::setPhi(float phi) {
-    if(0 <= phi && phi < two_pi<float>()) this->phi = phi;
+    float f = phi * one_over_two_pi<float>();
+    f = f - (int)f;
+    phi = f * two_pi<float>();
+    if(phi < 0) phi += two_pi<float>();
+    this->phi = phi;
     //print();
 }
 

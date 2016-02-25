@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
+#include <sys/time.h>
 #include "ShaderManager.hpp"
 #include "Camera.hpp"
 #include "Keyboard.hpp"
@@ -33,6 +34,8 @@
 #include "Skybox.hpp"
 #include "Voronoi.hpp"
 #include "Fog.hpp"
+#include "ThermalErosion.hpp"
+#include "Water.hpp"
 
 using namespace std;
 using namespace glm;
@@ -186,6 +189,8 @@ int main() {
     t2.assignToSlot(2);
     Texture t3 = tl.loadTexture("snow2.png");
     t3.assignToSlot(3);
+    Texture t4 = tl.loadTexture("water.png");
+    t4.assignToSlot(4);
     //MeshLoader ml;
     //Mesh obj = ml.loadMesh("bunny.obj");
     //obj.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
@@ -199,8 +204,9 @@ int main() {
     //Fault::perform(hm, 0.5f, 512);
     //RMP::perform(hm, 50, 3, 1);
     RMP::perform(hm, 100);
-    vector<Mesh> meshes;
-    meshes.push_back(hm);
+    //ThermalErosion::perform(hm, 2.0f, 0.001f, 1000);
+    vector<Mesh*> meshes;
+    meshes.push_back(&hm);
     
     /*for(int i = 0; i < 100; i++) {
         Cone tmp(100.0f, 50.0f, 64);
@@ -222,11 +228,13 @@ int main() {
     int layer1 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer1");
     int layer2 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer2");
     int layer3 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer3");
+    int layer4 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer4");
     
     glUniform1i(layer0, 0);
     glUniform1i(layer1, 1);
     glUniform1i(layer2, 2);
     glUniform1i(layer3, 3);
+    glUniform1i(layer4, 4);
     
     int threshold0 = glGetUniformLocation(shaderManager.getShaderProgram(), "threshold0");
     int threshold1 = glGetUniformLocation(shaderManager.getShaderProgram(), "threshold1");
@@ -238,6 +246,10 @@ int main() {
     glUniform1f(threshold1, (difference / 4.0f) * 2);
     glUniform1f(threshold2, (difference / 4.0f) * 3);
     glUniform1f(delta, difference / 4.0f);
+    
+    Water water(hm.getColumns(), hm.getRows(), (difference / 4.0f) * 1, 100.0f, 0.10f);
+    meshes.push_back(&water);
+    int is_water = glGetUniformLocation(shaderManager.getShaderProgram(), "is_water");
     
     while(!glfwWindowShouldClose(window)) {
         updateFpsCounter(window);
@@ -272,6 +284,7 @@ int main() {
         int meshShininess = glGetUniformLocation(shaderManager.getShaderProgram(), "specular_exponent");
         
         int textured = glGetUniformLocation(shaderManager.getShaderProgram(), "textured");
+        int time = glGetUniformLocation(shaderManager.getShaderProgram(), "time");
         
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
         glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
@@ -286,13 +299,25 @@ int main() {
         glUniform1f(fogFar, fog.getFar());
         glUniform3fv(fogColor, 1, value_ptr(fog.getColor()));
         
-        for(Mesh mesh : meshes) {
-            glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh.getMaterial()->getSpecularReflectance()));
-            glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh.getMaterial()->getDiffuseReflectance()));
-            glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh.getMaterial()->getAmbientReflectance()));
-            glUniform1f(meshShininess, mesh.getMaterial()->getShininess());
-            glUniform1i(textured, mesh.isTextured() ? 1 : 0);
-            mesh.draw();
+        struct timeval tp;
+        gettimeofday(&tp, NULL);
+        long int ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+        glUniform1f(time, (ms%10000)/10000.0f);
+        
+        for(Mesh* mesh : meshes) {
+            glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh->getMaterial()->getSpecularReflectance()));
+            glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh->getMaterial()->getDiffuseReflectance()));
+            glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh->getMaterial()->getAmbientReflectance()));
+            glUniform1f(meshShininess, mesh->getMaterial()->getShininess());
+            glUniform1i(textured, mesh->isTextured() ? 1 : 0);
+            if(mesh == &water) {
+                glUniform1i(is_water, 1);
+                glEnable(GL_BLEND);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            }
+            else glUniform1i(is_water, 0);
+            mesh->draw();
+            glDisable(GL_BLEND);
         }
         
         // put the stuff we've been drawing onto the display
@@ -301,6 +326,10 @@ int main() {
         glfwPollEvents();
         
         update();
+        if(keyboard.getState(GLFW_KEY_E)) {
+            ThermalErosion::perform(hm, 1.0f, 0.001f, 100);
+        }
+        water.step(elapsedSeconds);
     }
     
     // close GL context and any other GLFW resources
