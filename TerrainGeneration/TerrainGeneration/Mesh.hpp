@@ -51,6 +51,7 @@ public:
     GLuint getVAO();
     void calculateNormals();
     void init();
+    void update();
     void translate(float x, float y, float z);
     void rotate(float alpha, float beta, float gamma);
     void draw();

@@ -11,6 +11,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <assert.h>
 
 using namespace std;
 
@@ -180,7 +181,7 @@ void ShaderManager::createShaderProgram(string vsString, string fsString) {
     glLinkProgram(shaderProgram);
     checkForLinkingErrors(shaderProgram);
     printAll(shaderProgram);
-    isValid(shaderProgram);
+    assert(isValid(shaderProgram));
 }
 
 GLuint ShaderManager::getShaderProgram() {

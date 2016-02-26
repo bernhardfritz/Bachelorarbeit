@@ -32,5 +32,6 @@ Cone::Cone(float radius, float height, int triangles) {
     setIndices(indices);
     setMaterial(new Material());
     getMaterial()->setDiffuseReflectance(vec3(drand48(), drand48(), drand48()));
+    init();
     calculateNormals();
 }

@@ -43,6 +43,7 @@ Heightmap::Heightmap(int columns, int rows) {
     getMaterial()->setSpecularReflectance(0.05f);
     getMaterial()->setShininess(1.0f);
     getMaterial()->setAmbientReflectance(0.5);
+    init();
     calculateNormals();
 }
 

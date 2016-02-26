@@ -218,6 +218,7 @@ int main() {
     camera.setY(hm.getMaxHeight()*1.1f);
     camera.setZ(hm.getRows()/2.0f);
     Fog fog(glm::max(hm.getColumns(), hm.getRows())*0.67f, glm::max(hm.getColumns(), hm.getRows())*1.5f);
+    
     Skybox skybox;
     Voronoi voronoi(5);
     
@@ -261,7 +262,6 @@ int main() {
         // wipe the drawing surface clear
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         skybox.draw(value_ptr(translate(mat4(1.0f), camera.getEye())), value_ptr(view), value_ptr(proj));
-        //voronoi.draw();
         
         glUseProgram(shaderManager.getShaderProgram());
         
@@ -319,6 +319,8 @@ int main() {
             mesh->draw();
             glDisable(GL_BLEND);
         }
+        
+        //voronoi.draw();
         
         // put the stuff we've been drawing onto the display
         glfwSwapBuffers(window);
