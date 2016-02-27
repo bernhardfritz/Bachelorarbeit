@@ -15,7 +15,7 @@
 class ThermalErosion {
 private:
 public:
-    static void perform(Heightmap& heightmap, float talus, float c, int iterations);
+    static void perform(Heightmap& heightmap, float talus, int iterations);
 };
 
 #endif /* ThermalErosion_hpp */

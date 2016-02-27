@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Heightmap.hpp"
+#include "OpenSimplexNoise.hpp"
 
 class Water : public Heightmap {
 private:
@@ -18,6 +19,7 @@ private:
     float waveWidth;
     float waveHeight;
     float waveTime;
+    OpenSimplexNoise osm;
 public:
     Water(int columns, int rows, float waveLevel, float waveWidth, float waveHeight);
     

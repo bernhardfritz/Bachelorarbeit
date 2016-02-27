@@ -55,7 +55,7 @@ void Water::step(float delta) {
     waveTime += delta;
     for(int row = 0; row <= rows; row++) {
         for(int column = 0; column <= columns; column++) {
-            float height = sin(waveWidth * column + waveTime) * cos(waveWidth * row + waveTime) * waveHeight;
+            float height = (sin(waveWidth * column + waveTime) * cos(waveWidth * row + waveTime) + osm.eval(column+waveTime/4.0f, row+waveTime/4.0f))/2.0f * waveHeight;
             setHeightAt(column, row, waveLevel + height);
         }
     }

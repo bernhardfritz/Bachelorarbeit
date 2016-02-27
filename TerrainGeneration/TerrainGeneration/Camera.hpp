@@ -34,7 +34,7 @@ private:
     void updateUp();
     void updateUVW();
 public:
-    Camera(float x, float y, float z, float pitch, float yaw, float roll);
+    Camera(float x, float y, float z, float pitch, float yaw, float speed);
     void setX(float x);
     float getX();
     void setY(float y);

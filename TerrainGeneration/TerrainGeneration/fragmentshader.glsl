@@ -30,21 +30,24 @@ uniform sampler2D layer2;
 uniform sampler2D layer3;
 uniform sampler2D layer4;
 
-uniform float threshold0;
-uniform float threshold1;
-uniform float threshold2;
-uniform float delta;
-
 uniform int textured;
 uniform int is_water;
 uniform float time;
+uniform float max_height;
+uniform float min_height;
 
 void main () {
-    vec4 color0 = texture(layer0, texture_coordinates);
-    vec4 color1 = texture(layer1, texture_coordinates);
-    vec4 color2 = texture(layer2, texture_coordinates);
-    vec4 color3 = texture(layer3, texture_coordinates);
-    vec4 color4 = texture(layer4, texture_coordinates+vec2(-time, -time));
+    vec4 color0 = texture(layer0, texture_coordinates); // sand
+    vec4 color1 = texture(layer1, texture_coordinates); // grass
+    vec4 color2 = texture(layer2, texture_coordinates); // rock
+    vec4 color3 = texture(layer3, texture_coordinates); // snow
+    vec4 color4 = texture(layer4, texture_coordinates+vec2(-time, -time)); // water
+    
+    float difference = max_height - min_height;
+    float delta = difference / 4.0;
+    float threshold0 = delta * 1;
+    float threshold1 = delta * 2;
+    float threshold2 = delta * 3;
     
     float t0 = 0.75;
     float t1 = 0.5;

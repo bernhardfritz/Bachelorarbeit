@@ -33,7 +33,7 @@ public:
     void setHeightAt(int column, int row, float height);
     float getHeightAt(int column, int row);
     float getSlopeAt(int column, int row);
-    void loadHeightmap(string filename, int strength);
+    void loadHeightmap(string filename, float strength);
     float getMinHeight();
     float getMaxHeight();
 };

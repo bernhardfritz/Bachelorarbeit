@@ -8,7 +8,7 @@
 
 #include "ThermalErosion.hpp"
 
-void ThermalErosion::perform(Heightmap &heightmap, float talus, float c, int iterations) {
+void ThermalErosion::perform(Heightmap &heightmap, float talus, int iterations) {
     for(int n = 0; n < iterations; n++) {
         for(int row = 0; row <= heightmap.getRows(); row++) {
             for(int column = 0; column <= heightmap.getColumns(); column++) {
@@ -28,20 +28,19 @@ void ThermalErosion::perform(Heightmap &heightmap, float talus, float c, int ite
                         int y = row + ((i & 0b01) ? 1 : -1);
                         h_i[i] = heightmap.getHeightAt(x, y);
                         d_i[i] = h - h_i[i];
-                        if(d_i[i] <= talus) {
-                            if(d_i[i] > d_i[max]) max = i;
-                        }
+                        if(d_i[i] > d_i[max]) max = i;
                     }
                 }
                 if(max > -1) {
-                    if(d_i[max] <= talus) {
-                    float delta = c * d_i[max];
-                    h -= delta;
-                    h_i[max] += delta;
-                    heightmap.setHeightAt(column, row, h);
-                    int x = column + ((max & 0b10) ? 1 : -1);
-                    int y = row + ((max & 0b01) ? 1 : -1);
-                    heightmap.setHeightAt(x, y, h_i[max]);
+                    if(d_i[max] <= talus && h_i[max] < h) {
+                        float factor = heightmap.getMaxHeight()-h;
+                        float delta = pow(factor, 3.0f) * d_i[max];
+                        h -= delta;
+                        h_i[max] += delta;
+                        heightmap.setHeightAt(column, row, h);
+                        int x = column + ((max & 0b10) ? 1 : -1);
+                        int y = row + ((max & 0b01) ? 1 : -1);
+                        heightmap.setHeightAt(x, y, h_i[max]);
                     }
                 }
             }

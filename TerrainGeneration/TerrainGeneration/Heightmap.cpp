@@ -20,7 +20,7 @@ Heightmap::Heightmap(int columns, int rows) {
     vector<vec2> texcoords;
     for(int z = 0; z <= rows; z++) {
         for(int x = 0; x <= columns; x++) {
-            vertices.push_back(vec3(x, 0, z));
+            vertices.push_back(vec3(x*(1.0f/columns), 0, z*(1.0f/rows)));
             texcoords.push_back(vec2(x, z));
         }
     }
@@ -85,7 +85,7 @@ float Heightmap::getSlopeAt(int column, int row) {
     return 0.0f;
 }
 
-void Heightmap::loadHeightmap(string filename, int strength) {
+void Heightmap::loadHeightmap(string filename, float strength) {
     TextureLoader tl;
     Texture t = tl.loadTexture(filename, 1);
     

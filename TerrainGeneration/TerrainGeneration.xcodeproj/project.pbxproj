@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		702ED72D1BE917DC00961271 /* monkey.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 702ED72C1BE917CF00961271 /* monkey.obj */; };
 		702ED7301BE93D0100961271 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 702ED72E1BE93D0100961271 /* Mesh.cpp */; };
+		70327E281C810C4F009412CE /* water3.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E271C810C32009412CE /* water3.png */; };
+		70327E2E1C811229009412CE /* water4.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E2D1C81121E009412CE /* water4.png */; };
+		70327E311C811B10009412CE /* OpenSimplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70327E2F1C811B10009412CE /* OpenSimplexNoise.cpp */; };
 		7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE4C1BDD38AD000D4446 /* main.cpp */; };
 		7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE551BDD38F8000D4446 /* ShaderManager.cpp */; };
 		7052CE591BDD39A2000D4446 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE581BDD39A2000D4446 /* OpenGL.framework */; };
@@ -105,6 +108,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				70327E2E1C811229009412CE /* water4.png in CopyFiles */,
+				70327E281C810C4F009412CE /* water3.png in CopyFiles */,
 				708F58ED1C7FA36E00B26E7A /* test.png in CopyFiles */,
 				708F58EA1C7F7F8700B26E7A /* water.png in CopyFiles */,
 				708F58EB1C7F7F8700B26E7A /* water2.png in CopyFiles */,
@@ -162,6 +167,10 @@
 		702ED72C1BE917CF00961271 /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monkey.obj; sourceTree = "<group>"; };
 		702ED72E1BE93D0100961271 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		702ED72F1BE93D0100961271 /* Mesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
+		70327E271C810C32009412CE /* water3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water3.png; sourceTree = "<group>"; };
+		70327E2D1C81121E009412CE /* water4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water4.png; sourceTree = "<group>"; };
+		70327E2F1C811B10009412CE /* OpenSimplexNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenSimplexNoise.cpp; sourceTree = "<group>"; };
+		70327E301C811B10009412CE /* OpenSimplexNoise.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenSimplexNoise.hpp; sourceTree = "<group>"; };
 		7052CE491BDD38AD000D4446 /* TerrainGeneration */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TerrainGeneration; sourceTree = BUILT_PRODUCTS_DIR; };
 		7052CE4C1BDD38AD000D4446 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7052CE531BDD38D3000D4446 /* fragmentshader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentshader.glsl; sourceTree = "<group>"; };
@@ -342,6 +351,8 @@
 				708F58DD1C7DE92300B26E7A /* Meshes */,
 				70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */,
 				70E3C5D51BEF808500E1DD90 /* MeshLoader.hpp */,
+				70327E2F1C811B10009412CE /* OpenSimplexNoise.cpp */,
+				70327E301C811B10009412CE /* OpenSimplexNoise.hpp */,
 				708F58D81C7CEF2900B26E7A /* PointLight.cpp */,
 				708F58D91C7CEF2900B26E7A /* PointLight.hpp */,
 				70FA2FC61C3C63D600A53B93 /* Ray.cpp */,
@@ -373,6 +384,8 @@
 		708F58DB1C7DE8FC00B26E7A /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				70327E2D1C81121E009412CE /* water4.png */,
+				70327E271C810C32009412CE /* water3.png */,
 				708F58EC1C7FA35D00B26E7A /* test.png */,
 				708F58E81C7F7F4400B26E7A /* water.png */,
 				708F58E91C7F7F6C00B26E7A /* water2.png */,
@@ -511,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				708F58D41C7CD37500B26E7A /* Fog.cpp in Sources */,
+				70327E311C811B10009412CE /* OpenSimplexNoise.cpp in Sources */,
 				708F58811C74CC7900B26E7A /* Cube.cpp in Sources */,
 				70E3C5E31BEFBCEF00E1DD90 /* Light.cpp in Sources */,
 				708F58A61C7519A200B26E7A /* Skybox.cpp in Sources */,

@@ -169,7 +169,7 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
             }
         }
         
-        float height = 1.0f;
+        float height = 0.01f;
         for(int j = 0; j < dfs2.size() && j < r; j++) {
             vector<vec2> polygon = polygons[dfs2[j]];
             for(int row = 0; row <= heightmap.getRows(); row++) {
@@ -185,7 +185,7 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
 }
 
 void RMP::perform(Heightmap &heightmap, int n) {
-    float height = 1.0f;
+    float height = 0.01f;
     for(int i = 0; i < n; i++) {
         Voronoi voronoi(4);
         voronoi.draw();

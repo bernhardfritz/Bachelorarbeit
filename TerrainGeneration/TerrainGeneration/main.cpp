@@ -36,13 +36,14 @@
 #include "Fog.hpp"
 #include "ThermalErosion.hpp"
 #include "Water.hpp"
+#include "OpenSimplexNoise.hpp"
 
 using namespace std;
 using namespace glm;
 
 GLFWwindow* window;
 
-Camera camera(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+Camera camera(0.5f, 1.0f, 0.5f, 0.0f, 0.0f, 0.20f);
 DirectionalLight light(1.24f, 1.22f);
 Keyboard keyboard;
 
@@ -100,7 +101,8 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
-    if(camera.getSpeed()-yoffset > 0) camera.setSpeed(camera.getSpeed()-yoffset);
+    yoffset/=100.0;
+    if(camera.getSpeed()-yoffset > 0 && camera.getSpeed()-yoffset < 0.25f) camera.setSpeed(camera.getSpeed()-yoffset);
 }
 
 int thetaOrPhi = -1;
@@ -197,13 +199,22 @@ int main() {
     //obj.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
     //obj.getMaterial()->setShininess(1.0f);
     Heightmap hm(256, 256);
-    hm.loadHeightmap("terrain.png", 35.0f);
+    
+    OpenSimplexNoise osn;
+    for(int row = 0; row <= hm.getRows(); row++) {
+        for(int column = 0; column <= hm.getColumns(); column++) {
+            hm.setHeightAt(column, row, 0.001f*osn.eval(column*0.1, row*0.1));
+        }
+    }
+    hm.calculateNormals();
+    
+    hm.loadHeightmap("terrain.png", 0.20f);
     //hm.getMaterial()->setSpecularReflectance(0.0f);
     //Heightmap hm(128, 128);
     //DiamondSquare::perform(hm, 50.0f);
     //Fault::perform(hm, 0.5f, 512);
     //RMP::perform(hm, 50, 3, 1);
-    RMP::perform(hm, 100);
+    //RMP::perform(hm, 100);
     //ThermalErosion::perform(hm, 2.0f, 0.001f, 1000);
     vector<Mesh*> meshes;
     meshes.push_back(&hm);
@@ -214,16 +225,32 @@ int main() {
         meshes.push_back(tmp);
     }*/
     
-    camera.setX(hm.getColumns()/2.0f);
-    camera.setY(hm.getMaxHeight()*1.1f);
-    camera.setZ(hm.getRows()/2.0f);
-    Fog fog(glm::max(hm.getColumns(), hm.getRows())*0.67f, glm::max(hm.getColumns(), hm.getRows())*1.5f);
+    camera.setY(hm.getMaxHeight());
+    
+    Fog fog(0.67f, 1.5f);
     
     Skybox skybox;
     Voronoi voronoi(5);
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
     glUseProgram(shaderManager.getShaderProgram());
+    
+    Water water(hm.getColumns(), hm.getRows(), (hm.getMaxHeight() - hm.getMinHeight()) / 4.0f, 100.0f, 0.0005f);
+    meshes.push_back(&water);
+    
+    int modelLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "model_mat");
+    int viewLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "view_mat");
+    int projLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "projection_mat");
+    
+    int lightDirection = glGetUniformLocation(shaderManager.getShaderProgram(), "light_direction");
+    int lightSpecularIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ls");
+    int lightDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ld");
+    int lightAmbientIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "La");
+    
+    int meshSpecularIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ks");
+    int meshDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Kd");
+    int meshAmbientReflectance = glGetUniformLocation(shaderManager.getShaderProgram(), "Ka");
+    int meshShininess = glGetUniformLocation(shaderManager.getShaderProgram(), "specular_exponent");
     
     int layer0 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer0");
     int layer1 = glGetUniformLocation(shaderManager.getShaderProgram(), "layer1");
@@ -237,54 +264,29 @@ int main() {
     glUniform1i(layer3, 3);
     glUniform1i(layer4, 4);
     
-    int threshold0 = glGetUniformLocation(shaderManager.getShaderProgram(), "threshold0");
-    int threshold1 = glGetUniformLocation(shaderManager.getShaderProgram(), "threshold1");
-    int threshold2 = glGetUniformLocation(shaderManager.getShaderProgram(), "threshold2");
-    int delta = glGetUniformLocation(shaderManager.getShaderProgram(), "delta");
+    int fogNear = glGetUniformLocation(shaderManager.getShaderProgram(), "fog_near");
+    int fogFar = glGetUniformLocation(shaderManager.getShaderProgram(), "fog_far");
+    int fogColor = glGetUniformLocation(shaderManager.getShaderProgram(), "fog_color");
     
-    float difference = hm.getMaxHeight() - hm.getMinHeight();
-    glUniform1f(threshold0, (difference / 4.0f) * 1);
-    glUniform1f(threshold1, (difference / 4.0f) * 2);
-    glUniform1f(threshold2, (difference / 4.0f) * 3);
-    glUniform1f(delta, difference / 4.0f);
-    
-    Water water(hm.getColumns(), hm.getRows(), (difference / 4.0f) * 1, 100.0f, 0.10f);
-    meshes.push_back(&water);
+    int textured = glGetUniformLocation(shaderManager.getShaderProgram(), "textured");
     int is_water = glGetUniformLocation(shaderManager.getShaderProgram(), "is_water");
+    int time = glGetUniformLocation(shaderManager.getShaderProgram(), "time");
     
+    int max_height = glGetUniformLocation(shaderManager.getShaderProgram(), "max_height");
+    int min_height = glGetUniformLocation(shaderManager.getShaderProgram(), "min_height");
+
     while(!glfwWindowShouldClose(window)) {
         updateFpsCounter(window);
         
         mat4 model = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
         mat4 view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
-        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.1f, fog.getFar());
+        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.001f, 2.0f);
         
         // wipe the drawing surface clear
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         skybox.draw(value_ptr(translate(mat4(1.0f), camera.getEye())), value_ptr(view), value_ptr(proj));
         
         glUseProgram(shaderManager.getShaderProgram());
-        
-        int modelLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "model_mat");
-        int viewLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "view_mat");
-        int projLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "projection_mat");
-        
-        int lightDirection = glGetUniformLocation(shaderManager.getShaderProgram(), "light_direction");
-        int lightSpecularIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ls");
-        int lightDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ld");
-        int lightAmbientIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "La");
-        
-        int fogNear = glGetUniformLocation(shaderManager.getShaderProgram(), "fog_near");
-        int fogFar = glGetUniformLocation(shaderManager.getShaderProgram(), "fog_far");
-        int fogColor = glGetUniformLocation(shaderManager.getShaderProgram(), "fog_color");
-        
-        int meshSpecularIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Ks");
-        int meshDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Kd");
-        int meshAmbientReflectance = glGetUniformLocation(shaderManager.getShaderProgram(), "Ka");
-        int meshShininess = glGetUniformLocation(shaderManager.getShaderProgram(), "specular_exponent");
-        
-        int textured = glGetUniformLocation(shaderManager.getShaderProgram(), "textured");
-        int time = glGetUniformLocation(shaderManager.getShaderProgram(), "time");
         
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
         glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
@@ -298,6 +300,9 @@ int main() {
         glUniform1f(fogNear, fog.getNear());
         glUniform1f(fogFar, fog.getFar());
         glUniform3fv(fogColor, 1, value_ptr(fog.getColor()));
+        
+        glUniform1f(max_height, hm.getMaxHeight());
+        glUniform1f(min_height, hm.getMinHeight());
         
         struct timeval tp;
         gettimeofday(&tp, NULL);
@@ -328,9 +333,15 @@ int main() {
         glfwPollEvents();
         
         update();
+        
         if(keyboard.getState(GLFW_KEY_E)) {
-            ThermalErosion::perform(hm, 1.0f, 0.001f, 100);
+            ThermalErosion::perform(hm, 32.0f/hm.getColumns(), 10);
         }
+        if(keyboard.getState(GLFW_KEY_R)) {
+            RMP::perform(hm, 1);
+        }
+        
+        water.setWaveLevel((hm.getMaxHeight() - hm.getMinHeight()) / 4.0f);
         water.step(elapsedSeconds);
     }
     
