@@ -37,6 +37,7 @@
 #include "ThermalErosion.hpp"
 #include "Water.hpp"
 #include "OpenSimplexNoise.hpp"
+#include "HydraulicErosion.hpp"
 
 using namespace std;
 using namespace glm;
@@ -335,7 +336,14 @@ int main() {
         update();
         
         if(keyboard.getState(GLFW_KEY_E)) {
+            HydraulicErosion::perform(hm, 1);
+            ThermalErosion::perform(hm, 32.0f/hm.getColumns(), 2);
+        }
+        if(keyboard.getState(GLFW_KEY_T)) {
             ThermalErosion::perform(hm, 32.0f/hm.getColumns(), 10);
+        }
+        if(keyboard.getState(GLFW_KEY_H)) {
+            HydraulicErosion::perform(hm, 10);
         }
         if(keyboard.getState(GLFW_KEY_R)) {
             RMP::perform(hm, 1);
