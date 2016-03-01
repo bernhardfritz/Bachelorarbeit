@@ -27,7 +27,7 @@ void HydraulicErosion::perform(Heightmap& heightmap, int iterations, float K_r, 
                 float h = heightmap.getHeightAt(column, row);
                 float w = watermap.getHeightAt(column, row);
                 float s = sedimentmap.getHeightAt(column, row);
-                float factor = pow(1.0f - abs(heightmap.getSlopeAt(column, row)), 2.0f);
+                float factor = pow(1.0f - abs(heightmap.getSlopeAt(column, row)), 3.0f);
                 h -= factor * K_s * w;
                 heightmap.setHeightAt(column, row, h);
                 s += factor * K_s * w;

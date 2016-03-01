@@ -100,6 +100,7 @@ void Heightmap::loadHeightmap(string filename, float strength) {
     for(int row = 0; row <= rows; row++) {
         for(int column = 0; column <= columns; column++) {
             setHeightAt(column, row, (t.getData()[row * t.getWidth() * dy + column * dx] / 255.0f) * strength);
+            //assert(0.0f <= getHeightAt(column, row) && getHeightAt(column, row) <= strength);
         }
     }
     

@@ -342,6 +342,8 @@
 				70E3C5E71BF0E89600E1DD90 /* Heightmap.cpp */,
 				70E3C5E81BF0E89600E1DD90 /* Heightmap.hpp */,
 				708F58DE1C7DE92F00B26E7A /* Heightmaps */,
+				70327E321C836F4A009412CE /* HydraulicErosion.cpp */,
+				70327E331C836F4A009412CE /* HydraulicErosion.hpp */,
 				7052CE731BE3F877000D4446 /* Keyboard.cpp */,
 				7052CE741BE3F877000D4446 /* Keyboard.hpp */,
 				70E3C5E11BEFBCEF00E1DD90 /* Light.cpp */,
@@ -380,8 +382,6 @@
 				708F58CC1C75EAA100B26E7A /* Voronoi.hpp */,
 				708F58E31C7F72F700B26E7A /* Water.cpp */,
 				708F58E41C7F72F700B26E7A /* Water.hpp */,
-				70327E321C836F4A009412CE /* HydraulicErosion.cpp */,
-				70327E331C836F4A009412CE /* HydraulicErosion.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";

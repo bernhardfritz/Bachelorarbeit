@@ -336,14 +336,14 @@ int main() {
         update();
         
         if(keyboard.getState(GLFW_KEY_E)) {
-            HydraulicErosion::perform(hm, 1);
-            ThermalErosion::perform(hm, 32.0f/hm.getColumns(), 2);
+            HydraulicErosion::perform(hm, 100);
+            ThermalErosion::perform(hm, 50);
         }
         if(keyboard.getState(GLFW_KEY_T)) {
-            ThermalErosion::perform(hm, 32.0f/hm.getColumns(), 10);
+            ThermalErosion::perform(hm, 100);
         }
         if(keyboard.getState(GLFW_KEY_H)) {
-            HydraulicErosion::perform(hm, 10);
+            HydraulicErosion::perform(hm, 100);
         }
         if(keyboard.getState(GLFW_KEY_R)) {
             RMP::perform(hm, 1);
