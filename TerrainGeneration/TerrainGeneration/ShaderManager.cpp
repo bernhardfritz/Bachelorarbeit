@@ -15,8 +15,9 @@
 
 using namespace std;
 
-ShaderManager::ShaderManager(string vsFilename, string fsFilename) {
+ShaderManager::ShaderManager(string vsFilename, string fsFilename, bool immediateValidation) {
     createShaderProgram(readFile(vsFilename), readFile(fsFilename));
+    if(immediateValidation) validate();
 }
 
 string ShaderManager::readFile(string filename) {
@@ -154,6 +155,10 @@ bool ShaderManager::isValid(GLuint program) {
     return true;
 }
 
+void ShaderManager::validate() {
+    assert(isValid(shaderProgram));
+}
+
 void ShaderManager::createVertexshader(string vsString) {
     this->vsString = vsString;
     vsSource = vsString.c_str();
@@ -181,7 +186,6 @@ void ShaderManager::createShaderProgram(string vsString, string fsString) {
     glLinkProgram(shaderProgram);
     checkForLinkingErrors(shaderProgram);
     printAll(shaderProgram);
-    assert(isValid(shaderProgram));
 }
 
 GLuint ShaderManager::getShaderProgram() {

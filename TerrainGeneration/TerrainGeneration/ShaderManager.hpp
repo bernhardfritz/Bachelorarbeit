@@ -37,8 +37,9 @@ private:
     void createShaderProgram(string vsString, string fsString);
     
 public:
-    ShaderManager(string vsFilename, string fsFilename);
+    ShaderManager(string vsFilename, string fsFilename, bool immediateValidation = true);
     GLuint getShaderProgram(void);
+    void validate();
 };
 
 #endif /* ShaderManager_hpp */

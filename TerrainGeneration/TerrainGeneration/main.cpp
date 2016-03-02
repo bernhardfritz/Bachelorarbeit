@@ -192,7 +192,7 @@ int main() {
     t2.assignToSlot(2);
     Texture t3 = tl.loadTexture("snow2.png");
     t3.assignToSlot(3);
-    Texture t4 = tl.loadTexture("water.png");
+    Texture t4 = tl.loadTexture("water3.png");
     t4.assignToSlot(4);
     //MeshLoader ml;
     //Mesh obj = ml.loadMesh("bunny.obj");
@@ -233,7 +233,7 @@ int main() {
     Skybox skybox;
     Voronoi voronoi(5);
     
-    ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl");
+    ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl", false);
     glUseProgram(shaderManager.getShaderProgram());
     
     Water water(hm.getColumns(), hm.getRows(), (hm.getMaxHeight() - hm.getMinHeight()) / 4.0f, 100.0f, 0.0005f);
@@ -275,6 +275,15 @@ int main() {
     
     int max_height = glGetUniformLocation(shaderManager.getShaderProgram(), "max_height");
     int min_height = glGetUniformLocation(shaderManager.getShaderProgram(), "min_height");
+    
+    glActiveTexture (GL_TEXTURE10);
+    glBindTexture (GL_TEXTURE_CUBE_MAP, skybox.get_cube_map_texture());
+    int cube_texture = glGetUniformLocation(shaderManager.getShaderProgram(), "cube_texture");
+    glUniform1i(cube_texture, 10);
+    
+    int eye = glGetUniformLocation(shaderManager.getShaderProgram(), "eye");
+    
+    shaderManager.validate();
 
     while(!glfwWindowShouldClose(window)) {
         updateFpsCounter(window);
@@ -292,6 +301,8 @@ int main() {
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
         glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
         glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
+        
+        glUniform3fv(eye, 1, value_ptr(camera.getEye()));
         
         glUniform3fv(lightDirection, 1, value_ptr(light.getDirection()));
         glUniform3fv(lightSpecularIntensity, 1, value_ptr(light.getSpecularIntensity()));

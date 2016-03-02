@@ -3,6 +3,7 @@ in vec3 position_eye, normal_eye;
 in vec2 texture_coordinates;
 in vec3 position;
 in vec3 normal;
+in vec3 reflect_dir;
 
 uniform mat4 view_mat;
 
@@ -35,6 +36,8 @@ uniform int is_water;
 uniform float time;
 uniform float max_height;
 uniform float min_height;
+
+uniform samplerCube cube_texture;
 
 void main () {
     vec4 color0 = texture(layer0, texture_coordinates); // sand
@@ -73,7 +76,9 @@ void main () {
         if(normal.y < t1 - d) texel = mix(color2, texel, (threshold1 + delta - position.y)/(threshold1 + delta - threshold0));
     }
     
-    if(is_water == 1) texel = color4;
+    if(is_water == 1) {
+        texel = mix(color4, texture(cube_texture, reflect_dir), 0.75);
+    }
     
     /*if(normal.y >= t0) texel = color0;
     if(normal.y < t0 && normal.y >= t0 - d) texel = mix(color0, color1, (t0 - normal.y)/d);
@@ -106,13 +111,6 @@ void main () {
     float specular_factor = pow (dot_prod_specular, specular_exponent);
     vec3 Is = Ls * Ks * specular_factor; // final specular intensity
     
-    // final colour
-    if(textured == 0) fragment_colour = vec4 (Is + Id + Ia, 1.0);
-    else {
-        fragment_colour = vec4 (Is + Id + Ia, texel.a);
-        if(is_water == 1) fragment_colour.a = 0.80;
-    }
-    
     // work out distance from camera to point
     float dist = length (-position_eye);
     // get a fog factor (thickness of fog) based on the distance
@@ -122,4 +120,12 @@ void main () {
     
     // blend the fog colour with the lighting colour, based on the fog factor
     fragment_colour.rgb = mix (fragment_colour.rgb, fog_color, fog_fac);
+    
+    // final colour
+    if(textured == 0) fragment_colour = vec4 (Is + Id + Ia, 1.0);
+    else {
+        fragment_colour = vec4 (Is + Id + Ia, texel.a);
+        
+        if(is_water == 1) fragment_colour.a = clamp(normal_eye.y, 0.9, 1.0);
+    }
 }

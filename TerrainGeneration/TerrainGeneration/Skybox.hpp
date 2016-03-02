@@ -26,6 +26,7 @@ private:
     void create_cube_map(const char* front, const char* back, const char* top, const char* bottom, const char* left, const char* right, GLuint* tex_cube);
 public:
     Skybox();
+    GLuint get_cube_map_texture();
     void draw(const GLfloat *M, const GLfloat *V, const GLfloat *P);
 };
 #endif /* Skybox_hpp */

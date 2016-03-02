@@ -147,6 +147,10 @@ Skybox::Skybox() : shaderManager(ShaderManager(CUBE_VERT_FILE, CUBE_FRAG_FILE)) 
     cube_P_location = glGetUniformLocation (shaderManager.getShaderProgram(), "P");
 }
 
+GLuint Skybox::get_cube_map_texture() {
+    return cube_map_texture;
+}
+
 void Skybox::draw(const GLfloat *M, const GLfloat *V, const GLfloat *P) {
     glUseProgram (shaderManager.getShaderProgram());
     glUniformMatrix4fv (cube_M_location, 1, GL_FALSE, M);
