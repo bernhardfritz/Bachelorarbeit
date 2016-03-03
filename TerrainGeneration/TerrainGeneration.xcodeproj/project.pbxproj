@@ -13,6 +13,9 @@
 		70327E2E1C811229009412CE /* water4.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E2D1C81121E009412CE /* water4.png */; };
 		70327E311C811B10009412CE /* OpenSimplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70327E2F1C811B10009412CE /* OpenSimplexNoise.cpp */; };
 		70327E341C836F4A009412CE /* HydraulicErosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70327E321C836F4A009412CE /* HydraulicErosion.cpp */; };
+		70327E3A1C88ED4A009412CE /* ice.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E391C88ED3C009412CE /* ice.png */; };
+		70327E3C1C88EE82009412CE /* snow3.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E3B1C88EE78009412CE /* snow3.png */; };
+		70327E441C88F71C009412CE /* rock3.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E431C88F714009412CE /* rock3.png */; };
 		7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE4C1BDD38AD000D4446 /* main.cpp */; };
 		7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE551BDD38F8000D4446 /* ShaderManager.cpp */; };
 		7052CE591BDD39A2000D4446 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE581BDD39A2000D4446 /* OpenGL.framework */; };
@@ -109,6 +112,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				70327E441C88F71C009412CE /* rock3.png in CopyFiles */,
+				70327E3C1C88EE82009412CE /* snow3.png in CopyFiles */,
+				70327E3A1C88ED4A009412CE /* ice.png in CopyFiles */,
 				70327E2E1C811229009412CE /* water4.png in CopyFiles */,
 				70327E281C810C4F009412CE /* water3.png in CopyFiles */,
 				708F58ED1C7FA36E00B26E7A /* test.png in CopyFiles */,
@@ -174,6 +180,9 @@
 		70327E301C811B10009412CE /* OpenSimplexNoise.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenSimplexNoise.hpp; sourceTree = "<group>"; };
 		70327E321C836F4A009412CE /* HydraulicErosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HydraulicErosion.cpp; sourceTree = "<group>"; };
 		70327E331C836F4A009412CE /* HydraulicErosion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HydraulicErosion.hpp; sourceTree = "<group>"; };
+		70327E391C88ED3C009412CE /* ice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice.png; sourceTree = "<group>"; };
+		70327E3B1C88EE78009412CE /* snow3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow3.png; sourceTree = "<group>"; };
+		70327E431C88F714009412CE /* rock3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock3.png; sourceTree = "<group>"; };
 		7052CE491BDD38AD000D4446 /* TerrainGeneration */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TerrainGeneration; sourceTree = BUILT_PRODUCTS_DIR; };
 		7052CE4C1BDD38AD000D4446 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7052CE531BDD38D3000D4446 /* fragmentshader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentshader.glsl; sourceTree = "<group>"; };
@@ -389,19 +398,22 @@
 		708F58DB1C7DE8FC00B26E7A /* Textures */ = {
 			isa = PBXGroup;
 			children = (
-				70327E2D1C81121E009412CE /* water4.png */,
-				70327E271C810C32009412CE /* water3.png */,
+				708F58651C738A7500B26E7A /* grass.png */,
+				708F58741C74AE7600B26E7A /* grass2.png */,
+				70327E391C88ED3C009412CE /* ice.png */,
+				708F58671C738AFD00B26E7A /* rock.png */,
+				708F58791C74B13000B26E7A /* rock2.png */,
+				70327E431C88F714009412CE /* rock3.png */,
+				708F58661C738AAA00B26E7A /* sand.png */,
+				708F58781C74B0E400B26E7A /* sand2.png */,
+				708F58641C7389F900B26E7A /* snow.png */,
+				708F587A1C74B16000B26E7A /* snow2.png */,
+				70327E3B1C88EE78009412CE /* snow3.png */,
 				708F58EC1C7FA35D00B26E7A /* test.png */,
 				708F58E81C7F7F4400B26E7A /* water.png */,
 				708F58E91C7F7F6C00B26E7A /* water2.png */,
-				708F58781C74B0E400B26E7A /* sand2.png */,
-				708F58741C74AE7600B26E7A /* grass2.png */,
-				708F58791C74B13000B26E7A /* rock2.png */,
-				708F587A1C74B16000B26E7A /* snow2.png */,
-				708F58661C738AAA00B26E7A /* sand.png */,
-				708F58651C738A7500B26E7A /* grass.png */,
-				708F58671C738AFD00B26E7A /* rock.png */,
-				708F58641C7389F900B26E7A /* snow.png */,
+				70327E271C810C32009412CE /* water3.png */,
+				70327E2D1C81121E009412CE /* water4.png */,
 			);
 			name = Textures;
 			sourceTree = "<group>";

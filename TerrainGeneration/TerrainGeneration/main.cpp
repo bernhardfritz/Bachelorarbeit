@@ -47,6 +47,7 @@ GLFWwindow* window;
 Camera camera(0.5f, 1.0f, 0.5f, 0.0f, 0.0f, 0.20f);
 DirectionalLight light(1.24f, 1.22f);
 Keyboard keyboard;
+float windowRatio = 4.0f/3.0f;
 
 int frameCount;
 double elapsedSeconds;
@@ -68,6 +69,10 @@ void updateFpsCounter(GLFWwindow* window) {
         timer = 0.0;
     }
     frameCount++;
+}
+
+void window_size_callback(GLFWwindow* window, int width, int height) {
+    windowRatio = (float)width / height;
 }
 
 void keyboard_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -154,6 +159,7 @@ int main() {
     }
     glfwMakeContextCurrent(window);
     
+    glfwSetWindowSizeCallback(window, window_size_callback);
     glfwSetKeyCallback(window, keyboard_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
@@ -209,11 +215,11 @@ int main() {
     }
     hm.calculateNormals();
     
-    hm.loadHeightmap("terrain.png", 0.20f);
+    hm.loadHeightmap("terrain.png", 0.2f);
     //hm.getMaterial()->setSpecularReflectance(0.0f);
     //Heightmap hm(128, 128);
-    //DiamondSquare::perform(hm, 50.0f);
-    //Fault::perform(hm, 0.5f, 512);
+    //Fault::perform(hm, 1.0f, 1024);
+    //DiamondSquare::perform(hm, 0.2f);
     //RMP::perform(hm, 50, 3, 1);
     //RMP::perform(hm, 100);
     //ThermalErosion::perform(hm, 2.0f, 0.001f, 1000);
@@ -290,7 +296,7 @@ int main() {
         
         mat4 model = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
         mat4 view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
-        mat4 proj = perspective(45.0f, 4.0f/3.0f, 0.001f, 2.0f);
+        mat4 proj = perspective(45.0f, windowRatio, 0.001f, 2.0f);
         
         // wipe the drawing surface clear
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

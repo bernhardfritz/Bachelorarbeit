@@ -55,25 +55,35 @@ void main () {
     float t0 = 0.75;
     float t1 = 0.5;
     float t2 = 0.25;
-    float d = 0.1;
+    float d = 0.25;
     
     vec4 texel = vec4(0.0, 0.0, 0.0, 0.0);
     if(position.y < threshold0) texel = color0;
     if(position.y >= threshold0 && position.y < threshold0 + delta) texel = mix(color0, color1, (position.y - threshold0) / delta);
     if(position.y >= threshold0 + delta && position.y < threshold1) texel = color1;
     if(position.y >= threshold1 && position.y < threshold1 + delta) texel = mix(color1, color2, (position.y - threshold1) / delta);
-    if(position.y >= threshold1 + delta && position.y < threshold2) texel = color2;
+    if(position.y >= threshold1 + delta) texel = color2;
     if(position.y >= threshold2 && position.y < threshold2 + delta) texel = mix(color2, color3, (position.y - threshold2) / delta);
     if(position.y >= threshold2 + delta) texel = color3;
     
-    if(position.y >= threshold1 && position.y < threshold2 + delta) {
-        if(normal.y >= t0) texel = mix(texel, color1, (threshold2 + delta - position.y)/(threshold2 + delta - threshold1));
-        if(normal.y < t0 && normal.y >= t0 - d) texel = mix(texel, mix(color1, texel, (t0 - normal.y)/d), (threshold2 + delta - position.y)/(threshold2 + delta - threshold1));
+    if(position.y >= threshold1 && position.y < threshold2) {
+        if(normal.y >= t0) texel = mix(texel, color1, (threshold2 - position.y)/(threshold2 - threshold1));
+        if(normal.y < t0 && normal.y >= t0 - d) texel = mix(texel, mix(color1, texel, (t0 - normal.y)/d), (threshold2 - position.y)/(threshold2 - threshold1));
     }
     
     if(position.y >= threshold0 && position.y < threshold1 + delta) {
         if(normal.y < t1 && normal.y >= t1 - d) texel = mix(mix(texel, color2, (t1 - normal.y)/d), texel, (threshold1 + delta - position.y)/(threshold1 + delta - threshold0));
         if(normal.y < t1 - d) texel = mix(color2, texel, (threshold1 + delta - position.y)/(threshold1 + delta - threshold0));
+    }
+    
+    if(position.y >= threshold1) {
+        if(normal.y >= t1) texel = mix(texel, color3, min(1.0,(position.y - threshold1)/delta));
+        if(t1 - d <= normal.y && normal.y < t1) texel = mix(texel, mix(color3, texel, (t1 - normal.y)/d), min(1.0, (position.y - threshold1)/delta));
+    }
+    
+    if(position.y >= threshold1 && position.y < threshold2 + delta) {
+        if(normal.y < t1 && normal.y >= t1 - d) texel = mix(mix(texel, color2, (t1 - normal.y)/d), texel, (threshold2 + delta - position.y)/(threshold2 + delta - threshold1));
+        if(normal.y < t1 - d) texel = mix(color2, texel, (threshold2 + delta - position.y)/(threshold2 + delta - threshold1));
     }
     
     if(is_water == 1) {
@@ -111,6 +121,14 @@ void main () {
     float specular_factor = pow (dot_prod_specular, specular_exponent);
     vec3 Is = Ls * Ks * specular_factor; // final specular intensity
     
+    // final colour
+    if(textured == 0) fragment_colour = vec4 (Is + Id + Ia, 1.0);
+    else {
+        fragment_colour = vec4 (Is + Id + Ia, texel.a);
+        
+        if(is_water == 1) fragment_colour.a = clamp(normal_eye.y, 0.9, 1.0);
+    }
+    
     // work out distance from camera to point
     float dist = length (-position_eye);
     // get a fog factor (thickness of fog) based on the distance
@@ -120,12 +138,4 @@ void main () {
     
     // blend the fog colour with the lighting colour, based on the fog factor
     fragment_colour.rgb = mix (fragment_colour.rgb, fog_color, fog_fac);
-    
-    // final colour
-    if(textured == 0) fragment_colour = vec4 (Is + Id + Ia, 1.0);
-    else {
-        fragment_colour = vec4 (Is + Id + Ia, texel.a);
-        
-        if(is_water == 1) fragment_colour.a = clamp(normal_eye.y, 0.9, 1.0);
-    }
 }

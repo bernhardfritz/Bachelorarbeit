@@ -21,7 +21,7 @@ Heightmap::Heightmap(int columns, int rows) {
     for(int z = 0; z <= rows; z++) {
         for(int x = 0; x <= columns; x++) {
             vertices.push_back(vec3(x*(1.0f/columns), 0, z*(1.0f/rows)));
-            texcoords.push_back(vec2(x, z));
+            texcoords.push_back(vec2(x*0.5f, z*0.5f));
         }
     }
     
