@@ -38,6 +38,8 @@
 #include "Water.hpp"
 #include "OpenSimplexNoise.hpp"
 #include "HydraulicErosion.hpp"
+#include "Framebuffer.hpp"
+#include "Quad.hpp"
 
 using namespace std;
 using namespace glm;
@@ -48,6 +50,11 @@ Camera camera(0.5f, 1.0f, 0.5f, 0.0f, 0.0f, 0.20f);
 DirectionalLight light(1.24f, 1.22f);
 Keyboard keyboard;
 float windowRatio = 4.0f/3.0f;
+Framebuffer* passthroughFramebuffer;
+Framebuffer* brightpassFramebuffer;
+Framebuffer* horizontalBlurFramebuffer;
+Framebuffer* verticalBlurFramebuffer;
+Framebuffer* bloomFramebuffer;
 
 int frameCount;
 double elapsedSeconds;
@@ -73,6 +80,25 @@ void updateFpsCounter(GLFWwindow* window) {
 
 void window_size_callback(GLFWwindow* window, int width, int height) {
     windowRatio = (float)width / height;
+}
+
+void window_focus_callback(GLFWwindow* window, int focused){
+    if (focused) {
+        // The window gained input focus
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    }
+    else {
+        // The window lost input focus
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
+}
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+    passthroughFramebuffer->resize(width, height);
+    brightpassFramebuffer->resize(width, height);
+    horizontalBlurFramebuffer->resize(width, height);
+    verticalBlurFramebuffer->resize(width, height);
+    bloomFramebuffer->resize(width, height);
 }
 
 void keyboard_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -160,11 +186,10 @@ int main() {
     glfwMakeContextCurrent(window);
     
     glfwSetWindowSizeCallback(window, window_size_callback);
+    glfwSetWindowFocusCallback(window, window_focus_callback);
     glfwSetKeyCallback(window, keyboard_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
-    
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     
     // start GLEW extension handler
     glewExperimental = GL_TRUE;
@@ -196,7 +221,7 @@ int main() {
     t1.assignToSlot(1);
     Texture t2 = tl.loadTexture("rock2.png");
     t2.assignToSlot(2);
-    Texture t3 = tl.loadTexture("snow2.png");
+    Texture t3 = tl.loadTexture("snow.png");
     t3.assignToSlot(3);
     Texture t4 = tl.loadTexture("water3.png");
     t4.assignToSlot(4);
@@ -290,58 +315,168 @@ int main() {
     int eye = glGetUniformLocation(shaderManager.getShaderProgram(), "eye");
     
     shaderManager.validate();
+    
+    int width, height;
+    glfwGetFramebufferSize(window, &width, &height);
+    passthroughFramebuffer = new Framebuffer(width, height);
+    brightpassFramebuffer = new Framebuffer(width, height);
+    horizontalBlurFramebuffer = new Framebuffer(width, height);
+    verticalBlurFramebuffer = new Framebuffer(width, height);
+    bloomFramebuffer = new Framebuffer(width, height);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    
+    Quad quad;
 
     while(!glfwWindowShouldClose(window)) {
-        updateFpsCounter(window);
+        passthroughFramebuffer->bind();
+        {
+            updateFpsCounter(window);
         
-        mat4 model = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
-        mat4 view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
-        mat4 proj = perspective(45.0f, windowRatio, 0.001f, 2.0f);
+            mat4 model = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
+            mat4 view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
+            mat4 proj = perspective(45.0f, windowRatio, 0.001f, 2.0f);
         
-        // wipe the drawing surface clear
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        skybox.draw(value_ptr(translate(mat4(1.0f), camera.getEye())), value_ptr(view), value_ptr(proj));
-        
-        glUseProgram(shaderManager.getShaderProgram());
-        
-        glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
-        glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
-        glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
-        
-        glUniform3fv(eye, 1, value_ptr(camera.getEye()));
-        
-        glUniform3fv(lightDirection, 1, value_ptr(light.getDirection()));
-        glUniform3fv(lightSpecularIntensity, 1, value_ptr(light.getSpecularIntensity()));
-        glUniform3fv(lightDiffuseIntensity, 1, value_ptr(light.getDiffuseIntensity()));
-        glUniform3fv(lightAmbientIntensity, 1, value_ptr(light.getAmbientIntensity()));
-        
-        glUniform1f(fogNear, fog.getNear());
-        glUniform1f(fogFar, fog.getFar());
-        glUniform3fv(fogColor, 1, value_ptr(fog.getColor()));
-        
-        glUniform1f(max_height, hm.getMaxHeight());
-        glUniform1f(min_height, hm.getMinHeight());
-        
-        struct timeval tp;
-        gettimeofday(&tp, NULL);
-        long int ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-        glUniform1f(time, (ms%10000)/10000.0f);
-        
-        for(Mesh* mesh : meshes) {
-            glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh->getMaterial()->getSpecularReflectance()));
-            glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh->getMaterial()->getDiffuseReflectance()));
-            glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh->getMaterial()->getAmbientReflectance()));
-            glUniform1f(meshShininess, mesh->getMaterial()->getShininess());
-            glUniform1i(textured, mesh->isTextured() ? 1 : 0);
-            if(mesh == &water) {
-                glUniform1i(is_water, 1);
-                glEnable(GL_BLEND);
-                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            // wipe the drawing surface clear
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            skybox.draw(value_ptr(translate(mat4(1.0f), camera.getEye())), value_ptr(view), value_ptr(proj));
+            
+            glUseProgram(shaderManager.getShaderProgram());
+            
+            glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
+            glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
+            glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
+            
+            glUniform3fv(eye, 1, value_ptr(camera.getEye()));
+            
+            glUniform3fv(lightDirection, 1, value_ptr(light.getDirection()));
+            glUniform3fv(lightSpecularIntensity, 1, value_ptr(light.getSpecularIntensity()));
+            glUniform3fv(lightDiffuseIntensity, 1, value_ptr(light.getDiffuseIntensity()));
+            glUniform3fv(lightAmbientIntensity, 1, value_ptr(light.getAmbientIntensity()));
+            
+            glUniform1f(fogNear, fog.getNear());
+            glUniform1f(fogFar, fog.getFar());
+            glUniform3fv(fogColor, 1, value_ptr(fog.getColor()));
+            
+            glUniform1f(max_height, hm.getMaxHeight());
+            glUniform1f(min_height, hm.getMinHeight());
+            
+            struct timeval tp;
+            gettimeofday(&tp, NULL);
+            long int ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+            glUniform1f(time, (ms%10000)/10000.0f);
+            
+            for(Mesh* mesh : meshes) {
+                glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh->getMaterial()->getSpecularReflectance()));
+                glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh->getMaterial()->getDiffuseReflectance()));
+                glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh->getMaterial()->getAmbientReflectance()));
+                glUniform1f(meshShininess, mesh->getMaterial()->getShininess());
+                glUniform1i(textured, mesh->isTextured() ? 1 : 0);
+                if(mesh == &water) {
+                    glUniform1i(is_water, 1);
+                    glEnable(GL_BLEND);
+                    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                }
+                else glUniform1i(is_water, 0);
+                mesh->draw();
+                glDisable(GL_BLEND);
             }
-            else glUniform1i(is_water, 0);
-            mesh->draw();
-            glDisable(GL_BLEND);
         }
+        passthroughFramebuffer->unbind();
+        
+        brightpassFramebuffer->bind();
+        {
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            
+            // Create and compile our GLSL program from the shaders
+            static ShaderManager brightpassShaderManager("brightpass_vs.glsl","brightpass_fs.glsl");
+            glUseProgram (brightpassShaderManager.getShaderProgram());
+            
+            glActiveTexture(GL_TEXTURE11);
+            glBindTexture(GL_TEXTURE_2D, passthroughFramebuffer->getColorTexture());
+            GLuint texID = glGetUniformLocation(brightpassShaderManager.getShaderProgram(), "colorTexture");
+            glUniform1i(texID, 11);
+            
+            glActiveTexture(GL_TEXTURE12);
+            glBindTexture(GL_TEXTURE_2D, passthroughFramebuffer->getDepthTexture());
+            GLuint depID = glGetUniformLocation(brightpassShaderManager.getShaderProgram(), "depthTexture");
+            glUniform1i(depID, 12);
+            
+            quad.draw();
+            
+        }
+        brightpassFramebuffer->unbind();
+        
+        horizontalBlurFramebuffer->bind();
+        {
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            
+            // Create and compile our GLSL program from the shaders
+            static ShaderManager horizontalBlurShaderManager("gaussianblur_vs.glsl","gaussianblur_fs.glsl");
+            glUseProgram (horizontalBlurShaderManager.getShaderProgram());
+            
+            glActiveTexture(GL_TEXTURE11);
+            glBindTexture(GL_TEXTURE_2D, brightpassFramebuffer->getColorTexture());
+            GLuint texID = glGetUniformLocation(horizontalBlurShaderManager.getShaderProgram(), "colorTexture");
+            glUniform1i(texID, 11);
+            
+            glActiveTexture(GL_TEXTURE12);
+            glBindTexture(GL_TEXTURE_2D, passthroughFramebuffer->getDepthTexture());
+            GLuint depID = glGetUniformLocation(horizontalBlurShaderManager.getShaderProgram(), "depthTexture");
+            glUniform1i(depID, 12);
+            
+            GLuint dirID = glGetUniformLocation(horizontalBlurShaderManager.getShaderProgram(), "direction");
+            glUniform2fv(dirID, 1, value_ptr(vec2(1.0f, 0.0f)));
+            
+            quad.draw();
+        }
+        horizontalBlurFramebuffer->unbind();
+        
+        verticalBlurFramebuffer->bind();
+        {
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            
+            // Create and compile our GLSL program from the shaders
+            static ShaderManager verticalBlurShaderManager("gaussianblur_vs.glsl","gaussianblur_fs.glsl");
+            glUseProgram (verticalBlurShaderManager.getShaderProgram());
+            
+            glActiveTexture(GL_TEXTURE11);
+            glBindTexture(GL_TEXTURE_2D, horizontalBlurFramebuffer->getColorTexture());
+            GLuint texID = glGetUniformLocation(verticalBlurShaderManager.getShaderProgram(), "colorTexture");
+            glUniform1i(texID, 11);
+            
+            glActiveTexture(GL_TEXTURE12);
+            glBindTexture(GL_TEXTURE_2D, passthroughFramebuffer->getDepthTexture());
+            GLuint depID = glGetUniformLocation(verticalBlurShaderManager.getShaderProgram(), "depthTexture");
+            glUniform1i(depID, 12);
+            
+            GLuint dirID = glGetUniformLocation(verticalBlurShaderManager.getShaderProgram(), "direction");
+            glUniform2fv(dirID, 1, value_ptr(vec2(0.0f, 1.0f)));
+            
+            quad.draw();
+        }
+        verticalBlurFramebuffer->unbind();
+        
+        // Create and compile our GLSL program from the shaders
+        static ShaderManager bloomShaderManager("bloom_vs.glsl","bloom_fs.glsl");
+        glUseProgram (bloomShaderManager.getShaderProgram());
+        
+        glActiveTexture(GL_TEXTURE11);
+        glBindTexture(GL_TEXTURE_2D, passthroughFramebuffer->getColorTexture());
+        GLuint texID = glGetUniformLocation(bloomShaderManager.getShaderProgram(), "colorTexture");
+        glUniform1i(texID, 11);
+        
+        glActiveTexture(GL_TEXTURE12);
+        glBindTexture(GL_TEXTURE_2D, passthroughFramebuffer->getDepthTexture());
+        GLuint depID = glGetUniformLocation(bloomShaderManager.getShaderProgram(), "depthTexture");
+        glUniform1i(depID, 12);
+        
+        glActiveTexture(GL_TEXTURE13);
+        glBindTexture(GL_TEXTURE_2D, verticalBlurFramebuffer->getColorTexture());
+        GLuint brightID = glGetUniformLocation(bloomShaderManager.getShaderProgram(), "brightTexture");
+        glUniform1i(brightID, 13);
+        
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        quad.draw();
         
         //voronoi.draw();
         
@@ -372,6 +507,12 @@ int main() {
     
     // close GL context and any other GLFW resources
     glfwTerminate();
+    
+    delete passthroughFramebuffer;
+    delete brightpassFramebuffer;
+    delete horizontalBlurFramebuffer;
+    delete verticalBlurFramebuffer;
+    delete bloomFramebuffer;
     
     return 0;
 }

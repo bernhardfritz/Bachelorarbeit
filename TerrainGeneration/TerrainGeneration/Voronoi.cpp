@@ -9,6 +9,7 @@
 #include "Voronoi.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <GLFW/glfw3.h> // GLFW helper library
 
 Voronoi::Voronoi(int n) {
     float radius = 2.0f/n;
@@ -42,20 +43,24 @@ void Voronoi::draw() {
 
 
 bool Voronoi::isPixelInRegion(int px, int py, int rx, int ry) {
+    int width, height;
+    glfwGetWindowSize(glfwGetCurrentContext(), &width, &height);
     if(once) {
-        buffer = (unsigned char*)malloc (640 * 480 * 3);
-        glReadPixels (0, 0, 640, 480, GL_RGB, GL_UNSIGNED_BYTE, buffer);
+        buffer = (unsigned char*)malloc (width * height * 3);
+        glReadPixels (0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, buffer);
         once = false;
     }
-    unsigned char pr = buffer[py*640*3 + px*3];
-    unsigned char pg = buffer[py*640*3 + px*3 + 1];
-    unsigned char pb = buffer[py*640*3 + px*3 + 2];
-    unsigned char rr = buffer[ry*640*3 + rx*3];
-    unsigned char rg = buffer[ry*640*3 + rx*3 + 1];
-    unsigned char rb = buffer[ry*640*3 + rx*3 + 2];
+    unsigned char pr = buffer[py*width*3 + px*3];
+    unsigned char pg = buffer[py*width*3 + px*3 + 1];
+    unsigned char pb = buffer[py*width*3 + px*3 + 2];
+    unsigned char rr = buffer[ry*width*3 + rx*3];
+    unsigned char rg = buffer[ry*width*3 + rx*3 + 1];
+    unsigned char rb = buffer[ry*width*3 + rx*3 + 2];
     return pr == rr && pg == rg && pb == rb;
 }
 
 bool Voronoi::isPositionInRegion(int pcolumn, int prow, int rcolumn, int rrow, int columns, int rows) {
-    return isPixelInRegion(((float)pcolumn/columns)*639, ((float)prow/rows)*479, ((float)rcolumn/columns)*639, ((float)rrow/rows)*479);
+    int width, height;
+    glfwGetWindowSize(glfwGetCurrentContext(), &width, &height);
+    return isPixelInRegion(((float)pcolumn/columns)*(width-1), ((float)prow/rows)*(height-1), ((float)rcolumn/columns)*(width-1), ((float)rrow/rows)*(height-1));
 }

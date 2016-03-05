@@ -16,6 +16,18 @@
 		70327E3A1C88ED4A009412CE /* ice.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E391C88ED3C009412CE /* ice.png */; };
 		70327E3C1C88EE82009412CE /* snow3.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E3B1C88EE78009412CE /* snow3.png */; };
 		70327E441C88F71C009412CE /* rock3.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E431C88F714009412CE /* rock3.png */; };
+		70327E4A1C89160C009412CE /* Framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70327E481C89160C009412CE /* Framebuffer.cpp */; };
+		70327E4D1C891BB6009412CE /* brightpass_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E4B1C891B9E009412CE /* brightpass_vs.glsl */; };
+		70327E4E1C891BB6009412CE /* brightpass_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E4C1C891BAA009412CE /* brightpass_fs.glsl */; };
+		70327E511C8A02BD009412CE /* bloom_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E4F1C8A020F009412CE /* bloom_vs.glsl */; };
+		70327E521C8A02BD009412CE /* bloom_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E501C8A021A009412CE /* bloom_fs.glsl */; };
+		70327E551C8AE0C4009412CE /* Quad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70327E531C8AE0C4009412CE /* Quad.cpp */; };
+		70327E581C8AE9A1009412CE /* passthrough_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E561C8AE8E8009412CE /* passthrough_vs.glsl */; };
+		70327E591C8AE9A1009412CE /* passthrough_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E571C8AE8F5009412CE /* passthrough_fs.glsl */; };
+		70327E5C1C8AF74D009412CE /* gaussianblur_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E5A1C8AF476009412CE /* gaussianblur_vs.glsl */; };
+		70327E5D1C8AF74D009412CE /* gaussianblur_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E5B1C8AF47F009412CE /* gaussianblur_fs.glsl */; };
+		70327E601C8B2B65009412CE /* boxblur_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E5E1C8B2988009412CE /* boxblur_vs.glsl */; };
+		70327E611C8B2B65009412CE /* boxblur_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E5F1C8B2993009412CE /* boxblur_fs.glsl */; };
 		7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE4C1BDD38AD000D4446 /* main.cpp */; };
 		7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE551BDD38F8000D4446 /* ShaderManager.cpp */; };
 		7052CE591BDD39A2000D4446 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE581BDD39A2000D4446 /* OpenGL.framework */; };
@@ -112,6 +124,16 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				70327E601C8B2B65009412CE /* boxblur_vs.glsl in CopyFiles */,
+				70327E611C8B2B65009412CE /* boxblur_fs.glsl in CopyFiles */,
+				70327E5C1C8AF74D009412CE /* gaussianblur_vs.glsl in CopyFiles */,
+				70327E5D1C8AF74D009412CE /* gaussianblur_fs.glsl in CopyFiles */,
+				70327E581C8AE9A1009412CE /* passthrough_vs.glsl in CopyFiles */,
+				70327E591C8AE9A1009412CE /* passthrough_fs.glsl in CopyFiles */,
+				70327E511C8A02BD009412CE /* bloom_vs.glsl in CopyFiles */,
+				70327E521C8A02BD009412CE /* bloom_fs.glsl in CopyFiles */,
+				70327E4D1C891BB6009412CE /* brightpass_vs.glsl in CopyFiles */,
+				70327E4E1C891BB6009412CE /* brightpass_fs.glsl in CopyFiles */,
 				70327E441C88F71C009412CE /* rock3.png in CopyFiles */,
 				70327E3C1C88EE82009412CE /* snow3.png in CopyFiles */,
 				70327E3A1C88ED4A009412CE /* ice.png in CopyFiles */,
@@ -183,6 +205,20 @@
 		70327E391C88ED3C009412CE /* ice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice.png; sourceTree = "<group>"; };
 		70327E3B1C88EE78009412CE /* snow3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow3.png; sourceTree = "<group>"; };
 		70327E431C88F714009412CE /* rock3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock3.png; sourceTree = "<group>"; };
+		70327E481C89160C009412CE /* Framebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Framebuffer.cpp; sourceTree = "<group>"; };
+		70327E491C89160C009412CE /* Framebuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Framebuffer.hpp; sourceTree = "<group>"; };
+		70327E4B1C891B9E009412CE /* brightpass_vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = brightpass_vs.glsl; sourceTree = "<group>"; };
+		70327E4C1C891BAA009412CE /* brightpass_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = brightpass_fs.glsl; sourceTree = "<group>"; };
+		70327E4F1C8A020F009412CE /* bloom_vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bloom_vs.glsl; sourceTree = "<group>"; };
+		70327E501C8A021A009412CE /* bloom_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bloom_fs.glsl; sourceTree = "<group>"; };
+		70327E531C8AE0C4009412CE /* Quad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quad.cpp; sourceTree = "<group>"; };
+		70327E541C8AE0C4009412CE /* Quad.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Quad.hpp; sourceTree = "<group>"; };
+		70327E561C8AE8E8009412CE /* passthrough_vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = passthrough_vs.glsl; sourceTree = "<group>"; };
+		70327E571C8AE8F5009412CE /* passthrough_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = passthrough_fs.glsl; sourceTree = "<group>"; };
+		70327E5A1C8AF476009412CE /* gaussianblur_vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gaussianblur_vs.glsl; sourceTree = "<group>"; };
+		70327E5B1C8AF47F009412CE /* gaussianblur_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gaussianblur_fs.glsl; sourceTree = "<group>"; };
+		70327E5E1C8B2988009412CE /* boxblur_vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boxblur_vs.glsl; sourceTree = "<group>"; };
+		70327E5F1C8B2993009412CE /* boxblur_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boxblur_fs.glsl; sourceTree = "<group>"; };
 		7052CE491BDD38AD000D4446 /* TerrainGeneration */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TerrainGeneration; sourceTree = BUILT_PRODUCTS_DIR; };
 		7052CE4C1BDD38AD000D4446 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7052CE531BDD38D3000D4446 /* fragmentshader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentshader.glsl; sourceTree = "<group>"; };
@@ -391,6 +427,10 @@
 				708F58CC1C75EAA100B26E7A /* Voronoi.hpp */,
 				708F58E31C7F72F700B26E7A /* Water.cpp */,
 				708F58E41C7F72F700B26E7A /* Water.hpp */,
+				70327E481C89160C009412CE /* Framebuffer.cpp */,
+				70327E491C89160C009412CE /* Framebuffer.hpp */,
+				70327E531C8AE0C4009412CE /* Quad.cpp */,
+				70327E541C8AE0C4009412CE /* Quad.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -479,6 +519,16 @@
 				708F58861C74EDCA00B26E7A /* skybox_fs.glsl */,
 				708F58CE1C75F40500B26E7A /* voronoi_vs.glsl */,
 				708F58CF1C75F41100B26E7A /* voronoi_fs.glsl */,
+				70327E4B1C891B9E009412CE /* brightpass_vs.glsl */,
+				70327E4C1C891BAA009412CE /* brightpass_fs.glsl */,
+				70327E4F1C8A020F009412CE /* bloom_vs.glsl */,
+				70327E501C8A021A009412CE /* bloom_fs.glsl */,
+				70327E561C8AE8E8009412CE /* passthrough_vs.glsl */,
+				70327E571C8AE8F5009412CE /* passthrough_fs.glsl */,
+				70327E5A1C8AF476009412CE /* gaussianblur_vs.glsl */,
+				70327E5B1C8AF47F009412CE /* gaussianblur_fs.glsl */,
+				70327E5E1C8B2988009412CE /* boxblur_vs.glsl */,
+				70327E5F1C8B2993009412CE /* boxblur_fs.glsl */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -557,6 +607,7 @@
 				70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */,
 				7096544D1C3C3BAB005BB137 /* RMP.cpp in Sources */,
 				708F58E51C7F72F700B26E7A /* Water.cpp in Sources */,
+				70327E4A1C89160C009412CE /* Framebuffer.cpp in Sources */,
 				708F58CD1C75EAA100B26E7A /* Voronoi.cpp in Sources */,
 				708F58E21C7DEA1200B26E7A /* ThermalErosion.cpp in Sources */,
 				708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */,
@@ -565,6 +616,7 @@
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,
 				709654441C2D916A005BB137 /* Fault.cpp in Sources */,
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,
+				70327E551C8AE0C4009412CE /* Quad.cpp in Sources */,
 				708F58DA1C7CEF2900B26E7A /* PointLight.cpp in Sources */,
 				708F584E1C732BA300B26E7A /* TextureLoader.cpp in Sources */,
 			);

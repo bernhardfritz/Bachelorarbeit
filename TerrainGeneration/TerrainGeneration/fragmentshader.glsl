@@ -23,7 +23,7 @@ uniform vec3 Kd; // diffuse surface reflectance
 uniform vec3 Ka; // ambient surface reflectance
 uniform float specular_exponent; // specular 'power'
 
-out vec4 fragment_colour; // final colour of surface
+layout(location = 0) out vec4 fragment_colour; // final colour of surface
 
 uniform sampler2D layer0;
 uniform sampler2D layer1;
