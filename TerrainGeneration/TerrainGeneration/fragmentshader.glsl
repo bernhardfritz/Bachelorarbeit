@@ -4,6 +4,7 @@ in vec2 texture_coordinates;
 in vec3 position;
 in vec3 normal;
 in vec3 reflect_dir;
+in vec3 look_at;
 
 uniform mat4 view_mat;
 
@@ -125,8 +126,7 @@ void main () {
     if(textured == 0) fragment_colour = vec4 (Is + Id + Ia, 1.0);
     else {
         fragment_colour = vec4 (Is + Id + Ia, texel.a);
-        
-        if(is_water == 1) fragment_colour.a = clamp(normal_eye.y, 0.9, 1.0);
+        if(is_water == 1) fragment_colour.a = clamp(1.333 + look_at.y, 0.9, 1);
     }
     
     // work out distance from camera to point

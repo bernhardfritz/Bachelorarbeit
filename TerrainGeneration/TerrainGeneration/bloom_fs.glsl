@@ -17,6 +17,6 @@ void main() {
     color = texture(colorTexture, UV);
     vec4 bright = texture(brightTexture, UV);
     if(c < 1.0) color += 0.667 * bright;
-    if(c >= 1.0) color += 0.333 * bright;
+    if(c >= 1.0) color += 0.1 * bright;
 //    color = bright;
 }
