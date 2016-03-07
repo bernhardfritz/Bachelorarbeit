@@ -45,10 +45,9 @@ void Voronoi::draw() {
 bool Voronoi::isPixelInRegion(int px, int py, int rx, int ry) {
     int width, height;
     glfwGetWindowSize(glfwGetCurrentContext(), &width, &height);
-    if(once) {
+    if(buffer == NULL) {
         buffer = (unsigned char*)malloc (width * height * 3);
         glReadPixels (0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, buffer);
-        once = false;
     }
     unsigned char pr = buffer[py*width*3 + px*3];
     unsigned char pg = buffer[py*width*3 + px*3 + 1];

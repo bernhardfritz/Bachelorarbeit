@@ -31,6 +31,18 @@ Mesh::Mesh(vector<vec3> vertices, vector<unsigned int> indices, vector<vec3> nor
     init();
 }
 
+Mesh::~Mesh() {
+    int current_vao;
+    glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &current_vao);
+    glBindVertexArray(0);
+    glDeleteBuffers(1, &vao);
+    glDeleteBuffers(1, &vbo);
+    glDeleteBuffers(1, &nbo);
+    glDeleteBuffers(1, &tbo);
+    glDeleteBuffers(1, &ibo);
+    glBindVertexArray(current_vao);
+}
+
 void Mesh::setVertices(vector<vec3> vertices) {
     this->vertices = vertices;
 }

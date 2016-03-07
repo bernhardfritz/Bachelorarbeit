@@ -40,6 +40,7 @@
 #include "HydraulicErosion.hpp"
 #include "Framebuffer.hpp"
 #include "Quad.hpp"
+#include "MousePicker.hpp"
 
 using namespace std;
 using namespace glm;
@@ -47,6 +48,11 @@ using namespace glm;
 GLFWwindow* window;
 
 Camera camera(0.5f, 1.0f, 0.5f, 0.0f, 0.0f, 0.20f);
+Heightmap* heightmap;
+mat4 model;
+mat4 view;
+mat4 proj;
+MousePicker mousePicker;
 DirectionalLight light(1.24f, 1.22f);
 Keyboard keyboard;
 float windowRatio = 4.0f/3.0f;
@@ -85,7 +91,7 @@ void window_size_callback(GLFWwindow* window, int width, int height) {
 void window_focus_callback(GLFWwindow* window, int focused){
     if (focused) {
         // The window gained input focus
-            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     }
     else {
         // The window lost input focus
@@ -130,6 +136,22 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     camera.incPitch(deltaY * sensitivity);
     lastX = xpos;
     lastY = ypos;
+    
+    int width, height;
+    glfwGetWindowSize(window, &width, &height);
+    mousePicker.update(floor(xpos), floor(ypos), width, height, proj, view);
+}
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+    if(action == GLFW_PRESS) {
+        vec3 intersection = mousePicker.getIntersection(camera, *heightmap);
+        int column = round(intersection.x * heightmap->getColumns());
+        int row = round(intersection.z * heightmap->getRows());
+//        heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row)+0.01);
+//        heightmap.calculateNormals();
+        RMP::perform(*heightmap, column, row, 10, 0.005, 1);
+//        printf("%s\n", mousePicker.triangle_intersects(camera, heightmap) ? "true" : "false");
+    }
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
@@ -189,6 +211,7 @@ int main() {
     glfwSetWindowFocusCallback(window, window_focus_callback);
     glfwSetKeyCallback(window, keyboard_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
     glfwSetScrollCallback(window, scroll_callback);
     
     // start GLEW extension handler
@@ -230,17 +253,17 @@ int main() {
     //obj.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
     //obj.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
     //obj.getMaterial()->setShininess(1.0f);
-    Heightmap hm(256, 256);
     
+    heightmap = new Heightmap(256, 256);
     OpenSimplexNoise osn;
-    for(int row = 0; row <= hm.getRows(); row++) {
-        for(int column = 0; column <= hm.getColumns(); column++) {
-            hm.setHeightAt(column, row, 0.001f*osn.eval(column*0.1, row*0.1));
+    for(int row = 0; row <= heightmap->getRows(); row++) {
+        for(int column = 0; column <= heightmap->getColumns(); column++) {
+            heightmap->setHeightAt(column, row, 0.001f*osn.eval(column*0.1, row*0.1));
         }
     }
-    hm.calculateNormals();
+    heightmap->calculateNormals();
     
-    hm.loadHeightmap("terrain.png", 0.2f);
+    heightmap->loadHeightmap("terrain.png", 0.2f);
     //hm.getMaterial()->setSpecularReflectance(0.0f);
     //Heightmap hm(128, 128);
     //Fault::perform(hm, 1.0f, 1024);
@@ -249,7 +272,7 @@ int main() {
     //RMP::perform(hm, 100);
     //ThermalErosion::perform(hm, 2.0f, 0.001f, 1000);
     vector<Mesh*> meshes;
-    meshes.push_back(&hm);
+    meshes.push_back(heightmap);
     
     /*for(int i = 0; i < 100; i++) {
         Cone tmp(100.0f, 50.0f, 64);
@@ -257,7 +280,7 @@ int main() {
         meshes.push_back(tmp);
     }*/
     
-    camera.setY(hm.getMaxHeight());
+    camera.setY(heightmap->getMaxHeight());
     
     Fog fog(0.67f, 1.5f);
     
@@ -267,7 +290,7 @@ int main() {
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl", false);
     glUseProgram(shaderManager.getShaderProgram());
     
-    Water water(hm.getColumns(), hm.getRows(), (hm.getMaxHeight() - hm.getMinHeight()) / 4.0f, 100.0f, 0.0005f);
+    Water water(heightmap->getColumns(), heightmap->getRows(), (heightmap->getMaxHeight() - heightmap->getMinHeight()) / 4.0f, 100.0f, 0.0005f);
     meshes.push_back(&water);
     
     int modelLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "model_mat");
@@ -332,9 +355,9 @@ int main() {
         {
             updateFpsCounter(window);
         
-            mat4 model = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
-            mat4 view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
-            mat4 proj = perspective(45.0f, windowRatio, 0.001f, 2.0f);
+            model = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
+            view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
+            proj = perspective(45.0f, windowRatio, 0.001f, 2.0f);
         
             // wipe the drawing surface clear
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -357,8 +380,8 @@ int main() {
             glUniform1f(fogFar, fog.getFar());
             glUniform3fv(fogColor, 1, value_ptr(fog.getColor()));
             
-            glUniform1f(max_height, hm.getMaxHeight());
-            glUniform1f(min_height, hm.getMinHeight());
+            glUniform1f(max_height, heightmap->getMaxHeight());
+            glUniform1f(min_height, heightmap->getMinHeight());
             
             struct timeval tp;
             gettimeofday(&tp, NULL);
@@ -488,20 +511,20 @@ int main() {
         update();
         
         if(keyboard.getState(GLFW_KEY_E)) {
-            HydraulicErosion::perform(hm, 100);
-            ThermalErosion::perform(hm, 50);
+            HydraulicErosion::perform(*heightmap, 100);
+            ThermalErosion::perform(*heightmap, 50);
         }
         if(keyboard.getState(GLFW_KEY_T)) {
-            ThermalErosion::perform(hm, 100);
+            ThermalErosion::perform(*heightmap, 100);
         }
         if(keyboard.getState(GLFW_KEY_H)) {
-            HydraulicErosion::perform(hm, 100);
+            HydraulicErosion::perform(*heightmap, 100);
         }
         if(keyboard.getState(GLFW_KEY_R)) {
-            RMP::perform(hm, 1);
+            RMP::perform(*heightmap, 1);
         }
         
-        water.setWaveLevel((hm.getMaxHeight() - hm.getMinHeight()) / 4.0f);
+        water.setWaveLevel((heightmap->getMaxHeight() - heightmap->getMinHeight()) / 4.0f);
         water.step(elapsedSeconds);
     }
     
@@ -513,6 +536,8 @@ int main() {
     delete horizontalBlurFramebuffer;
     delete verticalBlurFramebuffer;
     delete bloomFramebuffer;
+    
+    delete heightmap;
     
     return 0;
 }

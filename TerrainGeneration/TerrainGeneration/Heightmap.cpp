@@ -64,7 +64,7 @@ int Heightmap::getRows() {
 }
 
 void Heightmap::setHeightAt(int column, int row, float height) {
-    if(column <= columns && row <= rows) {
+    if(0 <= column && column <= columns && 0 <= row && row <= rows) {
         vertices[row * (columns + 1) + column].y = height;
         if(height < minHeight) minHeight = height;
         if(height > maxHeight) maxHeight = height;
@@ -72,7 +72,7 @@ void Heightmap::setHeightAt(int column, int row, float height) {
 }
 
 float Heightmap::getHeightAt(int column, int row) {
-    if(column <= columns && row <= rows) {
+    if(0 <= column && column <= columns && 0 <= row && row <= rows) {
         return vertices[row * (columns + 1) + column].y;
     }
     return 0.0f;

@@ -28,6 +28,7 @@
 		70327E5D1C8AF74D009412CE /* gaussianblur_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E5B1C8AF47F009412CE /* gaussianblur_fs.glsl */; };
 		70327E601C8B2B65009412CE /* boxblur_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E5E1C8B2988009412CE /* boxblur_vs.glsl */; };
 		70327E611C8B2B65009412CE /* boxblur_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70327E5F1C8B2993009412CE /* boxblur_fs.glsl */; };
+		70327E641C8DAF63009412CE /* MousePicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70327E621C8DAF63009412CE /* MousePicker.cpp */; };
 		7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE4C1BDD38AD000D4446 /* main.cpp */; };
 		7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE551BDD38F8000D4446 /* ShaderManager.cpp */; };
 		7052CE591BDD39A2000D4446 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE581BDD39A2000D4446 /* OpenGL.framework */; };
@@ -219,6 +220,8 @@
 		70327E5B1C8AF47F009412CE /* gaussianblur_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gaussianblur_fs.glsl; sourceTree = "<group>"; };
 		70327E5E1C8B2988009412CE /* boxblur_vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boxblur_vs.glsl; sourceTree = "<group>"; };
 		70327E5F1C8B2993009412CE /* boxblur_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boxblur_fs.glsl; sourceTree = "<group>"; };
+		70327E621C8DAF63009412CE /* MousePicker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MousePicker.cpp; sourceTree = "<group>"; };
+		70327E631C8DAF63009412CE /* MousePicker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MousePicker.hpp; sourceTree = "<group>"; };
 		7052CE491BDD38AD000D4446 /* TerrainGeneration */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TerrainGeneration; sourceTree = BUILT_PRODUCTS_DIR; };
 		7052CE4C1BDD38AD000D4446 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7052CE531BDD38D3000D4446 /* fragmentshader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentshader.glsl; sourceTree = "<group>"; };
@@ -431,6 +434,8 @@
 				70327E491C89160C009412CE /* Framebuffer.hpp */,
 				70327E531C8AE0C4009412CE /* Quad.cpp */,
 				70327E541C8AE0C4009412CE /* Quad.hpp */,
+				70327E621C8DAF63009412CE /* MousePicker.cpp */,
+				70327E631C8DAF63009412CE /* MousePicker.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -611,6 +616,7 @@
 				708F58CD1C75EAA100B26E7A /* Voronoi.cpp in Sources */,
 				708F58E21C7DEA1200B26E7A /* ThermalErosion.cpp in Sources */,
 				708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */,
+				70327E641C8DAF63009412CE /* MousePicker.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
 				709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */,
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,

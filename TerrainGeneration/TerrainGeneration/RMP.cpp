@@ -185,19 +185,22 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
 }
 
 void RMP::perform(Heightmap &heightmap, int n) {
-    float height = 0.01f;
-    for(int i = 0; i < n; i++) {
-        Voronoi voronoi(4);
+    perform(heightmap, heightmap.getColumns()/2, heightmap.getRows()/2, 4, 0.01f, n);
+}
+
+void RMP::perform(Heightmap &heightmap, int x, int z, int spread, float delta, int iterations) {
+    if(!(0 <= x && x <= heightmap.getColumns() && 0 <= z && z <= heightmap.getRows())) return;
+    for(int i = 0; i < iterations; i++) {
+        Voronoi voronoi(spread);
         voronoi.draw();
-        //glFinish();
         for(int row = 0; row <= heightmap.getRows(); row++) {
             for(int column = 0; column <= heightmap.getColumns(); column++) {
-                if(voronoi.isPositionInRegion(column, row, heightmap.getColumns()/2, heightmap.getRows()/2, heightmap.getColumns(), heightmap.getRows())) {
-                    heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + height);
+                if(voronoi.isPositionInRegion(column, row, x, z, heightmap.getColumns(), heightmap.getRows())) {
+                    heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + delta);
                 }
             }
         }
-        height *= (1.0f - 1.0f/n);
+        delta *= (1.0f - 1.0f/iterations);
     }
     heightmap.calculateNormals();
 }

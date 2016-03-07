@@ -16,7 +16,6 @@ class Voronoi {
 private:
     vector<Cone> cones;
     unsigned char* buffer = NULL;
-    bool once = true;
 public:
     Voronoi(int n);
     ~Voronoi();
