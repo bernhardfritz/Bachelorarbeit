@@ -39,10 +39,9 @@ Heightmap::Heightmap(int columns, int rows) {
     setVertices(vertices);
     setIndices(indices);
     setTexcoords(texcoords);
-    setMaterial(new Material());
-    getMaterial()->setSpecularReflectance(0.05f);
-    getMaterial()->setShininess(1.0f);
-    getMaterial()->setAmbientReflectance(0.5);
+    material.setSpecularReflectance(0.05f);
+    material.setShininess(1.0f);
+    material.setAmbientReflectance(0.5f);
     init();
     calculateNormals();
 }
@@ -79,7 +78,7 @@ float Heightmap::getHeightAt(int column, int row) {
 }
 
 float Heightmap::getSlopeAt(int column, int row) {
-    if(column <= columns && row <= rows) {
+    if(0 <= column && column <= columns && 0 <= row && row <= rows) {
         return normals[row * (columns + 1) + column].y;
     }
     return 0.0f;
@@ -107,10 +106,23 @@ void Heightmap::loadHeightmap(string filename, float strength) {
     calculateNormals();
 }
 
+void Heightmap::calculateNormals() {
+    float sum = 0.0f;
+    for(vec3 vertex : vertices) {
+        sum += vertex.y;
+    }
+    averageHeight = sum / vertices.size();
+    Mesh::calculateNormals();
+}
+
 float Heightmap::getMinHeight() {
     return minHeight;
 }
 
 float Heightmap::getMaxHeight() {
     return maxHeight;
+}
+
+float Heightmap::getAverageHeight() {
+    return averageHeight;
 }

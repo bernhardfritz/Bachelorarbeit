@@ -52,7 +52,6 @@ Cube::Cube(float a) {
     
     setVertices(vertices);
     setIndices(indices);
-    setMaterial(new Material());
     init();
     calculateNormals();
 }

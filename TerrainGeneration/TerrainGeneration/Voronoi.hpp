@@ -10,12 +10,15 @@
 #define Voronoi_hpp
 
 #include "Cone.hpp"
+#include "Camera.hpp"
 #include "ShaderManager.hpp"
 
 class Voronoi {
 private:
-    vector<Cone> cones;
+    vector<Cone*> cones;
     unsigned char* buffer = NULL;
+    Camera camera;
+    mat4 view;
 public:
     Voronoi(int n);
     ~Voronoi();

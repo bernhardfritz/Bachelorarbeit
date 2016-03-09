@@ -60,7 +60,9 @@ int Framebuffer::getHeight() {
 }
 
 Framebuffer::~Framebuffer() {
-    
+    glDeleteTextures(1, &colorTexture);
+    glDeleteTextures(1, &depthTexture);
+    glDeleteFramebuffers(1, &fbo);
 }
 
 GLuint Framebuffer::getColorTexture() {

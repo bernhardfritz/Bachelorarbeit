@@ -21,7 +21,7 @@ protected:
     int rows;
     float minHeight = 0.0f;
     float maxHeight = 0.0f;
-    
+    float averageHeight = 0.0f;
 public:
     Heightmap() {};
     Heightmap(int columns, int rows);
@@ -34,8 +34,10 @@ public:
     float getHeightAt(int column, int row);
     float getSlopeAt(int column, int row);
     void loadHeightmap(string filename, float strength);
+    void calculateNormals();
     float getMinHeight();
     float getMaxHeight();
+    float getAverageHeight();
 };
 
 #endif /* Heightmap_hpp */

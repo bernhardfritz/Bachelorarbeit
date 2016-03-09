@@ -6,7 +6,9 @@
 //  Copyright © 2015 Bernhard Fritz. All rights reserved.
 //
 #define STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image.h"
+#include "stb_image_write.h"
 #include <GL/glew.h> // include GLEW and new version of GL on Windows
 #include <GLFW/glfw3.h> // GLFW helper library
 #include <glm/glm.hpp>
@@ -41,6 +43,7 @@
 #include "Framebuffer.hpp"
 #include "Quad.hpp"
 #include "MousePicker.hpp"
+#include "Mouse.hpp"
 
 using namespace std;
 using namespace glm;
@@ -48,13 +51,12 @@ using namespace glm;
 GLFWwindow* window;
 
 Camera camera(0.5f, 1.0f, 0.5f, 0.0f, 0.0f, 0.20f);
-Heightmap* heightmap;
-mat4 model;
 mat4 view;
 mat4 proj;
 MousePicker mousePicker;
 DirectionalLight light(1.24f, 1.22f);
 Keyboard keyboard;
+Mouse mouse;
 float windowRatio = 4.0f/3.0f;
 Framebuffer* passthroughFramebuffer;
 Framebuffer* brightpassFramebuffer;
@@ -143,15 +145,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
-    if(action == GLFW_PRESS) {
-        vec3 intersection = mousePicker.getIntersection(camera, *heightmap);
-        int column = round(intersection.x * heightmap->getColumns());
-        int row = round(intersection.z * heightmap->getRows());
-//        heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row)+0.01);
-//        heightmap.calculateNormals();
-        RMP::perform(*heightmap, column, row, 10, 0.005, 1);
-//        printf("%s\n", mousePicker.triangle_intersects(camera, heightmap) ? "true" : "false");
-    }
+    mouse.update(button, action==GLFW_PRESS);
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
@@ -253,17 +247,16 @@ int main() {
     //obj.getMaterial()->setDiffuseReflectance(vec3(1.0f, 0.0f, 0.0f));
     //obj.getMaterial()->setSpecularReflectance(vec3(0.0f, 0.0f, 1.0f));
     //obj.getMaterial()->setShininess(1.0f);
-    
-    heightmap = new Heightmap(256, 256);
+    Heightmap heightmap(256, 256);
     OpenSimplexNoise osn;
-    for(int row = 0; row <= heightmap->getRows(); row++) {
-        for(int column = 0; column <= heightmap->getColumns(); column++) {
-            heightmap->setHeightAt(column, row, 0.001f*osn.eval(column*0.1, row*0.1));
+    for(int row = 0; row <= heightmap.getRows(); row++) {
+        for(int column = 0; column <= heightmap.getColumns(); column++) {
+            heightmap.setHeightAt(column, row, 0.001f*osn.eval(column*0.1, row*0.1));
         }
     }
-    heightmap->calculateNormals();
+    heightmap.calculateNormals();
     
-    heightmap->loadHeightmap("terrain.png", 0.2f);
+    heightmap.loadHeightmap("terrain.png", 0.2f);
     //hm.getMaterial()->setSpecularReflectance(0.0f);
     //Heightmap hm(128, 128);
     //Fault::perform(hm, 1.0f, 1024);
@@ -272,7 +265,7 @@ int main() {
     //RMP::perform(hm, 100);
     //ThermalErosion::perform(hm, 2.0f, 0.001f, 1000);
     vector<Mesh*> meshes;
-    meshes.push_back(heightmap);
+    meshes.push_back(&heightmap);
     
     /*for(int i = 0; i < 100; i++) {
         Cone tmp(100.0f, 50.0f, 64);
@@ -280,17 +273,16 @@ int main() {
         meshes.push_back(tmp);
     }*/
     
-    camera.setY(heightmap->getMaxHeight());
+    camera.setY(heightmap.getMaxHeight());
     
     Fog fog(0.67f, 1.5f);
     
     Skybox skybox;
-    Voronoi voronoi(5);
     
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl", false);
     glUseProgram(shaderManager.getShaderProgram());
     
-    Water water(heightmap->getColumns(), heightmap->getRows(), (heightmap->getMaxHeight() - heightmap->getMinHeight()) / 4.0f, 100.0f, 0.0005f);
+    Water water(heightmap.getColumns(), heightmap.getRows(), heightmap.getAverageHeight(), 100.0f, 0.0005f);
     meshes.push_back(&water);
     
     int modelLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "model_mat");
@@ -355,17 +347,16 @@ int main() {
         {
             updateFpsCounter(window);
         
-            model = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
             view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
             proj = perspective(45.0f, windowRatio, 0.001f, 2.0f);
         
             // wipe the drawing surface clear
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            
             skybox.draw(value_ptr(translate(mat4(1.0f), camera.getEye())), value_ptr(view), value_ptr(proj));
             
             glUseProgram(shaderManager.getShaderProgram());
             
-            glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
             glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
             glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
             
@@ -380,8 +371,8 @@ int main() {
             glUniform1f(fogFar, fog.getFar());
             glUniform3fv(fogColor, 1, value_ptr(fog.getColor()));
             
-            glUniform1f(max_height, heightmap->getMaxHeight());
-            glUniform1f(min_height, heightmap->getMinHeight());
+            glUniform1f(max_height, heightmap.getMaxHeight());
+            glUniform1f(min_height, heightmap.getMinHeight());
             
             struct timeval tp;
             gettimeofday(&tp, NULL);
@@ -389,6 +380,7 @@ int main() {
             glUniform1f(time, (ms%10000)/10000.0f);
             
             for(Mesh* mesh : meshes) {
+                glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(mesh->getModelMatrix()));
                 glUniform3fv(meshSpecularIntensity, 1, value_ptr(mesh->getMaterial()->getSpecularReflectance()));
                 glUniform3fv(meshDiffuseIntensity, 1, value_ptr(mesh->getMaterial()->getDiffuseReflectance()));
                 glUniform3fv(meshAmbientReflectance, 1, value_ptr(mesh->getMaterial()->getAmbientReflectance()));
@@ -501,35 +493,43 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         quad.draw();
         
-        //voronoi.draw();
-        
         // put the stuff we've been drawing onto the display
         glfwSwapBuffers(window);
+        
         // update other events like input handling
         glfwPollEvents();
         
         update();
         
-        if(keyboard.getState(GLFW_KEY_E)) {
-            HydraulicErosion::perform(*heightmap, 100);
-            ThermalErosion::perform(*heightmap, 50);
-        }
-        if(keyboard.getState(GLFW_KEY_T)) {
-            ThermalErosion::perform(*heightmap, 100);
-        }
-        if(keyboard.getState(GLFW_KEY_H)) {
-            HydraulicErosion::perform(*heightmap, 100);
-        }
-        if(keyboard.getState(GLFW_KEY_R)) {
-            RMP::perform(*heightmap, 1);
+        water.setWaveLevel(heightmap.getAverageHeight());
+        water.step(elapsedSeconds);
+        
+        if(mouse.getState(GLFW_MOUSE_BUTTON_1)) {
+            vec3 intersection = mousePicker.getIntersection(camera, heightmap);
+            int column = round(intersection.x * heightmap.getColumns());
+            int row = round(intersection.z * heightmap.getRows());
+            //heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row)+0.01);
+            //heightmap.calculateNormals();
+            RMP::perform(heightmap, column, row, 10, 0.005f, 1);
+            //        printf("%s\n", mousePicker.triangle_intersects(camera, heightmap) ? "true" : "false");
+            
         }
         
-        water.setWaveLevel((heightmap->getMaxHeight() - heightmap->getMinHeight()) / 4.0f);
-        water.step(elapsedSeconds);
+        if(keyboard.getState(GLFW_KEY_R)) {
+            RMP::perform(heightmap, 1);
+        }
+        
+        if(keyboard.getState(GLFW_KEY_E)) {
+            HydraulicErosion::perform(heightmap, 100);
+            ThermalErosion::perform(heightmap, 50);
+        }
+        if(keyboard.getState(GLFW_KEY_T)) {
+            ThermalErosion::perform(heightmap, 100);
+        }
+        if(keyboard.getState(GLFW_KEY_H)) {
+            HydraulicErosion::perform(heightmap, 100);
+        }
     }
-    
-    // close GL context and any other GLFW resources
-    glfwTerminate();
     
     delete passthroughFramebuffer;
     delete brightpassFramebuffer;
@@ -537,7 +537,8 @@ int main() {
     delete verticalBlurFramebuffer;
     delete bloomFramebuffer;
     
-    delete heightmap;
+    // close GL context and any other GLFW resources
+    glfwTerminate();
     
     return 0;
 }

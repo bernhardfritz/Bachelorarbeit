@@ -1,4 +1,5 @@
 #version 410
+
 // surface reflectance
 uniform vec3 Kd; // diffuse surface reflectance
 

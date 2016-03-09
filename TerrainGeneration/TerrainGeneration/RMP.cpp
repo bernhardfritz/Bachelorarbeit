@@ -185,11 +185,12 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
 }
 
 void RMP::perform(Heightmap &heightmap, int n) {
-    perform(heightmap, heightmap.getColumns()/2, heightmap.getRows()/2, 4, 0.01f, n);
+    perform(heightmap, heightmap.getColumns()/2, heightmap.getRows()/2, 10, 0.01f, n);
 }
 
 void RMP::perform(Heightmap &heightmap, int x, int z, int spread, float delta, int iterations) {
     if(!(0 <= x && x <= heightmap.getColumns() && 0 <= z && z <= heightmap.getRows())) return;
+    
     for(int i = 0; i < iterations; i++) {
         Voronoi voronoi(spread);
         voronoi.draw();
@@ -202,5 +203,6 @@ void RMP::perform(Heightmap &heightmap, int x, int z, int spread, float delta, i
         }
         delta *= (1.0f - 1.0f/iterations);
     }
+    
     heightmap.calculateNormals();
 }

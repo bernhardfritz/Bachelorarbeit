@@ -23,6 +23,7 @@ protected:
     vector<unsigned int> indices;
     vector<vec3> normals;
     vector<vec2> texcoords;
+    Material material;
     
 private:
     GLuint vao;
@@ -30,8 +31,11 @@ private:
     GLuint nbo;
     GLuint tbo;
     GLuint ibo;
-    Material* material;
+    mat4 modelMatrix;
+    mat4 translationMatrix;
+    mat4 rotationMatrix;
     
+    void updateModelMatrix();
 public:
     Mesh();
     Mesh(vector<vec3> vertices, vector<unsigned int> indices);
@@ -47,14 +51,15 @@ public:
     bool isTextured();
     void setIndices(vector<unsigned int> indices);
     vector<unsigned int> getIndices();
-    void setMaterial(Material* material);
+    void setMaterial(Material material);
     Material* getMaterial();
     GLuint getVAO();
-    void calculateNormals();
+    mat4 getModelMatrix();
+    virtual void calculateNormals();
     void init();
     void update();
-    void translate(float x, float y, float z);
-    void rotate(float alpha, float beta, float gamma);
+    void setPosition(float x, float y, float z);
+    void setRotation(float alpha, float beta, float gamma);
     void draw();
     void print();
 };

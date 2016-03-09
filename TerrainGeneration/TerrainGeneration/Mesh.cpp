@@ -18,7 +18,6 @@ Mesh::Mesh() {
 Mesh::Mesh(vector<vec3> vertices, vector<unsigned int> indices) {
     setVertices(vertices);
     setIndices(indices);
-    setMaterial(new Material());
     init();
     calculateNormals();
 }
@@ -27,20 +26,16 @@ Mesh::Mesh(vector<vec3> vertices, vector<unsigned int> indices, vector<vec3> nor
     setVertices(vertices);
     setIndices(indices);
     setNormals(normals);
-    setMaterial(new Material());
     init();
 }
 
 Mesh::~Mesh() {
-    int current_vao;
-    glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &current_vao);
     glBindVertexArray(0);
     glDeleteBuffers(1, &vao);
     glDeleteBuffers(1, &vbo);
     glDeleteBuffers(1, &nbo);
     glDeleteBuffers(1, &tbo);
     glDeleteBuffers(1, &ibo);
-    glBindVertexArray(current_vao);
 }
 
 void Mesh::setVertices(vector<vec3> vertices) {
@@ -79,16 +74,24 @@ vector<unsigned int> Mesh::getIndices() {
     return indices;
 }
 
-void Mesh::setMaterial(Material* material) {
+void Mesh::setMaterial(Material material) {
     this->material = material;
 }
 
 Material* Mesh::getMaterial() {
-    return material;
+    return &material;
 }
 
 GLuint Mesh::getVAO() {
     return vao;
+}
+
+void Mesh::updateModelMatrix() {
+    modelMatrix = translationMatrix * rotationMatrix;
+}
+
+mat4 Mesh::getModelMatrix() {
+    return modelMatrix;
 }
 
 void Mesh::calculateNormals() {
@@ -146,41 +149,39 @@ void Mesh::init() {
 }
 
 void Mesh::update() {
+    glBindVertexArray(0);
+    glDeleteBuffers(1, &vbo);
+    glDeleteBuffers(1, &nbo);
+    
     glBindVertexArray(vao);
     
+    vbo = 0;
+    glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vec3), 0, GL_DYNAMIC_DRAW);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vec3), &vertices[0], GL_DYNAMIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
     
+    nbo = 0;
+    glGenBuffers(1, &nbo);
     glBindBuffer(GL_ARRAY_BUFFER, nbo);
     glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(vec3), 0, GL_DYNAMIC_DRAW);
     glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(vec3), &normals[0], GL_DYNAMIC_DRAW);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 }
 
-void Mesh::translate(float x, float y, float z) {
-    glm::mat4 translate = glm::translate(glm::mat4(1.f), glm::vec3(x, y, z));
-    for(int i = 0; i < vertices.size(); i++) {
-        glm::vec4 vector(vertices[i], 1.f);
-        vector = translate * vector;
-        vertices[i].x = vector.x;
-        vertices[i].y = vector.y;
-        vertices[i].z = vector.z;
-    }
-    update();
+void Mesh::setPosition(float x, float y, float z) {
+    translationMatrix = glm::translate(glm::mat4(1.f), glm::vec3(x, y, z));
+    updateModelMatrix();
 }
 
-void Mesh::rotate(float alpha, float beta, float gamma) {
-    glm::mat4 rotate = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(1, 0, 0));
-    rotate = glm::rotate(rotate, beta, glm::vec3(0, 1, 0));
-    rotate = glm::rotate(rotate, gamma, glm::vec3(0, 0, 1));
-    for(int i = 0; i < vertices.size(); i++) {
-        glm::vec4 vector(vertices[i], 1.f);
-        vector = rotate * vector;
-        vertices[i].x = vector.x;
-        vertices[i].y = vector.y;
-        vertices[i].z = vector.z;
-    }
-    update();
+void Mesh::setRotation(float alpha, float beta, float gamma) {
+    rotationMatrix = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(1, 0, 0));
+    rotationMatrix = glm::rotate(rotationMatrix, beta, glm::vec3(0, 1, 0));
+    rotationMatrix = glm::rotate(rotationMatrix, gamma, glm::vec3(0, 0, 1));
+    updateModelMatrix();
 }
 
 void Mesh::draw() {

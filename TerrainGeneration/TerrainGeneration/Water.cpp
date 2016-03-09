@@ -13,14 +13,15 @@ Water::Water(int columns, int rows, float waveLevel, float waveWidth, float wave
     setWaveWidth(waveWidth);
     setWaveHeight(waveHeight);
     setWaveTime(0.0f);
-    getMaterial()->setSpecularReflectance(1.0f);
-    getMaterial()->setShininess(1000.0f);
-    getMaterial()->setAmbientReflectance(0.67f);
+    material.setSpecularReflectance(1.0f);
+    material.setShininess(1000.0f);
+    material.setAmbientReflectance(0.67f);
     step(0.0f);
 }
 
 void Water::setWaveLevel(float waveLevel) {
     this->waveLevel = waveLevel;
+    setPosition(0.0f, waveLevel, 0.0f);
 }
 
 float Water::getWaveLevel() {
@@ -56,8 +57,8 @@ void Water::step(float delta) {
     for(int row = 0; row <= rows; row++) {
         for(int column = 0; column <= columns; column++) {
             float height = (sin(waveWidth * column + waveTime) * cos(waveWidth * row + waveTime) + osm.eval(column+waveTime/4.0f, row+waveTime/4.0f))/2.0f * waveHeight;
-            setHeightAt(column, row, waveLevel + height);
+            setHeightAt(column, row, height);
         }
     }
-    calculateNormals();
+    Mesh::calculateNormals();
 }
