@@ -98,6 +98,7 @@
 		709654471C3C2AF5005BB137 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654451C3C2AF5005BB137 /* Graph.cpp */; };
 		7096544D1C3C3BAB005BB137 /* RMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096544B1C3C3BAB005BB137 /* RMP.cpp */; };
 		70BF607E1BF91D2700319D05 /* heightmap.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70BF607D1BF91D1C00319D05 /* heightmap.png */; };
+		70CC79B91C947D660012598C /* ShallowWater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79B71C947D660012598C /* ShallowWater.cpp */; };
 		70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D11BEF6A6900E1DD90 /* dragon.obj */; };
 		70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D01BEF6A5900E1DD90 /* buddha.obj */; };
 		70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */; };
@@ -313,6 +314,8 @@
 		7096544B1C3C3BAB005BB137 /* RMP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RMP.cpp; sourceTree = "<group>"; };
 		7096544C1C3C3BAB005BB137 /* RMP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RMP.hpp; sourceTree = "<group>"; };
 		70BF607D1BF91D1C00319D05 /* heightmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heightmap.png; sourceTree = "<group>"; };
+		70CC79B71C947D660012598C /* ShallowWater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShallowWater.cpp; sourceTree = "<group>"; };
+		70CC79B81C947D660012598C /* ShallowWater.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShallowWater.hpp; sourceTree = "<group>"; };
 		70E3C5D01BEF6A5900E1DD90 /* buddha.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buddha.obj; sourceTree = "<group>"; };
 		70E3C5D11BEF6A6900E1DD90 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
 		70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshLoader.cpp; sourceTree = "<group>"; };
@@ -443,6 +446,8 @@
 				708F58CC1C75EAA100B26E7A /* Voronoi.hpp */,
 				708F58E31C7F72F700B26E7A /* Water.cpp */,
 				708F58E41C7F72F700B26E7A /* Water.hpp */,
+				70CC79B71C947D660012598C /* ShallowWater.cpp */,
+				70CC79B81C947D660012598C /* ShallowWater.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -632,6 +637,7 @@
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,
 				70327E551C8AE0C4009412CE /* Quad.cpp in Sources */,
 				708F58DA1C7CEF2900B26E7A /* PointLight.cpp in Sources */,
+				70CC79B91C947D660012598C /* ShallowWater.cpp in Sources */,
 				708F584E1C732BA300B26E7A /* TextureLoader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

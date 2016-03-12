@@ -44,6 +44,7 @@
 #include "Quad.hpp"
 #include "MousePicker.hpp"
 #include "Mouse.hpp"
+#include "ShallowWater.hpp"
 
 using namespace std;
 using namespace glm;
@@ -93,7 +94,7 @@ void window_size_callback(GLFWwindow* window, int width, int height) {
 void window_focus_callback(GLFWwindow* window, int focused){
     if (focused) {
         // The window gained input focus
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }
     else {
         // The window lost input focus
@@ -125,17 +126,24 @@ void keyboard_callback(GLFWwindow* window, int key, int scancode, int action, in
             once2 = true;
         }
     }
+    if(mods & GLFW_MOD_CONTROL) {
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    } else {
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    }
     keyboard.update(key, action!=GLFW_RELEASE);
 }
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     static double lastX = xpos;
     static double lastY = ypos;
-    float deltaX = xpos - lastX;
-    float deltaY = -(ypos - lastY); // invert
-    float sensitivity = 0.01;
-    camera.incYaw(deltaX * sensitivity);
-    camera.incPitch(deltaY * sensitivity);
+    if(glfwGetInputMode(window, GLFW_CURSOR) == GLFW_CURSOR_DISABLED) {
+        float deltaX = xpos - lastX;
+        float deltaY = -(ypos - lastY); // invert
+        float sensitivity = 0.01;
+        camera.incYaw(deltaX * sensitivity);
+        camera.incPitch(deltaY * sensitivity);
+    }
     lastX = xpos;
     lastY = ypos;
     
@@ -282,7 +290,9 @@ int main() {
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl", false);
     glUseProgram(shaderManager.getShaderProgram());
     
-    Water water(heightmap.getColumns(), heightmap.getRows(), heightmap.getAverageHeight(), 100.0f, 0.0005f);
+//    Water water(heightmap.getColumns(), heightmap.getRows(), heightmap.getAverageHeight(), 100.0f, 0.0005f);
+//    meshes.push_back(&water);
+    ShallowWater water(heightmap);
     meshes.push_back(&water);
     
     int modelLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "model_mat");
@@ -501,8 +511,9 @@ int main() {
         
         update();
         
-        water.setWaveLevel(heightmap.getAverageHeight());
-        water.step(elapsedSeconds);
+//        water.setWaveLevel(heightmap.getAverageHeight());
+//        water.step(elapsedSeconds);
+        water.flow(elapsedSeconds * 4);
         
         if(mouse.getState(GLFW_MOUSE_BUTTON_1)) {
             vec3 intersection = mousePicker.getIntersection(camera, heightmap);
