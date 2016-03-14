@@ -7,6 +7,7 @@
 //
 
 #include "HydraulicErosion.hpp"
+#include "TemporaryHeightmap.hpp"
 #include "OpenSimplexNoise.hpp"
 
 void HydraulicErosion::perform(Heightmap& heightmap, int iterations, float K_r, float K_s, float K_e, float K_c) {

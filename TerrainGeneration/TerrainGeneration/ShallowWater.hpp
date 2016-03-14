@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Heightmap.hpp"
+#include "TemporaryHeightmap.hpp"
 
 typedef struct {
     float fL;
@@ -22,10 +23,11 @@ typedef struct {
 class ShallowWater : public Heightmap {
 private:
     Heightmap& heightmap;
+    TemporaryHeightmap watermap;
     vector<Flux> flux;
 public:
     ShallowWater(Heightmap& heightmap);
-    void flow(float dt);
+    void flow(float dt, int iterations);
 };
 
 #endif /* ShallowWater_hpp */

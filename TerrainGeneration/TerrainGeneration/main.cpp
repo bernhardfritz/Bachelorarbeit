@@ -45,6 +45,7 @@
 #include "MousePicker.hpp"
 #include "Mouse.hpp"
 #include "ShallowWater.hpp"
+#include "Solver.hpp"
 
 using namespace std;
 using namespace glm;
@@ -290,9 +291,8 @@ int main() {
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl", false);
     glUseProgram(shaderManager.getShaderProgram());
     
-//    Water water(heightmap.getColumns(), heightmap.getRows(), heightmap.getAverageHeight(), 100.0f, 0.0005f);
-//    meshes.push_back(&water);
-    ShallowWater water(heightmap);
+    Water water(heightmap.getColumns(), heightmap.getRows(), heightmap.getAverageHeight(), 100.0f, 0.0005f);
+//    ShallowWater water(heightmap);
     meshes.push_back(&water);
     
     int modelLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "model_mat");
@@ -351,8 +351,13 @@ int main() {
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     
     Quad quad;
+    
+    Solver s(8.0f, water.getColumns()+1, 8.0f, water.getRows()+1);
 
     while(!glfwWindowShouldClose(window)) {
+        s.run(glfwGetTime());
+        water.updateHeight(s.q1);
+        
         passthroughFramebuffer->bind();
         {
             updateFpsCounter(window);
@@ -513,7 +518,7 @@ int main() {
         
 //        water.setWaveLevel(heightmap.getAverageHeight());
 //        water.step(elapsedSeconds);
-        water.flow(elapsedSeconds * 4);
+//        water.flow(0.05f, 10);
         
         if(mouse.getState(GLFW_MOUSE_BUTTON_1)) {
             vec3 intersection = mousePicker.getIntersection(camera, heightmap);

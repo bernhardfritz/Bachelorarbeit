@@ -33,6 +33,7 @@ public:
     float getWaveTime();
     
     void step(float delta);
+    void updateHeight(float* &H);
 };
 
 #endif /* Water_hpp */

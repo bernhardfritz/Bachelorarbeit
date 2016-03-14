@@ -99,6 +99,8 @@
 		7096544D1C3C3BAB005BB137 /* RMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096544B1C3C3BAB005BB137 /* RMP.cpp */; };
 		70BF607E1BF91D2700319D05 /* heightmap.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70BF607D1BF91D1C00319D05 /* heightmap.png */; };
 		70CC79B91C947D660012598C /* ShallowWater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79B71C947D660012598C /* ShallowWater.cpp */; };
+		70CC79BC1C95AF730012598C /* TemporaryHeightmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79BA1C95AF730012598C /* TemporaryHeightmap.cpp */; };
+		70CC79BF1C96C0C30012598C /* Solver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79BD1C96C0C30012598C /* Solver.cpp */; };
 		70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D11BEF6A6900E1DD90 /* dragon.obj */; };
 		70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D01BEF6A5900E1DD90 /* buddha.obj */; };
 		70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */; };
@@ -316,6 +318,10 @@
 		70BF607D1BF91D1C00319D05 /* heightmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heightmap.png; sourceTree = "<group>"; };
 		70CC79B71C947D660012598C /* ShallowWater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShallowWater.cpp; sourceTree = "<group>"; };
 		70CC79B81C947D660012598C /* ShallowWater.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShallowWater.hpp; sourceTree = "<group>"; };
+		70CC79BA1C95AF730012598C /* TemporaryHeightmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TemporaryHeightmap.cpp; sourceTree = "<group>"; };
+		70CC79BB1C95AF730012598C /* TemporaryHeightmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TemporaryHeightmap.hpp; sourceTree = "<group>"; };
+		70CC79BD1C96C0C30012598C /* Solver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Solver.cpp; sourceTree = "<group>"; };
+		70CC79BE1C96C0C30012598C /* Solver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Solver.hpp; sourceTree = "<group>"; };
 		70E3C5D01BEF6A5900E1DD90 /* buddha.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buddha.obj; sourceTree = "<group>"; };
 		70E3C5D11BEF6A6900E1DD90 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
 		70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshLoader.cpp; sourceTree = "<group>"; };
@@ -430,11 +436,17 @@
 				7052CE551BDD38F8000D4446 /* ShaderManager.cpp */,
 				7052CE561BDD38F8000D4446 /* ShaderManager.hpp */,
 				708F58DF1C7DE94400B26E7A /* Shaders */,
+				70CC79B71C947D660012598C /* ShallowWater.cpp */,
+				70CC79B81C947D660012598C /* ShallowWater.hpp */,
 				708F58A41C7519A200B26E7A /* Skybox.cpp */,
 				708F58A51C7519A200B26E7A /* Skybox.hpp */,
 				708F58DC1C7DE90C00B26E7A /* Skyboxes */,
-				70E3C5ED1BF273B100E1DD90 /* stb_image.h */,
+				70CC79BD1C96C0C30012598C /* Solver.cpp */,
+				70CC79BE1C96C0C30012598C /* Solver.hpp */,
 				700412FE1C8FC85000D38490 /* stb_image_write.h */,
+				70E3C5ED1BF273B100E1DD90 /* stb_image.h */,
+				70CC79BA1C95AF730012598C /* TemporaryHeightmap.cpp */,
+				70CC79BB1C95AF730012598C /* TemporaryHeightmap.hpp */,
 				708F58511C7344A900B26E7A /* Texture.cpp */,
 				708F58521C7344A900B26E7A /* Texture.hpp */,
 				708F584C1C732BA300B26E7A /* TextureLoader.cpp */,
@@ -446,8 +458,6 @@
 				708F58CC1C75EAA100B26E7A /* Voronoi.hpp */,
 				708F58E31C7F72F700B26E7A /* Water.cpp */,
 				708F58E41C7F72F700B26E7A /* Water.hpp */,
-				70CC79B71C947D660012598C /* ShallowWater.cpp */,
-				70CC79B81C947D660012598C /* ShallowWater.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -616,6 +626,7 @@
 				70FA2FC81C3C63D600A53B93 /* Ray.cpp in Sources */,
 				708F58D71C7CEECF00B26E7A /* DirectionalLight.cpp in Sources */,
 				702ED7301BE93D0100961271 /* Mesh.cpp in Sources */,
+				70CC79BC1C95AF730012598C /* TemporaryHeightmap.cpp in Sources */,
 				7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */,
 				70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */,
 				709654471C3C2AF5005BB137 /* Graph.cpp in Sources */,
@@ -636,6 +647,7 @@
 				709654441C2D916A005BB137 /* Fault.cpp in Sources */,
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,
 				70327E551C8AE0C4009412CE /* Quad.cpp in Sources */,
+				70CC79BF1C96C0C30012598C /* Solver.cpp in Sources */,
 				708F58DA1C7CEF2900B26E7A /* PointLight.cpp in Sources */,
 				70CC79B91C947D660012598C /* ShallowWater.cpp in Sources */,
 				708F584E1C732BA300B26E7A /* TextureLoader.cpp in Sources */,

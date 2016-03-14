@@ -126,7 +126,7 @@ void main () {
     if(textured == 0) fragment_colour = vec4 (Is + Id + Ia, 1.0);
     else {
         fragment_colour = vec4 (Is + Id + Ia, texel.a);
-        if(is_water == 1) fragment_colour.a = clamp(1.333 + look_at.y, 0.9, 1);
+        if(is_water == 1) fragment_colour.a = clamp(1.333 + look_at.y, 0.8, 1);
     }
     
     // work out distance from camera to point
