@@ -98,9 +98,8 @@
 		709654471C3C2AF5005BB137 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 709654451C3C2AF5005BB137 /* Graph.cpp */; };
 		7096544D1C3C3BAB005BB137 /* RMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7096544B1C3C3BAB005BB137 /* RMP.cpp */; };
 		70BF607E1BF91D2700319D05 /* heightmap.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70BF607D1BF91D1C00319D05 /* heightmap.png */; };
-		70CC79B91C947D660012598C /* ShallowWater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79B71C947D660012598C /* ShallowWater.cpp */; };
 		70CC79BC1C95AF730012598C /* TemporaryHeightmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79BA1C95AF730012598C /* TemporaryHeightmap.cpp */; };
-		70CC79BF1C96C0C30012598C /* Solver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79BD1C96C0C30012598C /* Solver.cpp */; };
+		70CC79C81C9C7D1C0012598C /* AdvancedWater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79C61C9C7D1C0012598C /* AdvancedWater.cpp */; };
 		70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D11BEF6A6900E1DD90 /* dragon.obj */; };
 		70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D01BEF6A5900E1DD90 /* buddha.obj */; };
 		70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */; };
@@ -198,8 +197,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		700412FB1C8F852900D38490 /* Mouse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mouse.cpp; sourceTree = "<group>"; };
-		700412FC1C8F852900D38490 /* Mouse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mouse.hpp; sourceTree = "<group>"; };
+		700412FB1C8F852900D38490 /* Mouse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mouse.cpp; path = ../Mouse.cpp; sourceTree = "<group>"; };
+		700412FC1C8F852900D38490 /* Mouse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Mouse.hpp; path = ../Mouse.hpp; sourceTree = "<group>"; };
 		700412FE1C8FC85000D38490 /* stb_image_write.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
 		702ED72C1BE917CF00961271 /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monkey.obj; sourceTree = "<group>"; };
 		702ED72E1BE93D0100961271 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
@@ -316,12 +315,10 @@
 		7096544B1C3C3BAB005BB137 /* RMP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RMP.cpp; sourceTree = "<group>"; };
 		7096544C1C3C3BAB005BB137 /* RMP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RMP.hpp; sourceTree = "<group>"; };
 		70BF607D1BF91D1C00319D05 /* heightmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heightmap.png; sourceTree = "<group>"; };
-		70CC79B71C947D660012598C /* ShallowWater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShallowWater.cpp; sourceTree = "<group>"; };
-		70CC79B81C947D660012598C /* ShallowWater.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShallowWater.hpp; sourceTree = "<group>"; };
 		70CC79BA1C95AF730012598C /* TemporaryHeightmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TemporaryHeightmap.cpp; sourceTree = "<group>"; };
 		70CC79BB1C95AF730012598C /* TemporaryHeightmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TemporaryHeightmap.hpp; sourceTree = "<group>"; };
-		70CC79BD1C96C0C30012598C /* Solver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Solver.cpp; sourceTree = "<group>"; };
-		70CC79BE1C96C0C30012598C /* Solver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Solver.hpp; sourceTree = "<group>"; };
+		70CC79C61C9C7D1C0012598C /* AdvancedWater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdvancedWater.cpp; sourceTree = "<group>"; };
+		70CC79C71C9C7D1C0012598C /* AdvancedWater.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AdvancedWater.hpp; sourceTree = "<group>"; };
 		70E3C5D01BEF6A5900E1DD90 /* buddha.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buddha.obj; sourceTree = "<group>"; };
 		70E3C5D11BEF6A6900E1DD90 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
 		70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshLoader.cpp; sourceTree = "<group>"; };
@@ -361,8 +358,6 @@
 		7052CE401BDD38AD000D4446 = {
 			isa = PBXGroup;
 			children = (
-				700412FB1C8F852900D38490 /* Mouse.cpp */,
-				700412FC1C8F852900D38490 /* Mouse.hpp */,
 				70E3C5D71BEF89FA00E1DD90 /* libassimp.3.1.1.dylib */,
 				7052CE841BE53192000D4446 /* CoreVideo.framework */,
 				7052CE601BDD39F1000D4446 /* IOKit.framework */,
@@ -421,6 +416,8 @@
 				708F58DD1C7DE92300B26E7A /* Meshes */,
 				70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */,
 				70E3C5D51BEF808500E1DD90 /* MeshLoader.hpp */,
+				700412FB1C8F852900D38490 /* Mouse.cpp */,
+				700412FC1C8F852900D38490 /* Mouse.hpp */,
 				70327E621C8DAF63009412CE /* MousePicker.cpp */,
 				70327E631C8DAF63009412CE /* MousePicker.hpp */,
 				70327E2F1C811B10009412CE /* OpenSimplexNoise.cpp */,
@@ -436,13 +433,9 @@
 				7052CE551BDD38F8000D4446 /* ShaderManager.cpp */,
 				7052CE561BDD38F8000D4446 /* ShaderManager.hpp */,
 				708F58DF1C7DE94400B26E7A /* Shaders */,
-				70CC79B71C947D660012598C /* ShallowWater.cpp */,
-				70CC79B81C947D660012598C /* ShallowWater.hpp */,
 				708F58A41C7519A200B26E7A /* Skybox.cpp */,
 				708F58A51C7519A200B26E7A /* Skybox.hpp */,
 				708F58DC1C7DE90C00B26E7A /* Skyboxes */,
-				70CC79BD1C96C0C30012598C /* Solver.cpp */,
-				70CC79BE1C96C0C30012598C /* Solver.hpp */,
 				700412FE1C8FC85000D38490 /* stb_image_write.h */,
 				70E3C5ED1BF273B100E1DD90 /* stb_image.h */,
 				70CC79BA1C95AF730012598C /* TemporaryHeightmap.cpp */,
@@ -458,6 +451,8 @@
 				708F58CC1C75EAA100B26E7A /* Voronoi.hpp */,
 				708F58E31C7F72F700B26E7A /* Water.cpp */,
 				708F58E41C7F72F700B26E7A /* Water.hpp */,
+				70CC79C61C9C7D1C0012598C /* AdvancedWater.cpp */,
+				70CC79C71C9C7D1C0012598C /* AdvancedWater.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -646,10 +641,9 @@
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,
 				709654441C2D916A005BB137 /* Fault.cpp in Sources */,
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,
+				70CC79C81C9C7D1C0012598C /* AdvancedWater.cpp in Sources */,
 				70327E551C8AE0C4009412CE /* Quad.cpp in Sources */,
-				70CC79BF1C96C0C30012598C /* Solver.cpp in Sources */,
 				708F58DA1C7CEF2900B26E7A /* PointLight.cpp in Sources */,
-				70CC79B91C947D660012598C /* ShallowWater.cpp in Sources */,
 				708F584E1C732BA300B26E7A /* TextureLoader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -737,6 +731,7 @@
 		7052CE511BDD38AD000D4446 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -751,6 +746,7 @@
 		7052CE521BDD38AD000D4446 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

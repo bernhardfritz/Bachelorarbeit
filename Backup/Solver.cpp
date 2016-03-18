@@ -27,12 +27,12 @@ Solver::Solver(float LX, float nX, float LZ, float nZ):g(9.81f) {
             isTsunami= true;
             break;
     }
-    dx = LX / (nX+2);
-    dz = LZ / (nZ+2);
+    dx = LX / (nX-1);
+    dz = LZ / (nZ-1);
 
     /* Ghost cells */
-    nbX = nX + 4;
-    nbZ = nZ + 4;
+    nbX = nX + 2;
+    nbZ = nZ + 2;
     Lx = LX + dx;
     Lz = LZ + dz;
     nbPoints = nbX * nbZ;
@@ -210,7 +210,7 @@ void Solver::boundary() {
         }
     } else if (isWaterDrop) {
         /* Reflection on the boundary */
-        for (int j = 1; j < nbZ-1; j++)
+        for (int j = 1; j < nbZ - 1; j++)
         {
             i0 = 1;
             q2[i0+j*nbX] = -q2[i0+1+j*nbX];
@@ -219,7 +219,7 @@ void Solver::boundary() {
             q2[i0+j*nbX] = -q2[i0-1+j*nbX];
             q3[i0+j*nbX] = -q3[i0-1+j*nbX];
         }
-        for (int i = 1; i < nbX-1; i++)
+        for (int i = 1; i < nbX - 1; i++)
         {
             j0 = 1;
             q2[i+j0*nbX] = -q2[i+(j0+1)*nbX];

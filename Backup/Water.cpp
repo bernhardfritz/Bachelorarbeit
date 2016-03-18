@@ -62,3 +62,12 @@ void Water::step(float delta) {
     }
     Mesh::calculateNormals();
 }
+
+void Water::updateHeight(float* &H) {
+    for(int row = 0; row <= rows; row++) {
+        for(int column = 0; column <= columns; column++) {
+            setHeightAt(column, row, H[(row+1) * (columns + 3) + (column+1)]/2.0f);
+        }
+    }
+    Mesh::calculateNormals();
+}
