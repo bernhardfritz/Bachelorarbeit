@@ -11,7 +11,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <GLFW/glfw3.h> // GLFW helper library
-#include "stb_image_write.h"
+#include "Utils.hpp"
 
 Voronoi::Voronoi(int n) : camera(Camera(0.5f, 1.0f, 0.5f, -half_pi<float>(), 0.0f, 0.0f)) {
     // stratified is not that random
@@ -64,20 +64,6 @@ void Voronoi::draw() {
     }
 }
 
-void screenshot(int width, int height) {
-    unsigned char* buf = (unsigned char*)malloc (width * height * 3);
-    glReadPixels (0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, buf);
-    char name[1024];
-    long int t = time (NULL);
-    sprintf (name, "screenshot_%ld.png", t);
-    unsigned char* last_row = buf + (width * 3 * (height - 1));
-    if (!stbi_write_png (name, width, height, 3, last_row, -3 * width)) {
-        fprintf (stderr, "ERROR: could not write screenshot file %s\n", name);
-    }
-    free (buf);
-}
-
-
 bool Voronoi::isPixelInRegion(int px, int py, int rx, int ry) {
     int width, height;
     glfwGetFramebufferSize(glfwGetCurrentContext(), &width, &height);
@@ -85,7 +71,7 @@ bool Voronoi::isPixelInRegion(int px, int py, int rx, int ry) {
     if(buffer == NULL) {
         buffer = new unsigned char[width * height * 3];
         glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, buffer);
-        //screenshot(width, height);
+        //Utils::screenshot();
     }
     
     unsigned char pr = buffer[(py * width + px) * 3 + 0];

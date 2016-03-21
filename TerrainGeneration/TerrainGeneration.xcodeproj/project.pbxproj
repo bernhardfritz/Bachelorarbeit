@@ -100,6 +100,16 @@
 		70BF607E1BF91D2700319D05 /* heightmap.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70BF607D1BF91D1C00319D05 /* heightmap.png */; };
 		70CC79BC1C95AF730012598C /* TemporaryHeightmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79BA1C95AF730012598C /* TemporaryHeightmap.cpp */; };
 		70CC79C81C9C7D1C0012598C /* AdvancedWater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79C61C9C7D1C0012598C /* AdvancedWater.cpp */; };
+		70CC79CB1C9DF51B0012598C /* ShallowWater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79C91C9DF51B0012598C /* ShallowWater.cpp */; };
+		70CC79CE1C9F0B210012598C /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70CC79CC1C9F0B210012598C /* Utils.cpp */; };
+		70CC7A051C9F4D830012598C /* libavcodec.57.24.102.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC79FF1C9F4D830012598C /* libavcodec.57.24.102.dylib */; };
+		70CC7A061C9F4D830012598C /* libavdevice.57.0.101.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC7A001C9F4D830012598C /* libavdevice.57.0.101.dylib */; };
+		70CC7A071C9F4D830012598C /* libavfilter.6.31.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC7A011C9F4D830012598C /* libavfilter.6.31.100.dylib */; };
+		70CC7A081C9F4D830012598C /* libavformat.57.25.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC7A021C9F4D830012598C /* libavformat.57.25.100.dylib */; };
+		70CC7A091C9F4D830012598C /* libavresample.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC7A031C9F4D830012598C /* libavresample.3.0.0.dylib */; };
+		70CC7A0A1C9F4D830012598C /* libavutil.55.17.103.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC7A041C9F4D830012598C /* libavutil.55.17.103.dylib */; };
+		70CC7A0D1C9F56390012598C /* libswresample.2.0.101.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC7A0B1C9F56390012598C /* libswresample.2.0.101.dylib */; };
+		70CC7A0E1C9F56390012598C /* libswscale.4.0.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC7A0C1C9F56390012598C /* libswscale.4.0.100.dylib */; };
 		70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D11BEF6A6900E1DD90 /* dragon.obj */; };
 		70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D01BEF6A5900E1DD90 /* buddha.obj */; };
 		70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */; };
@@ -319,6 +329,18 @@
 		70CC79BB1C95AF730012598C /* TemporaryHeightmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TemporaryHeightmap.hpp; sourceTree = "<group>"; };
 		70CC79C61C9C7D1C0012598C /* AdvancedWater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdvancedWater.cpp; sourceTree = "<group>"; };
 		70CC79C71C9C7D1C0012598C /* AdvancedWater.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AdvancedWater.hpp; sourceTree = "<group>"; };
+		70CC79C91C9DF51B0012598C /* ShallowWater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShallowWater.cpp; sourceTree = "<group>"; };
+		70CC79CA1C9DF51B0012598C /* ShallowWater.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShallowWater.hpp; sourceTree = "<group>"; };
+		70CC79CC1C9F0B210012598C /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
+		70CC79CD1C9F0B210012598C /* Utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utils.hpp; sourceTree = "<group>"; };
+		70CC79FF1C9F4D830012598C /* libavcodec.57.24.102.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.57.24.102.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libavcodec.57.24.102.dylib; sourceTree = "<group>"; };
+		70CC7A001C9F4D830012598C /* libavdevice.57.0.101.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavdevice.57.0.101.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libavdevice.57.0.101.dylib; sourceTree = "<group>"; };
+		70CC7A011C9F4D830012598C /* libavfilter.6.31.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavfilter.6.31.100.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libavfilter.6.31.100.dylib; sourceTree = "<group>"; };
+		70CC7A021C9F4D830012598C /* libavformat.57.25.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.57.25.100.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libavformat.57.25.100.dylib; sourceTree = "<group>"; };
+		70CC7A031C9F4D830012598C /* libavresample.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavresample.3.0.0.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libavresample.3.0.0.dylib; sourceTree = "<group>"; };
+		70CC7A041C9F4D830012598C /* libavutil.55.17.103.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.55.17.103.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libavutil.55.17.103.dylib; sourceTree = "<group>"; };
+		70CC7A0B1C9F56390012598C /* libswresample.2.0.101.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswresample.2.0.101.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libswresample.2.0.101.dylib; sourceTree = "<group>"; };
+		70CC7A0C1C9F56390012598C /* libswscale.4.0.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswscale.4.0.100.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libswscale.4.0.100.dylib; sourceTree = "<group>"; };
 		70E3C5D01BEF6A5900E1DD90 /* buddha.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buddha.obj; sourceTree = "<group>"; };
 		70E3C5D11BEF6A6900E1DD90 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
 		70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshLoader.cpp; sourceTree = "<group>"; };
@@ -342,6 +364,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70CC7A0D1C9F56390012598C /* libswresample.2.0.101.dylib in Frameworks */,
+				70CC7A0E1C9F56390012598C /* libswscale.4.0.100.dylib in Frameworks */,
+				70CC7A051C9F4D830012598C /* libavcodec.57.24.102.dylib in Frameworks */,
+				70CC7A061C9F4D830012598C /* libavdevice.57.0.101.dylib in Frameworks */,
+				70CC7A071C9F4D830012598C /* libavfilter.6.31.100.dylib in Frameworks */,
+				70CC7A081C9F4D830012598C /* libavformat.57.25.100.dylib in Frameworks */,
+				70CC7A091C9F4D830012598C /* libavresample.3.0.0.dylib in Frameworks */,
+				70CC7A0A1C9F4D830012598C /* libavutil.55.17.103.dylib in Frameworks */,
 				7052CE5F1BDD39EB000D4446 /* Cocoa.framework in Frameworks */,
 				7052CE591BDD39A2000D4446 /* OpenGL.framework in Frameworks */,
 				7052CE611BDD39F1000D4446 /* IOKit.framework in Frameworks */,
@@ -358,6 +388,14 @@
 		7052CE401BDD38AD000D4446 = {
 			isa = PBXGroup;
 			children = (
+				70CC7A0B1C9F56390012598C /* libswresample.2.0.101.dylib */,
+				70CC7A0C1C9F56390012598C /* libswscale.4.0.100.dylib */,
+				70CC79FF1C9F4D830012598C /* libavcodec.57.24.102.dylib */,
+				70CC7A001C9F4D830012598C /* libavdevice.57.0.101.dylib */,
+				70CC7A011C9F4D830012598C /* libavfilter.6.31.100.dylib */,
+				70CC7A021C9F4D830012598C /* libavformat.57.25.100.dylib */,
+				70CC7A031C9F4D830012598C /* libavresample.3.0.0.dylib */,
+				70CC7A041C9F4D830012598C /* libavutil.55.17.103.dylib */,
 				70E3C5D71BEF89FA00E1DD90 /* libassimp.3.1.1.dylib */,
 				7052CE841BE53192000D4446 /* CoreVideo.framework */,
 				7052CE601BDD39F1000D4446 /* IOKit.framework */,
@@ -453,6 +491,10 @@
 				708F58E41C7F72F700B26E7A /* Water.hpp */,
 				70CC79C61C9C7D1C0012598C /* AdvancedWater.cpp */,
 				70CC79C71C9C7D1C0012598C /* AdvancedWater.hpp */,
+				70CC79C91C9DF51B0012598C /* ShallowWater.cpp */,
+				70CC79CA1C9DF51B0012598C /* ShallowWater.hpp */,
+				70CC79CC1C9F0B210012598C /* Utils.cpp */,
+				70CC79CD1C9F0B210012598C /* Utils.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -635,11 +677,13 @@
 				708F58CD1C75EAA100B26E7A /* Voronoi.cpp in Sources */,
 				708F58E21C7DEA1200B26E7A /* ThermalErosion.cpp in Sources */,
 				708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */,
+				70CC79CE1C9F0B210012598C /* Utils.cpp in Sources */,
 				70327E641C8DAF63009412CE /* MousePicker.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
 				709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */,
 				7052CE6C1BE1297B000D4446 /* Camera.cpp in Sources */,
 				709654441C2D916A005BB137 /* Fault.cpp in Sources */,
+				70CC79CB1C9DF51B0012598C /* ShallowWater.cpp in Sources */,
 				7052CE4D1BDD38AD000D4446 /* main.cpp in Sources */,
 				70CC79C81C9C7D1C0012598C /* AdvancedWater.cpp in Sources */,
 				70327E551C8AE0C4009412CE /* Quad.cpp in Sources */,
@@ -738,6 +782,7 @@
 					/usr/local/Cellar/glfw3/3.1.1/lib,
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/assimp/3.1.1/lib,
+					/usr/local/Cellar/ffmpeg/3.0/lib,
 				);
 				PRODUCT_NAME = TerrainGeneration;
 			};
@@ -753,6 +798,7 @@
 					/usr/local/Cellar/glfw3/3.1.1/lib,
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/assimp/3.1.1/lib,
+					/usr/local/Cellar/ffmpeg/3.0/lib,
 				);
 				PRODUCT_NAME = TerrainGeneration;
 			};

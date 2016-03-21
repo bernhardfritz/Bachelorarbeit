@@ -45,6 +45,8 @@
 #include "MousePicker.hpp"
 #include "Mouse.hpp"
 #include "AdvancedWater.hpp"
+#include "ShallowWater.hpp"
+#include "Utils.hpp"
 
 using namespace std;
 using namespace glm;
@@ -161,7 +163,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
     if(camera.getSpeed()-yoffset > 0 && camera.getSpeed()-yoffset < 0.25f) camera.setSpeed(camera.getSpeed()-yoffset);
 }
 
-int thetaOrPhi = -1;
+bool thetaOrPhi = false;
 
 void update() {
     if(keyboard.getState(GLFW_KEY_ESCAPE)) glfwSetWindowShouldClose(window, 1);
@@ -170,20 +172,18 @@ void update() {
     if(keyboard.getState(GLFW_KEY_S)) camera.moveBackward(elapsedSeconds);
     if(keyboard.getState(GLFW_KEY_D)) camera.moveRight(elapsedSeconds);
     if(keyboard.getState(GLFW_KEY_SPACE)) camera.moveUp(elapsedSeconds);
-    if(keyboard.getState(GLFW_KEY_T)) thetaOrPhi = 0;
-    if(keyboard.getState(GLFW_KEY_P)) thetaOrPhi = 1;
+    if(keyboard.getState(GLFW_KEY_O)) thetaOrPhi = false;
+    if(keyboard.getState(GLFW_KEY_P)) thetaOrPhi = true;
     if(keyboard.getState(GLFW_KEY_MINUS)) {
-        switch(thetaOrPhi) {
-            case 0: light.setTheta(light.getTheta() - radians(1.0f)); break;
-            case 1: light.setPhi(light.getPhi() - radians(1.0f)); break;
-        }
+        if(thetaOrPhi) light.setTheta(light.getTheta() - radians(1.0f));
+        else light.setPhi(light.getPhi() - radians(1.0f));
     }
     if(keyboard.getState(GLFW_KEY_EQUAL)) {
-        switch(thetaOrPhi) {
-            case 0: light.setTheta(light.getTheta() + radians(1.0f)); break;
-            case 1: light.setPhi(light.getPhi() + radians(1.0f)); break;
-        }
+        if(thetaOrPhi) light.setTheta(light.getTheta() + radians(1.0f));
+        else light.setPhi(light.getPhi() + radians(1.0f));
     }
+    if(keyboard.getState(GLFW_KEY_C)) Utils::screenshot();
+    if(keyboard.getState(GLFW_KEY_V)) Utils::recordVideo();
 }
 
 int main() {
@@ -291,7 +291,8 @@ int main() {
     glUseProgram(shaderManager.getShaderProgram());
     
     //Water water(heightmap.getColumns(), heightmap.getRows(), heightmap.getAverageHeight(), 100.0f, 0.0005f);
-    AdvancedWater water(heightmap);
+    //AdvancedWater water(heightmap);
+    ShallowWater water(heightmap);
     meshes.push_back(&water);
     
     int modelLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "model_mat");
@@ -504,6 +505,7 @@ int main() {
         
         // put the stuff we've been drawing onto the display
         glfwSwapBuffers(window);
+        Utils::captureFrame(elapsedSeconds);
         
         // update other events like input handling
         glfwPollEvents();
@@ -511,7 +513,7 @@ int main() {
         update();
         
         //water.setWaveLevel(heightmap.getAverageHeight());
-        water.step(elapsedSeconds);
+        water.step();
         
         if(mouse.getState(GLFW_MOUSE_BUTTON_1)) {
             vec3 intersection = mousePicker.getIntersection(camera, heightmap);
@@ -537,6 +539,14 @@ int main() {
         }
         if(keyboard.getState(GLFW_KEY_H)) {
             HydraulicErosion::perform(heightmap, 100);
+        }
+        
+        static double previous = 0.0;
+        static double interval = 0.001;
+        
+        if(glfwGetTime() - previous > interval) {
+            water.rain(0.1f, 0);
+            previous = glfwGetTime();
         }
     }
     
