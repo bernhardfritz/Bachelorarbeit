@@ -19,7 +19,7 @@ extern "C" {
 
 unsigned char* Utils::g_video_memory_start = NULL;
 unsigned char* Utils::g_video_memory_ptr = NULL;
-int Utils::g_video_seconds_total = 5;
+int Utils::g_video_seconds_total = 10;
 int Utils::g_video_fps = 25;
 bool Utils::dump_video = false;
 double Utils::video_timer = 0.0;
@@ -81,10 +81,6 @@ bool Utils::dump_video_frames() {
         if(!Utils::dump_video_frame()) return false;
         Utils::g_video_memory_ptr += width * height * 3;
     }
-    delete [] Utils::g_video_memory_start;
-    Utils::g_video_memory_start = NULL;
-    Utils::g_video_memory_ptr = NULL;
-    Utils::dump_video = false;
     printf("VIDEO IMAGES DUMPED\n");
     return true;
 }
@@ -108,9 +104,17 @@ void Utils::captureFrame(double elapsedSeconds) {
         }
         if(Utils::video_timer > Utils::g_video_seconds_total) {
             mkdir("videos", 0775);
-            /* register all the codecs */
-            avcodec_register_all();
-            Utils::video_encode_example("videos/video.mpg", AV_CODEC_ID_MPEG2VIDEO);//Utils::dump_video_frames(); // also sets dump_video to false
+            static bool registered = false;
+            if(!registered) {
+                /* register all the codecs */
+                avcodec_register_all();
+                registered = true;
+            }
+            Utils::video_encode_example("videos/video.mpg", AV_CODEC_ID_MPEG2VIDEO);//Utils::dump_video_frames();
+            delete [] Utils::g_video_memory_start;
+            Utils::g_video_memory_start = NULL;
+            Utils::g_video_memory_ptr = NULL;
+            Utils::dump_video = false;
         }
     }
 }
@@ -271,14 +275,10 @@ bool Utils::video_encode_example(const char *filename, int codec_id)
     
     avcodec_close(c);
     av_free(c);
-    av_freep(&frame->data[0]);
+    //av_freep(&frame->data[0]);
     av_frame_free(&frame);
     printf("\n");
     
-    delete [] Utils::g_video_memory_start;
-    Utils::g_video_memory_start = NULL;
-    Utils::g_video_memory_ptr = NULL;
-    Utils::dump_video = false;
     return true;
 }
 
