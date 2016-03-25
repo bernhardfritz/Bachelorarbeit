@@ -110,6 +110,14 @@
 		70CC7A0A1C9F4D830012598C /* libavutil.55.17.103.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC7A041C9F4D830012598C /* libavutil.55.17.103.dylib */; };
 		70CC7A0D1C9F56390012598C /* libswresample.2.0.101.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC7A0B1C9F56390012598C /* libswresample.2.0.101.dylib */; };
 		70CC7A0E1C9F56390012598C /* libswscale.4.0.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC7A0C1C9F56390012598C /* libswscale.4.0.100.dylib */; };
+		70DD39471CA4701700D09E99 /* Icosphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70DD39451CA4701700D09E99 /* Icosphere.cpp */; };
+		70DD39581CA540E400D09E99 /* FIELD_2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70DD394A1CA540E400D09E99 /* FIELD_2D.cpp */; };
+		70DD39591CA540E400D09E99 /* FIELD_3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70DD394C1CA540E400D09E99 /* FIELD_3D.cpp */; };
+		70DD395B1CA540E400D09E99 /* PARTICLE_SYSTEM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70DD39501CA540E400D09E99 /* PARTICLE_SYSTEM.cpp */; };
+		70DD395C1CA540E400D09E99 /* PARTICLE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70DD39521CA540E400D09E99 /* PARTICLE.cpp */; };
+		70DD395D1CA540E400D09E99 /* WALL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70DD39561CA540E400D09E99 /* WALL.cpp */; };
+		70DD39601CA5991400D09E99 /* particlesystem_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70DD395E1CA592B400D09E99 /* particlesystem_vs.glsl */; };
+		70DD39611CA5991400D09E99 /* particlesystem_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70DD395F1CA592C100D09E99 /* particlesystem_fs.glsl */; };
 		70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D11BEF6A6900E1DD90 /* dragon.obj */; };
 		70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D01BEF6A5900E1DD90 /* buddha.obj */; };
 		70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */; };
@@ -138,6 +146,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				70DD39601CA5991400D09E99 /* particlesystem_vs.glsl in CopyFiles */,
+				70DD39611CA5991400D09E99 /* particlesystem_fs.glsl in CopyFiles */,
 				70327E601C8B2B65009412CE /* boxblur_vs.glsl in CopyFiles */,
 				70327E611C8B2B65009412CE /* boxblur_fs.glsl in CopyFiles */,
 				70327E5C1C8AF74D009412CE /* gaussianblur_vs.glsl in CopyFiles */,
@@ -341,6 +351,23 @@
 		70CC7A041C9F4D830012598C /* libavutil.55.17.103.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.55.17.103.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libavutil.55.17.103.dylib; sourceTree = "<group>"; };
 		70CC7A0B1C9F56390012598C /* libswresample.2.0.101.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswresample.2.0.101.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libswresample.2.0.101.dylib; sourceTree = "<group>"; };
 		70CC7A0C1C9F56390012598C /* libswscale.4.0.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswscale.4.0.100.dylib; path = ../../../../../../../usr/local/Cellar/ffmpeg/3.0/lib/libswscale.4.0.100.dylib; sourceTree = "<group>"; };
+		70DD39451CA4701700D09E99 /* Icosphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Icosphere.cpp; sourceTree = "<group>"; };
+		70DD39461CA4701700D09E99 /* Icosphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Icosphere.hpp; sourceTree = "<group>"; };
+		70DD394A1CA540E400D09E99 /* FIELD_2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FIELD_2D.cpp; sourceTree = "<group>"; };
+		70DD394B1CA540E400D09E99 /* FIELD_2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIELD_2D.h; sourceTree = "<group>"; };
+		70DD394C1CA540E400D09E99 /* FIELD_3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FIELD_3D.cpp; sourceTree = "<group>"; };
+		70DD394D1CA540E400D09E99 /* FIELD_3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIELD_3D.h; sourceTree = "<group>"; };
+		70DD394F1CA540E400D09E99 /* HW1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HW1.h; sourceTree = "<group>"; };
+		70DD39501CA540E400D09E99 /* PARTICLE_SYSTEM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PARTICLE_SYSTEM.cpp; sourceTree = "<group>"; };
+		70DD39511CA540E400D09E99 /* PARTICLE_SYSTEM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTICLE_SYSTEM.h; sourceTree = "<group>"; };
+		70DD39521CA540E400D09E99 /* PARTICLE.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PARTICLE.cpp; sourceTree = "<group>"; };
+		70DD39531CA540E400D09E99 /* PARTICLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTICLE.h; sourceTree = "<group>"; };
+		70DD39541CA540E400D09E99 /* VEC3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VEC3D.h; sourceTree = "<group>"; };
+		70DD39551CA540E400D09E99 /* VEC3F.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VEC3F.h; sourceTree = "<group>"; };
+		70DD39561CA540E400D09E99 /* WALL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WALL.cpp; sourceTree = "<group>"; };
+		70DD39571CA540E400D09E99 /* WALL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALL.h; sourceTree = "<group>"; };
+		70DD395E1CA592B400D09E99 /* particlesystem_vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = particlesystem_vs.glsl; sourceTree = "<group>"; };
+		70DD395F1CA592C100D09E99 /* particlesystem_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = particlesystem_fs.glsl; sourceTree = "<group>"; };
 		70E3C5D01BEF6A5900E1DD90 /* buddha.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buddha.obj; sourceTree = "<group>"; };
 		70E3C5D11BEF6A6900E1DD90 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
 		70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshLoader.cpp; sourceTree = "<group>"; };
@@ -419,6 +446,7 @@
 		7052CE4B1BDD38AD000D4446 /* TerrainGeneration */ = {
 			isa = PBXGroup;
 			children = (
+				70DD393A1CA451CE00D09E99 /* ParticleSystem */,
 				7052CE6A1BE1297B000D4446 /* Camera.cpp */,
 				7052CE6B1BE1297B000D4446 /* Camera.hpp */,
 				708F58491C71E7DF00B26E7A /* Cone.cpp */,
@@ -495,6 +523,8 @@
 				70CC79CA1C9DF51B0012598C /* ShallowWater.hpp */,
 				70CC79CC1C9F0B210012598C /* Utils.cpp */,
 				70CC79CD1C9F0B210012598C /* Utils.hpp */,
+				70DD39451CA4701700D09E99 /* Icosphere.cpp */,
+				70DD39461CA4701700D09E99 /* Icosphere.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -593,8 +623,30 @@
 				70327E5B1C8AF47F009412CE /* gaussianblur_fs.glsl */,
 				70327E5E1C8B2988009412CE /* boxblur_vs.glsl */,
 				70327E5F1C8B2993009412CE /* boxblur_fs.glsl */,
+				70DD395E1CA592B400D09E99 /* particlesystem_vs.glsl */,
+				70DD395F1CA592C100D09E99 /* particlesystem_fs.glsl */,
 			);
 			name = Shaders;
+			sourceTree = "<group>";
+		};
+		70DD393A1CA451CE00D09E99 /* ParticleSystem */ = {
+			isa = PBXGroup;
+			children = (
+				70DD394A1CA540E400D09E99 /* FIELD_2D.cpp */,
+				70DD394B1CA540E400D09E99 /* FIELD_2D.h */,
+				70DD394C1CA540E400D09E99 /* FIELD_3D.cpp */,
+				70DD394D1CA540E400D09E99 /* FIELD_3D.h */,
+				70DD394F1CA540E400D09E99 /* HW1.h */,
+				70DD39501CA540E400D09E99 /* PARTICLE_SYSTEM.cpp */,
+				70DD39511CA540E400D09E99 /* PARTICLE_SYSTEM.h */,
+				70DD39521CA540E400D09E99 /* PARTICLE.cpp */,
+				70DD39531CA540E400D09E99 /* PARTICLE.h */,
+				70DD39541CA540E400D09E99 /* VEC3D.h */,
+				70DD39551CA540E400D09E99 /* VEC3F.h */,
+				70DD39561CA540E400D09E99 /* WALL.cpp */,
+				70DD39571CA540E400D09E99 /* WALL.h */,
+			);
+			name = ParticleSystem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -656,6 +708,7 @@
 			files = (
 				708F58D41C7CD37500B26E7A /* Fog.cpp in Sources */,
 				70327E311C811B10009412CE /* OpenSimplexNoise.cpp in Sources */,
+				70DD39581CA540E400D09E99 /* FIELD_2D.cpp in Sources */,
 				708F58811C74CC7900B26E7A /* Cube.cpp in Sources */,
 				70E3C5E31BEFBCEF00E1DD90 /* Light.cpp in Sources */,
 				708F58A61C7519A200B26E7A /* Skybox.cpp in Sources */,
@@ -666,10 +719,14 @@
 				70CC79BC1C95AF730012598C /* TemporaryHeightmap.cpp in Sources */,
 				7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */,
 				70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */,
+				70DD39591CA540E400D09E99 /* FIELD_3D.cpp in Sources */,
+				70DD39471CA4701700D09E99 /* Icosphere.cpp in Sources */,
 				709654471C3C2AF5005BB137 /* Graph.cpp in Sources */,
 				70E3C5E91BF0E89600E1DD90 /* Heightmap.cpp in Sources */,
 				708F58531C7344A900B26E7A /* Texture.cpp in Sources */,
+				70DD395C1CA540E400D09E99 /* PARTICLE.cpp in Sources */,
 				70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */,
+				70DD395D1CA540E400D09E99 /* WALL.cpp in Sources */,
 				7096544D1C3C3BAB005BB137 /* RMP.cpp in Sources */,
 				700412FD1C8F852900D38490 /* Mouse.cpp in Sources */,
 				708F58E51C7F72F700B26E7A /* Water.cpp in Sources */,
@@ -678,6 +735,7 @@
 				708F58E21C7DEA1200B26E7A /* ThermalErosion.cpp in Sources */,
 				708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */,
 				70CC79CE1C9F0B210012598C /* Utils.cpp in Sources */,
+				70DD395B1CA540E400D09E99 /* PARTICLE_SYSTEM.cpp in Sources */,
 				70327E641C8DAF63009412CE /* MousePicker.cpp in Sources */,
 				7052CE571BDD38F8000D4446 /* ShaderManager.cpp in Sources */,
 				709654411C264A98005BB137 /* DiamondSquare.cpp in Sources */,

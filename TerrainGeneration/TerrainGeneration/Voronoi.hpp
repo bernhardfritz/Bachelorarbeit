@@ -15,7 +15,8 @@
 
 class Voronoi {
 private:
-    vector<Cone*> cones;
+    //vector<Cone*> cones;
+    vector<vec3> positions;
     unsigned char* buffer = NULL;
     Camera camera;
     mat4 view;

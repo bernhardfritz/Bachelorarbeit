@@ -47,6 +47,8 @@
 #include "AdvancedWater.hpp"
 #include "ShallowWater.hpp"
 #include "Utils.hpp"
+#include "Icosphere.hpp"
+#include "PARTICLE_SYSTEM.h"
 
 using namespace std;
 using namespace glm;
@@ -275,6 +277,8 @@ int main() {
     vector<Mesh*> meshes;
     meshes.push_back(&heightmap);
     
+    PARTICLE_SYSTEM particleSystem;
+    
     /*for(int i = 0; i < 100; i++) {
         Cone tmp(100.0f, 50.0f, 64);
         tmp.translate(drand48()*100.0f, 10.0f, drand48()*100.0f);
@@ -365,6 +369,9 @@ int main() {
             
             skybox.draw(value_ptr(translate(mat4(1.0f), camera.getEye())), value_ptr(view), value_ptr(proj));
             
+            
+            particleSystem.draw(value_ptr(view), value_ptr(proj), light);
+            
             glUseProgram(shaderManager.getShaderProgram());
             
             glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
@@ -397,13 +404,14 @@ int main() {
                 glUniform1f(meshShininess, mesh->getMaterial()->getShininess());
                 glUniform1i(textured, mesh->isTextured() ? 1 : 0);
                 if(mesh == &water) {
+                    continue;
                     glUniform1i(is_water, 1);
                     glEnable(GL_BLEND);
                     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 }
-                else glUniform1i(is_water, 0);
                 mesh->draw();
                 glDisable(GL_BLEND);
+                glUniform1i(is_water, 0);
             }
         }
         passthroughFramebuffer->unbind();
@@ -513,7 +521,9 @@ int main() {
         update();
         
         //water.setWaveLevel(heightmap.getAverageHeight());
-        water.step();
+        //water.step();
+        
+        particleSystem.stepVerlet(1.0/100.0);
         
         if(mouse.getState(GLFW_MOUSE_BUTTON_1)) {
             vec3 intersection = mousePicker.getIntersection(camera, heightmap);
@@ -540,12 +550,20 @@ int main() {
         if(keyboard.getState(GLFW_KEY_H)) {
             HydraulicErosion::perform(heightmap, 100);
         }
+        if(keyboard.getState(GLFW_KEY_G)) {
+            static double prev = 0.0;
+            static double dur = 0.25;
+            if(glfwGetTime() - prev > dur) {
+                particleSystem.toggleGravity();
+                prev = glfwGetTime();
+            }
+        }
         
         static double previous = 0.0;
         static double interval = 0.001;
         
         if(glfwGetTime() - previous > interval) {
-            water.rain(0.1f, 0);
+            //water.rain(0.1f, 0);
             previous = glfwGetTime();
         }
     }

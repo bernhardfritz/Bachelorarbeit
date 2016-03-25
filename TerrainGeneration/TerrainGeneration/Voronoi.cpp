@@ -27,21 +27,17 @@ Voronoi::Voronoi(int n) : camera(Camera(0.5f, 1.0f, 0.5f, -half_pi<float>(), 0.0
         }
     }*/
     for(int i = 0; i < n; i++) {
-        Cone* cone = new Cone(1.0f, 1.0f, 64);
-        cone->setPosition(drand48(), 0.0f, drand48());
-        cones.push_back(cone);
+        positions.push_back(vec3(drand48(), 0.0f, drand48()));
     }
     view = lookAt(camera.getEye(), camera.getCenter(), camera.getUp());
 }
 
 Voronoi::~Voronoi() {
     if(buffer != NULL) delete buffer;
-    for(Cone* cone : cones) {
-        delete cone;
-    }
 }
 
 void Voronoi::draw() {
+    static Cone cone(1.0f, 1.0f, 64);
     static ShaderManager shaderManager("voronoi_vs.glsl", "voronoi_fs.glsl");
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(shaderManager.getShaderProgram());
@@ -55,12 +51,15 @@ void Voronoi::draw() {
 
     int meshDiffuseIntensity = glGetUniformLocation(shaderManager.getShaderProgram(), "Kd");
     
-    for(Cone* cone : cones) {
-        glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(cone->getModelMatrix()));
-        glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
-        glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
-        glUniform3fv(meshDiffuseIntensity, 1, value_ptr(cone->getMaterial()->getDiffuseReflectance()));
-        cone->draw();
+    glUniformMatrix4fv(viewLocation, 1, GL_FALSE, value_ptr(view));
+    glUniformMatrix4fv(projLocation, 1, GL_FALSE, value_ptr(proj));
+    
+    for(vec3 position : positions) {
+        cone.setPosition(position.x, position.y, position.z);
+        glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(cone.getModelMatrix()));
+        cone.getMaterial()->setDiffuseReflectance(vec3(drand48(), drand48(), drand48()));
+        glUniform3fv(meshDiffuseIntensity, 1, value_ptr(cone.getMaterial()->getDiffuseReflectance()));
+        cone.draw();
     }
 }
 
