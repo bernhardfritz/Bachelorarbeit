@@ -277,7 +277,11 @@ int main() {
     vector<Mesh*> meshes;
     meshes.push_back(&heightmap);
     
+//    Icosphere icosphere(0.25, 4);
+//    meshes.push_back(&icosphere);
+    
     PARTICLE_SYSTEM particleSystem;
+    particleSystem.updateHeightmap(heightmap);
     
     /*for(int i = 0; i < 100; i++) {
         Cone tmp(100.0f, 50.0f, 64);
@@ -523,7 +527,7 @@ int main() {
         //water.setWaveLevel(heightmap.getAverageHeight());
         //water.step();
         
-        particleSystem.stepVerlet(1.0/100.0);
+        particleSystem.stepVerlet(1.0/400.0);
         
         if(mouse.getState(GLFW_MOUSE_BUTTON_1)) {
             vec3 intersection = mousePicker.getIntersection(camera, heightmap);

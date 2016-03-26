@@ -5,7 +5,7 @@
 #include "VEC3D.h"
 #include <vector>
 
-#define PARTICLE_DRAW_RADIUS 0.015//0.01 //0.006
+#define PARTICLE_DRAW_RADIUS 0.01//0.015//0.01 //0.006
 
 using namespace std;
 
@@ -48,6 +48,8 @@ public:
   bool& flag() { return _flag; };
   int& id() { return _id; };
   VEC3D normal;
+    
+    bool& solid() { return _solid; };
   
   void clearParameters();
   
@@ -62,6 +64,8 @@ private:
   double _pressure;
   bool _flag;
   int _id;
+    
+    bool _solid;
 };
 
 

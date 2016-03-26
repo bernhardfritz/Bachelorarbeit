@@ -10,8 +10,19 @@ int scenario;
 PARTICLE_SYSTEM::PARTICLE_SYSTEM() : 
 _isGridVisible(false), surfaceThreshold(0.01), gravityVector(0.0,GRAVITY_ACCELERATION,0.0), grid(NULL), shaderManager("particlesystem_vs.glsl", "particlesystem_fs.glsl"), icosphere(Icosphere(PARTICLE_DRAW_RADIUS, 0))
 {
-    icosphere.getMaterial()->setDiffuseReflectance(vec3(0.0f, 0.5f, 1.0f));
   loadScenario(INITIAL_SCENARIO);
+}
+
+void PARTICLE_SYSTEM::updateHeightmap(Heightmap& heightmap) {
+    vector<PARTICLE>& firstGridCell = (*grid)(0,0,0);
+    
+    for(int row = 0; row <= heightmap.getRows(); row+=3) {
+        for(int column = 0; column <= heightmap.getColumns(); column+=3) {
+            PARTICLE particle(VEC3D((double)column / heightmap.getColumns(),heightmap.getHeightAt(column, row) - PARTICLE_DRAW_RADIUS,(double)row / heightmap.getRows()));
+            particle.solid() = true;
+            firstGridCell.push_back(particle);
+        }
+    }
 }
 
 void PARTICLE_SYSTEM::loadScenario(int newScenario) {
@@ -53,9 +64,9 @@ void PARTICLE_SYSTEM::loadScenario(int newScenario) {
         
         vector<PARTICLE>& firstGridCell = (*grid)(0,0,0);
         
-        for (double y = boxSize.y * 0.5; y < boxSize.y; y+= h/2.0) {
-            for (double x = boxSize.x * 0.25; x < boxSize.x * 0.75; x += h/2.0) {
-                for (double z = boxSize.z * 0.25; z < boxSize.z * 0.75; z+= h/2.0) {
+        for (double y = boxSize.y * 0.8; y < boxSize.y; y+= h) {
+            for (double x = boxSize.x * 0.33; x < boxSize.x * 0.66; x += h) {
+                for (double z = boxSize.z * 0.33; z < boxSize.z * 0.66; z+= h) {
                     firstGridCell.push_back(PARTICLE(VEC3D(x,y,z)));
                 }
             }
@@ -312,13 +323,16 @@ void PARTICLE_SYSTEM::updateGrid() {
 ///////////////////////////////////////////////////////////////////////////////
 void PARTICLE_SYSTEM::draw(const GLfloat *view, const GLfloat *proj, DirectionalLight& light)
 { 
-  static VEC3F blackColor(0,0,0); 
-  static VEC3F blueColor(0,0,1); 
-  static VEC3F whiteColor(1,1,1);
-  static VEC3F greyColor(0.2, 0.2, 0.2);
-  static VEC3F lightGreyColor(0.8,0.8,0.8);
+//  static VEC3F blackColor(0,0,0); 
+//  static VEC3F blueColor(0,0,1); 
+//  static VEC3F whiteColor(1,1,1);
+//  static VEC3F greyColor(0.2, 0.2, 0.2);
+//  static VEC3F lightGreyColor(0.8,0.8,0.8);
   //static VEC3F greenColor(34.0 / 255, 139.0 / 255, 34.0 / 255);
-  static float shininess = 10.0;
+//  static float shininess = 10.0;
+    
+    static vec3 cyan(0.0f, 0.5f, 1.0f);
+    static vec3 yellow(1.0f, 1.0f, 0.0f);
 
   // draw the particles
   
@@ -351,7 +365,6 @@ void PARTICLE_SYSTEM::draw(const GLfloat *view, const GLfloat *proj, Directional
     glUniformMatrix4fv(projLocation, 1, GL_FALSE, proj);
     
     glUniform3fv(meshSpecularIntensity, 1, value_ptr(icosphere.getMaterial()->getSpecularReflectance()));
-    glUniform3fv(meshDiffuseIntensity, 1, value_ptr(icosphere.getMaterial()->getDiffuseReflectance()));
     glUniform3fv(meshAmbientReflectance, 1, value_ptr(icosphere.getMaterial()->getAmbientReflectance()));
     glUniform1f(meshShininess, icosphere.getMaterial()->getShininess());
     
@@ -368,6 +381,13 @@ void PARTICLE_SYSTEM::draw(const GLfloat *view, const GLfloat *proj, Directional
       PARTICLE& particle = particles[p];
         icosphere.setPosition(particle.position()[0], particle.position()[1], particle.position()[2]);
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(icosphere.getModelMatrix()));
+        if(particle.solid()) {
+            continue;
+            //icosphere.getMaterial()->setDiffuseReflectance(yellow);
+        } else {
+            icosphere.getMaterial()->setDiffuseReflectance(cyan);
+        }
+        glUniform3fv(meshDiffuseIntensity, 1, value_ptr(icosphere.getMaterial()->getDiffuseReflectance()));
         icosphere.draw();
     }
     
@@ -533,6 +553,8 @@ void PARTICLE_SYSTEM::calculateAcceleration() {
         for (int p = 0; p < particles.size(); p++) {
           
           PARTICLE& particle = particles[p];
+            
+            if(particle.solid()) continue;
           
           //cout << "particle id: " << particle.id() << endl;
           

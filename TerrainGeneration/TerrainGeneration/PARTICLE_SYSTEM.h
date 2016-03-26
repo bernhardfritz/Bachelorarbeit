@@ -14,14 +14,15 @@
 #include "ShaderManager.hpp"
 #include "Icosphere.hpp"
 #include "DirectionalLight.hpp"
+#include "Heightmap.hpp"
 
-#define h 0.0457 //0.02 //0.045
+#define h 0.02 //0.0457 //0.02 //0.045
 
-#define GAS_STIFFNESS 3.0 //20.0 // 461.5  // Nm/kg is gas constant of water vapor
+#define GAS_STIFFNESS 3.0 //3.0 //20.0 // 461.5  // Nm/kg is gas constant of water vapor
 #define REST_DENSITY 998.29 // kg/m^3 is rest density of water particle
 #define PARTICLE_MASS 0.02 // kg
 #define VISCOSITY 3.5 // 5.0 // 0.00089 // Ns/m^2 or Pa*s viscosity of water
-#define SURFACE_TENSION 0.0728 // N/m 
+#define SURFACE_TENSION 0.0728 // N/m
 #define SURFACE_THRESHOLD 7.065
 #define KERNEL_PARTICLES 20.0
 
@@ -44,6 +45,8 @@ public:
   PARTICLE_SYSTEM();
   ~PARTICLE_SYSTEM();
 
+    void updateHeightmap(Heightmap& heightmap);
+    
   void updateGrid();
   
   // draw to OGL
