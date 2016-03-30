@@ -1,5 +1,6 @@
 #include "PARTICLE_SYSTEM.h"
 #include <glm/gtc/type_ptr.hpp>
+#include "MarchingCubes.hpp"
 
 unsigned int iteration = 0;
 int scenario;
@@ -8,9 +9,16 @@ int scenario;
 // Constructor
 ///////////////////////////////////////////////////////////////////////////////
 PARTICLE_SYSTEM::PARTICLE_SYSTEM() : 
-_isGridVisible(false), surfaceThreshold(0.01), gravityVector(0.0,GRAVITY_ACCELERATION,0.0), grid(NULL), shaderManager("particlesystem_vs.glsl", "particlesystem_fs.glsl"), icosphere(Icosphere(PARTICLE_DRAW_RADIUS, 0))
+_isGridVisible(false), surfaceThreshold(0.01), gravityVector(0.0,GRAVITY_ACCELERATION,0.0), grid(NULL), shaderManager("particlesystem_vs.glsl", "particlesystem_fs.glsl"), icosphere(Icosphere(PARTICLE_DRAW_RADIUS, 2))
 {
   loadScenario(INITIAL_SCENARIO);
+}
+
+PARTICLE_SYSTEM::PARTICLE_SYSTEM(Heightmap* heightmap) :
+_isGridVisible(false), surfaceThreshold(0.01), gravityVector(0.0,GRAVITY_ACCELERATION,0.0), grid(NULL), shaderManager("particlesystem_vs.glsl", "particlesystem_fs.glsl"), icosphere(Icosphere(PARTICLE_DRAW_RADIUS, 2))
+{
+    this->heightmap = heightmap;
+    loadScenario(INITIAL_SCENARIO);
 }
 
 void PARTICLE_SYSTEM::updateHeightmap(Heightmap& heightmap) {
@@ -62,15 +70,16 @@ void PARTICLE_SYSTEM::loadScenario(int newScenario) {
         _walls.push_back(WALL(VEC3D(0, 0, 1), VEC3D(boxSize.x / 2.0, boxSize.y / 2.0, 0))); // xy plane
         _walls.push_back(WALL(VEC3D(0, 0, -1), VEC3D(boxSize.x / 2.0, boxSize.y / 2.0, boxSize.z))); // xy plane shifted in z direction
         
-        vector<PARTICLE>& firstGridCell = (*grid)(0,0,0);
+        PARTICLE dummy(VEC3D(0,0,0));
         
-        for (double y = boxSize.y * 0.8; y < boxSize.y; y+= h) {
-            for (double x = boxSize.x * 0.33; x < boxSize.x * 0.66; x += h) {
-                for (double z = boxSize.z * 0.33; z < boxSize.z * 0.66; z+= h) {
-                    firstGridCell.push_back(PARTICLE(VEC3D(x,y,z)));
-                }
-            }
-        }
+//        vector<PARTICLE>& firstGridCell = (*grid)(0,0,0);
+//        for (double y = boxSize.y * 0.5; y < boxSize.y * 0.51; y += h) {
+//            for (double x = 0; x < boxSize.x; x += h) {
+//                for (double z = 0; z < boxSize.z; z += h) {
+//                    firstGridCell.push_back(PARTICLE(VEC3D(x,y,z)));
+//                }
+//            }
+//        }
         
         cout << "Loaded my scenario" << endl;
         cout << "Grid size is " << (*grid).xRes() << "x" << (*grid).yRes() << "x" << (*grid).zRes() << endl;
@@ -188,6 +197,13 @@ void PARTICLE_SYSTEM::loadScenario(int newScenario) {
   
 }
 
+void PARTICLE_SYSTEM::rain() {
+    double x = drand48() * boxSize.x;
+    double z = drand48() * boxSize.z;
+    double y = 0.25;
+    (*grid)(0,0,0).push_back(PARTICLE(VEC3D(x,y,z)));
+}
+
 void PARTICLE_SYSTEM::generateFaucetParticleSet() {
   
   VEC3D initialVelocity(-1.8,-1.8,0);
@@ -256,6 +272,24 @@ void PARTICLE_SYSTEM::setGravityVectorWithViewVector(VEC3D viewVector) {
   if (_tumble)
     gravityVector = viewVector * GRAVITY_ACCELERATION;
   
+}
+
+vector<VEC3D*> PARTICLE_SYSTEM::getPositions() {
+    vector<VEC3D*> positions;
+    for (int gridCellIndex = 0; gridCellIndex < (*grid).cellCount(); gridCellIndex++) {
+        vector<PARTICLE>& particles = (*grid).data()[gridCellIndex];
+        
+        for (int p = 0; p < particles.size(); p++) {
+            PARTICLE& particle = particles[p];
+            positions.push_back(&particle.position());
+        }
+    }
+    return positions;
+}
+
+void PARTICLE_SYSTEM::updateMetaMesh() {
+    vector<VEC3D*> positions = getPositions();
+    MarchingCubes::vMarchingCubes(positions, PARTICLE_DRAW_RADIUS, metamesh);
 }
 
 // to update the grid cells particles are located in
@@ -392,6 +426,9 @@ void PARTICLE_SYSTEM::draw(const GLfloat *view, const GLfloat *proj, Directional
     }
     
   }
+    mat4 model;
+    glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(model));
+    metamesh.draw();
   
 //  if (_isGridVisible) {
 //  
@@ -678,6 +715,18 @@ void PARTICLE_SYSTEM::collisionForce(PARTICLE& particle, VEC3D& f_collision) {
       particle.acceleration() += WALL_DAMPING * particle.velocity().dot(wall.normal()) * wall.normal();
     }
   }
+    
+    if(heightmap != NULL) {
+        double px = particle.position().x;
+        double pz = particle.position().z;
+        vec3 hn = heightmap->getInterpolatedNormalAt(px, pz);
+        VEC3D hn2(hn.x, hn.y, hn.z);
+        double d = (VEC3D(px, heightmap->getInterpolatedHeightAt(px, pz), particle.position().z) - particle.position()).dot(hn2) + 0.01;
+        if(d > 0.0) {
+            particle.acceleration() += WALL_K * hn2 * d;
+            particle.acceleration() += WALL_DAMPING * particle.velocity().dot(hn2) * hn2;
+        }
+    }
 }
 
 

@@ -5,7 +5,7 @@
 #include "VEC3D.h"
 #include <vector>
 
-#define PARTICLE_DRAW_RADIUS 0.01//0.015//0.01 //0.006
+#define PARTICLE_DRAW_RADIUS 0.007//0.015//0.01 //0.006
 
 using namespace std;
 

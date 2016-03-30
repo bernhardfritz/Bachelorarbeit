@@ -32,7 +32,10 @@ public:
     int getRows();
     void setHeightAt(int column, int row, float height);
     float getHeightAt(int column, int row);
+    float getInterpolatedHeightAt(float x, float z);
     float getSlopeAt(int column, int row);
+    vec3 getNormalAt(int column, int row);
+    vec3 getInterpolatedNormalAt(float x, float z);
     void loadHeightmap(string filename, float strength);
     void calculateNormals();
     float getMinHeight();

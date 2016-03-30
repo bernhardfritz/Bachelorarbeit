@@ -13,15 +13,16 @@
 
 #include "ShaderManager.hpp"
 #include "Icosphere.hpp"
+#include "MetaMesh.hpp"
 #include "DirectionalLight.hpp"
 #include "Heightmap.hpp"
 
-#define h 0.02 //0.0457 //0.02 //0.045
+#define h 0.015 //0.02 //0.0457 //0.02 //0.045
 
 #define GAS_STIFFNESS 3.0 //3.0 //20.0 // 461.5  // Nm/kg is gas constant of water vapor
 #define REST_DENSITY 998.29 // kg/m^3 is rest density of water particle
 #define PARTICLE_MASS 0.02 // kg
-#define VISCOSITY 3.5 // 5.0 // 0.00089 // Ns/m^2 or Pa*s viscosity of water
+#define VISCOSITY 3.5 //3.5 // 5.0 // 0.00089 // Ns/m^2 or Pa*s viscosity of water
 #define SURFACE_TENSION 0.0728 // N/m
 #define SURFACE_THRESHOLD 7.065
 #define KERNEL_PARTICLES 20.0
@@ -30,7 +31,7 @@
 
 
 #define WALL_K 10000.0 // wall spring constant
-#define WALL_DAMPING -0.9 // wall damping constant
+#define WALL_DAMPING -90.0 // wall damping constant
 
 #define BOX_SIZE 0.4
 #define MAX_PARTICLES 3000
@@ -43,6 +44,7 @@ class PARTICLE_SYSTEM {
   
 public:
   PARTICLE_SYSTEM();
+    PARTICLE_SYSTEM(Heightmap* heightmap);
   ~PARTICLE_SYSTEM();
 
     void updateHeightmap(Heightmap& heightmap);
@@ -54,7 +56,11 @@ public:
   
   void addParticle(const VEC3D& position);
   
-  void addParticle(const VEC3D& position, const VEC3D& velocity);\
+  void addParticle(const VEC3D& position, const VEC3D& velocity);
+    
+    vector<VEC3D*> getPositions();
+    
+    void updateMetaMesh();
   
   void stepVerlet(double dt);
   
@@ -87,7 +93,9 @@ public:
   void toggleArrows();
   
   void toggleTumble();
-  
+    
+    void rain();
+    
   void generateFaucetParticleSet();
   
   void setGravityVectorWithViewVector(VEC3D viewVector);
@@ -120,6 +128,8 @@ private:
     
     ShaderManager shaderManager;
     Icosphere icosphere;
+    MetaMesh metamesh;
+    Heightmap* heightmap = NULL;
 
 };
 

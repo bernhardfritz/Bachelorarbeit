@@ -242,7 +242,7 @@ int main() {
     
     /* OTHER STUFF GOES HERE NEXT */
     TextureLoader tl;
-    Texture t0 = tl.loadTexture("sand2.png");
+    Texture t0 = tl.loadTexture("sand.png");
     t0.assignToSlot(0);
     Texture t1 = tl.loadTexture("grass2.png");
     t1.assignToSlot(1);
@@ -277,11 +277,27 @@ int main() {
     vector<Mesh*> meshes;
     meshes.push_back(&heightmap);
     
+//    metamesh.addVertex(vec3(0.0, 0.0, 0.0));
+//    metamesh.addVertex(vec3(1.0, 0.0, 0.0));
+//    metamesh.addVertex(vec3(1.0, 1.0, 0.0));
+//    metamesh.addNormal(vec3(0.0, 0.0, 1.0));
+//    metamesh.addNormal(vec3(0.0, 0.0, 1.0));
+//    metamesh.addNormal(vec3(0.0, 0.0, 1.0));
+//    metamesh.update();
+//    metamesh.clear();
+//    metamesh.addVertex(vec3(1.0, 1.0, 0.0));
+//    metamesh.addVertex(vec3(0.0, 1.0, 0.0));
+//    metamesh.addVertex(vec3(0.0, 0.0, 0.0));
+//    metamesh.addNormal(vec3(0.0, 0.0, 1.0));
+//    metamesh.addNormal(vec3(0.0, 0.0, 1.0));
+//    metamesh.addNormal(vec3(0.0, 0.0, 1.0));
+//    metamesh.update();
+    
 //    Icosphere icosphere(0.25, 4);
 //    meshes.push_back(&icosphere);
     
-    PARTICLE_SYSTEM particleSystem;
-    particleSystem.updateHeightmap(heightmap);
+    PARTICLE_SYSTEM particleSystem(&heightmap);
+    //particleSystem.updateHeightmap(heightmap);
     
     /*for(int i = 0; i < 100; i++) {
         Cone tmp(100.0f, 50.0f, 64);
@@ -373,7 +389,6 @@ int main() {
             
             skybox.draw(value_ptr(translate(mat4(1.0f), camera.getEye())), value_ptr(view), value_ptr(proj));
             
-            
             particleSystem.draw(value_ptr(view), value_ptr(proj), light);
             
             glUseProgram(shaderManager.getShaderProgram());
@@ -412,10 +427,12 @@ int main() {
                     glUniform1i(is_water, 1);
                     glEnable(GL_BLEND);
                     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                    glUniform1i(textured, mesh->isTextured() ? 1 : 0);
                 }
                 mesh->draw();
                 glDisable(GL_BLEND);
                 glUniform1i(is_water, 0);
+                glUniform1i(textured, 0);
             }
         }
         passthroughFramebuffer->unbind();
@@ -527,7 +544,7 @@ int main() {
         //water.setWaveLevel(heightmap.getAverageHeight());
         //water.step();
         
-        particleSystem.stepVerlet(1.0/400.0);
+        particleSystem.stepVerlet(1.0/500.0);
         
         if(mouse.getState(GLFW_MOUSE_BUTTON_1)) {
             vec3 intersection = mousePicker.getIntersection(camera, heightmap);
@@ -535,9 +552,8 @@ int main() {
             int row = round(intersection.z * heightmap.getRows());
             //heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row)+0.01);
             //heightmap.calculateNormals();
-            RMP::perform(heightmap, column, row, 10, 0.005f, 1);
+            RMP::perform(heightmap, column, row, 10, 0.01f, 1);
             //        printf("%s\n", mousePicker.triangle_intersects(camera, heightmap) ? "true" : "false");
-            
         }
         
         if(keyboard.getState(GLFW_KEY_R)) {
@@ -561,6 +577,13 @@ int main() {
                 particleSystem.toggleGravity();
                 prev = glfwGetTime();
             }
+        }
+        if(keyboard.getState(GLFW_KEY_Z)) {
+            particleSystem.rain();
+        }
+        
+        if(keyboard.getState(GLFW_KEY_M)) {
+            particleSystem.updateMetaMesh();
         }
         
         static double previous = 0.0;

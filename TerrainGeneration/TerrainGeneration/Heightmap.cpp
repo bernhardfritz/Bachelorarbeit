@@ -77,11 +77,57 @@ float Heightmap::getHeightAt(int column, int row) {
     return 0.0f;
 }
 
+float Heightmap::getInterpolatedHeightAt(float x, float z) {
+    if(0.0f <= x && x <= 1.0f && 0.0f <= z && z <= 1.0f) {
+//        int col1 = floor<int>(x * (float)(columns + 1));
+//        int col2 = col1 + 1;
+//        float dx = x * (float)(columns + 1) - (float)col1;
+//        float tx = dx / (1.0f / (float)(columns + 1));
+//        int row1 = floor<int>(z * (float)(rows + 1));
+//        int row2 = row1 + 1;
+//        float dz = z * (float)(rows + 1) - (float)row1;
+//        float tz = dz / (1.0f / (float)(rows + 1));
+//        float h1 = getHeightAt(col1, row1);
+//        float h2 = getHeightAt(col2, row1);
+//        float h12 = h1 + tx * h2;
+//        float h3 = getHeightAt(col1, row2);
+//        float h13 = h1 + tz * h3;
+//        float h4 = getHeightAt(col2, row2);
+//        float h24 = h2 + tz * h4;
+//        float h34 = h3 + tx * h4;
+//        return (h12 + h13 + h24 + h34) / 4.0f;
+        return getHeightAt(x * (columns + 1), z * (rows + 1));
+    }
+    return 0.0f;
+}
+
 float Heightmap::getSlopeAt(int column, int row) {
     if(0 <= column && column <= columns && 0 <= row && row <= rows) {
         return normals[row * (columns + 1) + column].y;
     }
     return 0.0f;
+}
+
+vec3 Heightmap::getNormalAt(int column, int row) {
+    if(0 <= column && column <= columns && 0 <= row && row <= rows) {
+        return normals[row * (columns + 1) + column];
+    }
+    return vec3();
+};
+
+vec3 Heightmap::getInterpolatedNormalAt(float x, float z) {
+    if(0.0f <= x && x <= 1.0f && 0.0f <= z && z <= 1.0f) {
+        int col1 = floor<int>(x * (float)(columns + 1));
+        int col2 = col1 + 1;
+        int row1 = floor<int>(z * (float)(rows + 1));
+        int row2 = row1 + 1;
+        vec3 n1 = getNormalAt(col1, row1);
+        vec3 n2 = getNormalAt(col2, row1);
+        vec3 n3 = getNormalAt(col1, row2);
+        vec3 n4 = getNormalAt(col2, row2);
+        return normalize(n1 + n2 + n3 + n4);
+    }
+    return vec3();
 }
 
 void Heightmap::loadHeightmap(string filename, float strength) {

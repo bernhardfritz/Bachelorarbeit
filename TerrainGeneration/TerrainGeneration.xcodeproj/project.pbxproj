@@ -118,6 +118,10 @@
 		70DD395D1CA540E400D09E99 /* WALL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70DD39561CA540E400D09E99 /* WALL.cpp */; };
 		70DD39601CA5991400D09E99 /* particlesystem_vs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70DD395E1CA592B400D09E99 /* particlesystem_vs.glsl */; };
 		70DD39611CA5991400D09E99 /* particlesystem_fs.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70DD395F1CA592C100D09E99 /* particlesystem_fs.glsl */; };
+		70DD39641CA84DC700D09E99 /* particle.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70DD39621CA84DB200D09E99 /* particle.png */; };
+		70DD39651CA84DC700D09E99 /* particle2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70DD39631CA84DB200D09E99 /* particle2.png */; };
+		70DD39821CAC2F9C00D09E99 /* MetaMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70DD39801CAC2F9C00D09E99 /* MetaMesh.cpp */; };
+		70DD39851CAC362500D09E99 /* MarchingCubes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70DD39831CAC362500D09E99 /* MarchingCubes.cpp */; };
 		70E3C5D21BEF6B2600E1DD90 /* dragon.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D11BEF6A6900E1DD90 /* dragon.obj */; };
 		70E3C5D31BEF6B3000E1DD90 /* buddha.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5D01BEF6A5900E1DD90 /* buddha.obj */; };
 		70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */; };
@@ -146,6 +150,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				70DD39641CA84DC700D09E99 /* particle.png in CopyFiles */,
+				70DD39651CA84DC700D09E99 /* particle2.png in CopyFiles */,
 				70DD39601CA5991400D09E99 /* particlesystem_vs.glsl in CopyFiles */,
 				70DD39611CA5991400D09E99 /* particlesystem_fs.glsl in CopyFiles */,
 				70327E601C8B2B65009412CE /* boxblur_vs.glsl in CopyFiles */,
@@ -368,6 +374,12 @@
 		70DD39571CA540E400D09E99 /* WALL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALL.h; sourceTree = "<group>"; };
 		70DD395E1CA592B400D09E99 /* particlesystem_vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = particlesystem_vs.glsl; sourceTree = "<group>"; };
 		70DD395F1CA592C100D09E99 /* particlesystem_fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = particlesystem_fs.glsl; sourceTree = "<group>"; };
+		70DD39621CA84DB200D09E99 /* particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particle.png; sourceTree = "<group>"; };
+		70DD39631CA84DB200D09E99 /* particle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particle2.png; sourceTree = "<group>"; };
+		70DD39801CAC2F9C00D09E99 /* MetaMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MetaMesh.cpp; sourceTree = "<group>"; };
+		70DD39811CAC2F9C00D09E99 /* MetaMesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MetaMesh.hpp; sourceTree = "<group>"; };
+		70DD39831CAC362500D09E99 /* MarchingCubes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MarchingCubes.cpp; sourceTree = "<group>"; };
+		70DD39841CAC362500D09E99 /* MarchingCubes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MarchingCubes.hpp; sourceTree = "<group>"; };
 		70E3C5D01BEF6A5900E1DD90 /* buddha.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buddha.obj; sourceTree = "<group>"; };
 		70E3C5D11BEF6A6900E1DD90 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
 		70E3C5D41BEF808500E1DD90 /* MeshLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshLoader.cpp; sourceTree = "<group>"; };
@@ -446,6 +458,8 @@
 		7052CE4B1BDD38AD000D4446 /* TerrainGeneration */ = {
 			isa = PBXGroup;
 			children = (
+				70DD39831CAC362500D09E99 /* MarchingCubes.cpp */,
+				70DD39841CAC362500D09E99 /* MarchingCubes.hpp */,
 				70DD393A1CA451CE00D09E99 /* ParticleSystem */,
 				7052CE6A1BE1297B000D4446 /* Camera.cpp */,
 				7052CE6B1BE1297B000D4446 /* Camera.hpp */,
@@ -525,6 +539,8 @@
 				70CC79CD1C9F0B210012598C /* Utils.hpp */,
 				70DD39451CA4701700D09E99 /* Icosphere.cpp */,
 				70DD39461CA4701700D09E99 /* Icosphere.hpp */,
+				70DD39801CAC2F9C00D09E99 /* MetaMesh.cpp */,
+				70DD39811CAC2F9C00D09E99 /* MetaMesh.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -548,6 +564,8 @@
 				708F58E91C7F7F6C00B26E7A /* water2.png */,
 				70327E271C810C32009412CE /* water3.png */,
 				70327E2D1C81121E009412CE /* water4.png */,
+				70DD39621CA84DB200D09E99 /* particle.png */,
+				70DD39631CA84DB200D09E99 /* particle2.png */,
 			);
 			name = Textures;
 			sourceTree = "<group>";
@@ -721,6 +739,7 @@
 				70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */,
 				70DD39591CA540E400D09E99 /* FIELD_3D.cpp in Sources */,
 				70DD39471CA4701700D09E99 /* Icosphere.cpp in Sources */,
+				70DD39821CAC2F9C00D09E99 /* MetaMesh.cpp in Sources */,
 				709654471C3C2AF5005BB137 /* Graph.cpp in Sources */,
 				70E3C5E91BF0E89600E1DD90 /* Heightmap.cpp in Sources */,
 				708F58531C7344A900B26E7A /* Texture.cpp in Sources */,
@@ -734,6 +753,7 @@
 				708F58CD1C75EAA100B26E7A /* Voronoi.cpp in Sources */,
 				708F58E21C7DEA1200B26E7A /* ThermalErosion.cpp in Sources */,
 				708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */,
+				70DD39851CAC362500D09E99 /* MarchingCubes.cpp in Sources */,
 				70CC79CE1C9F0B210012598C /* Utils.cpp in Sources */,
 				70DD395B1CA540E400D09E99 /* PARTICLE_SYSTEM.cpp in Sources */,
 				70327E641C8DAF63009412CE /* MousePicker.cpp in Sources */,
