@@ -70,6 +70,12 @@ void Heightmap::setHeightAt(int column, int row, float height) {
     }
 }
 
+void Heightmap::changeHeightAt(int column, int row, float delta) {
+    if(0 <= column && column <= columns && 0 <= row && row <= rows) {
+        setHeightAt(column, row, vertices[row * (columns + 1) + column].y + delta);
+    }
+}
+
 float Heightmap::getHeightAt(int column, int row) {
     if(0 <= column && column <= columns && 0 <= row && row <= rows) {
         return vertices[row * (columns + 1) + column].y;
@@ -77,26 +83,77 @@ float Heightmap::getHeightAt(int column, int row) {
     return 0.0f;
 }
 
+#define EPSILON 0.000001
+
+int triangle_intersection( const vec3   V1,  // Triangle vertices
+                          const vec3   V2,
+                          const vec3   V3,
+                          const vec3    O,  //Ray origin
+                          const vec3    D,  //Ray direction
+                          float* out )
+{
+    vec3 e1, e2;  //Edge1, Edge2
+    vec3 P, Q, T;
+    float det, inv_det, u, v;
+    float t;
+    
+    //Find vectors for two edges sharing V1
+    e1 = V2 - V1;
+    e2 = V3 - V1;
+    //Begin calculating determinant - also used to calculate u parameter
+    P = cross(D, e2);
+    //if determinant is near zero, ray lies in plane of triangle
+    det = dot(e1, P);
+    //NOT CULLING
+    if(det > -EPSILON && det < EPSILON) return 0;
+    inv_det = 1.f / det;
+    
+    //calculate distance from V1 to ray origin
+    T = O - V1;
+    
+    //Calculate u parameter and test bound
+    u = dot(T, P) * inv_det;
+    //The intersection lies outside of the triangle
+    if(u < 0.f || u > 1.f) return 0;
+    
+    //Prepare to test v parameter
+    Q = cross(T, e1);
+    
+    //Calculate V parameter and test bound
+    v = dot(D, Q) * inv_det;
+    //The intersection lies outside of the triangle
+    if(v < 0.f || u + v  > 1.f) return 0;
+    
+    t = dot(e2, Q) * inv_det;
+    
+    if(t > EPSILON) { //ray intersection
+        *out = t;
+        return 1;
+    }
+    
+    // No hit, no win
+    return 0;
+}
+
 float Heightmap::getInterpolatedHeightAt(float x, float z) {
     if(0.0f <= x && x <= 1.0f && 0.0f <= z && z <= 1.0f) {
-//        int col1 = floor<int>(x * (float)(columns + 1));
-//        int col2 = col1 + 1;
-//        float dx = x * (float)(columns + 1) - (float)col1;
-//        float tx = dx / (1.0f / (float)(columns + 1));
-//        int row1 = floor<int>(z * (float)(rows + 1));
-//        int row2 = row1 + 1;
-//        float dz = z * (float)(rows + 1) - (float)row1;
-//        float tz = dz / (1.0f / (float)(rows + 1));
-//        float h1 = getHeightAt(col1, row1);
-//        float h2 = getHeightAt(col2, row1);
-//        float h12 = h1 + tx * h2;
-//        float h3 = getHeightAt(col1, row2);
-//        float h13 = h1 + tz * h3;
-//        float h4 = getHeightAt(col2, row2);
-//        float h24 = h2 + tz * h4;
-//        float h34 = h3 + tx * h4;
-//        return (h12 + h13 + h24 + h34) / 4.0f;
-        return getHeightAt(x * (columns + 1), z * (rows + 1));
+        int col1 = floor<int>(x * (float)(columns + 1));
+        int col2 = col1 + 1;
+        float dx = x * (float)(columns + 1) - (float)col1;
+        int row1 = floor<int>(z * (float)(rows + 1));
+        int row2 = row1 + 1;
+        float dz = z * (float)(rows + 1) - (float)row1;
+        float x1 = x - dx;
+        float x2 = x1 + 1.0f;
+        float z1 = z - dz;
+        float z2 = z1 + 1.0f;
+        float height = 0.0f;
+        if(dx + dz < 1) {
+            triangle_intersection(vec3(x1, getHeightAt(col1, row1), z1), vec3(x1, getHeightAt(col1, row2), z2), vec3(x2, getHeightAt(col2, row1), z1), vec3(x, 0, z), vec3(0, 1, 0), &height);
+        } else {
+            triangle_intersection(vec3(x2, getHeightAt(col2, row1), z1), vec3(x1, getHeightAt(col1, row2), z2), vec3(x2, getHeightAt(col2, row2), z2), vec3(x, 0, z), vec3(0, 1, 0), &height);
+        }
+        return height;
     }
     return 0.0f;
 }

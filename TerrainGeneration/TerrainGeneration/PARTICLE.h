@@ -6,6 +6,9 @@
 #include <vector>
 
 #define PARTICLE_DRAW_RADIUS 0.007//0.015//0.01 //0.006
+#define PARTICLE_DEFAULT_LIFESPAN 500
+#define PARTICLE_DEFAULT_SEDIMENT_CAPACITY 250
+#define PARTICLE_ACIDITY 0.00001
 
 using namespace std;
 
@@ -49,7 +52,8 @@ public:
   int& id() { return _id; };
   VEC3D normal;
     
-    bool& solid() { return _solid; };
+    int& lifespan() { return _lifespan; };
+    int& sedimentCapacity() { return _sedimentCapacity; };
   
   void clearParameters();
   
@@ -65,7 +69,8 @@ private:
   bool _flag;
   int _id;
     
-    bool _solid;
+    int _lifespan = PARTICLE_DEFAULT_LIFESPAN;
+    int _sedimentCapacity = PARTICLE_DEFAULT_SEDIMENT_CAPACITY;
 };
 
 

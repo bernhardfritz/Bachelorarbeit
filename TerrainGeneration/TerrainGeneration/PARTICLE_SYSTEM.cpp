@@ -21,18 +21,6 @@ _isGridVisible(false), surfaceThreshold(0.01), gravityVector(0.0,GRAVITY_ACCELER
     loadScenario(INITIAL_SCENARIO);
 }
 
-void PARTICLE_SYSTEM::updateHeightmap(Heightmap& heightmap) {
-    vector<PARTICLE>& firstGridCell = (*grid)(0,0,0);
-    
-    for(int row = 0; row <= heightmap.getRows(); row+=3) {
-        for(int column = 0; column <= heightmap.getColumns(); column+=3) {
-            PARTICLE particle(VEC3D((double)column / heightmap.getColumns(),heightmap.getHeightAt(column, row) - PARTICLE_DRAW_RADIUS,(double)row / heightmap.getRows()));
-            particle.solid() = true;
-            firstGridCell.push_back(particle);
-        }
-    }
-}
-
 void PARTICLE_SYSTEM::loadScenario(int newScenario) {
   
   scenario = newScenario;
@@ -197,11 +185,36 @@ void PARTICLE_SYSTEM::loadScenario(int newScenario) {
   
 }
 
-void PARTICLE_SYSTEM::rain() {
-    double x = drand48() * boxSize.x;
-    double z = drand48() * boxSize.z;
-    double y = 0.25;
-    (*grid)(0,0,0).push_back(PARTICLE(VEC3D(x,y,z)));
+void PARTICLE_SYSTEM::removeDeadParticles() {
+    for (int gridCellIndex = 0; gridCellIndex < (*grid).cellCount(); gridCellIndex++) {
+        vector<PARTICLE>& particles = (*grid).data()[gridCellIndex];
+        
+        for (vector<PARTICLE>::iterator it=particles.begin(); it!=particles.end();) {
+            if(it->lifespan() == 0) {
+                int column = it->position().x * (double)(heightmap->getColumns() + 1);
+                int row = it->position().z * (double)(heightmap->getRows() + 1);
+                float sediment = (PARTICLE_DEFAULT_SEDIMENT_CAPACITY - it->sedimentCapacity()) * PARTICLE_ACIDITY;
+                
+                for(int i = -1; i <= 1; i++) {
+                    for(int j = -1; j <= 1; j++) {
+                        heightmap->changeHeightAt(column + j, row + i, gauss[(i+1) * 3 + (j+1)] * sediment);
+                    }
+                }
+                
+                it = particles.erase(it);
+            }
+            else ++it;
+        }
+    }
+}
+
+void PARTICLE_SYSTEM::rain(int iterations) {
+    for(int i = 0; i < iterations; i++) {
+        double x = drand48() * boxSize.x;
+        double z = drand48() * boxSize.z;
+        double y = 0.25;
+        (*grid)(0,0,0).push_back(PARTICLE(VEC3D(x,y,z)));
+    }
 }
 
 void PARTICLE_SYSTEM::generateFaucetParticleSet() {
@@ -415,12 +428,7 @@ void PARTICLE_SYSTEM::draw(const GLfloat *view, const GLfloat *proj, Directional
       PARTICLE& particle = particles[p];
         icosphere.setPosition(particle.position()[0], particle.position()[1], particle.position()[2]);
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(icosphere.getModelMatrix()));
-        if(particle.solid()) {
-            continue;
-            //icosphere.getMaterial()->setDiffuseReflectance(yellow);
-        } else {
-            icosphere.getMaterial()->setDiffuseReflectance(cyan);
-        }
+        icosphere.getMaterial()->setDiffuseReflectance(cyan);
         glUniform3fv(meshDiffuseIntensity, 1, value_ptr(icosphere.getMaterial()->getDiffuseReflectance()));
         icosphere.draw();
     }
@@ -453,6 +461,8 @@ void PARTICLE_SYSTEM::draw(const GLfloat *view, const GLfloat *proj, Directional
   
 //  glScaled(boxSize.x, boxSize.y, boxSize.z);
 //  glutWireCube(1.0);
+    
+    heightmap->calculateNormals();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -460,6 +470,7 @@ void PARTICLE_SYSTEM::draw(const GLfloat *view, const GLfloat *proj, Directional
 ///////////////////////////////////////////////////////////////////////////////
 void PARTICLE_SYSTEM::stepVerlet(double dt)
 {
+    removeDeadParticles();
   
   calculateAcceleration();
   
@@ -476,6 +487,7 @@ void PARTICLE_SYSTEM::stepVerlet(double dt)
       
       particle.position() = newPosition;
       particle.velocity() = newVelocity;
+        particle.lifespan() = particle.lifespan() - 1;
     }
   }
   
@@ -590,8 +602,6 @@ void PARTICLE_SYSTEM::calculateAcceleration() {
         for (int p = 0; p < particles.size(); p++) {
           
           PARTICLE& particle = particles[p];
-            
-            if(particle.solid()) continue;
           
           //cout << "particle id: " << particle.id() << endl;
           
@@ -725,6 +735,18 @@ void PARTICLE_SYSTEM::collisionForce(PARTICLE& particle, VEC3D& f_collision) {
         if(d > 0.0) {
             particle.acceleration() += WALL_K * hn2 * d;
             particle.acceleration() += WALL_DAMPING * particle.velocity().dot(hn2) * hn2;
+            if(particle.sedimentCapacity() > 0) {
+                int column = px * (double)(heightmap->getColumns() + 1);
+                int row = pz * (double)(heightmap->getRows() + 1);
+                
+                for(int i = -1; i <= 1; i++) {
+                    for(int j = -1; j <= 1; j++) {
+                        heightmap->changeHeightAt(column + j, row + i, - gauss[(i+1) * 3 + (j+1)] * PARTICLE_ACIDITY);
+                    }
+                }
+
+                particle.sedimentCapacity() = particle.sedimentCapacity() - 1;
+            }
         }
     }
 }

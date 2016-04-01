@@ -341,9 +341,9 @@ const int a2iTriangleConnectionTable[256][16] =
 
 class MarchingCubes {
 private:
-    static const int iDataSetSize = 100;
+    static const int iDataSetSize = 40;
     constexpr static const float fStepSize = 1.0/iDataSetSize;
-    constexpr static const float fTargetValue = 100.0;
+    constexpr static const float fTargetValue = 48.0;
     
     static float fGetOffset(float fValue1, float fValue2, float fValueDesired);
     static void vNormalizeVector(vec3 &rfVectorResult, vec3 &rfVectorSource);

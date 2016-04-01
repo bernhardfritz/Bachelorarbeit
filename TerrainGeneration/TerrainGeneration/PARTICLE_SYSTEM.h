@@ -46,8 +46,6 @@ public:
   PARTICLE_SYSTEM();
     PARTICLE_SYSTEM(Heightmap* heightmap);
   ~PARTICLE_SYSTEM();
-
-    void updateHeightmap(Heightmap& heightmap);
     
   void updateGrid();
   
@@ -94,7 +92,9 @@ public:
   
   void toggleTumble();
     
-    void rain();
+    void rain(int iterations = 1);
+    
+    void removeDeadParticles();
     
   void generateFaucetParticleSet();
   
@@ -130,6 +130,12 @@ private:
     Icosphere icosphere;
     MetaMesh metamesh;
     Heightmap* heightmap = NULL;
+    
+    float gauss[9] = {
+        1.0f/16.0f, 1.0f/8.0f, 1.0f/16.0f,
+        1.0f/8.0f , 1.0f/4.0f, 1.0f/8.0f ,
+        1.0f/16.0f, 1.0f/8.0f, 1.0f/16.0f
+    };
 
 };
 

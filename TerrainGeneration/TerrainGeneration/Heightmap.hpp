@@ -31,6 +31,7 @@ public:
     void setRows(int rows);
     int getRows();
     void setHeightAt(int column, int row, float height);
+    void changeHeightAt(int column, int row, float delta);
     float getHeightAt(int column, int row);
     float getInterpolatedHeightAt(float x, float z);
     float getSlopeAt(int column, int row);

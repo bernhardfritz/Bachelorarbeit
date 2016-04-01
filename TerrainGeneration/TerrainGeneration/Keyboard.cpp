@@ -19,6 +19,16 @@ bool Keyboard::getState(int key) {
     } else return false;
 }
 
+void Keyboard::setTimestamp(int key, double timestamp) {
+    timestamps[key] = timestamp;
+}
+
+double Keyboard::getTimestamp(int key) {
+    if(timestamps.find(key) != timestamps.end()) {
+        return timestamps[key];
+    } else return 0.0;
+}
+
 void Keyboard::print() {
     for(map<int, bool>::iterator i = keys.begin(); i != keys.end(); i++) {
         cout << i->first << ": " << i->second << endl;

@@ -571,16 +571,19 @@ int main() {
             HydraulicErosion::perform(heightmap, 100);
         }
         if(keyboard.getState(GLFW_KEY_G)) {
-            static double prev = 0.0;
-            static double dur = 0.25;
-            if(glfwGetTime() - prev > dur) {
+            if(glfwGetTime() - keyboard.getTimestamp(GLFW_KEY_G) > 0.25) {
                 particleSystem.toggleGravity();
-                prev = glfwGetTime();
+                keyboard.setTimestamp(GLFW_KEY_G, glfwGetTime());
             }
         }
+        static bool toggleRain = false;
         if(keyboard.getState(GLFW_KEY_Z)) {
-            particleSystem.rain();
+            if(glfwGetTime() - keyboard.getTimestamp(GLFW_KEY_Z) > 0.25) {
+                toggleRain = !toggleRain;
+                keyboard.setTimestamp(GLFW_KEY_Z, glfwGetTime());
+            }
         }
+        if(toggleRain) particleSystem.rain(5);
         
         if(keyboard.getState(GLFW_KEY_M)) {
             particleSystem.updateMetaMesh();
