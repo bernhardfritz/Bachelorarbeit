@@ -17,7 +17,7 @@
 #include "DirectionalLight.hpp"
 #include "Heightmap.hpp"
 
-#define h 0.015 //0.02 //0.0457 //0.02 //0.045
+#define GRID_HEIGHT 0.015 //0.02 //0.0457 //0.02 //0.045
 
 #define GAS_STIFFNESS 3.0 //3.0 //20.0 // 461.5  // Nm/kg is gas constant of water vapor
 #define REST_DENSITY 998.29 // kg/m^3 is rest density of water particle

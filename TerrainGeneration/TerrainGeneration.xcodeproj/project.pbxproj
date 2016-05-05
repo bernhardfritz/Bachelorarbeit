@@ -43,6 +43,8 @@
 		7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7052CE731BE3F877000D4446 /* Keyboard.cpp */; };
 		7052CE851BE53192000D4446 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7052CE841BE53192000D4446 /* CoreVideo.framework */; };
 		7052CE871BE55A84000D4446 /* cube.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7052CE861BE55A7F000D4446 /* cube.obj */; };
+		7070E0F31CDB8CDE00FA25E7 /* TectonicPlateSimulation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7070E0F11CDB8CDE00FA25E7 /* TectonicPlateSimulation.cpp */; };
+		7070E0F51CDB925B00FA25E7 /* libBox2D.2.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7070E0F41CDB925B00FA25E7 /* libBox2D.2.3.0.dylib */; };
 		708F584B1C71E7DF00B26E7A /* Cone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58491C71E7DF00B26E7A /* Cone.cpp */; };
 		708F584E1C732BA300B26E7A /* TextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F584C1C732BA300B26E7A /* TextureLoader.cpp */; };
 		708F58531C7344A900B26E7A /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 708F58511C7344A900B26E7A /* Texture.cpp */; };
@@ -271,6 +273,9 @@
 		7052CE741BE3F877000D4446 /* Keyboard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Keyboard.hpp; sourceTree = "<group>"; };
 		7052CE841BE53192000D4446 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7052CE861BE55A7F000D4446 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
+		7070E0F11CDB8CDE00FA25E7 /* TectonicPlateSimulation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TectonicPlateSimulation.cpp; sourceTree = "<group>"; };
+		7070E0F21CDB8CDE00FA25E7 /* TectonicPlateSimulation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TectonicPlateSimulation.hpp; sourceTree = "<group>"; };
+		7070E0F41CDB925B00FA25E7 /* libBox2D.2.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBox2D.2.3.0.dylib; path = ../../../../../../../usr/local/Cellar/box2d/2.3.1/lib/libBox2D.2.3.0.dylib; sourceTree = "<group>"; };
 		708F58491C71E7DF00B26E7A /* Cone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cone.cpp; sourceTree = "<group>"; };
 		708F584A1C71E7DF00B26E7A /* Cone.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cone.hpp; sourceTree = "<group>"; };
 		708F584C1C732BA300B26E7A /* TextureLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureLoader.cpp; sourceTree = "<group>"; };
@@ -403,6 +408,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7070E0F51CDB925B00FA25E7 /* libBox2D.2.3.0.dylib in Frameworks */,
 				70CC7A0D1C9F56390012598C /* libswresample.2.0.101.dylib in Frameworks */,
 				70CC7A0E1C9F56390012598C /* libswscale.4.0.100.dylib in Frameworks */,
 				70CC7A051C9F4D830012598C /* libavcodec.57.24.102.dylib in Frameworks */,
@@ -427,6 +433,7 @@
 		7052CE401BDD38AD000D4446 = {
 			isa = PBXGroup;
 			children = (
+				7070E0F41CDB925B00FA25E7 /* libBox2D.2.3.0.dylib */,
 				70CC7A0B1C9F56390012598C /* libswresample.2.0.101.dylib */,
 				70CC7A0C1C9F56390012598C /* libswscale.4.0.100.dylib */,
 				70CC79FF1C9F4D830012598C /* libavcodec.57.24.102.dylib */,
@@ -541,6 +548,8 @@
 				708F58CC1C75EAA100B26E7A /* Voronoi.hpp */,
 				708F58E31C7F72F700B26E7A /* Water.cpp */,
 				708F58E41C7F72F700B26E7A /* Water.hpp */,
+				7070E0F11CDB8CDE00FA25E7 /* TectonicPlateSimulation.cpp */,
+				7070E0F21CDB8CDE00FA25E7 /* TectonicPlateSimulation.hpp */,
 			);
 			path = TerrainGeneration;
 			sourceTree = "<group>";
@@ -736,6 +745,7 @@
 				702ED7301BE93D0100961271 /* Mesh.cpp in Sources */,
 				70CC79BC1C95AF730012598C /* TemporaryHeightmap.cpp in Sources */,
 				7052CE751BE3F877000D4446 /* Keyboard.cpp in Sources */,
+				7070E0F31CDB8CDE00FA25E7 /* TectonicPlateSimulation.cpp in Sources */,
 				70E3C5D61BEF808500E1DD90 /* MeshLoader.cpp in Sources */,
 				70DD39591CA540E400D09E99 /* FIELD_3D.cpp in Sources */,
 				70DD39471CA4701700D09E99 /* Icosphere.cpp in Sources */,
@@ -861,6 +871,7 @@
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/assimp/3.1.1/lib,
 					/usr/local/Cellar/ffmpeg/3.0/lib,
+					/usr/local/Cellar/box2d/2.3.1/lib,
 				);
 				PRODUCT_NAME = TerrainGeneration;
 			};
@@ -877,6 +888,7 @@
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/assimp/3.1.1/lib,
 					/usr/local/Cellar/ffmpeg/3.0/lib,
+					/usr/local/Cellar/box2d/2.3.1/lib,
 				);
 				PRODUCT_NAME = TerrainGeneration;
 			};

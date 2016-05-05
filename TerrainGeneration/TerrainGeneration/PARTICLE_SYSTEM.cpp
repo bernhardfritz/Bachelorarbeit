@@ -46,9 +46,9 @@ void PARTICLE_SYSTEM::loadScenario(int newScenario) {
         boxSize.y = 0.5;
         boxSize.z = 1.0;
         
-        int gridXRes = (int)ceil(boxSize.x/h);
-        int gridYRes = (int)ceil(boxSize.y/h);
-        int gridZRes = (int)ceil(boxSize.z/h);
+        int gridXRes = (int)ceil(boxSize.x/GRID_HEIGHT);
+        int gridYRes = (int)ceil(boxSize.y/GRID_HEIGHT);
+        int gridZRes = (int)ceil(boxSize.z/GRID_HEIGHT);
         
         grid = new FIELD_3D(gridXRes, gridYRes, gridZRes);
         
@@ -82,9 +82,9 @@ void PARTICLE_SYSTEM::loadScenario(int newScenario) {
     boxSize.y = BOX_SIZE;
     boxSize.z = BOX_SIZE/2.0;
     
-    int gridXRes = (int)ceil(boxSize.x/h);
-    int gridYRes = (int)ceil(boxSize.y/h);
-    int gridZRes = (int)ceil(boxSize.z/h);
+    int gridXRes = (int)ceil(boxSize.x/GRID_HEIGHT);
+    int gridYRes = (int)ceil(boxSize.y/GRID_HEIGHT);
+    int gridZRes = (int)ceil(boxSize.z/GRID_HEIGHT);
     
     grid = new FIELD_3D(gridXRes, gridYRes, gridZRes);
     
@@ -101,9 +101,9 @@ void PARTICLE_SYSTEM::loadScenario(int newScenario) {
     
     // add particles
     
-    for (double y = -boxSize.y/2.0; y < boxSize.y/2.0; y+= h/2.0) {
-      for (double x = -boxSize.x/2.0; x < -boxSize.x/4.0; x += h/2.0) {
-        for (double z = -boxSize.z/2.0; z < boxSize.z/2.0; z+= h/2.0) {
+    for (double y = -boxSize.y/2.0; y < boxSize.y/2.0; y+= GRID_HEIGHT/2.0) {
+      for (double x = -boxSize.x/2.0; x < -boxSize.x/4.0; x += GRID_HEIGHT/2.0) {
+        for (double z = -boxSize.z/2.0; z < boxSize.z/2.0; z+= GRID_HEIGHT/2.0) {
           firstGridCell.push_back(PARTICLE(VEC3D(x, y,z)));
         }
       }
@@ -122,9 +122,9 @@ void PARTICLE_SYSTEM::loadScenario(int newScenario) {
     boxSize.y = BOX_SIZE;
     boxSize.z = BOX_SIZE;
     
-    int gridXRes = (int)ceil(boxSize.x/h);
-    int gridYRes = (int)ceil(boxSize.y/h);
-    int gridZRes = (int)ceil(boxSize.z/h);
+    int gridXRes = (int)ceil(boxSize.x/GRID_HEIGHT);
+    int gridYRes = (int)ceil(boxSize.y/GRID_HEIGHT);
+    int gridZRes = (int)ceil(boxSize.z/GRID_HEIGHT);
     
     grid = new FIELD_3D(gridXRes, gridYRes, gridZRes);
     
@@ -140,9 +140,9 @@ void PARTICLE_SYSTEM::loadScenario(int newScenario) {
     
     // add particles
     
-    for (double y = 0; y < boxSize.y; y+= h/2.0) {
-      for (double x = -boxSize.x/4.0; x < boxSize.x/4.0; x += h/2.0) {
-        for (double z = -boxSize.z/4.0; z < boxSize.z/4.0; z+= h/2.0) {
+    for (double y = 0; y < boxSize.y; y+= GRID_HEIGHT/2.0) {
+      for (double x = -boxSize.x/4.0; x < boxSize.x/4.0; x += GRID_HEIGHT/2.0) {
+        for (double z = -boxSize.z/4.0; z < boxSize.z/4.0; z+= GRID_HEIGHT/2.0) {
           firstGridCell.push_back(PARTICLE(VEC3D(x,y,z)));
         }
       }
@@ -160,9 +160,9 @@ void PARTICLE_SYSTEM::loadScenario(int newScenario) {
     boxSize.y = BOX_SIZE;
     boxSize.z = BOX_SIZE;
     
-    int gridXRes = (int)ceil(boxSize.x/h);
-    int gridYRes = (int)ceil(boxSize.y/h);
-    int gridZRes = (int)ceil(boxSize.z/h);
+    int gridXRes = (int)ceil(boxSize.x/GRID_HEIGHT);
+    int gridYRes = (int)ceil(boxSize.y/GRID_HEIGHT);
+    int gridZRes = (int)ceil(boxSize.z/GRID_HEIGHT);
     
     grid = new FIELD_3D(gridXRes, gridYRes, gridZRes);
     
@@ -221,15 +221,15 @@ void PARTICLE_SYSTEM::generateFaucetParticleSet() {
   
   VEC3D initialVelocity(-1.8,-1.8,0);
   
-  addParticle(VEC3D(BOX_SIZE/2.0-h/2.0,BOX_SIZE+h*0.6, 0), initialVelocity);
-  addParticle(VEC3D(BOX_SIZE/2.0-h/2.0, BOX_SIZE, 0), initialVelocity);
-  addParticle(VEC3D(BOX_SIZE/2.0-h/2.0, BOX_SIZE+h*-0.6, 0), initialVelocity);
+  addParticle(VEC3D(BOX_SIZE/2.0-GRID_HEIGHT/2.0,BOX_SIZE+GRID_HEIGHT*0.6, 0), initialVelocity);
+  addParticle(VEC3D(BOX_SIZE/2.0-GRID_HEIGHT/2.0, BOX_SIZE, 0), initialVelocity);
+  addParticle(VEC3D(BOX_SIZE/2.0-GRID_HEIGHT/2.0, BOX_SIZE+GRID_HEIGHT*-0.6, 0), initialVelocity);
   
-  addParticle(VEC3D(BOX_SIZE/2.0-h/2.0, BOX_SIZE+h*0.3, h*0.6), initialVelocity);
-  addParticle(VEC3D(BOX_SIZE/2.0-h/2.0, BOX_SIZE+h*0.3, h*-0.6), initialVelocity);
+  addParticle(VEC3D(BOX_SIZE/2.0-GRID_HEIGHT/2.0, BOX_SIZE+GRID_HEIGHT*0.3, GRID_HEIGHT*0.6), initialVelocity);
+  addParticle(VEC3D(BOX_SIZE/2.0-GRID_HEIGHT/2.0, BOX_SIZE+GRID_HEIGHT*0.3, GRID_HEIGHT*-0.6), initialVelocity);
   
-  addParticle(VEC3D(BOX_SIZE/2.0-h/2.0, BOX_SIZE+h*-0.3, h*0.6), initialVelocity);
-  addParticle(VEC3D(BOX_SIZE/2.0-h/2.0, BOX_SIZE+h*-0.3, h*-0.6), initialVelocity);
+  addParticle(VEC3D(BOX_SIZE/2.0-GRID_HEIGHT/2.0, BOX_SIZE+GRID_HEIGHT*-0.3, GRID_HEIGHT*0.6), initialVelocity);
+  addParticle(VEC3D(BOX_SIZE/2.0-GRID_HEIGHT/2.0, BOX_SIZE+GRID_HEIGHT*-0.3, GRID_HEIGHT*-0.6), initialVelocity);
 
 
 }
@@ -321,9 +321,9 @@ void PARTICLE_SYSTEM::updateGrid() {
           
           PARTICLE& particle = particles[p];
           
-          int newGridCellX = (int)floor((particle.position().x+BOX_SIZE/2.0)/h); 
-          int newGridCellY = (int)floor((particle.position().y+BOX_SIZE/2.0)/h);
-          int newGridCellZ = (int)floor((particle.position().z+BOX_SIZE/2.0)/h);
+          int newGridCellX = (int)floor((particle.position().x+BOX_SIZE/2.0)/GRID_HEIGHT);
+          int newGridCellY = (int)floor((particle.position().y+BOX_SIZE/2.0)/GRID_HEIGHT);
+          int newGridCellZ = (int)floor((particle.position().z+BOX_SIZE/2.0)/GRID_HEIGHT);
           
           //cout << "particle position: " << particle.position() << endl;
           //cout << "particle cell pos: " << newGridCellX << " " << newGridCellY << " " << newGridCellZ << endl;
@@ -572,7 +572,7 @@ void PARTICLE_SYSTEM::calculateAcceleration() {
                   
                   double radiusSquared = diffPosition.dot(diffPosition);
                   
-                  if (radiusSquared <= h*h)
+                  if (radiusSquared <= GRID_HEIGHT*GRID_HEIGHT)
                     particle.density() += Wpoly6(radiusSquared);
                   
                 }
@@ -638,7 +638,7 @@ void PARTICLE_SYSTEM::calculateAcceleration() {
                   VEC3D diffPosition = particle.position() - neighbor.position();
                   double radiusSquared = diffPosition.dot(diffPosition);
                   
-                  if (radiusSquared <= h*h) {
+                  if (radiusSquared <= GRID_HEIGHT*GRID_HEIGHT) {
                     
                     VEC3D poly6Gradient, spikyGradient;
                     
@@ -754,45 +754,45 @@ void PARTICLE_SYSTEM::collisionForce(PARTICLE& particle, VEC3D& f_collision) {
 
 double PARTICLE_SYSTEM::Wpoly6(double radiusSquared) { 
     
-  static double coefficient = 315.0/(64.0*M_PI*pow(h,9));
-  static double hSquared = h*h;
+  static double coefficient = 315.0/(64.0*M_PI*pow(GRID_HEIGHT,9));
+  static double hSquared = GRID_HEIGHT*GRID_HEIGHT;
   
   return coefficient * pow(hSquared-radiusSquared, 3);
 }
 
 void PARTICLE_SYSTEM::Wpoly6Gradient(VEC3D& diffPosition, double radiusSquared, VEC3D& gradient) {  
     
-  static double coefficient = -945.0/(32.0*M_PI*pow(h,9));
-  static double hSquared = h*h;
+  static double coefficient = -945.0/(32.0*M_PI*pow(GRID_HEIGHT,9));
+  static double hSquared = GRID_HEIGHT*GRID_HEIGHT;
     
   gradient = coefficient * pow(hSquared-radiusSquared, 2) * diffPosition;
 }
 
 double PARTICLE_SYSTEM::Wpoly6Laplacian(double radiusSquared) {
     
-  static double coefficient = -945.0/(32.0*M_PI*pow(h,9));
-  static double hSquared = h*h;
+  static double coefficient = -945.0/(32.0*M_PI*pow(GRID_HEIGHT,9));
+  static double hSquared = GRID_HEIGHT*GRID_HEIGHT;
     
   return coefficient * (hSquared-radiusSquared) * (3.0*hSquared - 7.0*radiusSquared);
 }
 
 void PARTICLE_SYSTEM::WspikyGradient(VEC3D& diffPosition, double radiusSquared, VEC3D& gradient) {  // 
   
-  static double coefficient = -45.0/(M_PI*pow(h,6));
+  static double coefficient = -45.0/(M_PI*pow(GRID_HEIGHT,6));
   
   double radius = sqrt(radiusSquared);
   
-  gradient = coefficient * pow(h-radius, 2) * diffPosition / radius;
+  gradient = coefficient * pow(GRID_HEIGHT-radius, 2) * diffPosition / radius;
 }
  
 
 double PARTICLE_SYSTEM::WviscosityLaplacian(double radiusSquared) {  
   
-  static double coefficient = 45.0/(M_PI*pow(h,6));
+  static double coefficient = 45.0/(M_PI*pow(GRID_HEIGHT,6));
   
   double radius = sqrt(radiusSquared);
   
-  return coefficient * (h - radius);    
+  return coefficient * (GRID_HEIGHT - radius);
 }
 
 /*
@@ -822,7 +822,7 @@ void PARTICLE_SYSTEM::calculateAccelerationBrute() {
       
       double radiusSquared = diffPosition.dot(diffPosition);
       
-      if (radiusSquared <= h*h)
+      if (radiusSquared <= GRID_HEIGHT*GRID_HEIGHT)
         particle.density() += Wpoly6(radiusSquared);
     }
     
@@ -860,7 +860,7 @@ void PARTICLE_SYSTEM::calculateAccelerationBrute() {
       VEC3D diffPositionNormalized = diffPosition.normal(); // need?
       double radiusSquared = diffPosition.dot(diffPosition);
       
-      if (radiusSquared <= h*h) {
+      if (radiusSquared <= GRID_HEIGHT*GRID_HEIGHT) {
         
                 
         if (radiusSquared > 0.0) {

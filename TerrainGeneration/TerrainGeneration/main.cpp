@@ -49,6 +49,7 @@
 #include "Utils.hpp"
 #include "Icosphere.hpp"
 #include "PARTICLE_SYSTEM.h"
+#include "TectonicPlateSimulation.hpp"
 
 using namespace std;
 using namespace glm;
@@ -266,7 +267,8 @@ int main() {
     }
     heightmap.calculateNormals();
     
-    heightmap.loadHeightmap("terrain.png", 0.2f);
+    //heightmap.loadHeightmap("terrain.png", 0.2f);
+    
     //hm.getMaterial()->setSpecularReflectance(0.0f);
     //Heightmap hm(128, 128);
     //Fault::perform(hm, 1.0f, 1024);
@@ -304,6 +306,8 @@ int main() {
         tmp.translate(drand48()*100.0f, 10.0f, drand48()*100.0f);
         meshes.push_back(tmp);
     }*/
+    
+    TectonicPlateSimulation tps(heightmap);
     
     camera.setY(heightmap.getMaxHeight());
     
@@ -545,6 +549,7 @@ int main() {
         //water.step();
         
         particleSystem.stepVerlet(1.0/500.0);
+        //tps.Step();
         
         if(mouse.getState(GLFW_MOUSE_BUTTON_1)) {
             vec3 intersection = mousePicker.getIntersection(camera, heightmap);
@@ -587,6 +592,10 @@ int main() {
         
         if(keyboard.getState(GLFW_KEY_M)) {
             particleSystem.updateMetaMesh();
+        }
+        
+        if(keyboard.getState(GLFW_KEY_X)) {
+            tps.Step();
         }
         
         static double previous = 0.0;
