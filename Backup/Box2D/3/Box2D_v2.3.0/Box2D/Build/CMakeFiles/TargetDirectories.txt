@@ -1,0 +1,5 @@
+/Users/bernhardfritz/Downloads/Box2D_v2.3.0/Box2D/Build/freeglut/CMakeFiles/freeglut_static.dir
+/Users/bernhardfritz/Downloads/Box2D_v2.3.0/Box2D/Build/Testbed/CMakeFiles/Testbed.dir
+/Users/bernhardfritz/Downloads/Box2D_v2.3.0/Box2D/Build/glui/CMakeFiles/glui.dir
+/Users/bernhardfritz/Downloads/Box2D_v2.3.0/Box2D/Build/HelloWorld/CMakeFiles/HelloWorld.dir
+/Users/bernhardfritz/Downloads/Box2D_v2.3.0/Box2D/Build/Box2D/CMakeFiles/Box2D.dir

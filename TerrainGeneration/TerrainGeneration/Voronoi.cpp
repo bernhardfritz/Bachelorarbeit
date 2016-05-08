@@ -88,3 +88,26 @@ bool Voronoi::isPositionInRegion(int pcolumn, int prow, int rcolumn, int rrow, i
     glfwGetFramebufferSize(glfwGetCurrentContext(), &width, &height);
     return isPixelInRegion(((float)pcolumn/columns)*(width-1), ((float)prow/rows)*(height-1), ((float)rcolumn/columns)*(width-1), ((float)rrow/rows)*(height-1));
 }
+
+vec3 Voronoi::getColorAtPixel(int x, int y) {
+    int width, height;
+    glfwGetFramebufferSize(glfwGetCurrentContext(), &width, &height);
+    
+    if(buffer == NULL) {
+        buffer = new unsigned char[width * height * 3];
+        glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, buffer);
+        //Utils::screenshot();
+    }
+    
+    unsigned char r = buffer[(y * width + x) * 3 + 0];
+    unsigned char g = buffer[(y * width + x) * 3 + 1];
+    unsigned char b = buffer[(y * width + x) * 3 + 2];
+    
+    return vec3(r, g, b);
+}
+
+vec3 Voronoi::getColorAtPosition(int column, int row, int columns, int rows) {
+    int width, height;
+    glfwGetFramebufferSize(glfwGetCurrentContext(), &width, &height);
+    return getColorAtPixel(((float)column/columns)*(width-1), ((float)row/rows)*(height-1));
+}

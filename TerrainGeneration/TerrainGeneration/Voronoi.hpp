@@ -26,6 +26,8 @@ public:
     void draw();
     bool isPixelInRegion(int px, int py, int rx, int ry);
     bool isPositionInRegion(int pcolumn, int prow, int rcolumn, int rrow, int columns, int rows);
+    vec3 getColorAtPixel(int x, int y);
+    vec3 getColorAtPosition(int column, int row, int columns, int rows);
 };
 
 #endif /* Voronoi_hpp */

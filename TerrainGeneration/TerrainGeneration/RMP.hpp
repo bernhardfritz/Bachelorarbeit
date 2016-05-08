@@ -18,6 +18,7 @@ public:
     static void perform(Heightmap& heightmap, int n, int l, int r);
     static void perform(Heightmap& heightmap, int n = 1);
     static void perform(Heightmap& heightmap, int x, int z, int spread, float delta, int iterations = 1);
+    static void perform(Heightmap& heightmap, int x0, int z0, int x1, int z1, int spread, float delta, int iterations = 1);
 };
 
 #endif /* RMP_hpp */

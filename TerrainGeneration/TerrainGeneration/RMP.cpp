@@ -206,3 +206,41 @@ void RMP::perform(Heightmap &heightmap, int x, int z, int spread, float delta, i
     
     heightmap.calculateNormals();
 }
+
+void RMP::perform(Heightmap &heightmap, int x0, int z0, int x1, int z1, int spread, float delta, int iterations) {
+    if(!(0 <= x0 && 0 <= x1 && x0 <= heightmap.getColumns() && x1 <= heightmap.getColumns() && 0 <= z0 && 0 <= z1 && z0 <= heightmap.getRows() && z1 <= heightmap.getRows())) return;
+    
+    for(int i = 0; i < iterations; i++) {
+        Voronoi voronoi(spread);
+        voronoi.draw();
+        
+        int dx =  abs(x1-x0), sx = x0<x1 ? 1 : -1;
+        int dz = -abs(z1-z0), sz = z0<z1 ? 1 : -1;
+        int err = dx+dz, e2; /* error value e_xz */
+        
+        vector<vec3> colors;
+        
+        while(1){
+            vec3 color = voronoi.getColorAtPosition(x0, z0, heightmap.getColumns(), heightmap.getRows());
+            if (find(colors.begin(), colors.end(), color) == colors.end()) colors.push_back(color);
+            if (x0==x1 && z0==z1) break;
+            e2 = 2*err;
+            if (e2 > dz) { err += dz; x0 += sx; } /* e_xz+e_x > 0 */
+            if (e2 < dx) { err += dx; z0 += sz; } /* e_xz+e_z < 0 */
+        }
+        
+        for(int row = 0; row <= heightmap.getRows(); row++) {
+            for(int column = 0; column <= heightmap.getColumns(); column++) {
+                for(vec3 color : colors) {
+                    if(color == voronoi.getColorAtPosition(column, row, heightmap.getColumns(), heightmap.getRows())) {
+                        heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + delta);
+                    }
+                }
+            }
+        }
+        
+        delta *= (1.0f - 1.0f/iterations);
+    }
+    
+    heightmap.calculateNormals();
+ }
