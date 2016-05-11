@@ -318,9 +318,9 @@ int main() {
     ShaderManager shaderManager("vertexshader.glsl", "fragmentshader.glsl", false);
     glUseProgram(shaderManager.getShaderProgram());
     
-    //Water water(heightmap.getColumns(), heightmap.getRows(), heightmap.getAverageHeight(), 100.0f, 0.0005f);
+    Water water(heightmap.getColumns(), heightmap.getRows(), heightmap.getAverageHeight(), 100.0f, 0.0005f);
     //AdvancedWater water(heightmap);
-    ShallowWater water(heightmap);
+    //ShallowWater water(heightmap);
     meshes.push_back(&water);
     
     int modelLocation = glGetUniformLocation(shaderManager.getShaderProgram(), "model_mat");
@@ -427,7 +427,7 @@ int main() {
                 glUniform1f(meshShininess, mesh->getMaterial()->getShininess());
                 glUniform1i(textured, mesh->isTextured() ? 1 : 0);
                 if(mesh == &water) {
-                    continue;
+                    //continue;
                     glUniform1i(is_water, 1);
                     glEnable(GL_BLEND);
                     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -545,8 +545,8 @@ int main() {
         
         update();
         
-        //water.setWaveLevel(heightmap.getAverageHeight());
-        //water.step();
+        water.setWaveLevel(heightmap.getAverageHeight());
+        water.step(elapsedSeconds);
         
         particleSystem.stepVerlet(1.0/500.0);
         //tps.Step();
