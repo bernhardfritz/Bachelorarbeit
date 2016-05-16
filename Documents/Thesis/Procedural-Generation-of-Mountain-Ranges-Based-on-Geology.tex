@@ -1,0 +1,221 @@
+%----------------------------------------------------------------------------------------
+% Bachelorarbeit IGS
+% Report LaTeX template (English)
+% Interactive Graphics and Simulation Group
+% University of Innsbruck
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,a4paper,twoside,openright]{report}
+
+%----------------------------------------------------------------------------------------
+% Include required packages
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\usepackage[english]{babel}
+%\usepackage[ngerman]{babel}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{fancyhdr}
+\usepackage{emptypage}
+
+\usepackage[left=2.7cm, right=2.7cm, top=3cm]{geometry}
+
+%----------------------------------------------------------------------------------------
+% Start document
+
+\begin{document}
+
+
+%----------------------------------------------------------------------------------------
+% Title page
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage} % User-defined title page
+
+\begin{center}
+\includegraphics[width=1.2cm]{images/uibk}
+
+\begin{large}
+Leopold-Franzens-Universität Innsbruck\\[5mm]
+Institute of Computer Science\\
+Interactive Graphics and Simulation Group\\[25mm]
+\end{large}
+
+Bachelor Thesis\\[15mm]
+
+{\LARGE \bf Procedural Generation of Mountain Ranges Based on Geology}\\[15mm]
+
+Bernhard Fritz\\
+\texttt{bernhard.e.fritz@student.uibk.ac.at}\\[35mm]
+
+advised by\\
+Univ.-Prof. Dipl.-Inf. Matthias Harders\\[10mm]
+
+\vfill
+
+Innsbruck, \today
+\end{center}
+
+\end{titlepage}
+
+\pagenumbering{roman}
+
+
+
+
+%----------------------------------------------------------------------------------------
+% Abstract
+%----------------------------------------------------------------------------------------
+\chapter*{Abstract}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam odio lorem, fermentum nec lectus sit amet, vehicula tristique arcu. Nunc id leo volutpat, facilisis sem vel, dapibus felis. Ut vehicula, leo sed feugiat egestas, enim velit rhoncus risus, a congue libero massa a enim. Aenean purus neque, tempor a dictum vitae, luctus eu sapien. Nam eget libero accumsan, placerat quam eu, congue turpis. Pellentesque tincidunt vel mi et mattis. Maecenas erat ligula, pretium ac nunc sit amet, molestie sollicitudin massa. Nunc mauris elit, iaculis et euismod vel, congue nec felis. Ut nec molestie mauris, eu gravida odio. Sed in ligula nulla.
+\medskip
+\noindent \\\textbf{Keywords} keyword1, keyword2.
+
+
+%----------------------------------------------------------------------------------------
+% Tables and lists of document material
+%----------------------------------------------------------------------------------------
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+
+%----------------------------------------------------------------------------------------
+% Declaration
+%----------------------------------------------------------------------------------------
+\chapter*{Declaration}
+By my own signature I declare that I produced this work as the sole author, working independently,
+and that I did not use any sources and aids other than those referenced in the text.
+All passages borrowed from external sources, verbatim or by content, are explicitly identified as
+such.\\
+
+\vspace{15mm}
+
+\noindent Signature: \underline{\hspace{5cm}} \hspace{1cm}  Date: \underline{\hspace{5cm}}
+
+
+%----------------------------------------------------------------------------------------
+% Main body
+%----------------------------------------------------------------------------------------
+\chapter{Introduction}
+\label{sec:intro}
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+
+\section{Section One}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam odio lorem, fermentum nec lectus sit amet, vehicula tristique arcu. Nunc id leo volutpat, facilisis sem vel, dapibus felis. Ut vehicula, leo sed feugiat egestas, enim velit rhoncus risus, a congue libero massa a enim.
+
+\section{Section Two}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+%----------------------------------------------------------------------------------------
+\chapter{Related Work}
+\label{sec:related}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet \cite{Kamal:2007:PCT:1321261.1321264, Vitanen:2012, Olsen:2004, Musgrave:1989:SRE:74333.74337, mei:inria-00402079}.
+
+
+%----------------------------------------------------------------------------------------
+\chapter{Methods}
+\label{sec:methods}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam odio lorem, fermentum nec lectus sit amet, vehicula tristique arcu. Nunc id leo volutpat, facilisis sem vel, dapibus felis. Ut vehicula, leo sed feugiat egestas, enim velit rhoncus risus, a congue libero massa a enim \cite{seiler:2013,shirley:2009}.
+
+\begin{table}
+\caption{Empty table}
+\begin{tabular}{|ccc|}
+
+\end{tabular}
+\end{table}
+
+%----------------------------------------------------------------------------------------
+\chapter{Results}
+\label{sec:results}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam odio lorem, fermentum nec lectus sit amet, vehicula tristique arcu. Nunc id leo volutpat, facilisis sem vel, dapibus felis. Ut vehicula, leo sed feugiat egestas, enim velit rhoncus risus, a congue libero massa a enim.
+
+\begin{figure}
+\caption{Empty figure}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+\chapter{Conclusion \& Future Work}
+\label{sec:concl}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+
+
+%----------------------------------------------------------------------------------------
+% Bibliography
+%----------------------------------------------------------------------------------------
+
+\bibliographystyle{plain}
+\bibliography{literature}
+
+\end{document}
