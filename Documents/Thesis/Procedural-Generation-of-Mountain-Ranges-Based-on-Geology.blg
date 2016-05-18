@@ -3,49 +3,47 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux
 The style file: plain.bst
 Database file #1: literature.bib
-Warning--I didn't find a database entry for "seiler:2013"
-Warning--I didn't find a database entry for "shirley:2009"
 Warning--empty journal in Olsen:2004
 Warning--empty school in Vitanen:2012
-You've used 5 entries,
+You've used 8 entries,
             2118 wiz_defined-function locations,
-            538 strings with 5371 characters,
-and the built_in function-call counts, 1818 in all, are:
-= -- 188
-> -- 74
+            559 strings with 5818 characters,
+and the built_in function-call counts, 2660 in all, are:
+= -- 274
+> -- 106
 < -- 3
-+ -- 28
-- -- 23
-* -- 113
-:= -- 299
-add.period$ -- 18
-call.type$ -- 5
-change.case$ -- 26
++ -- 41
+- -- 33
+* -- 175
+:= -- 445
+add.period$ -- 27
+call.type$ -- 8
+change.case$ -- 40
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 81
-empty$ -- 141
-format.name$ -- 23
-if$ -- 400
+cite$ -- 10
+duplicate$ -- 113
+empty$ -- 209
+format.name$ -- 33
+if$ -- 569
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 4
-newline$ -- 28
-num.names$ -- 12
-pop$ -- 28
+int.to.str$ -- 8
+missing$ -- 7
+newline$ -- 43
+num.names$ -- 18
+pop$ -- 38
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 31
 quote$ -- 0
-skip$ -- 61
+skip$ -- 82
 stack$ -- 0
-substring$ -- 93
-swap$ -- 24
+substring$ -- 149
+swap$ -- 27
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 20
+type$ -- 32
 warning$ -- 2
-while$ -- 19
-width$ -- 6
-write$ -- 63
-(There were 4 warnings)
+while$ -- 29
+width$ -- 9
+write$ -- 95
+(There were 2 warnings)

@@ -1,11 +1,22 @@
 \begin{thebibliography}{1}
 
+\bibitem{Fournier:1982:CRS:358523.358553}
+Alain Fournier, Don Fussell, and Loren Carpenter.
+\newblock {C}omputer {R}endering of {S}tochastic {M}odels.
+\newblock {\em Commun. ACM}, 25(6):371--384, June 1982.
+
 \bibitem{Kamal:2007:PCT:1321261.1321264}
 K.~Raiyan Kamal and Yusuf~Sarwar Uddin.
 \newblock {P}arametrically {C}ontrolled {T}errain {G}eneration.
 \newblock In {\em Proceedings of the 5th International Conference on Computer
   Graphics and Interactive Techniques in Australia and Southeast Asia},
   GRAPHITE '07, pages 17--23, New York, NY, USA, 2007. ACM.
+
+\bibitem{Krten:1994}
+Robert Krten.
+\newblock {G}enerating {R}ealistic {T}errain.
+\newblock {\em Dr. Dobb’s Journal: Software Tools for the Professional
+  Programmer}, 1994.
 
 \bibitem{mei:inria-00402079}
 Xing Mei, Philippe Decaudin, and Bao-Gang Hu.
@@ -27,6 +38,11 @@ Jacob Olsen.
 \newblock {R}ealtime {P}rocedural {T}errain {G}eneration: {R}ealtime
   {S}ynthesis of {E}roded {F}ractal {T}errain for {U}se in {C}omputer {G}ames.
 \newblock 2004.
+
+\bibitem{Shimrat:1962:APP:368637.368653}
+M.~Shimrat.
+\newblock {A}lgorithm 112: {P}osition of {P}oint {R}elative to {P}olygon.
+\newblock {\em Commun. ACM}, 5(8):434--, August 1962.
 
 \bibitem{Vitanen:2012}
 Laurii Vitanen.
