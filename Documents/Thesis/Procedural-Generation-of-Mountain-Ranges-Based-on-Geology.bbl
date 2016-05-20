@@ -50,4 +50,11 @@ Laurii Vitanen.
   {G}eneration {U}sing {P}late {T}ectonics.
 \newblock {B}.{S}. {T}hesis, 2012.
 
+\bibitem{Woo:1999:OPG:554539}
+Mason Woo, Jackie Neider, Tom Davis, and Dave Shreiner.
+\newblock {\em OpenGL Programming Guide: The Official Guide to Learning OpenGL,
+  Version 1.2}.
+\newblock Addison-Wesley Longman Publishing Co., Inc., Boston, MA, USA, 3rd
+  edition, 1999.
+
 \end{thebibliography}
