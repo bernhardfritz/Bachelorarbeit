@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Fournier:1982:CRS:358523.358553}
 Alain Fournier, Don Fussell, and Loren Carpenter.
@@ -25,6 +25,11 @@ Xing Mei, Philippe Decaudin, and Bao-Gang Hu.
 \newblock In Marc Alexa, Steven~J. Gortler, and Tao Ju, editors, {\em {PG '07 -
   15th Pacific Conference on Computer Graphics and Applications}}, Pacific
   Graphics 2007, pages 47--56, Maui, United States, October 2007. {IEEE}.
+
+\bibitem{moller2005fast}
+Tomas M{\"o}ller and Ben Trumbore.
+\newblock Fast, minimum storage ray/triangle intersection.
+\newblock In {\em ACM SIGGRAPH 2005 Courses}, page~7. ACM, 2005.
 
 \bibitem{Musgrave:1989:SRE:74333.74337}
 F.~K. Musgrave, C.~E. Kolb, and R.~S. Mace.
