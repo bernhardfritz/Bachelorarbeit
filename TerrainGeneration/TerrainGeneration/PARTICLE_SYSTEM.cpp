@@ -193,7 +193,7 @@ void PARTICLE_SYSTEM::removeDeadParticles() {
             if(it->lifespan() == 0) {
                 int column = it->position().x * (double)(heightmap->getColumns() + 1);
                 int row = it->position().z * (double)(heightmap->getRows() + 1);
-                float sediment = (PARTICLE_DEFAULT_SEDIMENT_CAPACITY - it->sedimentCapacity()) * PARTICLE_ACIDITY;
+                float sediment = (PARTICLE_DEFAULT_SEDIMENT_CAPACITY - it->sedimentCapacity()) * PARTICLE_ACIDITY * 0.1f; // 0.1f so no spikes appear
                 
                 for(int i = -1; i <= 1; i++) {
                     for(int j = -1; j <= 1; j++) {

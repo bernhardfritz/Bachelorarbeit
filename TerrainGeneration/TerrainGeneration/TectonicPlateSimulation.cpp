@@ -281,7 +281,7 @@ void MyContactListener::BeginContact(b2Contact *contact) {
         int x1 = ((point2.x + 20.0f) / 40.0f) * heightmap.getColumns();
         int y1 = ((point2.y) / 40.0f) * heightmap.getRows();
         //printf("Converted to: %d %d, %d %d\n", x0, y0, x1, y1);
-        RMP::perform(heightmap, x0, y0, x1, y1, 100, 0.001f);
+        RMP::perform(heightmap, x0, y0, x1, y1, 150, 0.0015f);
     }
 }
 

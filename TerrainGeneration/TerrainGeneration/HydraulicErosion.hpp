@@ -19,7 +19,7 @@ public:
     // K_s ... Solubility constant
     // K_e ... Evaporation coefficient
     // K_c ... Sediment capacity coefficient
-    static void perform(Heightmap& heightmap, int iterations, float K_r = 0.01f, float K_s = 0.01f, float K_e = 0.5f, float K_c = 0.01f);
+    static void perform(Heightmap& heightmap, int iterations, float K_r = 0.01f, float K_s = 0.01f, float K_e = 0.5f, float K_c = 0.05f);
 };
 
 #endif /* HydraulicErosion_hpp */
