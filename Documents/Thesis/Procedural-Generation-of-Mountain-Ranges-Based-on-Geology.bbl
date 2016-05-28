@@ -44,6 +44,13 @@ Jacob Olsen.
   {S}ynthesis of {E}roded {F}ractal {T}errain for {U}se in {C}omputer {G}ames.
 \newblock 2004.
 
+\bibitem{Reinhard:2002:PTR:566570.566575}
+Erik Reinhard, Michael Stark, Peter Shirley, and James Ferwerda.
+\newblock Photographic tone reproduction for digital images.
+\newblock In {\em Proceedings of the 29th Annual Conference on Computer
+  Graphics and Interactive Techniques}, SIGGRAPH '02, pages 267--276, New York,
+  NY, USA, 2002. ACM.
+
 \bibitem{Shimrat:1962:APP:368637.368653}
 M.~Shimrat.
 \newblock {A}lgorithm 112: {P}osition of {P}oint {R}elative to {P}olygon.

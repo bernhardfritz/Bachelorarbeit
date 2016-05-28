@@ -75,15 +75,89 @@ for each vertex v of polygon:
 Once the polygons (i.e. tectonic plates) are all set up, collision callbacks provided by Box2D are used to act whenever a collision occurs. For the tectonic plate simulation only the collisions between the dynamic objects, i.e. the plates, are important. Therefore the program is set up to only act on collisions in which two dynamic objects are involved. Additionally, collisions between two polygons which do not have two collision points are disregarded. By enforcing these constraints the program will only act on collisions that occur between two dynamic objects and consist of exactly two collision points. Finally, in order to use these collision points for heightmap alterations, they have to be transformed from the Box2D coordinate system to the heightmap coordinate system.
 
 ### Generation of mountain ranges due to tectonic plate collisions
-Each tectonic plate collision results in two collision points due to the custom collision callbacks mentioned before. Using these points one can draw an imaginary line onto the heightmap. The goal would be to procedurally generate a mountain range along this imaginary line. This is where an advanced version of RMP algorithm comes into place. This version of RMP will also use a Voronoi diagram to generate arbitrary polygons. Different from the previous RMP implementation this time there will be two coordinate pairs instead of a single one. Between these coordinates Bresenham line algorithm will be performed and all colors passed will be remembered. In the next step the Voronoi diagram will be projected onto the heightmap and all heightmap vertices inside polygons that are colored with one of the remembered colors will be raised in height. This procedure will be called each time a tectonic plate collision occurs. As a result procedurally generated mountain ranges will arise between two colliding tectonic plates.
+Each tectonic plate collision results in two collision points due to the custom collision callbacks mentioned before. Using these points one can draw an imaginary line onto the heightmap. The goal would be to procedurally generate a mountain range along this imaginary line. This is where an advanced version of RMP algorithm comes into place. This version of RMP will also use a Voronoi diagram to generate arbitrary polygons. Different from the previous RMP implementation this time there will be two coordinate pairs instead of a single one. Between these coordinates Bresenham line algorithm will be performed and all colors passed will be remembered. In the next step the Voronoi diagram will be projected onto the heightmap and all heightmap vertices inside polygons that are colored with one of the remembered colors will be raised in height. This procedure will be repeated each time a tectonic plate collision occurs. As a result procedurally generated mountain ranges will arise between two colliding tectonic plates.
 
 ## Visualization techniques
 ### Texture splatting
-### Bloom-Filter
-#### Highpass-Filter
-#### Gauss-Filter
-### Taking screenshots using stblib
-### Video recording using ffmpeg
+Texture splatting can be used to make a computer generated terrain more visually appealing. By using textures and blending them together based on height and slope it is possible to texture procedurally generated terrain regardless of shape and complexity of terrain features. For this application four textures have been chosen:
+* Sand
+* Grass
+* Stone
+* Snow
+
+Blending textures together is performed by the fragment shader. The OpenGL shader language offers a function "mix" that allows to linearely interpolate between two texels. Mix consists of three parameters:
+* First texel color
+* Second texel color
+* A floating-point number between 0.0 and 1.0 representing the mixture ratio
+
+```
+color0 = sand texture
+color1 = grass texture
+color2 = rock texture
+color3 = snow texture
+
+max_height = max height of terrain
+min_height = min height of terrain
+
+difference = max_height - min_height
+delta = difference / 4
+threshold0 = delta * 1
+threshold1 = delta * 2
+threshold2 = delta * 3
+
+position = pass-through position from vertex shader
+
+if position.y < threshold0:
+  texel = color0
+if position.y >= threshold0 && position.y < threshold0 + delta):
+  texel = mix(color0, color1, (position.y - threshold0) / delta)
+if position.y >= threshold0 + delta && position.y < threshold1):
+  texel = color1
+// the remaining textures are blended similarily...
+```
+Up to now only the height information is used to determine which texture should be applied on the terrain. Of course this model does not look too realistic since the slope information has not been considered so far. Grass does not grow on steep slopes. Same goes for snow. Snow will only be at rest on flat areas. Therefore in steep slopes grass and snow texels have to be overridden by rock texels. A common approach to determine the steepness of a slope is to use the normal vectors' y coordinates. Using thresholds it is again possible to utilize OpenGL's mix function to mix two texels. Unfortunately there are some special cases, namely steep slopes inside an area between two height thresholds which required bilinear interpolation instead of linear interpolation. These cases were solved by calling mix in a nested way, meaning the first or second parameter of mix is itself the result of a previous mix invocation.
+
+### Bloom shader effect
+A bloom shader effect is a popular choice to enhance the realism of a scene. The goal is to reproduce image imperfections caused by real-world cameras. Brightly lit spots often appear to be glowing when captured with a camera. To model this effect two filters are necessary:
+* Bright-pass filter
+* Blur filter
+The bright-pass filter will be applied to the original frame. After that the result will be blurred using a blur filter, e.g. a two-pass Gaussian filter. Finally the original frame as well as the blurred bright-pass frame will be blended together resulting in an image with brightly glowing regions.
+
+#### Bright-pass filter
+This filter makes bright regions even brighter while not modifying dark regions. It is possible to specify the range of colors to be brightened as well as the amount they should be brightened by. The bright-pass shader code is based on Erik Reinhard's formula
+L_d(x,y) = (L(x,y) * (1 + L(x,y) / L_white^2)) / (1 + L(x,y))
+which can be found in his paper "Photographic Tone Reproduction for Digital Images".
+
+#### Two-pass Gaussian filter
+A two-pass Gaussian filter consists of two passes, namely a horizontal and a vertical Gaussian blur pass. During these passes each pixel will be averaged using a one-dimensional Gaussian kernel. The two-pass Gaussian filter is computationally less expensive than the one-pass Gaussian filter using a two-dimensional Gaussian kernel. For this filter the vertex shader is responsible for setting up the pixel coordinates to be averaged by the fragment shader based on Gauss distributed weights.
+Vertex shader pseudocode:
+```
+UV = input pixel location
+direction = (1,0) if this is a horizontal pass or (0,1) if this a vertical pass
+offsets[] = a one-dimensional Gaussian kernel
+
+for i between 0 and offsets.length:
+  blurUV[i] = UV + (direction.x * offsets[i], direction.y * offsets[i])
+```
+Fragment shader pseudocode:
+```
+texture = input frame
+blurUV[] = array of input pixel locations to be averaged
+weights[] = an array of Gauss distributed values based on the previously used Gaussian kernel
+
+color = (0,0,0) // output color
+
+for i between 0 and weights.length:
+  color += texture.pixelAt(blurUV[i]) * weights[i]
+```
+
+### Capturing screenshots with stblib
+OpenGL provides a function called glReadPixels which copies a specified region of pixels from the video card memory to the RAM. RGB images require width * height * 3 bytes per pixel. Since a char requires exactly one byte of space it is commonly used to represent color channel information. In fact a library called stblib written by Sean T. Barret et al is perfectly capable of saving these kinds of character arrays in various file formats like .jpg or .png and was used for this purpose.
+
+### Video recording with ffmpeg
+To efficiently record a video it is necessary to allocate enough space beforehand. Reallocating space during the capturing process leads to noticeable stuttering and is not an option. The following formula was used to calculate the amount of required space:
+width * height * 3 * fps * seconds bytes
+Using OpenGL's glReadPixels function it was possible to save each frame into an array of type char. Once all the frames are captured they need to be encoded using ffmpeg's MPEG2 encoding algorithm. Therefore each frame has to be converted from RGB to YCbCr color space using ffmpeg library. For some reason ffmpeg's YCbCr color conversion algorithm flips the frame vertically during conversion. After flipping the frame back it is ready to be encoded by ffmpeg. Once all frames are encoded, ffmpeg will save the video as .mpg file on the harddisk. The file format .mpg can be played with almost any video player and does not require too much space due to MPEG2 encoding algorithm provided by ffmpeg.
 
 # 4. results
 ...
