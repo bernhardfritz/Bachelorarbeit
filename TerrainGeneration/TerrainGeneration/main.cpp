@@ -56,7 +56,9 @@ using namespace glm;
 
 GLFWwindow* window;
 
-Camera camera(0.5f, 1.0f, 0.5f, 0.0f, 0.0f, 0.20f);
+Camera camera(0.5f, 0.45f, 1.25f, -M_PI/6.0f, -M_PI_2, 0.20f);
+// Camera camera(0.5f, 0.25f, 1.25f, -M_PI/12.0f, -M_PI_2, 0.20f); crooked plane
+// Camera camera(0.5f, 1.0f, 0.5f, 0.0f, 0.0f, 0.20f); normal
 mat4 view;
 mat4 proj;
 MousePicker mousePicker;
@@ -267,7 +269,47 @@ int main() {
     }
     heightmap.calculateNormals();
     
-    //heightmap.loadHeightmap("terrain.png", 0.2f);
+    /* angled area
+    float maximum_height = 0.5;
+    float current_height = maximum_height;
+    for(int row = 0; row <= heightmap.getRows(); row++) {
+        for(int column = 0; column <= heightmap.getColumns(); column++) {
+            heightmap.setHeightAt(column, row, current_height);
+        }
+        current_height -= maximum_height / heightmap.getRows();
+    }
+    heightmap.calculateNormals();
+    */
+    
+    /*
+    vec2 p0(0, 0);
+    vec2 p1(heightmap.getColumns(), 0);
+    vec2 p2(heightmap.getColumns(), heightmap.getRows());
+    vec2 p3(0, heightmap.getRows());
+    for(int d = 0; d < 128; d++) {
+        for(int i = p0.x; i < p1.x; i++) {
+            heightmap.changeHeightAt(i, p0.y, d * 0.0025f);
+        }
+        for(int i = p1.y; i < p2.y; i++) {
+            heightmap.changeHeightAt(p1.x, i, d * 0.0025f);
+        }
+        for(int i = p2.x; i > p3.x; i--) {
+            heightmap.changeHeightAt(i, p2.y, d * 0.0025f);
+        }
+        for(int i = p3.y; i > p0.y; i--) {
+            heightmap.changeHeightAt(p3.x, i, d * 0.0025f);
+        }
+        p0 += vec2(1,1);
+        p1 += vec2(-1,1);
+        p2 += vec2(-1,-1);
+        p3 += vec2(1,-1);
+    }
+    heightmap.calculateNormals();
+    */
+    
+    //heightmap.loadHeightmap("hemisphere2.png", 0.3f); hemisphere
+    
+    heightmap.loadHeightmap("terrain.png", 0.2f);
     
     //hm.getMaterial()->setSpecularReflectance(0.0f);
     //Heightmap hm(128, 128);
@@ -309,7 +351,7 @@ int main() {
     
     TectonicPlateSimulation tps(heightmap);
     
-    camera.setY(heightmap.getMaxHeight());
+    //camera.setY(heightmap.getMaxHeight());
     
     Fog fog(0.67f, 1.5f);
     
@@ -570,7 +612,7 @@ int main() {
             ThermalErosion::perform(heightmap, 50);
         }
         if(keyboard.getState(GLFW_KEY_T)) {
-            ThermalErosion::perform(heightmap, 100);
+            ThermalErosion::perform(heightmap, 1);
         }
         if(keyboard.getState(GLFW_KEY_H)) {
             HydraulicErosion::perform(heightmap, 100);
@@ -588,7 +630,12 @@ int main() {
                 keyboard.setTimestamp(GLFW_KEY_Z, glfwGetTime());
             }
         }
-        if(toggleRain) particleSystem.rain(5);
+        if(toggleRain) {
+            particleSystem.rain(0.5, 5);
+            /*static int count = 1;
+            HydraulicErosion::perform(heightmap, 100);
+            printf("%d\n", count++);*/
+        }
         
         if(keyboard.getState(GLFW_KEY_M)) {
             particleSystem.updateMetaMesh();

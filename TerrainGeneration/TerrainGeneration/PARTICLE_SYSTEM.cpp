@@ -208,11 +208,11 @@ void PARTICLE_SYSTEM::removeDeadParticles() {
     }
 }
 
-void PARTICLE_SYSTEM::rain(int iterations) {
+void PARTICLE_SYSTEM::rain(double height, int iterations) {
     for(int i = 0; i < iterations; i++) {
         double x = drand48() * boxSize.x;
         double z = drand48() * boxSize.z;
-        double y = 0.25;
+        double y = height;
         (*grid)(0,0,0).push_back(PARTICLE(VEC3D(x,y,z)));
     }
 }

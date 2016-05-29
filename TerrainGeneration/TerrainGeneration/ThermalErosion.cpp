@@ -41,7 +41,7 @@ void ThermalErosion::perform(Heightmap &heightmap, int iterations, float talus) 
                         int x = column + ((i & 0b10) ? 1 : -1);
                         int y = row + ((i & 0b01) ? 1 : -1);
                         if(d_i[i] > talus) {
-                            float factor = pow(heightmap.getMaxHeight() - h, 3.0f);
+                            float factor = pow(heightmap.getMaxHeight() - h, 2.0f); // 3.0f
                             float dh = factor * (d_max - talus) * (d_i[i]/d_total);
                             h -= dh;
                             heightmap.setHeightAt(column, row, h);

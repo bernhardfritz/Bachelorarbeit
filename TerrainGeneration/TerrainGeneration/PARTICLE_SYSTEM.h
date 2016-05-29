@@ -92,7 +92,7 @@ public:
   
   void toggleTumble();
     
-    void rain(int iterations = 1);
+    void rain(double height, int iterations = 1);
     
     void removeDeadParticles();
     

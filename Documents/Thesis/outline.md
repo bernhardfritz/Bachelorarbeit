@@ -160,4 +160,5 @@ width * height * 3 * fps * seconds bytes
 Using OpenGL's glReadPixels function it was possible to save each frame into an array of type char. Once all the frames are captured they need to be encoded using ffmpeg's MPEG2 encoding algorithm. Therefore each frame has to be converted from RGB to YCbCr color space using ffmpeg library. For some reason ffmpeg's YCbCr color conversion algorithm flips the frame vertically during conversion. After flipping the frame back it is ready to be encoded by ffmpeg. Once all frames are encoded, ffmpeg will save the video as .mpg file on the harddisk. The file format .mpg can be played with almost any video player and does not require too much space due to MPEG2 encoding algorithm provided by ffmpeg.
 
 # 4. results
+Comparison of both hydraulic erosion algorithms on pyramid, half-sphere, angled surface
 ...

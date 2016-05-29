@@ -133,6 +133,8 @@
 		70E3C5E61BEFD4DF00E1DD90 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5E41BEFD4DF00E1DD90 /* Material.cpp */; };
 		70E3C5E91BF0E89600E1DD90 /* Heightmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70E3C5E71BF0E89600E1DD90 /* Heightmap.cpp */; };
 		70E3C5EF1BF27F7E00E1DD90 /* terrain.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70E3C5EE1BF27F7000E1DD90 /* terrain.png */; };
+		70F392981CFB60A7000EF4D8 /* hemisphere.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70F392971CFB6093000EF4D8 /* hemisphere.png */; };
+		70F3929A1CFB6232000EF4D8 /* hemisphere2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 70F392991CFB6227000EF4D8 /* hemisphere2.png */; };
 		70FA2FC81C3C63D600A53B93 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70FA2FC61C3C63D600A53B93 /* Ray.cpp */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +154,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				70F3929A1CFB6232000EF4D8 /* hemisphere2.png in CopyFiles */,
+				70F392981CFB60A7000EF4D8 /* hemisphere.png in CopyFiles */,
 				70DD39641CA84DC700D09E99 /* particle.png in CopyFiles */,
 				70DD39651CA84DC700D09E99 /* particle2.png in CopyFiles */,
 				70DD39601CA5991400D09E99 /* particlesystem_vs.glsl in CopyFiles */,
@@ -399,6 +403,8 @@
 		70E3C5E81BF0E89600E1DD90 /* Heightmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Heightmap.hpp; sourceTree = "<group>"; };
 		70E3C5ED1BF273B100E1DD90 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		70E3C5EE1BF27F7000E1DD90 /* terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain.png; sourceTree = "<group>"; };
+		70F392971CFB6093000EF4D8 /* hemisphere.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hemisphere.png; sourceTree = "<group>"; };
+		70F392991CFB6227000EF4D8 /* hemisphere2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hemisphere2.png; sourceTree = "<group>"; };
 		70FA2FC61C3C63D600A53B93 /* Ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ray.cpp; sourceTree = "<group>"; };
 		70FA2FC71C3C63D600A53B93 /* Ray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ray.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -575,6 +581,8 @@
 				70327E2D1C81121E009412CE /* water4.png */,
 				70DD39621CA84DB200D09E99 /* particle.png */,
 				70DD39631CA84DB200D09E99 /* particle2.png */,
+				70F392971CFB6093000EF4D8 /* hemisphere.png */,
+				70F392991CFB6227000EF4D8 /* hemisphere2.png */,
 			);
 			name = Textures;
 			sourceTree = "<group>";
