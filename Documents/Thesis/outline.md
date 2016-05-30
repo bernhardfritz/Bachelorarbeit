@@ -124,7 +124,7 @@ A bloom shader effect is a popular choice to enhance the realism of a scene. The
 The bright-pass filter will be applied to the original frame. After that the result will be blurred using a blur filter, e.g. a two-pass Gaussian filter. Finally the original frame as well as the blurred bright-pass frame will be blended together resulting in an image with brightly glowing regions.
 
 #### Bright-pass filter
-This filter makes bright regions even brighter while not modifying dark regions. It is possible to specify the range of colors to be brightened as well as the amount they should be brightened by. The bright-pass shader code is based on Erik Reinhard's formula
+This filter makes bright regions even brighter while not modifying dark regions. It is possible to specify the range of colors to be brightened as well as the amount they should be brightened by. The bright-pass shader code is based on Erik Reinhard's formula:
 L_d(x,y) = (L(x,y) * (1 + L(x,y) / L_white^2)) / (1 + L(x,y))
 which can be found in his paper "Photographic Tone Reproduction for Digital Images".
 

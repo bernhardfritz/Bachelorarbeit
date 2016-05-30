@@ -313,8 +313,8 @@ int main() {
     
     //hm.getMaterial()->setSpecularReflectance(0.0f);
     //Heightmap hm(128, 128);
-    //Fault::perform(hm, 1.0f, 1024);
-    //DiamondSquare::perform(hm, 0.2f);
+    //Fault::perform(heightmap, 2.0f, 1024);
+    //DiamondSquare::perform(heightmap, 0.2f);
     //RMP::perform(hm, 50, 3, 1);
     //RMP::perform(hm, 100);
     //ThermalErosion::perform(hm, 2.0f, 0.001f, 1000);
@@ -422,7 +422,14 @@ int main() {
     
     Quad quad;
 
+    /*static int screenshot = 0;
+    static int status = 0;*/
+    
     while(!glfwWindowShouldClose(window)) {
+        /*if(keyboard.getState(GLFW_KEY_C)) {
+            screenshot = status+1;
+            status = (status+1)%5;
+        }*/
         passthroughFramebuffer->bind();
         {
             updateFpsCounter(window);
@@ -480,6 +487,10 @@ int main() {
                 glUniform1i(is_water, 0);
                 glUniform1i(textured, 0);
             }
+            /*if(screenshot == 1) {
+                Utils::screenshot();
+                screenshot = 0;
+            }*/
         }
         passthroughFramebuffer->unbind();
         
@@ -502,7 +513,10 @@ int main() {
             glUniform1i(depID, 12);
             
             quad.draw();
-            
+            /*if(screenshot == 2) {
+                Utils::screenshot();
+                screenshot = 0;
+            }*/
         }
         brightpassFramebuffer->unbind();
         
@@ -528,6 +542,10 @@ int main() {
             glUniform2fv(dirID, 1, value_ptr(vec2(1.0f, 0.0f)));
             
             quad.draw();
+            /*if(screenshot == 3) {
+                Utils::screenshot();
+                screenshot = 0;
+            }*/
         }
         horizontalBlurFramebuffer->unbind();
         
@@ -553,6 +571,10 @@ int main() {
             glUniform2fv(dirID, 1, value_ptr(vec2(0.0f, 1.0f)));
             
             quad.draw();
+            /*if(screenshot == 4) {
+                Utils::screenshot();
+                screenshot = 0;
+            }*/
         }
         verticalBlurFramebuffer->unbind();
         
@@ -577,6 +599,10 @@ int main() {
         
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         quad.draw();
+        /*if(screenshot == 5) {
+            Utils::screenshot();
+            screenshot = 0;
+        }*/
         
         // put the stuff we've been drawing onto the display
         glfwSwapBuffers(window);

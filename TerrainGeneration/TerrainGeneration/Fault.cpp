@@ -19,7 +19,7 @@ void Fault::perform(Heightmap &heightmap, float roughness, int iterations) {
             for(int column = 0; column <= heightmap.getColumns(); column++) {
                 vec3 v(column, 0, row);
                 float sign = ((glm::cross(v - v1, line)).y >= 0.0f) ? 1.0f : -1.0f;
-                heightmap.setHeightAt(column, row, glm::max(0.0f, heightmap.getHeightAt(column, row) + sign * roughness));
+                heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + sign * roughness);
             }
         }
         //roughness *= 1.0f - 1.0f / iterations;
