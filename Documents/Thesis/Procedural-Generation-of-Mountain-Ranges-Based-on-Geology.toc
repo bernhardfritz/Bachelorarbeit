@@ -4,24 +4,24 @@
 \contentsline {chapter}{\numberline {2}Related Work}{3}
 \contentsline {chapter}{\numberline {3}Methods}{5}
 \contentsline {section}{\numberline {3.1}Diamond-Square algorithm}{5}
-\contentsline {section}{\numberline {3.2}Fault algorithm}{5}
-\contentsline {section}{\numberline {3.3}Repeated Magnification and Probing (RMP) algorithm}{5}
-\contentsline {subsection}{\numberline {3.3.1}Graph-based implementation}{5}
-\contentsline {subsection}{\numberline {3.3.2}Voronoi-based implementation}{6}
-\contentsline {section}{\numberline {3.4}Thermal erosion algorithm}{6}
-\contentsline {section}{\numberline {3.5}Hydraulic erosion algorithm}{7}
-\contentsline {subsection}{\numberline {3.5.1}Implementation based on previous research}{7}
-\contentsline {subsection}{\numberline {3.5.2}Evaluation of various shallow water models}{7}
-\contentsline {subsection}{\numberline {3.5.3}Implementation based on Smoothed Particle Hydrodynamics (SPH) simulation}{8}
-\contentsline {section}{\numberline {3.6}Tectonic plate simulation}{9}
-\contentsline {subsection}{\numberline {3.6.1}Implementation using Box2D physics engine}{9}
-\contentsline {subsection}{\numberline {3.6.2}Generation of mountain ranges due to tectonic plate collisions}{10}
-\contentsline {section}{\numberline {3.7}Visualization techniques}{11}
-\contentsline {subsection}{\numberline {3.7.1}Texture splatting}{11}
-\contentsline {subsection}{\numberline {3.7.2}Bloom shader effect}{12}
-\contentsline {subsubsection}{Bright-pass filter}{12}
-\contentsline {subsubsection}{Two-pass Gaussian filter}{12}
-\contentsline {subsection}{\numberline {3.7.3}Capturing screenshots with stblib}{13}
-\contentsline {subsection}{\numberline {3.7.4}Video recording with ffmpeg}{13}
-\contentsline {chapter}{\numberline {4}Results}{15}
-\contentsline {chapter}{\numberline {5}Conclusion \& Future Work}{17}
+\contentsline {section}{\numberline {3.2}Fault algorithm}{6}
+\contentsline {section}{\numberline {3.3}RMP algorithm}{7}
+\contentsline {subsection}{\numberline {3.3.1}Graph-based implementation}{8}
+\contentsline {subsection}{\numberline {3.3.2}Voronoi-based implementation}{8}
+\contentsline {section}{\numberline {3.4}Thermal erosion algorithm}{9}
+\contentsline {section}{\numberline {3.5}Hydraulic erosion algorithm}{9}
+\contentsline {subsection}{\numberline {3.5.1}Implementation based on previous research}{9}
+\contentsline {subsection}{\numberline {3.5.2}Evaluation of various shallow water models}{10}
+\contentsline {subsection}{\numberline {3.5.3}Implementation based on Smoothed Particle Hydrodynamics (SPH) simulation}{10}
+\contentsline {section}{\numberline {3.6}Tectonic plate simulation}{11}
+\contentsline {subsection}{\numberline {3.6.1}Implementation using Box2D physics engine}{11}
+\contentsline {subsection}{\numberline {3.6.2}Generation of mountain ranges due to tectonic plate collisions}{13}
+\contentsline {section}{\numberline {3.7}Visualization techniques}{13}
+\contentsline {subsection}{\numberline {3.7.1}Texture splatting}{13}
+\contentsline {subsection}{\numberline {3.7.2}Bloom shader effect}{14}
+\contentsline {subsubsection}{Bright-pass filter}{14}
+\contentsline {subsubsection}{Two-pass Gaussian filter}{15}
+\contentsline {subsection}{\numberline {3.7.3}Capturing screenshots with stblib}{15}
+\contentsline {subsection}{\numberline {3.7.4}Video recording with ffmpeg}{15}
+\contentsline {chapter}{\numberline {4}Results}{17}
+\contentsline {chapter}{\numberline {5}Conclusion \& Future Work}{19}

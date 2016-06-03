@@ -10,8 +10,38 @@
 %----------------------------------------------------------------------------------------
 % Include required packages
 \usepackage{graphicx}
+\graphicspath{ {./images/} }
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\usepackage{cleveref}
 
 \usepackage[english]{babel}
 %\usepackage[ngerman]{babel}
@@ -120,13 +150,140 @@ Kamal and Uddin evaluated various terrain generation algorithms like Diamond-Squ
 \label{sec:methods}
 
 \section{Diamond-Square algorithm}
-This algorithm was first introduced by Fournier et al in 1982 \cite{Fournier:1982:CRS:358523.358553}. It can be considered as an extension of Midpoint-Displacement algorithm. By recursively subdividing a line into segments of equal length and displacing the resulting midpoints by a random amount, Midpoint-Displacement algorithm is able to produce a fairly arbitrary looking 1D-landscape. To put this to the next level Diamond-Square algorithm proceeds in a similar fashion. In this case, square tiles are recursively subdivided and their midpoints are displaced by a random amount.
+This algorithm was first introduced by Fournier et al in 1982 \cite{Fournier:1982:CRS:358523.358553}. It can be considered as an extension of Midpoint-Displacement (MPD) algorithm. By recursively subdividing a line into segments of equal length and displacing the resulting midpoints by a random amount, MPD algorithm is able to produce a fairly arbitrary looking 1D-landscape. \Cref{fig:mpd0,fig:mpd1,fig:mpd2} depict the first 2 iterations of MPD algorithm.
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{mpd0.png}
+  \caption{MPD init}\label{fig:mpd0}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{mpd1.png}
+  \caption{MPD iteration 1}\label{fig:mpd1}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{mpd2.png}
+  \caption{MPD iteration 2}\label{fig:mpd2}
+\endminipage
+\end{figure}
+
+\noindent To take MPD algorithm to the next level Diamond-Square (DS) algorithm allows to procedurally generate 2D-landscape. During initialization, DS algorithm raises the heightmap's corner vertices to an arbitrary height. Once the corner vertices have been initialized a ``Diamond-Step'' followed by a ``Square-Step'' will be performed in an alternating fashion until all vertices have been initialized. The following pseudocode will demonstrate how DS algorithm can be implemented:
+
+\begin{lstlisting}[caption=DS pseudocode]
+function randomFloat(range):
+  return a random floating point number in interval [0, range)
+
+procedure diamondStep(hm, roughness, left, right, top, bottom):
+  midpointColumn = left+(right-left)/2
+  midpointRow = top+(bottom-top)/2
+  avgHeight = ... // average height of square corners
+  r = roughness * (randomFloat(2)-1)
+  hm.setHeightAt(midpointColumn, midpointRow, avgHeight+r)
+
+procedure squareStep(hm, roughness, left, right, top, bottom):
+  midpointColumn = left+(right-left)/2
+  midpointRow = top+(bottom-top)/2
+  avgHeightTop = ... // average height of top diamond corners
+  r = roughness * (randomFloat(2)-1)
+  hm.setHeightAt(midpointColumn, top, avgHeightTop+r)
+  ... // similar steps for left, right and bottom diamond
+
+procedure ds(hm, roughness, left, right, top, bottom):
+  diamondStep(hm, roughness, left, right, top, bottom)
+  squareStep(hm, roughtness, left, right, top, bottom)
+
+procedure perform(hm, roughness):
+  columns = hm.getColumns()
+  rows = hm.getRows()
+
+  // initialize heightmap corners
+  hm.setHeightAt(0, 0, roughness)
+  hm.setHeightAt(columns, 0, roughness)
+  hm.setHeightAt(0, rows, roughness)
+  hm.setHeightAt(columns, rows, roughness)
+
+  while columns > 1:
+    for row = 0; row < hm.getRows(); row += rows:
+      for column = 0; column < hm.getColumns(); column += columns:
+        ds(hm, roughness, column, column+columns, row, row+rows)
+    roughness /= 2.0
+    columns /= 2
+    rows /= 2
+\end{lstlisting}
+
+\noindent \Cref{fig:ds0,fig:ds1,fig:ds2,fig:ds3,fig:ds4,fig:ds5} depict the DS algorithm applied to a 4x4 heightmap. Orange vertices are being altered in height, while blue vertices contribute to the average height calculation.
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{ds0.png}
+  \caption{DS init}\label{fig:ds0}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{ds1.png}
+  \caption{DS 1}\label{fig:ds1}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{ds2.png}
+  \caption{DS 2}\label{fig:ds2}
+\endminipage
+\end{figure}
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{ds3.png}
+  \caption{DS 3}\label{fig:ds3}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{ds4.png}
+  \caption{DS 4}\label{fig:ds4}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{ds5.png}
+  \caption{DS 5}\label{fig:ds5}
+\endminipage
+\end{figure}
 
 \section{Fault algorithm}
-This algorithm was first described by Krten \cite{Krten:1994}. He proposed to randomly draw a line across the heightmap and split the landscape into two regions. By raising one and lowering the other region and repeating the whole process several times, interesting mountain-like features can emerge. Due to the sheer randomness of this algorithm it is impossible to control the position, shape or spread of the resulting mountains.
+This algorithm was first described by Krten \cite{Krten:1994}. He proposed to randomly draw a line across the heightmap and split the landscape into two regions. By raising one and lowering the other region and repeating the whole process several times, interesting mountain-like features can emerge. Due to the sheer randomness of this algorithm it is impossible to control the position, shape or spread of the resulting mountains. However, it is possible to control the roughness of the generated terrain by adjusting the amount by which vertices get raised or lowered per iteration.
 
-\section{Repeated Magnification and Probing (RMP) algorithm}
-RMP was created by Kamal and Uddin \cite{Kamal:2007:PCT:1321261.1321264} and can be categorized as parametrically controllable mountain generation algorithm. Height, spread and location of the mountain can be controlled by parameters. This algorithm is similar to Fault algorithm, meaning that only selected regions are repeatedly altered in height. The process how these regions are obtained is not described in Kamal and Uddin's paper \cite{Kamal:2007:PCT:1321261.1321264}. In the following two techniques will be presented that are capable of generating randomly distributed polygon-like shapes which can be used for RMP algorithm.
+To determine if a heightmap vertex needs to be raised or lowered, a boolean function called $raise$ will be used. Function $raise$ is defined as follows:
+\begin{align*}
+sgn(x) &=
+\begin{cases}
+  -1 & \text{if}\ x < 0, \\
+  0 & \text{if}\ x = 0, \\
+  1 & \text{if}\ x > 0.
+\end{cases} \\
+\mathbf{v} &= (v_1, v_2, v_3)^\intercal \\
+raise(\mathbf{v}) &=
+\begin{cases}
+  0 & \text{if}\ sgn(v_2) = -1, \\
+  1 & \text{if}\ sgn(v_2) \geq 0.
+\end{cases}
+\end{align*}
+Let vectors $\mathbf{a}$ and $\mathbf{b}$ describe a random cutting line. Then a vertex pointed to by vector $\mathbf{p}$ will be raised in height if $raise((\mathbf{p}-\mathbf{a}) \times (\mathbf{b} - \mathbf{a}))$ equals 1 and lowered otherwise. \Cref{fig:fault0,fig:fault1,fig:fault2,fig:fault3} will depict the first 3 iterations of Fault algorithm using different shades of green. Light green represents high and dark green low elevation respectively.
+
+\begin{figure}[!htb]
+\minipage{0.24\textwidth}
+  \includegraphics[width=\linewidth]{fault0.png}
+  \caption{Fault init}\label{fig:fault0}
+\endminipage\hfill
+\minipage{0.24\textwidth}
+  \includegraphics[width=\linewidth]{fault2.png}
+  \caption{Fault 1}\label{fig:fault1}
+\endminipage\hfill
+\minipage{0.24\textwidth}
+  \includegraphics[width=\linewidth]{fault4.png}
+  \caption{Fault 2}\label{fig:fault2}
+\endminipage\hfill
+\minipage{0.24\textwidth}%
+  \includegraphics[width=\linewidth]{fault6.png}
+  \caption{Fault 3}\label{fig:fault3}
+\endminipage
+\end{figure}
+
+\section{RMP algorithm}
+RMP stands for ``Repeated Magnification and Probing'', was created by Kamal and Uddin \cite{Kamal:2007:PCT:1321261.1321264} and can be categorized as parametrically controllable mountain generation algorithm. Height, spread and location of the mountain can be controlled by parameters. This algorithm is similar to Fault algorithm, meaning that only selected regions are repeatedly altered in height. The process how these regions are obtained is not described in Kamal and Uddin's paper \cite{Kamal:2007:PCT:1321261.1321264}. In the following two techniques will be presented that are capable of generating randomly distributed polygon-like shapes which can be used for RMP algorithm.
 
 \subsection{Graph-based implementation}
 This implementation starts by placing 4 lines along the landscape borders as well as l randomly distributed cutting lines all over the landscape. In the next step all line intersections will be determined. These intersections are represented as vertices in an undirected graph. A line can have several intersections. Therefore they will be iterated through from the start of the line to the end. Intersections connected by a cutting line will also be connected by an edge in the graph respectively. By using a Depth-First-Search (DFS) based algorithm all minimal cycles of the graph will be determined. These cycles represent the polygon shapes produced by the previously placed cutting lines. Once the polygons are obtained another undirected graph will be produced. This time the vertices of the graph are represented by polygons. In this graph 2 vertices are only connected by an edge if both polygons share a same cutting line. In this newly generated graph another DFS will be performed. As starting point of the DFS the polygon which should contain the desired mountain peak is chosen. The combined region of the first r elements of the DFS will be raised in height. A point-in-polygon test, originated by Shirmat \cite{Shimrat:1962:APP:368637.368653} and later translated to C by W. Randolph Franklin, was used to determine if a heightmap point should be affected by height alterations or not. The whole procedure will be repeated n times. After several tests, it was clear that the graph-based implementation was far too slow to be used for realtime applications. Therefore an alternative implementation was considered.
@@ -158,7 +315,7 @@ Due to the complexity of real tectonic plate movement, the design of the simulat
 \subsection{Implementation using Box2D physics engine}
 When working with Box2D it is very common to start off by writing a test application for ``testbed''. To make this test application available in ``testbed'' it is necessary to extend the class ``Test'' provided by Box2D and list the newly created test class in ``TestEntries.cpp'' as specified in the Box2D documentation. The advantage of ``testbed'' is that it provides its own visualization interface as well as several debugging options. The downside is that ``testbed'' tests can not be used for production systems right away and have to be altered during the integration process.
 Once the base test class is set up, several methods like ``Step'', ``Create'', ``Keyboard'', etc. provided by the super class ``Test'' can be overwritten. ``Step'' will be called automatically by the test environment at each timestep. ``Create'' will be called only once and should be used to initialize variables or data structures. Method ``Keyboard'' will be triggered each time a key is pressed. Its parameters give information about which key was pressed. To add an object to the Box2D world several steps are necessary. Firstly, a body object has to be defined. Secondly, a fixture object has to be defined and linked with the body object it corresponds to. In Box2D bodies can either be static, dynamic or kinematic. Static bodies do not move. Even if a dynamic body collides with a static body, only the dynamic body will be affected by the collision. Dynamic bodies can move and are affected by all other bodies. Kinematic bodies can also move, but are not affected by collisions caused by dynamic bodies. The tectonic plate simulation will consist of dynamic as well as kinematic bodies. The dynamic bodies will represent the tectonic plates and the kinematic bodies will be responsible for keeping the simulation in motion as well as keeping the dynamic bodies contained within the simulation area. Body objects can be used to access information like current position, angle, velocity, mass, etc. To describe the shape of a Box2D body, fixtures will be used. To define a fixture it is necessary to set the fixture's density attribute and shape. Based on the fixture's density and area it consumes, the body's mass will be determined. Box2D offers basic shapes like rectangles and circles as well as convex polygons with a maximum of 8 vertices. The tectonic plate simulation will be initialized with 5 rectangle fixtures. 4 of these will be used to define the kinematic bodies' shapes, i.e. thin beams. The last one will be used to define the dynamic body's shape, a big square. This square will be randomly split a specific amount of times during set up. Unfortunately Box2D did not offer this splitting functionality per se and it therefore had to be implemented by hand. To implement splitting of polygons it is important to know that Box2D only supports convex polygons with up to 8 vertices which need to be specified in counter clockwise winding. In order to split polygons, Box2D's raycasting feature can be very helpful. It allows the programmer to cast rays and if a ray intersects with an object a callback function will be called. When a ray is cast through a convex polygon there should always be exactly one entry point and one exit point. Box2D's raycasting only registers the first intersection point per object though. Due to this two rays had to be cast in opposite directions. Having both, the first ray's entry point and the second ray's entry point as well as all vertices the polygon consists of, the only thing left to do is to determine which vertex belongs to which slice of the polygon. The following pseudocode should adequately elaborate this procedure:
-\begin{lstlisting}
+\begin{lstlisting}[caption=Point in slice check pseudocode]
 entry = entry point of first ray
 exit = entry point of second ray
 rayCenter = ((entry.x+exit.x)/2,(entry.y+exit.y)/2)
@@ -192,7 +349,7 @@ Blending textures together is performed by the fragment shader. The OpenGL shade
 \item Second texel color
 \item A floating-point number between 0.0 and 1.0 representing the mixture ratio
 \end{itemize}
-\begin{lstlisting}
+\begin{lstlisting}[caption=Fragment shader texture chooser pseudocode]
 color0 = sand texture
 color1 = grass texture
 color2 = rock texture
@@ -238,7 +395,7 @@ which can be found in his paper \cite{Reinhard:2002:PTR:566570.566575}.
 A two-pass Gaussian filter consists of two passes, namely a horizontal and a vertical Gaussian blur pass. During these passes each pixel will be averaged using a one-dimensional Gaussian kernel. The two-pass Gaussian filter is computationally less expensive than the one-pass Gaussian filter using a two-dimensional Gaussian kernel. For this filter the vertex shader is responsible for setting up the pixel coordinates to be averaged by the fragment shader based on Gauss distributed weights.
 \\
 Vertex shader pseudocode:
-\begin{lstlisting}
+\begin{lstlisting}[caption=Two-pass Gaussian filter vertex shader]
 UV = input pixel location
 direction = (1,0) or (0,1) depending on pass direction
 offsets[] = one-dimensional Gaussian kernel
@@ -247,7 +404,7 @@ for i between 0 and offsets.length:
   blurUV[i] = UV+(direction.x*offsets[i],direction.y*offsets[i])
 \end{lstlisting}
 Fragment shader pseudocode:
-\begin{lstlisting}
+\begin{lstlisting}[caption=Two-pass Gaussian filter fragment shader]
 texture = input frame
 blurUV[] = array of input pixel locations to be averaged
 weights[] = array of Gauss distributed values based on kernel
