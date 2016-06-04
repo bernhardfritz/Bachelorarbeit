@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.15)  1 JUN 2016 23:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.15)  4 JUN 2016 20:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -394,36 +394,52 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 180.
- [5 <./images/mpd0.png> <./images/mpd1.png> <./images/mpd2.png>] <./images/ds0.png, id=74, 406.51875pt x 406.51875pt>
-File: ./images/ds0.png Graphic file (type png)
- <use ./images/ds0.png>
-Package pdftex.def Info: ./images/ds0.png used on input line 218.
-(pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
- <./images/ds1.png, id=75, 406.51875pt x 406.51875pt>
+ [5 <./images/mpd0.png> <./images/mpd1.png> <./images/mpd2.png>] <./images/ds1.png, id=74, 406.51875pt x 406.51875pt>
 File: ./images/ds1.png Graphic file (type png)
  <use ./images/ds1.png>
-Package pdftex.def Info: ./images/ds1.png used on input line 222.
+Package pdftex.def Info: ./images/ds1.png used on input line 218.
 (pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
- <./images/ds2.png, id=76, 406.51875pt x 406.51875pt>
+ <./images/ds2.png, id=75, 406.51875pt x 406.51875pt>
 File: ./images/ds2.png Graphic file (type png)
  <use ./images/ds2.png>
-Package pdftex.def Info: ./images/ds2.png used on input line 226.
+Package pdftex.def Info: ./images/ds2.png used on input line 222.
 (pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
- <./images/ds3.png, id=77, 406.51875pt x 406.51875pt>
+ <./images/ds3.png, id=76, 406.51875pt x 406.51875pt>
 File: ./images/ds3.png Graphic file (type png)
  <use ./images/ds3.png>
-Package pdftex.def Info: ./images/ds3.png used on input line 233.
+Package pdftex.def Info: ./images/ds3.png used on input line 226.
 (pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
- <./images/ds4.png, id=78, 406.51875pt x 406.51875pt>
+ <./images/ds4.png, id=77, 406.51875pt x 406.51875pt>
 File: ./images/ds4.png Graphic file (type png)
  <use ./images/ds4.png>
-Package pdftex.def Info: ./images/ds4.png used on input line 237.
+Package pdftex.def Info: ./images/ds4.png used on input line 232.
 (pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
- <./images/ds5.png, id=79, 406.51875pt x 406.51875pt>
+ <./images/ds5.png, id=78, 406.51875pt x 406.51875pt>
 File: ./images/ds5.png Graphic file (type png)
  <use ./images/ds5.png>
-Package pdftex.def Info: ./images/ds5.png used on input line 241.
+Package pdftex.def Info: ./images/ds5.png used on input line 236.
 (pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
+ <./images/fault0.png, id=79, 513.92pt x 513.92pt>
+File: ./images/fault0.png Graphic file (type png)
+ <use ./images/fault0.png>
+Package pdftex.def Info: ./images/fault0.png used on input line 263.
+(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
+ <./images/fault2.png, id=80, 513.92pt x 513.92pt>
+File: ./images/fault2.png Graphic file (type png)
+ <use ./images/fault2.png>
+Package pdftex.def Info: ./images/fault2.png used on input line 267.
+(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
+ <./images/fault4.png, id=81, 513.92pt x 513.92pt>
+File: ./images/fault4.png Graphic file (type png)
+ <use ./images/fault4.png>
+Package pdftex.def Info: ./images/fault4.png used on input line 271.
+(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
+ <./images/fault6.png, id=82, 513.92pt x 513.92pt>
+File: ./images/fault6.png Graphic file (type png)
+
+<use ./images/fault6.png>
+Package pdftex.def Info: ./images/fault6.png used on input line 275.
+(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -431,63 +447,50 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6 <./images/ds0.png> <./images/ds1.png> <./images/ds2.png>] <./images/fault0.png, id=87, 513.92pt x 513.92pt>
-File: ./images/fault0.png Graphic file (type png)
- <use ./images/fault0.png>
-Package pdftex.def Info: ./images/fault0.png used on input line 268.
-(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
- <./images/fault2.png, id=88, 513.92pt x 513.92pt>
-File: ./images/fault2.png Graphic file (type png)
- <use ./images/fault2.png>
-Package pdftex.def Info: ./images/fault2.png used on input line 272.
-(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
- <./images/fault4.png, id=89, 513.92pt x 513.92pt>
-File: ./images/fault4.png Graphic file (type png)
- <use ./images/fault4.png>
-Package pdftex.def Info: ./images/fault4.png used on input line 276.
-(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
- <./images/fault6.png, id=90, 513.92pt x 513.92pt>
-File: ./images/fault6.png Graphic file (type png)
- <use ./images/fault6.png>
-Package pdftex.def Info: ./images/fault6.png used on input line 280.
-(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
- [7 <./images/ds3.png> <./images/ds4.png> <./images/ds5.png> <./images/fault0.png> <./images/fault2.png> <./images/fault4.png> <./images/fault6.png>]
-Underfull \vbox (badness 5345) has occurred while \output is active []
-
- [8] [9] [10] [11]
+[6] [7 <./images/ds1.png> <./images/ds2.png> <./images/ds3.png> <./images/ds4.png> <./images/ds5.png> <./images/fault0.png> <./images/fault2.png> <./images/fault4.png> <./images/fault6.png>] [8] <./images/thermalerosion.png, id=111, 586.19pt x 762.85pt>
+File: ./images/thermalerosion.png Graphic file (type png)
+ <use ./images/thermalerosion.png>
+Package pdftex.def Info: ./images/thermalerosion.png used on input line 315.
+(pdftex.def)             Requested size: 221.9316pt x 288.81512pt.
+ [9] <./images/hydraulicerosion.png, id=115, 659.46375pt x 516.93124pt>
+File: ./images/hydraulicerosion.png Graphic file (type png)
+ <use ./images/hydraulicerosion.png>
+Package pdftex.def Info: ./images/hydraulicerosion.png used on input line 324.
+(pdftex.def)             Requested size: 288.50836pt x 226.15686pt.
+ [10 <./images/thermalerosion.png>] [11 <./images/hydraulicerosion.png>] [12] [13]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [12]
+ [14]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 341.
- [13] [14] [15] [16]
-Chapter 4.
-[17
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 368.
+ [15] [16] [17] [18
 
-] [18
+]
+Chapter 4.
+[19] [20
 
 ]
 Chapter 5.
-(./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl [19] [20
+(./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl [21] [22
 
 ] (/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
-)) [21] (./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux) ) 
+)) [23] (./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux) ) 
 Here is how much of TeX's memory you used:
- 7932 strings out of 493089
- 118946 string characters out of 6134841
- 285473 words of memory out of 5000000
- 11252 multiletter control sequences out of 15000+600000
+ 7966 strings out of 493089
+ 119727 string characters out of 6134841
+ 288473 words of memory out of 5000000
+ 11285 multiletter control sequences out of 15000+600000
  25424 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,16n,43p,3155b,1821s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,16n,43p,3155b,1797s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam
 10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsl1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1
 095.pfb>
-Output written on Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf (32 pages, 537233 bytes).
+Output written on Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf (34 pages, 568399 bytes).
 PDF statistics:
- 235 PDF objects out of 1000 (max. 8388607)
- 147 compressed objects within 2 object streams
+ 243 PDF objects out of 1000 (max. 8388607)
+ 151 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

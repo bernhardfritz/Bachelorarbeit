@@ -169,9 +169,9 @@ This algorithm was first introduced by Fournier et al in 1982 \cite{Fournier:198
 
 \noindent To take MPD algorithm to the next level Diamond-Square (DS) algorithm allows to procedurally generate 2D-landscape. During initialization, DS algorithm raises the heightmap's corner vertices to an arbitrary height. Once the corner vertices have been initialized a ``Diamond-Step'' followed by a ``Square-Step'' will be performed in an alternating fashion until all vertices have been initialized. The following pseudocode will demonstrate how DS algorithm can be implemented:
 
-\begin{lstlisting}[caption=DS pseudocode]
+\begin{lstlisting}[caption=DS pseudocode, mathescape=true]
 function randomFloat(range):
-  return a random floating point number in interval [0, range)
+  return a random floating point number $\in$ [0, range)
 
 procedure diamondStep(hm, roughness, left, right, top, bottom):
   midpointColumn = left+(right-left)/2
@@ -211,35 +211,30 @@ procedure perform(hm, roughness):
     rows /= 2
 \end{lstlisting}
 
-\noindent \Cref{fig:ds0,fig:ds1,fig:ds2,fig:ds3,fig:ds4,fig:ds5} depict the DS algorithm applied to a 4x4 heightmap. Orange vertices are being altered in height, while blue vertices contribute to the average height calculation.
+\noindent \Cref{fig:ds1,fig:ds2,fig:ds3,fig:ds4,fig:ds5} depict the DS algorithm applied to a 4x4 heightmap. Orange vertices are being altered in height, while blue vertices contribute to the average height calculation.
 
 \begin{figure}[!htb]
-\minipage{0.32\textwidth}
-  \includegraphics[width=\linewidth]{ds0.png}
-  \caption{DS init}\label{fig:ds0}
-\endminipage\hfill
 \minipage{0.32\textwidth}
   \includegraphics[width=\linewidth]{ds1.png}
-  \caption{DS 1}\label{fig:ds1}
-\endminipage\hfill
-\minipage{0.32\textwidth}%
-  \includegraphics[width=\linewidth]{ds2.png}
-  \caption{DS 2}\label{fig:ds2}
+  \caption{DS init}\label{fig:ds1}
 \endminipage
-\end{figure}
-
-\begin{figure}[!htb]
 \minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{ds2.png}
+  \caption{DS 1}\label{fig:ds2}
+\endminipage
+\minipage{0.32\textwidth}%
   \includegraphics[width=\linewidth]{ds3.png}
-  \caption{DS 3}\label{fig:ds3}
+  \caption{DS 2}\label{fig:ds3}
 \endminipage\hfill
+\\
+\centering
 \minipage{0.32\textwidth}
   \includegraphics[width=\linewidth]{ds4.png}
-  \caption{DS 4}\label{fig:ds4}
-\endminipage\hfill
+  \caption{DS 3}\label{fig:ds4}
+\endminipage
 \minipage{0.32\textwidth}%
   \includegraphics[width=\linewidth]{ds5.png}
-  \caption{DS 5}\label{fig:ds5}
+  \caption{DS 4}\label{fig:ds5}
 \endminipage
 \end{figure}
 
@@ -254,7 +249,7 @@ sgn(x) &=
   0 & \text{if}\ x = 0, \\
   1 & \text{if}\ x > 0.
 \end{cases} \\
-\mathbf{v} &= (v_1, v_2, v_3)^\intercal \\
+\mathbf{v} &= (v_1\ v_2\ v_3)^\intercal \\
 raise(\mathbf{v}) &=
 \begin{cases}
   0 & \text{if}\ sgn(v_2) = -1, \\
@@ -283,20 +278,52 @@ Let vectors $\mathbf{a}$ and $\mathbf{b}$ describe a random cutting line. Then a
 \end{figure}
 
 \section{RMP algorithm}
-RMP stands for ``Repeated Magnification and Probing'', was created by Kamal and Uddin \cite{Kamal:2007:PCT:1321261.1321264} and can be categorized as parametrically controllable mountain generation algorithm. Height, spread and location of the mountain can be controlled by parameters. This algorithm is similar to Fault algorithm, meaning that only selected regions are repeatedly altered in height. The process how these regions are obtained is not described in Kamal and Uddin's paper \cite{Kamal:2007:PCT:1321261.1321264}. In the following two techniques will be presented that are capable of generating randomly distributed polygon-like shapes which can be used for RMP algorithm.
+RMP stands for ``Repeated Magnification and Probing'', was created by Kamal and Uddin \cite{Kamal:2007:PCT:1321261.1321264} and can be categorized as parametrically controllable mountain generation algorithm. Height, spread and location of the mountain can be controlled by parameters. This algorithm is similar to Fault algorithm, meaning that only selected regions are repeatedly altered in height. The process how these regions are obtained is not described in Kamal and Uddin's paper \cite{Kamal:2007:PCT:1321261.1321264}. In \cref{subsec:graphbasedimpl,subsec:voronoibasedimpl} two techniques will be presented that are capable of generating randomly distributed polygon-like shapes which can be used for RMP algorithm.
 
 \subsection{Graph-based implementation}
-This implementation starts by placing 4 lines along the landscape borders as well as l randomly distributed cutting lines all over the landscape. In the next step all line intersections will be determined. These intersections are represented as vertices in an undirected graph. A line can have several intersections. Therefore they will be iterated through from the start of the line to the end. Intersections connected by a cutting line will also be connected by an edge in the graph respectively. By using a Depth-First-Search (DFS) based algorithm all minimal cycles of the graph will be determined. These cycles represent the polygon shapes produced by the previously placed cutting lines. Once the polygons are obtained another undirected graph will be produced. This time the vertices of the graph are represented by polygons. In this graph 2 vertices are only connected by an edge if both polygons share a same cutting line. In this newly generated graph another DFS will be performed. As starting point of the DFS the polygon which should contain the desired mountain peak is chosen. The combined region of the first r elements of the DFS will be raised in height. A point-in-polygon test, originated by Shirmat \cite{Shimrat:1962:APP:368637.368653} and later translated to C by W. Randolph Franklin, was used to determine if a heightmap point should be affected by height alterations or not. The whole procedure will be repeated n times. After several tests, it was clear that the graph-based implementation was far too slow to be used for realtime applications. Therefore an alternative implementation was considered.
+\label{subsec:graphbasedimpl}
+This implementation starts by placing 4 lines along the landscape borders as well as l randomly distributed cutting lines all over the landscape. In the next step all line intersections will be determined. To determine if two lines intersect i.e. they share a point that lies on both lines, following equation system has to be solved:
+\begin{align}
+\mathbf{p} &= \mathbf{a} + u * \mathbf{d} \label{eq:rayrayint1}\\
+\mathbf{p} &= \mathbf{b} + v * \mathbf{e} \label{eq:rayrayint2}
+\intertext{The following notation is used to the extract a vector's x- and y-coordinates:}
+\mathbf{v} &= (v_1\ v_2)^\intercal \label{eq:rayrayint3}
+\intertext{Expanding \cref{eq:rayrayint1,eq:rayrayint2} using notation from \cref{eq:rayrayint3} results in:}
+p_1 &= a_1 + u * d_1 \label{eq:rayrayint4}\\
+p_2 &= a_2 + u * d_2 \label{eq:rayrayint5}\\
+p_1 &= b_1 + v * e_1 \label{eq:rayrayint6}\\
+p_2 &= b_2 + v * e_2 \label{eq:rayrayint7}
+\intertext{Eliminating $p_1$ and $p_2$ from \cref{eq:rayrayint4,eq:rayrayint5,eq:rayrayint6,eq:rayrayint7} results in:}
+a_1 + u * d_1 &= b_1 + v * e_1 \label{eq:rayrayint8}\\
+a_2 + u * d_2 &= b_2 + v * e_2 \label{eq:rayrayint9}
+\intertext{Solving \cref{eq:rayrayint8} for $u$ results in:}
+u &= \frac{b_1 + v * e_1 - a_1}{d_1} \label{eq:rayrayint10}\\
+\intertext{Substituting $u$ in \cref{eq:rayrayint9} by \cref{eq:rayrayint10} and solving for $v$ results in:}
+v &= \frac{(b_2 - a_2) * d_1 - (b_1 - a_1) * d_2}{e_1 * d_2 - e_2 * d_1} \label{eq:rayrayint11}
+\intertext{Substituting $v$ in \cref{eq:rayrayint2} by \cref{eq:rayrayint11} results in $\mathbf{p}$ if the two lines intersect, i.e. they are not parallel.}
+\end{align}
+These intersections are represented as vertices in an undirected graph. A line can have several intersections. Therefore they will be iterated through from the start of the line to the end. Let $\mathbf{i}$ and $\mathbf{j}$ be two intersections on a line defined by origin $\mathbf{a}$ and direction $\mathbf{d}$ as seen in \cref{eq:rayrayint1}. To determine which intersection is closer to the start of the line one has to substitute $\mathbf{p}$ in \cref{eq:rayrayint1} with $\mathbf{i}$ and $\mathbf{j}$ and solve both resulting equations for $u$. The smaller $u$ gets, the closer it is to the origin of the line. Intersections (i.e. vertices) along a line will be connected in order (closest to farthest) using graph edges. Once the graph is set up, a Depth-First-Search (DFS) based algorithm will be used to determine all minimal cycles. These cycles represent the polygon shapes produced by the previously placed cutting lines. Once the polygons are obtained another undirected graph will be created. This time the vertices of the graph will represented the polygons. In this graph 2 vertices are connected by an edge only if both polygons are next to each other. Once this newly generated graph is set up another DFS will be performed. As starting point of the search the polygon which should contain the desired mountain peak is chosen. The combined region of the first r elements of the DFS will be raised in height. A point-in-polygon test, originated by Shirmat \cite{Shimrat:1962:APP:368637.368653} and later implemented in C by W. Randolph Franklin, was used to determine if a heightmap point should be affected by height alterations or not. The whole procedure will be repeated n times. After several tests, it was clear that the graph-based implementation was far too slow to be used for realtime applications. Therefore an alternative implementation had to be considered.
 
 \subsection{Voronoi-based implementation}
+\label{subsec:voronoibasedimpl}
 Instead of using expensive graph algorithms, the idea is to use a Voronoi diagram that does the same job by providing randomly distributed polygons. Still, the problem remains. How should one cheaply generate these diagrams? Actually, there is an intuitive solution to this problem. Imagine an arbitrary amount of randomly colored, flat shaded, overlapping cone geometries that are randomly distributed on a plane. If one looks at this scene from the top using orthographic projection, a Voronoi diagram can be identified. After some research it was evident that this technique was first mentioned in chapter 14 of the ``OpenGL Red Book'' \cite{Woo:1999:OPG:554539}. This implementation relies on OpenGLs depth testing and is much faster than the graph-based approach. To combine this technique with RMP, one has to project the Voronoi diagram onto the heightmap, check the color of the polygon at the desired peak location and raise all heightmap tiles that have the same color projected onto them. By repeating the whole process n times, mountains with predefined peaks can be generated. The spread of the mountain can be altered by increasing or decreasing the amount of cones to be placed during Voronoi generation. The more cones, the more polygons will be created and the resulting mountain will be very steep. Using less cones, will result in less polygons and the mountain will therefore be more spread. The height of the mountain is proportional to the amount of iterations performed.
 
 \section{Thermal erosion algorithm}
 Thermal erosion describes the process of material breaking loose due to variations in temperature during day/night cycles. This algorithm was implemented based on Jacob Olsen's description \cite{Olsen:2004}. Basically, he used a cellular automaton to model the process of thermal erosion. Cellular automata operate on grids of cells. By inspecting a cell itself and its neighborhood, one can decide how they should interact with each other. In this case, cells correspond to heightmap tiles. If the height difference of the inspected cell and one of its neighbors is larger than a so-called talus angle T, material will be transported from the inspected cell to the corresponding neighbor cell. This process will be repeated for all cells/tiles of the heightmap, resulting in a general smoothing of the landscape. Especially steep parts of the heightmap are most affected by this erosion process. By default Jacob Olsen's algorithm disregards material properties like hardness or softness (e.g. rock is hard, sand is soft). Therefore, as an extension of this algorithm, a way to also consider material properties will be introduced. By multiplying the amount of material to be transported by a factor that depends on the height of the inspected cell, it is possible to mimic the desired material properties.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\linewidth]{thermalerosion.png}
+\caption{Thermal erosion}\label{fig:thermalerosion}
+\end{figure}
 
 \section{Hydraulic erosion algorithm}
 \subsection{Implementation based on previous research}
 In my reasearch I came across two different papers that described how to model hydraulic erosion algorithmically. The first one \cite{Olsen:2004} was written by Jacob Olsen and featured a decent algorithm based on a cellular automaton. The idea behind this algorithm is that water (e.g. rain) causes erosion of terrain by dissolving material which gets transported by running water and once the water evaporates the material will be deposited again. To model this process it is necessary to keep track of the height-, water- as well as sediment-levels. Therefore not only a heightmap, but also a water- and sedimentmap is necessary. Each iteration can be broken down into 4 steps. In the first step a constant amount of water is added to each cell of the watermap. In the second step water dissolves a specific amount of material by removing material from the heightmap and adding material to the sedimentmap. A similar technique as used with thermal erosion will be introduced to also consider material hardness. This time around not the height but the steepness of the mountain will be used as an indicator to determine how much material should be dissolved. In the third step water containing sediment will be transported from higher cells to lower cells accordingly. In the fourth step water will be evaporated and sediment will be deposited at its current position by lowering the cells of the water- as well as sedimentmap and raising the cells of the heightmap. The whole process will be repeated n times.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.65\linewidth]{hydraulicerosion.png}
+\caption{Hydraulic erosion}\label{fig:hydrolicerosion}
+\end{figure}
 
 The second paper \cite{mei:inria-00402079} by Mei et al showcased a more advanced model of hydraulic erosion. The basic principle was still the same as described by Olsen, but Mei used a more realistic water flow model which also considers fluid velocity. Due to the force of flowing water more sediment will be carried away which results in a generally more realistic model of hydraulic erosion. After studying Mei's algorithm and implementing his water flow model, a flaw in his algorithm became evident. Given that Mei's algorithm is timestep-based, it becomes unstable if too large timesteps are used. Water begins to oscillate and ultimately the water height will result in a variable type overflow and render the simulation unusable. To keep the simulation stable very small timesteps have to be used. In fact these timesteps are that small that one cannot even notice any difference in water flow for a couple of minutes. For a realtime application this is totally unacceptable and therefore this model was disregarded.
 
