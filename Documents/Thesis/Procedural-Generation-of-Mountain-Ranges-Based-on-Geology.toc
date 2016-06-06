@@ -8,20 +8,20 @@
 \contentsline {section}{\numberline {3.3}RMP algorithm}{7}
 \contentsline {subsection}{\numberline {3.3.1}Graph-based implementation}{8}
 \contentsline {subsection}{\numberline {3.3.2}Voronoi-based implementation}{9}
-\contentsline {section}{\numberline {3.4}Thermal erosion algorithm}{9}
+\contentsline {section}{\numberline {3.4}Thermal erosion algorithm}{10}
 \contentsline {section}{\numberline {3.5}Hydraulic erosion algorithm}{10}
 \contentsline {subsection}{\numberline {3.5.1}Implementation based on previous research}{10}
-\contentsline {subsection}{\numberline {3.5.2}Evaluation of various shallow water models}{11}
-\contentsline {subsection}{\numberline {3.5.3}Implementation based on Smoothed Particle Hydrodynamics (SPH) simulation}{12}
+\contentsline {subsection}{\numberline {3.5.2}Evaluation of various shallow water models}{12}
+\contentsline {subsection}{\numberline {3.5.3}Implementation based on Smoothed Particle Hydrodynamics (SPH)}{12}
 \contentsline {section}{\numberline {3.6}Tectonic plate simulation}{13}
-\contentsline {subsection}{\numberline {3.6.1}Implementation using Box2D physics engine}{13}
-\contentsline {subsection}{\numberline {3.6.2}Generation of mountain ranges due to tectonic plate collisions}{14}
+\contentsline {subsection}{\numberline {3.6.1}Implementation using Box2D physics engine}{14}
+\contentsline {subsection}{\numberline {3.6.2}Generation of mountain ranges due to tectonic plate collisions}{15}
 \contentsline {section}{\numberline {3.7}Visualization techniques}{15}
 \contentsline {subsection}{\numberline {3.7.1}Texture splatting}{15}
 \contentsline {subsection}{\numberline {3.7.2}Bloom shader effect}{16}
-\contentsline {subsubsection}{Bright-pass filter}{16}
-\contentsline {subsubsection}{Two-pass Gaussian filter}{16}
+\contentsline {subsubsection}{Bright-pass filter}{17}
+\contentsline {subsubsection}{Two-pass Gaussian filter}{17}
 \contentsline {subsection}{\numberline {3.7.3}Capturing screenshots with stblib}{17}
-\contentsline {subsection}{\numberline {3.7.4}Video recording with ffmpeg}{17}
+\contentsline {subsection}{\numberline {3.7.4}Video recording with ffmpeg}{18}
 \contentsline {chapter}{\numberline {4}Results}{19}
 \contentsline {chapter}{\numberline {5}Conclusion \& Future Work}{21}
