@@ -233,7 +233,8 @@ void RMP::perform(Heightmap &heightmap, int x0, int z0, int x1, int z1, int spre
             for(int column = 0; column <= heightmap.getColumns(); column++) {
                 for(vec3 color : colors) {
                     if(color == voronoi.getColorAtPosition(column, row, heightmap.getColumns(), heightmap.getRows())) {
-                        heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + delta);
+                        //heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + delta);
+                        heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + (glm::length(color)/(sqrtf(3.0f)*256.0f)) * delta);
                     }
                 }
             }

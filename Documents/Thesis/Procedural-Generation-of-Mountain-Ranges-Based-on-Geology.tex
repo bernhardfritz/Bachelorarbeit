@@ -390,6 +390,7 @@ for each vertex v of polygon:
 Once the polygons (i.e. tectonic plates) are all set up, collision callbacks provided by Box2D are used to act whenever a collision occurs. For the tectonic plate simulation only the collisions between the dynamic objects, i.e. the plates, are important. Therefore the program is set up to only act on collisions in which two dynamic objects are involved. Additionally, collisions between two polygons which do not have two collision points are disregarded. By enforcing these constraints the program will only act on collisions that occur between two dynamic objects and consist of exactly two collision points. Finally, in order to use these collision points for heightmap alterations, they have to be transformed from the Box2D coordinate system to the heightmap coordinate system.
 
 \subsection{Generation of mountain ranges due to tectonic plate collisions}
+\label{subsec:generationofmountainranges}
 Each tectonic plate collision results in two collision points due to the custom collision callbacks mentioned before. Using these points one can draw an imaginary line onto the heightmap. The goal would be to procedurally generate a mountain range along this imaginary line. This is where an advanced version of RMP algorithm comes into place. This version of RMP will also use a Voronoi diagram to generate arbitrary polygons. Different from the previous RMP implementation this time there will be two coordinate pairs instead of a single one. Between these coordinates Bresenham line algorithm will be performed and all colors passed will be remembered. In the next step the Voronoi diagram will be projected onto the heightmap and all heightmap vertices inside polygons that are colored with one of the remembered colors will be raised in height. This procedure will be repeated each time a tectonic plate collision occurs. As a result procedurally generated mountain ranges will arise between two colliding tectonic plates.
 
 \section{Visualization techniques}
@@ -440,7 +441,39 @@ A bloom shader effect is a popular choice to enhance the realism of a scene. The
 \item Bright-pass filter
 \item Blur filter
 \end{itemize}
-The bright-pass filter will be applied to the original frame. After that the result will be blurred using a blur filter, e.g. a two-pass Gaussian filter. Finally the original frame as well as the blurred bright-pass frame will be blended together resulting in an image with brightly glowing regions.
+The bright-pass filter will be applied to the original frame. After that the result will be blurred using a blur filter, e.g. a two-pass Gaussian filter. Finally the original frame as well as the blurred bright-pass frame will be blended together resulting in an image with brightly glowing regions. Altogether the bloom filter consists of 5 rendering passes:
+\begin{itemize}
+  \item Normal scene render pass (\cref{fig:1stpass})
+  \item Bright-pass (\cref{fig:2ndpass})
+  \item Horizontal Gauss blur pass (\cref{fig:3rdpass})
+  \item Vertical Gauss blur pass (\cref{fig:4thpass})
+  \item Bloom pass (\cref{fig:5thpass})
+\end{itemize}
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{shader0-no-effect-screenshot.png}
+  \caption{1$^{st}$ pass}\label{fig:1stpass}
+\endminipage
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{shader1-brightpass-screenshot.png}
+  \caption{2$^{nd}$ pass}\label{fig:2ndpass}
+\endminipage
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{shader2-horizontal-blur-screenshot.png}
+  \caption{3$^{rd}$ pass}\label{fig:3rdpass}
+\endminipage\hfill
+\\
+\centering
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{shader3-vertical-blur-screenshot.png}
+  \caption{4$^{th}$ pass}\label{fig:4thpass}
+\endminipage
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{shader4-bloom-screenshot.png}
+  \caption{5$^{th}$ pass}\label{fig:5thpass}
+\endminipage
+\end{figure}
 
 \subsubsection{Bright-pass filter}
 This filter makes bright regions even brighter while not modifying dark regions. It is possible to specify the range of colors to be brightened as well as the amount they should be brightened by. The bright-pass shader code is based on Erik Reinhard's formula:
@@ -483,21 +516,65 @@ space(width, height, fps, t) = width * height * 3 * fps * t \; \mathrm{bytes}
 \end{align*}
 Using OpenGL's glReadPixels function it was possible to save each frame into an array of type char. Once all the frames are captured they need to be encoded using ffmpeg's MPEG2 encoding algorithm. Therefore each frame has to be converted from RGB to YCbCr color space using ffmpeg library. For some reason ffmpeg's YCbCr color conversion algorithm flips the frame vertically during conversion. After flipping the frame back it is ready to be encoded by ffmpeg. Once all frames are encoded, ffmpeg will save the video as .mpg file on the harddisk. The file format .mpg can be played with almost any video player and does not require too much space due to MPEG2 encoding algorithm provided by ffmpeg.
 
-\begin{table}
-\caption{Empty table}
-\begin{tabular}{|ccc|}
-
-\end{tabular}
-\end{table}
-
 %----------------------------------------------------------------------------------------
 \chapter{Results}
 \label{sec:results}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam odio lorem, fermentum nec lectus sit amet, vehicula tristique arcu. Nunc id leo volutpat, facilisis sem vel, dapibus felis. Ut vehicula, leo sed feugiat egestas, enim velit rhoncus risus, a congue libero massa a enim.
+\section{Comparison of hydraulic erosion algorithms}
+The algorithms being tested are Jacob Olsen's cellular automata based approach as well as the SPH based alternative. Both algorithms were applied to predefined heightmap surfaces of different shapes for 10 minutes each. The shapes in concern are
+\begin{itemize}
+\item a crooked surface
+\item a pyramid-like surface
+\item a hemispheric surface
+\end{itemize}
+Although Olsen's algorithm showed consistent results independently of the shape it was applied to, the results were quite unspectacular.
+\begin{figure}[!htb]
+\minipage{0.33\textwidth}
+  \includegraphics[width=\linewidth]{hydro-10mins-46k-iterations-crooked.png}
+  \caption{Crooked surf.}\label{fig:hydro1}
+\endminipage\hfill
+\minipage{0.33\textwidth}
+  \includegraphics[width=\linewidth]{hydro-10mins-46k-iterations-pyramid.png}
+  \caption{Pyramid surf.}\label{fig:hydro2}
+\endminipage\hfill
+\minipage{0.33\textwidth}%
+  \includegraphics[width=\linewidth]{hydro-10mins-46k-iterations-hemisphere.png}
+  \caption{Hemispheric surf.}\label{fig:hydro3}
+\endminipage
+\end{figure}
+\Cref{fig:hydro1,fig:hydro2,fig:hydro3} depict Olsen's algorithm applied to the shapes mentioned beforehand. All ditches measured about the same width and depth and did look very unoriginal. Performing the experiment several times beared the same surface transformations in each iteration. The SPH based approach on the other hand showed very promising results. Firstly, the shape the algorithm was applied to, directly influenced the erosion process. Secondly, the generated ditches had different widths and depths each. Performing the experiment several times resulted in totally different surface transformations. This is due to the fact that the SPH based approach simulates real particle movement while Olsen's approach is an abstract model based on cellular automata and does not consider flow velocity.
+\begin{figure}[!htb]
+\minipage{0.33\textwidth}
+  \includegraphics[width=\linewidth]{sph-hydro-10mins-crooked.png}
+  \caption{Crooked surf.}\label{fig:hydro4}
+\endminipage\hfill
+\minipage{0.33\textwidth}
+  \includegraphics[width=\linewidth]{sph-hydro-10mins-pyramid.png}
+  \caption{Pyramid surf.}\label{fig:hydro5}
+\endminipage\hfill
+\minipage{0.33\textwidth}%
+  \includegraphics[width=\linewidth]{sph-hydro-10mins-hemisphere.png}
+  \caption{Hemispheric surf.}\label{fig:hydro6}
+\endminipage
+\end{figure}
+\Cref{fig:hydro4,fig:hydro5,fig:hydro6} depict the SPH based algorithm applied to the shapes mentioned beforehand. Concluding this experiment, it is evident that utilizing SPH simulations for hydraulic erosion algorithms bears very promising results. SPH simulations are capable of modelling fluid flow velocity autonomously. This behavior substantially influences the realism of the hydraulic erosion process and therefore SPH simulations should be preferred over cellular automata when it comes to modelling hydraulic erosion.
 
-\begin{figure}
-\caption{Empty figure}
+\section{Mountain range generation algorithm alterations}
+The mountain range generation algorithm is a major component of the tectonic plate algorithm as described in \cref{subsec:generationofmountainranges}. It uses a modified version of Voronoi-based RMP algorithm in order to procedurally generate mountain ranges. By extracting the mountain range generation portion from the tectonic plate algorithm and removing the randomness of tectonic plate movement it was possible to reliably conduct an experiment. The goal for this experiment was to determine if slight alterations in the mountain range generation code, namely dynamic instead of static areal height assignments, would result in higher realism. \Cref{fig:voronoi2diagonal} might help to understand what the experiment is all about. Instead of raising the whole bordered area, the goal is to raise each colored area inside the border individually. The experiment consisted of two iterations. To determine if the alterations had any effect, a control experiment was performed using the unaltered code as depicted in \cref{fig:mountainrangenormal}. \Cref{fig:mountainrangealteration} shows the final result after the alterations. Unfortunately the effect of the alterations is very subtle. While the control experiment showed no variation in mountain top elevation, the alterated version of the algorithm produced mountain tops that slightly vary in height. Even though the effects only were very subtle, the alterations still were merged into the original mountain range generation code since they had no impact performance-wise while still contributing to the realism of the scene.
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{voronoi100-diagonal.png}
+  \caption{Visualization}\label{fig:voronoi2diagonal}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{mountain-range-normal.png}
+  \caption{Before alterations}\label{fig:mountainrangenormal}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{mountain-range-alteration.png}
+  \caption{After alterations}\label{fig:mountainrangealteration}
+\endminipage
 \end{figure}
 
 %----------------------------------------------------------------------------------------

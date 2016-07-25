@@ -309,7 +309,7 @@ int main() {
     
     //heightmap.loadHeightmap("hemisphere2.png", 0.3f); hemisphere
     
-    heightmap.loadHeightmap("terrain.png", 0.2f);
+    //heightmap.loadHeightmap("terrain.png", 0.2f);
     
     //hm.getMaterial()->setSpecularReflectance(0.0f);
     //Heightmap hm(128, 128);
@@ -631,6 +631,12 @@ int main() {
         
         if(keyboard.getState(GLFW_KEY_R)) {
             RMP::perform(heightmap, 1);
+        }
+        
+        if(keyboard.getState(GLFW_KEY_Y)) {
+            static int asdfCount = 0;
+            RMP::perform(heightmap, 0.0f, 0.0f, 256.0f, 256.0f, 100, 0.0025f);
+            printf("%d\n", ++asdfCount);
         }
         
         if(keyboard.getState(GLFW_KEY_E)) {
