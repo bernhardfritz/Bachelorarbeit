@@ -211,11 +211,24 @@ void Heightmap::loadHeightmap(string filename, float strength) {
 
 void Heightmap::calculateNormals() {
     float sum = 0.0f;
+    minHeight = vertices[0].y;
+    maxHeight = vertices[0].y;
     for(vec3 vertex : vertices) {
+        if(vertex.y < minHeight) minHeight = vertex.y;
+        if(vertex.y > maxHeight) maxHeight = vertex.y;
         sum += vertex.y;
     }
     averageHeight = sum / vertices.size();
     Mesh::calculateNormals();
+}
+
+void Heightmap::normalizeHeight() {
+    for(int row = 0; row <= rows; row++) {
+        for(int column = 0; column <= columns; column++) {
+            changeHeightAt(column, row, -averageHeight);
+        }
+    }
+    calculateNormals();
 }
 
 float Heightmap::getMinHeight() {

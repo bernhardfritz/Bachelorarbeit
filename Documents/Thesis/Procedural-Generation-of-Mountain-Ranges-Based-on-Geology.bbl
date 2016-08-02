@@ -44,6 +44,11 @@ Jacob Olsen.
   {S}ynthesis of {E}roded {F}ractal {T}errain for {U}se in {C}omputer {G}ames.
 \newblock 2004.
 
+\bibitem{POVRay:HeightField}
+POV-Ray.
+\newblock Height field.
+\newblock [Online; accessed July 29, 2016].
+
 \bibitem{Reinhard:2002:PTR:566570.566575}
 Erik Reinhard, Michael Stark, Peter Shirley, and James Ferwerda.
 \newblock Photographic tone reproduction for digital images.

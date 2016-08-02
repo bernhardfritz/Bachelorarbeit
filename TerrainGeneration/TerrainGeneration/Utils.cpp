@@ -43,6 +43,26 @@ void Utils::screenshot() {
     delete [] buffer;
 }
 
+void Utils::exportHeightmap(Heightmap hm) {
+    int width = hm.getColumns()+1;
+    int height = hm.getRows()+1;
+    unsigned char* buffer = new unsigned char[width * height];
+    for(int row = 0; row <= height; row++) {
+        for(int column = 0; column <= width; column++) {
+            buffer[row * width + column] = ((hm.getHeightAt(column, row) - hm.getMinHeight()) / (hm.getMaxHeight() - hm.getMinHeight())) * 256.0f;
+        }
+    }
+    char name[1024];
+    long int t = time(NULL);
+    mkdir("heightmaps", 0775);
+    sprintf(name, "heightmaps/heightmap%ld.png", t);
+    unsigned char* last_row = buffer + (width * (height - 1));
+    if(!stbi_write_png(name, width, height, 1, last_row, -width)) {
+        fprintf(stderr, "ERROR: could not write heightmap file %s\n", name);
+    }
+    delete [] buffer;
+}
+
 void Utils::reserve_video_memory() {
     int width, height;
     glfwGetFramebufferSize(glfwGetCurrentContext(), &width, &height);

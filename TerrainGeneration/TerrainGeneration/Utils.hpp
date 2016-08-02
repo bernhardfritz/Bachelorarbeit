@@ -13,6 +13,7 @@
 extern "C" {
     #include <libavcodec/avcodec.h>
 }
+#include "Heightmap.hpp"
 
 class Utils {
 private:
@@ -34,6 +35,7 @@ private:
     static void FlipFrame(AVFrame* frame);
 public:
     static void screenshot();
+    static void exportHeightmap(Heightmap hm);
     static void recordVideo();
     static void captureFrame(double elapsedSeconds);
     static bool video_encode_example(const char *filename, int codec_id);

@@ -39,6 +39,7 @@ public:
     vec3 getInterpolatedNormalAt(float x, float z);
     void loadHeightmap(string filename, float strength);
     void calculateNormals();
+    void normalizeHeight();
     float getMinHeight();
     float getMaxHeight();
     float getAverageHeight();

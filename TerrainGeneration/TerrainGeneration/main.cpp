@@ -311,6 +311,9 @@ int main() {
     
     //heightmap.loadHeightmap("terrain.png", 0.2f);
     
+    //heightmap.loadHeightmap("heightmaps/heightmap1469560727.png", 0.3f);
+    //heightmap.normalizeHeight();
+    
     //hm.getMaterial()->setSpecularReflectance(0.0f);
     //Heightmap hm(128, 128);
     //Fault::perform(heightmap, 2.0f, 1024);
@@ -630,7 +633,12 @@ int main() {
         }
         
         if(keyboard.getState(GLFW_KEY_R)) {
-            RMP::perform(heightmap, 1);
+            clock_t begin = clock();
+            //RMP::perform(heightmap, 100);
+            RMP::perform(heightmap, heightmap.getColumns()/2, heightmap.getRows()/2, 100, 0.005f, 100);
+            //RMP::perform(heightmap, 100, 5, 1);
+            clock_t end = clock();
+            printf("Elapsed seconds: %.2f\n", float(end - begin) / CLOCKS_PER_SEC);
         }
         
         if(keyboard.getState(GLFW_KEY_Y)) {
@@ -644,7 +652,9 @@ int main() {
             ThermalErosion::perform(heightmap, 50);
         }
         if(keyboard.getState(GLFW_KEY_T)) {
+            static int asdf2Count = 0;
             ThermalErosion::perform(heightmap, 1);
+            printf("%d\n", ++asdf2Count);
         }
         if(keyboard.getState(GLFW_KEY_H)) {
             HydraulicErosion::perform(heightmap, 100);
@@ -676,6 +686,8 @@ int main() {
         if(keyboard.getState(GLFW_KEY_X)) {
             tps.Step();
         }
+        
+        if(keyboard.getState(GLFW_KEY_B)) Utils::exportHeightmap(heightmap);
         
         static double previous = 0.0;
         static double interval = 0.001;

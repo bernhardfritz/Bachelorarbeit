@@ -12,6 +12,8 @@
 #include "Ray.hpp"
 #include "Voronoi.hpp"
 
+#define SQRTF3 1.73205080757
+
 bool pnpoly(vec2 point, vector<vec2> polygon) {
     int nvert = (int)polygon.size();
     int i, j;
@@ -169,7 +171,7 @@ void RMP::perform(Heightmap &heightmap, int n, int l, int r) {
             }
         }
         
-        float height = 0.01f;
+        float height = 0.005f;
         for(int j = 0; j < dfs2.size() && j < r; j++) {
             vector<vec2> polygon = polygons[dfs2[j]];
             for(int row = 0; row <= heightmap.getRows(); row++) {
@@ -234,7 +236,7 @@ void RMP::perform(Heightmap &heightmap, int x0, int z0, int x1, int z1, int spre
                 for(vec3 color : colors) {
                     if(color == voronoi.getColorAtPosition(column, row, heightmap.getColumns(), heightmap.getRows())) {
                         //heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + delta);
-                        heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + (glm::length(color)/(sqrtf(3.0f)*256.0f)) * delta);
+                        heightmap.setHeightAt(column, row, heightmap.getHeightAt(column, row) + (glm::length(color)/(SQRTF3*256.0f)) * delta);
                     }
                 }
             }

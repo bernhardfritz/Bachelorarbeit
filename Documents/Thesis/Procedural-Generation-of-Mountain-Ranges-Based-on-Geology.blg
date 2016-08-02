@@ -5,45 +5,45 @@ The style file: plain.bst
 Database file #1: literature.bib
 Warning--empty journal in Olsen:2004
 Warning--empty school in Vitanen:2012
-You've used 11 entries,
+You've used 12 entries,
             2118 wiz_defined-function locations,
-            581 strings with 6482 characters,
-and the built_in function-call counts, 3843 in all, are:
-= -- 393
-> -- 165
+            588 strings with 6597 characters,
+and the built_in function-call counts, 4045 in all, are:
+= -- 411
+> -- 172
 < -- 5
-+ -- 64
-- -- 53
-* -- 252
-:= -- 635
-add.period$ -- 38
-call.type$ -- 11
-change.case$ -- 59
++ -- 67
+- -- 55
+* -- 257
+:= -- 668
+add.period$ -- 41
+call.type$ -- 12
+change.case$ -- 63
 chr.to.int$ -- 0
-cite$ -- 13
-duplicate$ -- 165
-empty$ -- 300
-format.name$ -- 53
-if$ -- 832
+cite$ -- 14
+duplicate$ -- 172
+empty$ -- 322
+format.name$ -- 55
+if$ -- 876
 int.to.chr$ -- 0
-int.to.str$ -- 11
+int.to.str$ -- 12
 missing$ -- 11
-newline$ -- 58
-num.names$ -- 24
-pop$ -- 63
+newline$ -- 63
+num.names$ -- 26
+pop$ -- 74
 preamble$ -- 1
-purify$ -- 47
+purify$ -- 50
 quote$ -- 0
-skip$ -- 115
+skip$ -- 121
 stack$ -- 0
-substring$ -- 198
-swap$ -- 43
+substring$ -- 203
+swap$ -- 44
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 42
+type$ -- 46
 warning$ -- 2
-while$ -- 39
-width$ -- 13
-write$ -- 133
+while$ -- 41
+width$ -- 14
+write$ -- 142
 (There were 2 warnings)

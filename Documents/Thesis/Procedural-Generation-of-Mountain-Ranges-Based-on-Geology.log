@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.15)  25 JUL 2016 22:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.15)  2 AUG 2016 21:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -138,6 +138,59 @@ Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 142.
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+ (/usr/local/texlive/2015/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2015/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks21
+\XKV@tempa@toks=\toks22
+)
+\XKV@depth=\count109
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)) (/usr/local/texlive/2015/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-ends (calc, etex, pgfmath)
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box30
+)
+\tc@llx=\dimen118
+\tc@lly=\dimen119
+\tc@urx=\dimen120
+\tc@ury=\dimen121
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen122
+\adjbox@Height=\dimen123
+\adjbox@Depth=\dimen124
+\adjbox@Totalheight=\dimen125
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2011/09/13 v1.0 Conditionals for odd/even page detection
+\c@checkoddpage=\count110
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box31
+\sift@deathcycles=\count111
+\@vwid@loff=\dimen126
+\@vwid@roff=\dimen127
+)) (/usr/local/texlive/2015/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/array.sty
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen128
+\extrarowheight=\dimen129
+\NC@list=\toks23
+\extratabsurround=\skip46
+\backup@length=\skip47
+)
+\rotheadsize=\dimen130
+\c@nlinenum=\count112
+\TeXr@lab=\toks24
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2013/12/28 v0.19 Intelligent cross-referencing
 Package cleveref Info: `listings' support loaded on input line 2950.
@@ -145,45 +198,45 @@ Package cleveref Info: `listings' support loaded on input line 2950.
 Package: babel 2014/09/25 3.9l The Babel package
  (/usr/local/texlive/2015/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2012/08/20 v3.3p English support from the babel system
-
-(/usr/local/texlive/2015/texmf-dist/tex/generic/babel/babel.def
+ (/usr/local/texlive/2015/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2014/09/25 3.9l Babel common definitions
-\babel@savecnt=\count109
-\U@D=\dimen118
+\babel@savecnt=\count113
+\U@D=\dimen131
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 )) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
-\inpenc@prehook=\toks21
-\inpenc@posthook=\toks22
- (/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/utf8x.def
+\inpenc@prehook=\toks25
+\inpenc@posthook=\toks26
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/utf8x.def
 File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
 )) (/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/ucs.sty
 Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
  (/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/data/uni-global.def
 File: uni-global.def 2013/05/13 UCS: Unicode global data
 )
-\uc@secondtry=\count110
-\uc@combtoks=\toks23
-\uc@combtoksb=\toks24
-\uc@temptokena=\toks25
+\uc@secondtry=\count114
+\uc@combtoks=\toks27
+\uc@combtoksb=\toks28
+\uc@temptokena=\toks29
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )) (/usr/local/texlive/2015/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-\fancy@headwidth=\skip46
-\f@ncyO@elh=\skip47
-\f@ncyO@erh=\skip48
-\f@ncyO@olh=\skip49
-\f@ncyO@orh=\skip50
-\f@ncyO@elf=\skip51
-\f@ncyO@erf=\skip52
-\f@ncyO@olf=\skip53
-\f@ncyO@orf=\skip54
+\fancy@headwidth=\skip48
+\f@ncyO@elh=\skip49
+\f@ncyO@erh=\skip50
+\f@ncyO@olh=\skip51
+\f@ncyO@orh=\skip52
+\f@ncyO@elf=\skip53
+\f@ncyO@erf=\skip54
+\f@ncyO@olf=\skip55
+\f@ncyO@orf=\skip56
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/emptypage/emptypage.sty
 Package: emptypage 2010/05/30 v1.2 Suppress page numbers and headings on empty pages
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/geometry/geometry.sty
@@ -197,46 +250,46 @@ Package ifvtex Info: VTeX not detected.
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count111
-\Gm@cntv=\count112
-\c@Gm@tempcnt=\count113
-\Gm@bindingoffset=\dimen119
-\Gm@wd@mp=\dimen120
-\Gm@odd@mp=\dimen121
-\Gm@even@mp=\dimen122
-\Gm@layoutwidth=\dimen123
-\Gm@layoutheight=\dimen124
-\Gm@layouthoffset=\dimen125
-\Gm@layoutvoffset=\dimen126
-\Gm@dimlist=\toks26
+\Gm@cnth=\count115
+\Gm@cntv=\count116
+\c@Gm@tempcnt=\count117
+\Gm@bindingoffset=\dimen132
+\Gm@wd@mp=\dimen133
+\Gm@odd@mp=\dimen134
+\Gm@even@mp=\dimen135
+\Gm@layoutwidth=\dimen136
+\Gm@layoutheight=\dimen137
+\Gm@layouthoffset=\dimen138
+\Gm@layoutvoffset=\dimen139
+\Gm@dimlist=\toks30
 ) (./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux)
 \openout1 = `Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
  (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count114
-\scratchdimen=\dimen127
-\scratchbox=\box30
-\nofMPsegments=\count115
-\nofMParguments=\count116
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count117
-\MPscratchDim=\dimen128
-\MPnumerator=\count118
-\makeMPintoPDFobject=\count119
-\everyMPtoPDFconversion=\toks28
+\scratchcounter=\count118
+\scratchdimen=\dimen140
+\scratchbox=\box32
+\nofMPsegments=\count119
+\nofMParguments=\count120
+\everyMPshowfont=\toks31
+\MPscratchCnt=\count121
+\MPscratchDim=\dimen141
+\MPnumerator=\count122
+\makeMPintoPDFobject=\count123
+\everyMPtoPDFconversion=\toks32
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
  (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty
@@ -270,7 +323,7 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-\c@lstlisting=\count120
+\c@lstlisting=\count124
  (/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
@@ -311,12 +364,12 @@ File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 <images/uibk.pdf, id=1, 38.1425pt x 78.2925pt>
 File: images/uibk.pdf Graphic file (type pdf)
  <use images/uibk.pdf>
-Package pdftex.def Info: images/uibk.pdf used on input line 70.
+Package pdftex.def Info: images/uibk.pdf used on input line 72.
 (pdftex.def)             Requested size: 34.14322pt x 70.08627pt.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 83.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 85.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 ) [1
@@ -352,7 +405,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [7] [8
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 122--126
+Underfull \hbox (badness 10000) in paragraph at lines 124--128
 
  []
 
@@ -365,7 +418,7 @@ Chapter 1.
 ]
 Chapter 2.
 
-Overfull \hbox (14.93185pt too wide) in paragraph at lines 147--149
+Overfull \hbox (14.93185pt too wide) in paragraph at lines 149--151
 \T1/cmr/m/n/10.95 Kamal and Ud-din eval-u-ated var-i-ous ter-rain gen-er-a-tion al-go-rithms like Diamond-Square-Algorithm
  []
 
@@ -376,70 +429,49 @@ Chapter 3.
 <./images/mpd0.png, id=62, 642.4pt x 481.8pt>
 File: ./images/mpd0.png Graphic file (type png)
  <use ./images/mpd0.png>
-Package pdftex.def Info: ./images/mpd0.png used on input line 157.
-(pdftex.def)             Requested size: 142.03946pt x 106.52563pt.
+Package pdftex.def Info: ./images/mpd0.png used on input line 159.
+(pdftex.def)             Requested size: 146.47566pt x 109.85594pt.
  <./images/mpd1.png, id=64, 642.4pt x 481.8pt>
 File: ./images/mpd1.png Graphic file (type png)
  <use ./images/mpd1.png>
-Package pdftex.def Info: ./images/mpd1.png used on input line 161.
-(pdftex.def)             Requested size: 142.03946pt x 106.52563pt.
+Package pdftex.def Info: ./images/mpd1.png used on input line 163.
+(pdftex.def)             Requested size: 146.47566pt x 109.85594pt.
  <./images/mpd2.png, id=65, 642.4pt x 481.8pt>
 File: ./images/mpd2.png Graphic file (type png)
  <use ./images/mpd2.png>
-Package pdftex.def Info: ./images/mpd2.png used on input line 165.
-(pdftex.def)             Requested size: 142.03946pt x 106.52563pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 180.
+Package pdftex.def Info: ./images/mpd2.png used on input line 167.
+(pdftex.def)             Requested size: 146.47566pt x 109.85594pt.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 182.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 180.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 182.
  [5 <./images/mpd0.png> <./images/mpd1.png> <./images/mpd2.png>] <./images/ds1.png, id=75, 406.51875pt x 406.51875pt>
 File: ./images/ds1.png Graphic file (type png)
  <use ./images/ds1.png>
-Package pdftex.def Info: ./images/ds1.png used on input line 218.
-(pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
+Package pdftex.def Info: ./images/ds1.png used on input line 220.
+(pdftex.def)             Requested size: 146.47566pt x 146.47069pt.
  <./images/ds2.png, id=76, 406.51875pt x 406.51875pt>
 File: ./images/ds2.png Graphic file (type png)
  <use ./images/ds2.png>
-Package pdftex.def Info: ./images/ds2.png used on input line 222.
-(pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
+Package pdftex.def Info: ./images/ds2.png used on input line 224.
+(pdftex.def)             Requested size: 146.47566pt x 146.47069pt.
  <./images/ds3.png, id=77, 406.51875pt x 406.51875pt>
 File: ./images/ds3.png Graphic file (type png)
  <use ./images/ds3.png>
-Package pdftex.def Info: ./images/ds3.png used on input line 226.
-(pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
+Package pdftex.def Info: ./images/ds3.png used on input line 228.
+(pdftex.def)             Requested size: 146.47566pt x 146.47069pt.
  <./images/ds4.png, id=78, 406.51875pt x 406.51875pt>
 File: ./images/ds4.png Graphic file (type png)
  <use ./images/ds4.png>
-Package pdftex.def Info: ./images/ds4.png used on input line 232.
-(pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
+Package pdftex.def Info: ./images/ds4.png used on input line 234.
+(pdftex.def)             Requested size: 146.47566pt x 146.47069pt.
  <./images/ds5.png, id=79, 406.51875pt x 406.51875pt>
 File: ./images/ds5.png Graphic file (type png)
  <use ./images/ds5.png>
-Package pdftex.def Info: ./images/ds5.png used on input line 236.
-(pdftex.def)             Requested size: 142.03946pt x 142.03557pt.
- <./images/fault0.png, id=80, 513.92pt x 513.92pt>
-File: ./images/fault0.png Graphic file (type png)
- <use ./images/fault0.png>
-Package pdftex.def Info: ./images/fault0.png used on input line 263.
-(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
- <./images/fault2.png, id=81, 513.92pt x 513.92pt>
-File: ./images/fault2.png Graphic file (type png)
- <use ./images/fault2.png>
-Package pdftex.def Info: ./images/fault2.png used on input line 267.
-(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
- <./images/fault4.png, id=82, 513.92pt x 513.92pt>
-File: ./images/fault4.png Graphic file (type png)
- <use ./images/fault4.png>
-Package pdftex.def Info: ./images/fault4.png used on input line 271.
-(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
- <./images/fault6.png, id=83, 513.92pt x 513.92pt>
-File: ./images/fault6.png Graphic file (type png)
-
-<use ./images/fault6.png>
-Package pdftex.def Info: ./images/fault6.png used on input line 275.
-(pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
+Package pdftex.def Info: ./images/ds5.png used on input line 238.
+(pdftex.def)             Requested size: 146.47566pt x 146.47069pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -447,33 +479,51 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6] [7 <./images/ds1.png> <./images/ds2.png> <./images/ds3.png> <./images/ds4.png> <./images/ds5.png> <./images/fault0.png> <./images/fault2.png> <./images/fault4.png> <./images/fault6.png>] [8] <./images/voronoi10.png, id=112, 1284.8pt x 963.6pt>
+[6] <./images/fault0.png, id=91, 513.92pt x 513.92pt>
+File: ./images/fault0.png Graphic file (type png)
+ <use ./images/fault0.png>
+Package pdftex.def Info: ./images/fault0.png used on input line 265.
+(pdftex.def)             Requested size: 110.96579pt x 110.96115pt.
+ <./images/fault2.png, id=92, 513.92pt x 513.92pt>
+File: ./images/fault2.png Graphic file (type png)
+ <use ./images/fault2.png>
+Package pdftex.def Info: ./images/fault2.png used on input line 269.
+(pdftex.def)             Requested size: 110.96579pt x 110.96115pt.
+ <./images/fault4.png, id=93, 513.92pt x 513.92pt>
+File: ./images/fault4.png Graphic file (type png)
+ <use ./images/fault4.png>
+Package pdftex.def Info: ./images/fault4.png used on input line 273.
+(pdftex.def)             Requested size: 110.96579pt x 110.96115pt.
+ <./images/fault6.png, id=94, 513.92pt x 513.92pt>
+File: ./images/fault6.png Graphic file (type png)
+ <use ./images/fault6.png>
+Package pdftex.def Info: ./images/fault6.png used on input line 277.
+(pdftex.def)             Requested size: 110.96579pt x 110.96115pt.
+ [7 <./images/ds1.png> <./images/ds2.png> <./images/ds3.png> <./images/ds4.png> <./images/ds5.png> <./images/fault0.png> <./images/fault2.png> <./images/fault4.png> <./images/fault6.png>] [8] <./images/voronoi10.png, id=112, 1284.8pt x 963.6pt>
 File: ./images/voronoi10.png Graphic file (type png)
  <use ./images/voronoi10.png>
-Package pdftex.def Info: ./images/voronoi10.png used on input line 312.
+Package pdftex.def Info: ./images/voronoi10.png used on input line 314.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
  <./images/voronoi100.png, id=113, 1284.8pt x 963.6pt>
 File: ./images/voronoi100.png Graphic file (type png)
  <use ./images/voronoi100.png>
-Package pdftex.def Info: ./images/voronoi100.png used on input line 316.
+Package pdftex.def Info: ./images/voronoi100.png used on input line 318.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
  <./images/voronoi1000.png, id=114, 1284.8pt x 963.6pt>
 File: ./images/voronoi1000.png Graphic file (type png)
  <use ./images/voronoi1000.png>
-Package pdftex.def Info: ./images/voronoi1000.png used on input line 320.
+Package pdftex.def Info: ./images/voronoi1000.png used on input line 322.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
  <./images/rotvonneumann.png, id=115, 513.92pt x 513.92pt>
 File: ./images/rotvonneumann.png Graphic file (type png)
  <use ./images/rotvonneumann.png>
-Package pdftex.def Info: ./images/rotvonneumann.png used on input line 330.
+Package pdftex.def Info: ./images/rotvonneumann.png used on input line 332.
 (pdftex.def)             Requested size: 110.96579pt x 110.96115pt.
-
-Underfull \vbox (badness 1320) has occurred while \output is active []
-
- [9 <./images/voronoi10.png (PNG copy)> <./images/voronoi100.png (PNG copy)> <./images/voronoi1000.png (PNG copy)>] <./images/thermalerosion.png, id=119, 586.19pt x 762.85pt>
+ [9 <./images/voronoi10.png (PNG copy)> <./images/voronoi100.png (PNG copy)> <./images/voronoi1000.png (PNG copy)>]
+<./images/thermalerosion.png, id=119, 586.19pt x 762.85pt>
 File: ./images/thermalerosion.png Graphic file (type png)
  <use ./images/thermalerosion.png>
-Package pdftex.def Info: ./images/thermalerosion.png used on input line 336.
+Package pdftex.def Info: ./images/thermalerosion.png used on input line 338.
 (pdftex.def)             Requested size: 221.9316pt x 288.81512pt.
 
 
@@ -482,10 +532,10 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [10 <./images/rotvonneumann.png>] <./images/hydraulicerosion.png, id=124, 659.46375pt x 516.93124pt>
 File: ./images/hydraulicerosion.png Graphic file (type png)
  <use ./images/hydraulicerosion.png>
-Package pdftex.def Info: ./images/hydraulicerosion.png used on input line 353.
+Package pdftex.def Info: ./images/hydraulicerosion.png used on input line 355.
 (pdftex.def)             Requested size: 288.50836pt x 226.15686pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--359
+Underfull \hbox (badness 10000) in paragraph at lines 352--361
 
  []
 
@@ -497,106 +547,141 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11 <./images/thermalerosion.png>] [12 <./images/hydraulicerosion.png>] [13] [14]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 400.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 402.
  [15] [16] <./images/shader0-no-effect-screenshot.png, id=146, 1284.8pt x 963.6pt>
 File: ./images/shader0-no-effect-screenshot.png Graphic file (type png)
  <use ./images/shader0-no-effect-screenshot.png>
-Package pdftex.def Info: ./images/shader0-no-effect-screenshot.png used on input line 455.
-(pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
+Package pdftex.def Info: ./images/shader0-no-effect-screenshot.png used on input line 457.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
  <./images/shader1-brightpass-screenshot.png, id=147, 1284.8pt x 963.6pt>
 File: ./images/shader1-brightpass-screenshot.png Graphic file (type png)
  <use ./images/shader1-brightpass-screenshot.png>
-Package pdftex.def Info: ./images/shader1-brightpass-screenshot.png used on input line 459.
-(pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
+Package pdftex.def Info: ./images/shader1-brightpass-screenshot.png used on input line 461.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
  <./images/shader2-horizontal-blur-screenshot.png, id=148, 1284.8pt x 963.6pt>
 File: ./images/shader2-horizontal-blur-screenshot.png Graphic file (type png)
  <use ./images/shader2-horizontal-blur-screenshot.png>
-Package pdftex.def Info: ./images/shader2-horizontal-blur-screenshot.png used on input line 463.
-(pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
+Package pdftex.def Info: ./images/shader2-horizontal-blur-screenshot.png used on input line 465.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
  <./images/shader3-vertical-blur-screenshot.png, id=149, 1284.8pt x 963.6pt>
 File: ./images/shader3-vertical-blur-screenshot.png Graphic file (type png)
  <use ./images/shader3-vertical-blur-screenshot.png>
-Package pdftex.def Info: ./images/shader3-vertical-blur-screenshot.png used on input line 469.
-(pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
+Package pdftex.def Info: ./images/shader3-vertical-blur-screenshot.png used on input line 471.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
  <./images/shader4-bloom-screenshot.png, id=150, 1284.8pt x 963.6pt>
 File: ./images/shader4-bloom-screenshot.png Graphic file (type png)
  <use ./images/shader4-bloom-screenshot.png>
-Package pdftex.def Info: ./images/shader4-bloom-screenshot.png used on input line 473.
-(pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- [17 <./images/shader0-no-effect-screenshot.png (PNG copy)> <./images/shader1-brightpass-screenshot.png (PNG copy)> <./images/shader2-horizontal-blur-screenshot.png (PNG copy)> <./images/shader3-vertical-blur-screenshot.png (PNG copy)> <./images/shader4-bloom-screenshot.png (PNG copy)>] [18] [19] [20
+Package pdftex.def Info: ./images/shader4-bloom-screenshot.png used on input line 475.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
+ [17 <./images/shader0-no-effect-screenshot.png (PNG copy)> <./images/shader1-brightpass-screenshot.png (PNG copy)> <./images/shader2-horizontal-blur-screenshot.png (PNG copy)> <./images/shader3-vertical-blur-screenshot.png (PNG copy)> <./images/shader4-bloom-screenshot.png (PNG copy)>] <./images/pixhfld.png, id=156, 642.4pt x 481.8pt>
+File: ./images/pixhfld.png Graphic file (type png)
+ <use ./images/pixhfld.png>
+Package pdftex.def Info: ./images/pixhfld.png used on input line 515.
+(pdftex.def)             Requested size: 177.54256pt x 133.15338pt.
+ [18 <./images/pixhfld.png (PNG copy)>] [19] [20
 
 ]
 Chapter 4.
-<./images/hydro-10mins-46k-iterations-crooked.png, id=166, 1284.8pt x 963.6pt>
+<./images/hydro-10mins-46k-iterations-crooked.png, id=167, 1284.8pt x 963.6pt>
 File: ./images/hydro-10mins-46k-iterations-crooked.png Graphic file (type png)
  <use ./images/hydro-10mins-46k-iterations-crooked.png>
-Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-crooked.png used on input line 533.
+Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-crooked.png used on input line 561.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
- <./images/hydro-10mins-46k-iterations-pyramid.png, id=167, 1284.8pt x 963.6pt>
+ <./images/hydro-10mins-46k-iterations-pyramid.png, id=168, 1284.8pt x 963.6pt>
 File: ./images/hydro-10mins-46k-iterations-pyramid.png Graphic file (type png)
  <use ./images/hydro-10mins-46k-iterations-pyramid.png>
-Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-pyramid.png used on input line 537.
+Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-pyramid.png used on input line 565.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
- <./images/hydro-10mins-46k-iterations-hemisphere.png, id=168, 1284.8pt x 963.6pt>
+ <./images/hydro-10mins-46k-iterations-hemisphere.png, id=169, 1284.8pt x 963.6pt>
 File: ./images/hydro-10mins-46k-iterations-hemisphere.png Graphic file (type png)
  <use ./images/hydro-10mins-46k-iterations-hemisphere.png>
-Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-hemisphere.png used on input line 541.
+Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-hemisphere.png used on input line 569.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
- <./images/sph-hydro-10mins-crooked.png, id=169, 1284.8pt x 963.6pt>
+ <./images/sph-hydro-10mins-crooked.png, id=170, 1284.8pt x 963.6pt>
 File: ./images/sph-hydro-10mins-crooked.png Graphic file (type png)
  <use ./images/sph-hydro-10mins-crooked.png>
-Package pdftex.def Info: ./images/sph-hydro-10mins-crooked.png used on input line 548.
+Package pdftex.def Info: ./images/sph-hydro-10mins-crooked.png used on input line 576.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
- <./images/sph-hydro-10mins-pyramid.png, id=170, 1284.8pt x 963.6pt>
+ <./images/sph-hydro-10mins-pyramid.png, id=171, 1284.8pt x 963.6pt>
 File: ./images/sph-hydro-10mins-pyramid.png Graphic file (type png)
  <use ./images/sph-hydro-10mins-pyramid.png>
-Package pdftex.def Info: ./images/sph-hydro-10mins-pyramid.png used on input line 552.
+Package pdftex.def Info: ./images/sph-hydro-10mins-pyramid.png used on input line 580.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
- <./images/sph-hydro-10mins-hemisphere.png, id=171, 1284.8pt x 963.6pt>
+ <./images/sph-hydro-10mins-hemisphere.png, id=172, 1284.8pt x 963.6pt>
 File: ./images/sph-hydro-10mins-hemisphere.png Graphic file (type png)
  <use ./images/sph-hydro-10mins-hemisphere.png>
-Package pdftex.def Info: ./images/sph-hydro-10mins-hemisphere.png used on input line 556.
+Package pdftex.def Info: ./images/sph-hydro-10mins-hemisphere.png used on input line 584.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
  [21 <./images/hydro-10mins-46k-iterations-crooked.png (PNG copy)> <./images/hydro-10mins-46k-iterations-pyramid.png (PNG copy)> <./images/hydro-10mins-46k-iterations-hemisphere.png (PNG copy)>]
-<./images/voronoi100-diagonal.png, id=175, 1284.8pt x 963.6pt>
+<./images/voronoi100-diagonal.png, id=176, 1284.8pt x 963.6pt>
 File: ./images/voronoi100-diagonal.png Graphic file (type png)
  <use ./images/voronoi100-diagonal.png>
-Package pdftex.def Info: ./images/voronoi100-diagonal.png used on input line 567.
-(pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/mountain-range-normal.png, id=176, 1284.8pt x 963.6pt>
+Package pdftex.def Info: ./images/voronoi100-diagonal.png used on input line 595.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
+ <./images/mountain-range-normal.png, id=177, 1284.8pt x 963.6pt>
 File: ./images/mountain-range-normal.png Graphic file (type png)
  <use ./images/mountain-range-normal.png>
-Package pdftex.def Info: ./images/mountain-range-normal.png used on input line 571.
-(pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/mountain-range-alteration.png, id=177, 1284.8pt x 963.6pt>
+Package pdftex.def Info: ./images/mountain-range-normal.png used on input line 599.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
+ <./images/mountain-range-alteration.png, id=178, 1284.8pt x 963.6pt>
 File: ./images/mountain-range-alteration.png Graphic file (type png)
  <use ./images/mountain-range-alteration.png>
-Package pdftex.def Info: ./images/mountain-range-alteration.png used on input line 575.
-(pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- [22 <./images/sph-hydro-10mins-crooked.png (PNG copy)> <./images/sph-hydro-10mins-pyramid.png (PNG copy)> <./images/sph-hydro-10mins-hemisphere.png (PNG copy)> <./images/voronoi100-diagonal.png> <./images/mountain-range-normal.png (PNG copy)> <./images/mountain-range-alteration.png (PNG copy)>]
-Chapter 5.
-(./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl [23
+Package pdftex.def Info: ./images/mountain-range-alteration.png used on input line 603.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
 
-] [24
+Underfull \vbox (badness 1127) has occurred while \output is active []
+
+ [22 <./images/sph-hydro-10mins-crooked.png (PNG copy)> <./images/sph-hydro-10mins-pyramid.png (PNG copy)> <./images/sph-hydro-10mins-hemisphere.png (PNG copy)> <./images/voronoi100-diagonal.png> <./images/mountain-range-normal.png (PNG copy)> <./images/mountain-range-alteration.png (PNG copy)>] <./images/thermal-50-iterations-before.png, id=183, 1284.8pt x 963.6pt>
+File: ./images/thermal-50-iterations-before.png Graphic file (type png)
+ <use ./images/thermal-50-iterations-before.png>
+Package pdftex.def Info: ./images/thermal-50-iterations-before.png used on input line 617.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
+ <./images/thermal-50-iterations-after1.png, id=184, 1284.8pt x 963.6pt>
+File: ./images/thermal-50-iterations-after1.png Graphic file (type png)
+ <use ./images/thermal-50-iterations-after1.png>
+Package pdftex.def Info: ./images/thermal-50-iterations-after1.png used on input line 621.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
+
+Underfull \hbox (badness 7186) in paragraph at lines 622--622
+[]\T1/cmr/m/n/10.95 Figure 4.11: Height-aware
+ []
+
+<./images/thermal-50-iterations-after2.png, id=185, 1284.8pt x 963.6pt>
+File: ./images/thermal-50-iterations-after2.png Graphic file (type png)
+ <use ./images/thermal-50-iterations-after2.png>
+Package pdftex.def Info: ./images/thermal-50-iterations-after2.png used on input line 625.
+(pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[23 <./images/thermal-50-iterations-before.png (PNG copy)> <./images/thermal-50-iterations-after1.png (PNG copy)> <./images/thermal-50-iterations-after2.png (PNG copy)>] [24]
+Chapter 5.
+(./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl [25
+
+] [26
 
 ] (/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
-)) [25] (./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux) ) 
+)) [27] (./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux) ) 
 Here is how much of TeX's memory you used:
- 8095 strings out of 493089
- 124009 string characters out of 6134841
- 288473 words of memory out of 5000000
- 11396 multiletter control sequences out of 15000+600000
+ 9057 strings out of 493089
+ 139267 string characters out of 6134841
+ 307822 words of memory out of 5000000
+ 12312 multiletter control sequences out of 15000+600000
  25424 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,16n,43p,3155b,1797s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam
-10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsl1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1
-095.pfb>
-Output written on Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf (36 pages, 22448129 bytes).
+ 38i,16n,54p,3155b,1833s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsl1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfti1
+095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf (38 pages, 28177750 bytes).
 PDF statistics:
- 269 PDF objects out of 1000 (max. 8388607)
- 155 compressed objects within 2 object streams
+ 286 PDF objects out of 1000 (max. 8388607)
+ 165 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 166 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 186 words of extra memory for PDF output out of 10000 (max. 10000000)
 

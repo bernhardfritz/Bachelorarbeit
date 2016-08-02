@@ -15,6 +15,8 @@
 \usepackage{amssymb}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{adjustbox}
+\usepackage{makecell}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -153,15 +155,15 @@ Kamal and Uddin evaluated various terrain generation algorithms like Diamond-Squ
 This algorithm was first introduced by Fournier et al in 1982 \cite{Fournier:1982:CRS:358523.358553}. It can be considered as an extension of Midpoint-Displacement (MPD) algorithm. By recursively subdividing a line into segments of equal length and displacing the resulting midpoints by a random amount, MPD algorithm is able to produce a fairly arbitrary looking 1D-landscape. \Cref{fig:mpd0,fig:mpd1,fig:mpd2} depict the first 2 iterations of MPD algorithm.
 
 \begin{figure}[!htb]
-\minipage{0.32\textwidth}
+\minipage{0.33\textwidth}
   \includegraphics[width=\linewidth]{mpd0.png}
   \caption{MPD init}\label{fig:mpd0}
 \endminipage\hfill
-\minipage{0.32\textwidth}
+\minipage{0.33\textwidth}
   \includegraphics[width=\linewidth]{mpd1.png}
   \caption{MPD iteration 1}\label{fig:mpd1}
 \endminipage\hfill
-\minipage{0.32\textwidth}%
+\minipage{0.33\textwidth}%
   \includegraphics[width=\linewidth]{mpd2.png}
   \caption{MPD iteration 2}\label{fig:mpd2}
 \endminipage
@@ -214,25 +216,25 @@ procedure perform(hm, roughness):
 \noindent \Cref{fig:ds1,fig:ds2,fig:ds3,fig:ds4,fig:ds5} depict the DS algorithm applied to a 4x4 heightmap. Orange vertices are being altered in height, while blue vertices contribute to the average height calculation.
 
 \begin{figure}[!htb]
-\minipage{0.32\textwidth}
+\minipage{0.33\textwidth}
   \includegraphics[width=\linewidth]{ds1.png}
   \caption{DS init}\label{fig:ds1}
 \endminipage
-\minipage{0.32\textwidth}
+\minipage{0.33\textwidth}
   \includegraphics[width=\linewidth]{ds2.png}
   \caption{DS 1}\label{fig:ds2}
 \endminipage
-\minipage{0.32\textwidth}%
+\minipage{0.33\textwidth}%
   \includegraphics[width=\linewidth]{ds3.png}
   \caption{DS 2}\label{fig:ds3}
 \endminipage\hfill
 \\
 \centering
-\minipage{0.32\textwidth}
+\minipage{0.33\textwidth}
   \includegraphics[width=\linewidth]{ds4.png}
   \caption{DS 3}\label{fig:ds4}
 \endminipage
-\minipage{0.32\textwidth}%
+\minipage{0.33\textwidth}%
   \includegraphics[width=\linewidth]{ds5.png}
   \caption{DS 4}\label{fig:ds5}
 \endminipage
@@ -259,19 +261,19 @@ raise(\mathbf{v}) &=
 Let vectors $\mathbf{a}$ and $\mathbf{b}$ describe a random cutting line. Then a vertex pointed to by vector $\mathbf{p}$ will be raised in height if $raise((\mathbf{p}-\mathbf{a}) \times (\mathbf{b} - \mathbf{a}))$ equals 1 and lowered otherwise. \Cref{fig:fault0,fig:fault1,fig:fault2,fig:fault3} will depict the first 3 iterations of Fault algorithm using different shades of green. Light green represents high and dark green low elevation respectively.
 
 \begin{figure}[!htb]
-\minipage{0.24\textwidth}
+\minipage{0.25\textwidth}
   \includegraphics[width=\linewidth]{fault0.png}
   \caption{Fault init}\label{fig:fault0}
 \endminipage\hfill
-\minipage{0.24\textwidth}
+\minipage{0.25\textwidth}
   \includegraphics[width=\linewidth]{fault2.png}
   \caption{Fault 1}\label{fig:fault1}
 \endminipage\hfill
-\minipage{0.24\textwidth}
+\minipage{0.25\textwidth}
   \includegraphics[width=\linewidth]{fault4.png}
   \caption{Fault 2}\label{fig:fault2}
 \endminipage\hfill
-\minipage{0.24\textwidth}%
+\minipage{0.25\textwidth}%
   \includegraphics[width=\linewidth]{fault6.png}
   \caption{Fault 3}\label{fig:fault3}
 \endminipage
@@ -451,25 +453,25 @@ The bright-pass filter will be applied to the original frame. After that the res
 \end{itemize}
 
 \begin{figure}[!htb]
-\minipage{0.32\textwidth}
+\minipage{0.33\textwidth}
   \includegraphics[width=\linewidth]{shader0-no-effect-screenshot.png}
   \caption{1$^{st}$ pass}\label{fig:1stpass}
 \endminipage
-\minipage{0.32\textwidth}
+\minipage{0.33\textwidth}
   \includegraphics[width=\linewidth]{shader1-brightpass-screenshot.png}
   \caption{2$^{nd}$ pass}\label{fig:2ndpass}
 \endminipage
-\minipage{0.32\textwidth}%
+\minipage{0.33\textwidth}%
   \includegraphics[width=\linewidth]{shader2-horizontal-blur-screenshot.png}
   \caption{3$^{rd}$ pass}\label{fig:3rdpass}
 \endminipage\hfill
 \\
 \centering
-\minipage{0.32\textwidth}
+\minipage{0.33\textwidth}
   \includegraphics[width=\linewidth]{shader3-vertical-blur-screenshot.png}
   \caption{4$^{th}$ pass}\label{fig:4thpass}
 \endminipage
-\minipage{0.32\textwidth}%
+\minipage{0.33\textwidth}%
   \includegraphics[width=\linewidth]{shader4-bloom-screenshot.png}
   \caption{5$^{th}$ pass}\label{fig:5thpass}
 \endminipage
@@ -506,6 +508,32 @@ for i between 0 and weights.length:
   color += texture.pixelAt(blurUV[i])*weights[i]
 \end{lstlisting}
 
+\subsection{Exporting heightmaps}
+Obviously, once an interesting heightmap has been generated it is desireable to save it for future usage. To generate heightmaps that are compatible with the huge variety of tools available, it is necessary to choose a common file format. Research shows that most programs that work with heightmaps (e.g. Terragen) support 8-bit grayscale images using .png file format. It is important to note that 8-bit images allow only a maximum of 256 different height levels. For small heightmaps with equal or less than 512x512 tiles this is more than enough. Each pixel of the grayscale image will be used to store vertex y-coordinates.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\linewidth]{pixhfld.png}
+\caption{
+  Simplified heightmap export process \cite{POVRay:HeightField}
+}
+\label{fig:heightfield}
+\end{figure}
+\Cref{fig:heightfield} depicts this process for a 1x1 heighmap. There are some special cases to consider which would result in invalid heightmap exports if not handled properly:
+\begin{itemize}
+  \item Heightmaps containing vertices with negative y-coordinates
+  \item Heightmaps containing vertices with y-coordinates exceeding the upper bound
+\end{itemize}
+These problems can be resolved by translating and scaling the heightmap along the y-axis in a way that satisfies both requirements. The following pseudo-code shows how this issue was dealt with programmatically:
+\begin{lstlisting}[caption=Heightmap export pseudo-code]
+imageWidth = hm.getColumns() + 1
+imageHeight = hm.getRows() + 1
+image[] = array of length imageWidth*imageHeight
+
+for y between 0 and imageHeight:
+  for x between 0 and imageWidth:
+    image[y*imageWidth + x] = ((hm.getHeightAt(x,y) - hm.getMinHeight()) / (hm.getMaxHeight() - hm.getMinHeight())) * 256
+\end{lstlisting}
+
 \subsection{Capturing screenshots with stblib}
 OpenGL provides a function called glReadPixels which copies a specified region of pixels from the video card memory to the RAM. RGB images require width * height * 3 bytes per pixel. Since a char requires exactly one byte of space it is commonly used to represent color channel information. In fact a library called stblib written by Sean T. Barret et al is perfectly capable of saving these kinds of character arrays in various file formats like .jpg or .png and was used for this purpose.
 
@@ -521,7 +549,7 @@ Using OpenGL's glReadPixels function it was possible to save each frame into an 
 \label{sec:results}
 
 \section{Comparison of hydraulic erosion algorithms}
-The algorithms being tested are Jacob Olsen's cellular automata based approach as well as the SPH based alternative. Both algorithms were applied to predefined heightmap surfaces of different shapes for 10 minutes each. The shapes in concern are
+The algorithms being compared are Jacob Olsen's cellular automata based approach as well as the SPH based alternative. Both algorithms were applied to predefined heightmap surfaces of different shapes for 10 minutes each. The shapes in concern are
 \begin{itemize}
 \item a crooked surface
 \item a pyramid-like surface
@@ -557,26 +585,102 @@ Although Olsen's algorithm showed consistent results independently of the shape 
   \caption{Hemispheric surf.}\label{fig:hydro6}
 \endminipage
 \end{figure}
-\Cref{fig:hydro4,fig:hydro5,fig:hydro6} depict the SPH based algorithm applied to the shapes mentioned beforehand. Concluding this experiment, it is evident that utilizing SPH simulations for hydraulic erosion algorithms bears very promising results. SPH simulations are capable of modelling fluid flow velocity autonomously. This behavior substantially influences the realism of the hydraulic erosion process and therefore SPH simulations should be preferred over cellular automata when it comes to modelling hydraulic erosion.
+\Cref{fig:hydro4,fig:hydro5,fig:hydro6} depict the SPH based algorithm applied to the shapes mentioned beforehand. Concluding this experiment, it is evident that utilizing SPH simulations for hydraulic erosion algorithms bears very promising results. SPH simulations are capable of modelling fluid flow velocity autonomously. This behavior substantially influences the realism of the hydraulic erosion process and therefore, SPH simulations should be preferred over cellular automata when it comes to modelling hydraulic erosion.
 
 \section{Mountain range generation algorithm alterations}
 The mountain range generation algorithm is a major component of the tectonic plate algorithm as described in \cref{subsec:generationofmountainranges}. It uses a modified version of Voronoi-based RMP algorithm in order to procedurally generate mountain ranges. By extracting the mountain range generation portion from the tectonic plate algorithm and removing the randomness of tectonic plate movement it was possible to reliably conduct an experiment. The goal for this experiment was to determine if slight alterations in the mountain range generation code, namely dynamic instead of static areal height assignments, would result in higher realism. \Cref{fig:voronoi2diagonal} might help to understand what the experiment is all about. Instead of raising the whole bordered area, the goal is to raise each colored area inside the border individually. The experiment consisted of two iterations. To determine if the alterations had any effect, a control experiment was performed using the unaltered code as depicted in \cref{fig:mountainrangenormal}. \Cref{fig:mountainrangealteration} shows the final result after the alterations. Unfortunately the effect of the alterations is very subtle. While the control experiment showed no variation in mountain top elevation, the alterated version of the algorithm produced mountain tops that slightly vary in height. Even though the effects only were very subtle, the alterations still were merged into the original mountain range generation code since they had no impact performance-wise while still contributing to the realism of the scene.
 
 \begin{figure}[!htb]
-\minipage{0.32\textwidth}
+\minipage{0.33\textwidth}
   \includegraphics[width=\linewidth]{voronoi100-diagonal.png}
   \caption{Visualization}\label{fig:voronoi2diagonal}
 \endminipage\hfill
-\minipage{0.32\textwidth}
+\minipage{0.33\textwidth}
   \includegraphics[width=\linewidth]{mountain-range-normal.png}
   \caption{Before alterations}\label{fig:mountainrangenormal}
 \endminipage\hfill
-\minipage{0.32\textwidth}%
+\minipage{0.33\textwidth}%
   \includegraphics[width=\linewidth]{mountain-range-alteration.png}
   \caption{After alterations}\label{fig:mountainrangealteration}
 \endminipage
 \end{figure}
 
+\section{Thermal erosion algorithm variations}
+Fast terrain generation algorithms, like fault algorithm, produce very rough and spiky terrain features. Therefore terrain generated by fault algorithm has to be smoothed before usage. For this purpose thermal erosion algorithm can be used. It is capable of removing spikes and smoothing the terrain in general. Based on the roughness of the terrain, the following 2 variations of thermal erosion should be considered:
+\begin{itemize}
+  \item Height-aware thermal erosion
+  \item Constant thermal erosion
+\end{itemize}
+In general, height-aware thermal erosion is a very good choice for almost any terrain roughness. It considers material hardness based on height which results in very realistic terrain transformations. However, experiments show that for very rough and spiky terrain, constant thermal erosion is preferable over height-aware thermal erosion since the latter causes heavy loss of detail in lower elevations and keeps spikes in higher elevations unaffected. These effects can be witnessed in \cref{fig:thermalbefore,fig:thermalafter1,fig:thermalafter2}.
+\begin{figure}[!htb]
+\minipage{0.33\textwidth}
+  \includegraphics[width=\linewidth]{thermal-50-iterations-before.png}
+  \caption{Heightmap generated with Fault algorithm}\label{fig:thermalbefore}
+\endminipage\hfill
+\minipage{0.33\textwidth}
+  \includegraphics[width=\linewidth]{thermal-50-iterations-after1.png}
+  \caption{Height-aware thermal erosion}\label{fig:thermalafter1}
+\endminipage\hfill
+\minipage{0.33\textwidth}%
+  \includegraphics[width=\linewidth]{thermal-50-iterations-after2.png}
+  \caption{Constant thermal erosion}\label{fig:thermalafter2}
+\endminipage
+\end{figure}
+
+\section{Graph- and Voronoi-based RMP performance analysis}
+The goal of this performance analysis is to compare two totally different implementations of RMP algorithm. The graph-based algorithm consists of several expensive steps including a minimal cycle search as well as a depth-first-search. These calculations solely take place on the CPU. The Voronoi-based algorithm takes full advantage of the GPU by generating Voronoi diagrams using the method described in \cref{subsec:voronoibasedimpl}.
+\begin{table}[h]
+\centering
+\caption{Graph-based RMP performance analysis}
+\label{tab:graphperformanceanalysis}
+\begin{tabular}{|r|r|r|r|}
+\hline
+\# of cuts & 3 & 4 & 5 \\ \hline
+max. \# of polygons & 7 & 11 & 16 \\ \hline
+sample 1 & 2.93s & 45.47s & 5891.85s \\ \hline
+sample 2 & 3.01s & 35.41s & 5921.50s \\ \hline
+sample 3 & 2.80s & 43.66s & 5929.62s \\ \hline
+sample 4 & 3.01s & 39.26s & 5962.49s \\ \hline
+sample 5 & 3.02s & 59.81s & 5941.39s \\ \hline
+sample 6 & 2.98s & 53.29s & 5957.13s \\ \hline
+sample 7 & 3.05s & 48.87s & 5942.96s \\ \hline
+sample 8 & 2.93s & 49.97s & 5965.95s \\ \hline
+sample 9 & 3.02s & 49.33s & 5889.50s \\ \hline
+sample 10 & 3.00s & 42.22s & 5971.09s \\ \hline
+$\mu$ & 2.975s & 46.729s & 5937.348s \\ \hline
+$\sigma^2$ & $5.27 \cdot 10^{-3}\textrm{s}$ & 50.139s & 855.362s \\ \hline
+$\sigma$ & $7.26 \cdot 10^{-2}\textrm{s}$ & 7.081s & 29.247s \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[h]
+\centering
+\caption{Voronoi-based RMP performance analysis}
+\label{tab:voronoiperformanceanalysis}
+\begin{tabular}{|r|r|r|r|}
+\hline
+\# of polygons & 7 & 11 & 16 \\ \hline
+sample 1 & 2.04s & 2.06s & 1.99s \\ \hline
+sample 2 & 1.99s & 1.96s & 2.06s \\ \hline
+sample 3 & 1.96s & 1.94s & 2.04s \\ \hline
+sample 4 & 2.01s & 1.97s & 2.01s \\ \hline
+sample 5 & 1.99s & 2.00s & 1.99s \\ \hline
+sample 6 & 1.98s & 1.97s & 2.10s \\ \hline
+sample 7 & 2.03s & 2.19s & 2.03s \\ \hline
+sample 8 & 1.98s & 1.96s & 1.99s \\ \hline
+sample 9 & 1.95s & 1.97s & 2.02s \\ \hline
+sample 10 & 1.96s & 2.02s & 2.02s \\ \hline
+$\mu$ & 1.989s & 2.004s & 2.025s \\ \hline
+$\sigma^2$ & $8.99 \cdot 10^{-4}\textrm{s}$ & $5.49 \cdot 10^{-3}\textrm{s} $ & $1.23 \cdot 10^{-3}\textrm{s}$ \\ \hline
+$\sigma$ & $3.00 \cdot 10^{-2}\textrm{s}$ & $7.41 \cdot 10^{-2}\textrm{s}$ & $3.5 \cdot 10^{-2}\textrm{s}$ \\ \hline
+speedup & 1.496 & 23.318 & 2932.024 \\ \hline
+\end{tabular}
+\end{table}
+
+10 2.07
+100 2.83
+1000 5.32
+10000 36.23
+100000 282.46
 %----------------------------------------------------------------------------------------
 \chapter{Conclusion \& Future Work}
 \label{sec:concl}

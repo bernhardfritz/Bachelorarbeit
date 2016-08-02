@@ -25,6 +25,7 @@
 \contentsline {figure}{\numberline {3.21}{\ignorespaces 3$^{rd}$ pass}}{17}
 \contentsline {figure}{\numberline {3.22}{\ignorespaces 4$^{th}$ pass}}{17}
 \contentsline {figure}{\numberline {3.23}{\ignorespaces 5$^{th}$ pass}}{17}
+\contentsline {figure}{\numberline {3.24}{\ignorespaces Simplified heightmap export process \cite {POVRay:HeightField} }}{18}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Crooked surf.}}{21}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Pyramid surf.}}{21}
@@ -35,4 +36,7 @@
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Visualization}}{22}
 \contentsline {figure}{\numberline {4.8}{\ignorespaces Before alterations}}{22}
 \contentsline {figure}{\numberline {4.9}{\ignorespaces After alterations}}{22}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Heightmap generated with Fault algorithm}}{23}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Height-aware thermal erosion}}{23}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Constant thermal erosion}}{23}
 \addvspace {10\p@ }
