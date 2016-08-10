@@ -31,6 +31,11 @@ Tomas M{\"o}ller and Ben Trumbore.
 \newblock Fast, minimum storage ray/triangle intersection.
 \newblock In {\em ACM SIGGRAPH 2005 Courses}, page~7. ACM, 2005.
 
+\bibitem{Moore:1991}
+Thomas~L. Moore.
+\newblock Using euler's formula to solve plane separation problems.
+\newblock {\em The College Mathematics Journal}, 22(2):125--130, 1991.
+
 \bibitem{Musgrave:1989:SRE:74333.74337}
 F.~K. Musgrave, C.~E. Kolb, and R.~S. Mace.
 \newblock {T}he {S}ynthesis and {R}endering of {E}roded {F}ractal {T}errains.
