@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{Allen:1991}
+David Allen.
+\newblock cdrift.
+\newblock [Online; accessed August 19, 2016].
+
 \bibitem{Fournier:1982:CRS:358523.358553}
 Alain Fournier, Don Fussell, and Loren Carpenter.
 \newblock {C}omputer {R}endering of {S}tochastic {M}odels.
@@ -66,8 +71,8 @@ M.~Shimrat.
 \newblock {A}lgorithm 112: {P}osition of {P}oint {R}elative to {P}olygon.
 \newblock {\em Commun. ACM}, 5(8):434--, August 1962.
 
-\bibitem{Vitanen:2012}
-Laurii Vitanen.
+\bibitem{Viitanen:2012}
+Lauri Viitanen.
 \newblock {P}hysically {B}ased {T}errain {G}eneration: {P}rocedural {H}eightmap
   {G}eneration {U}sing {P}late {T}ectonics.
 \newblock {B}.{S}. {T}hesis, 2012.
