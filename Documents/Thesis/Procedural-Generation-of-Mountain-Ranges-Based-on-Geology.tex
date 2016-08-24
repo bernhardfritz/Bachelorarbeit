@@ -104,15 +104,17 @@ Innsbruck, \today
 % Abstract
 %----------------------------------------------------------------------------------------
 \chapter*{Abstract}
-In this thesis several geological phenomena were inspected in terms of what impact they have on landscape and how they can be implemented algorithmically.
+In this bachelor thesis several geological phenomena are examined in terms of what impact they have on landscape and how they can be implemented algorithmically. In the development process of all algorithms and simulations presented in this thesis, special emphasis was put on realtime-capability.
 
-\Cref{sec:tectonicplatesimulation} contains more information about how these geological processes were implemented algorithmically.
+When computers were not as powerful as today, terrain generation was purely based on fractals. Due to its performance, this technique was really popular at the time. Unfortunately, close inspection reveals that fractally generated terrain looks rather unnatural. This is due to the fact that fractals are self-similar, meaning that landscape features will unavoidably repeat themselves. Despite fractal-based terrain generation being incredibly fast, it will not be subject of further research. The problems, old-fashioned, synthetic terrain generation algorithms come with will be made clear later on in this thesis by comparing several well-known algorithms based on their configurability and realism.
 
-Based on implementability and time reasons, two of phenomena mentioned above (\textbf{bold}) have been chosen to be studied, implemented and experimented with in the course of this bachelor thesis.
+However, highly configurable synthetic terrain generation algorithms should not be considered obsolete yet. An example of how GPU-based Voronoi diagrams can be used to procedurally generate synthetic terrain as well as how this technique enabled the development of a geology-based tectonic plate movement simulation will be demonstrated.
 
-However, these algorithms often lack configurability by means of where mountains should be placed, how far they should be spread out or how complex the rock formations should be.
+To further enhance the realism of an arbitrary computer generated scenery, it is common practise to make use of geology-based erosion algorithms. Erosion describes all geological phenomena involved in giving mountains their distinctive shape. By taking advantage of cellular automata as well as smoothed particle hydrodynamics fluid simulations it will be shown how it was possible to simulate thermal weathering and hydraulic erosion while still complying with the realtime-capability requirements mentioned before.
+
+Finally some subtle effects using various shader techniques to make the scenery more visually appealing will be presented.
 \medskip
-\noindent \\\textbf{Keywords} keyword1, keyword2.
+\noindent \\\textbf{Keywords} procedural, terrain, heightmap, generation, tectonic, plate, erosion, simulation
 
 
 %----------------------------------------------------------------------------------------
@@ -196,7 +198,7 @@ Inspired by Musgrave's work, Olsen implemented his own version of thermal and hy
 
 In his paper \emph{Physically Based Terrain Generation} \cite{Viitanen:2012}, Viitanen describes the theoretical foundations of plate tectonics, compares several existing applications and ultimately implements his own tectonic plate simulation. His in-depth implementation supports converging, diverging as well as subducting plates. Due to the amount of detail, Viitanen was not able to make his simulation realtime capable. Nevertheless his implementation is one of the most advanced tectonic plate simulations out there.
 
-Allen implemented a continental drift simulation called \emph{cdrift} \cite{Allen:1991}, which models tectonic plate movement based on the assumption that there is a supercontinent in the beginning which breaks up and causes each individual fragment to float around for a while. After some time the individual pieces are drawn back together and some of them merge in this process resulting in the creation of new continents.
+Allen implemented a continental drift simulation called \emph{cdrift} \cite{Allen:1991}, which models tectonic plate movement based on the assumption that there is a supercontinent in the beginning which breaks up several times and causes each individual fragment to float around for a while. After some time the individual pieces are drawn back together and some of them merge in this process resulting in the creation of new continents.
 %----------------------------------------------------------------------------------------
 \chapter{Methods}
 \label{sec:methods}
