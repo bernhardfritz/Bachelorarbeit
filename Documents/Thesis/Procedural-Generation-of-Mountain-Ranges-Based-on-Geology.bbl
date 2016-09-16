@@ -10,6 +10,16 @@ David Allen.
 \newblock cdrift.
 \newblock [Online; accessed August 19, 2016].
 
+\bibitem{Darcy}
+Alex Darcy.
+\newblock Shallow water simulation with a finite volume scheme.
+\newblock [Online; accessed September 14, 2016].
+
+\bibitem{Dixon}
+Trevor Dixon.
+\newblock Shallow water implementation (requires three.js).
+\newblock [Online; accessed September 14, 2016].
+
 \bibitem{Fournier:1982:CRS:358523.358553}
 Alain Fournier, Don Fussell, and Loren Carpenter.
 \newblock {C}omputer {R}endering of {S}tochastic {M}odels.
@@ -27,6 +37,11 @@ Robert Krten.
 \newblock {G}enerating {R}ealistic {T}errain.
 \newblock {\em Dr. Dobb’s Journal: Software Tools for the Professional
   Programmer}, 1994.
+
+\bibitem{Mahani}
+Saeed Mahani.
+\newblock Physics-based simulation final project.
+\newblock [Online; accessed September 14, 2016].
 
 \bibitem{mei:inria-00402079}
 Xing Mei, Philippe Decaudin, and Bao-Gang Hu.
