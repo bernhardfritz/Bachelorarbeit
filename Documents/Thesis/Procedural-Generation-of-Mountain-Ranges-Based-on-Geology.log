@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.15)  16 SEP 2016 18:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.15)  20 SEP 2016 21:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -664,13 +664,14 @@ File: ./images/heightmapgrid.png Graphic file (type png)
  <use ./images/heightmapgrid.png>
 Package pdftex.def Info: ./images/heightmapgrid.png used on input line 158.
 (pdftex.def)             Requested size: 110.96579pt x 112.38455pt.
+ [1 <./images/heightmapgrid.png>]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 166.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 166.
- [1 <./images/heightmapgrid.png>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 186--189
 
  []
@@ -851,29 +852,29 @@ File: ./images/hydro-10mins-46k-iterations-crooked.png Graphic file (type png)
  <use ./images/hydro-10mins-46k-iterations-crooked.png>
 Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-crooked.png used on input line 619.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
-
-Underfull \hbox (badness 1205) in paragraph at lines 620--620
-\T1/cmr/m/n/10.95 eroded by cel-lu-lar au-tomata
- []
-
-<./images/hydro-10mins-46k-iterations-pyramid.png, id=174, 1284.8pt x 963.6pt>
+ <./images/hydro-10mins-46k-iterations-pyramid.png, id=174, 1284.8pt x 963.6pt>
 File: ./images/hydro-10mins-46k-iterations-pyramid.png Graphic file (type png)
  <use ./images/hydro-10mins-46k-iterations-pyramid.png>
 Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-pyramid.png used on input line 623.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
-
-Underfull \hbox (badness 1205) in paragraph at lines 624--624
-\T1/cmr/m/n/10.95 eroded by cel-lu-lar au-tomata
- []
-
-<./images/hydro-10mins-46k-iterations-hemisphere.png, id=175, 1284.8pt x 963.6pt>
+ <./images/hydro-10mins-46k-iterations-hemisphere.png, id=175, 1284.8pt x 963.6pt>
 File: ./images/hydro-10mins-46k-iterations-hemisphere.png Graphic file (type png)
  <use ./images/hydro-10mins-46k-iterations-hemisphere.png>
 Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-hemisphere.png used on input line 627.
 (pdftex.def)             Requested size: 146.47566pt x 109.8486pt.
 
-Underfull \hbox (badness 2302) in paragraph at lines 628--628
-\T1/cmr/m/n/10.95 face eroded by cel-lu-lar au-
+Underfull \hbox (badness 10000) in paragraph at lines 628--628
+[]\T1/cmr/m/n/10.95 Figure 4.3: Hemi-spheric
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 628--628
+\T1/cmr/m/n/10.95 sur-face eroded by cel-lu-lar
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 628--628
+\T1/cmr/m/n/10.95 automata-based hy-draulic
  []
 
 <./images/sph-hydro-10mins-crooked.png, id=176, 1284.8pt x 963.6pt>
@@ -956,15 +957,15 @@ File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 Here is how much of TeX's memory you used:
  28119 strings out of 493089
  658788 string characters out of 6134841
- 875977 words of memory out of 5000000
+ 876013 words of memory out of 5000000
  31030 multiletter control sequences out of 15000+600000
  25424 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,16n,103p,3165b,1893s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,16n,103p,3199b,1893s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsl1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfti1
 095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf (41 pages, 28224949 bytes).
+Output written on Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf (41 pages, 28225291 bytes).
 PDF statistics:
  300 PDF objects out of 1000 (max. 8388607)
  174 compressed objects within 2 object streams

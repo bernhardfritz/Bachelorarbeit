@@ -28,9 +28,9 @@
 \contentsline {figure}{\numberline {3.23}{\ignorespaces Bloom shader pass}}{17}
 \contentsline {figure}{\numberline {3.24}{\ignorespaces Simplified heightmap export process \cite {POVRay:HeightField} }}{18}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Crooked surface eroded by cellular automata based hydraulic erosion}}{21}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Pyramid surface eroded by cellular automata based hydraulic erosion}}{21}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Hemispheric surface eroded by cellular automata based hydraulic erosion}}{21}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Crooked surface eroded by cellular automata-based hydraulic erosion}}{21}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Pyramid surface eroded by cellular automata-based hydraulic erosion}}{21}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Hemispheric surface eroded by cellular automata-based hydraulic erosion}}{21}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Crooked surface eroded by SPH-based hydraulic erosion}}{22}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Pyramid surface eroded by SPH-based hydraulic erosion}}{22}
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Hemispheric surface eroded by SPH-based hydraulic erosion}}{22}

@@ -27,5 +27,5 @@
 \contentsline {section}{\numberline {4.1}Comparison of hydraulic erosion algorithms}{21}
 \contentsline {section}{\numberline {4.2}Mountain range generation algorithm alterations}{22}
 \contentsline {section}{\numberline {4.3}Thermal erosion algorithm variations}{22}
-\contentsline {section}{\numberline {4.4}Graph- and Voronoi-based RMP performance analysis}{23}
+\contentsline {section}{\numberline {4.4}Graph-based and Voronoi-based RMP performance analysis}{23}
 \contentsline {chapter}{\numberline {5}Conclusion \& Future Work}{27}

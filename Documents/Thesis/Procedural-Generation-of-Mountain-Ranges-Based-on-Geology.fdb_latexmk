@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex Procedural-Generation-of-Mountain-Ranges-Based-on-Geology"] 1473962305 "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux" "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl" "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology" 1474042892
+["bibtex Procedural-Generation-of-Mountain-Ranges-Based-on-Geology"] 1474401189 "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux" "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl" "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology" 1474401192
   "/usr/local/texlive/2015/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux" 1474042695 15663 43c29821bcd6ebddc43454ce2299e3c6 ""
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux" 1474401192 15668 42a2f9eec0b22dd46c85e2b5dc0f8d49 ""
   "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bcf" 0 -1 0 ""
   "literature.bib" 1473878065 7590 c76a2c33d196c31fc22e9d1180d10ca7 ""
   (generated)
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl"
   "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.blg"
-["pdflatex"] 1474042692 "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.tex" "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf" "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology" 1474042892
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl"
+["pdflatex"] 1474401189 "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.tex" "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf" "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology" 1474401192
   "./images/ds1.png" 1464636221 9292 9b5201e131478c3d07115b202b2e72a1 ""
   "./images/ds2.png" 1464636591 26579 5cd8dad365058e3ff58339692e5b921e ""
   "./images/ds3.png" 1464637080 19603 ab56052e798791a5f241a62f7713dffd ""
@@ -293,12 +293,12 @@
   "/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1432479641 1764542 91654ba72bdb667e84ea24f076ae16d8 ""
   "/usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt" 1447591899 3849860 95e781c71c6628af54b84ffcaae9bbd3 ""
   "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux" 1474042695 15663 43c29821bcd6ebddc43454ce2299e3c6 ""
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl" 1473962306 4014 ecb94a8a3edc7b48195abf9a00e492c2 "bibtex Procedural-Generation-of-Mountain-Ranges-Based-on-Geology"
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.lof" 1474042695 3583 cc59f5db99225967290b17ea9ddeb6b8 ""
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.lot" 1474042695 323 a887f16d4ca6787bd8098cef830c51ea ""
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.tex" 1474042680 71530 e39415b4825631604db917abac990664 ""
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.toc" 1474042695 2305 0da499c2fdcee0d0744d3850d1034bab ""
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux" 1474401192 15668 42a2f9eec0b22dd46c85e2b5dc0f8d49 ""
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl" 1474401189 4014 ecb94a8a3edc7b48195abf9a00e492c2 "bibtex Procedural-Generation-of-Mountain-Ranges-Based-on-Geology"
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.lof" 1474401192 3583 196b9aed65b12d0fbe7f68d36d2d51b5 ""
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.lot" 1474401192 323 a887f16d4ca6787bd8098cef830c51ea ""
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.tex" 1474401175 71761 1206aac61a5567bc2728ee9cc8daf7c2 ""
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.toc" 1474401192 2310 0233dba371994b7c6fc460483b646059 ""
   "images/ds1.png" 1464636221 9292 9b5201e131478c3d07115b202b2e72a1 ""
   "images/ds2.png" 1464636591 26579 5cd8dad365058e3ff58339692e5b921e ""
   "images/ds3.png" 1464637080 19603 ab56052e798791a5f241a62f7713dffd ""
@@ -312,7 +312,6 @@
   "images/hydraulicerosion.png" 1464973525 25847 c7d2350cd01726c3b32022d0f9b95c9c ""
   "images/hydro-10mins-46k-iterations-crooked.png" 1464535489 2027497 efd8af6ade0c2a0bf61acb9a91640133 ""
   "images/hydro-10mins-46k-iterations-hemisphere.png" 1464552460 2047625 63e3c88134688a1db7a18534f3ecb025 ""
-  "images/hydro-10mins-46k-iterations-pyramid.png" 1464540174 2106801 8bc0ac83e5164bb12bc9e77a847a381f ""
   "images/mountain-range-alteration.png" 1469469235 1769445 e41e39b52060372c7bec7f4afa6cb2d5 ""
   "images/mountain-range-normal.png" 1469469578 1784081 e0b1d5d543319c50f58f83f75cad331a ""
   "images/mpd0.png" 1464634764 7337 5370bdda9c231a5c878e523b75951c59 ""
@@ -339,8 +338,8 @@
   "images/voronoi1000.png" 1464982140 140356 989853568fbd45150f3cdaf066918aec ""
   (generated)
   "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.lot"
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.log"
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux"
   "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.toc"
-  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.lof"
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.log"
   "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf"
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux"
+  "Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.lof"
