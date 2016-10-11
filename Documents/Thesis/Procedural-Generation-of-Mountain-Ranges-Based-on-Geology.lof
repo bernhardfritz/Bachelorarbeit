@@ -1,44 +1,23 @@
 \select@language {english}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Heightmap grid}}{1}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Heightmap grid\relax }}{1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces MPD initialization}}{5}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces MPD iteration 1}}{5}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces MPD iteration 2}}{5}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Diamond-Square initialization}}{7}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Diamond-Step 1}}{7}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Square-Step 1}}{7}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Diamond-Step 2}}{7}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Square-Step 2}}{7}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Fault initialization}}{7}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Fault iteration 1}}{7}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Fault iteration 2}}{7}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Fault iteration 3}}{7}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces 10 cones}}{10}
-\contentsline {figure}{\numberline {3.14}{\ignorespaces 100 cones}}{10}
-\contentsline {figure}{\numberline {3.15}{\ignorespaces 1000 cones}}{10}
-\contentsline {figure}{\numberline {3.16}{\ignorespaces Rotated Von Neumann neighborhood}}{10}
-\contentsline {figure}{\numberline {3.17}{\ignorespaces Thermal erosion}}{11}
-\contentsline {figure}{\numberline {3.18}{\ignorespaces Hydraulic erosion}}{12}
-\contentsline {figure}{\numberline {3.19}{\ignorespaces Normal scene render pass}}{17}
-\contentsline {figure}{\numberline {3.20}{\ignorespaces Bright-pass filter pass}}{17}
-\contentsline {figure}{\numberline {3.21}{\ignorespaces Horizontal Gauss blur pass}}{17}
-\contentsline {figure}{\numberline {3.22}{\ignorespaces Vertical Gauss blur pass}}{17}
-\contentsline {figure}{\numberline {3.23}{\ignorespaces Bloom shader pass}}{17}
-\contentsline {figure}{\numberline {3.24}{\ignorespaces Simplified heightmap export process \cite {POVRay:HeightField} }}{18}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Midpoint-Displacement algorithm visualization\relax }}{7}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Diamond-Square algorithm visualization\relax }}{8}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Fault algorithm visualization\relax }}{9}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces RMP\relax }}{10}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Voronoi diagrams with different amounts of cones\relax }}{11}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Rotated Von Neumann neighborhood\relax }}{11}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Thermal erosion cellular automaton rules\relax }}{12}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Hydraulic erosion cellular automaton rules\relax }}{13}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Bloom filter rendering passes\relax }}{19}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Simplified heightmap export process \cite {POVRay:HeightField} \relax }}{20}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Crooked surface eroded by cellular automata-based hydraulic erosion}}{21}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Pyramid surface eroded by cellular automata-based hydraulic erosion}}{21}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Hemispheric surface eroded by cellular automata-based hydraulic erosion}}{21}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Crooked surface eroded by SPH-based hydraulic erosion}}{22}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Pyramid surface eroded by SPH-based hydraulic erosion}}{22}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Hemispheric surface eroded by SPH-based hydraulic erosion}}{22}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Visualization of the experiment}}{23}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Each affected area raised by the same amount}}{23}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Each affected area raised by a random amount}}{23}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Heightmap generated with Fault algorithm}}{23}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Height-aware thermal erosion}}{23}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Constant thermal erosion}}{23}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Voronoi performance stress test}}{25}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Cellular automaton-based hydraulic erosion results\relax }}{23}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces SPH-based hydraulic erosion results\relax }}{24}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Visualization of mountain range generation algorithm alterations\relax }}{24}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Visualization of thermal erosion algorithm alterations\relax }}{25}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Voronoi performance stress test\relax }}{26}
+\addvspace {10\p@ }
 \addvspace {10\p@ }

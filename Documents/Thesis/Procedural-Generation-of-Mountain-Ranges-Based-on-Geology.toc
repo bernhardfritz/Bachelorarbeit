@@ -1,31 +1,32 @@
 \select@language {english}
 \contentsline {chapter}{\numberline {1}Introduction}{1}
-\contentsline {chapter}{\numberline {2}Related Work}{3}
-\contentsline {chapter}{\numberline {3}Methods}{5}
-\contentsline {section}{\numberline {3.1}Diamond-Square algorithm}{5}
-\contentsline {section}{\numberline {3.2}Fault algorithm}{6}
-\contentsline {section}{\numberline {3.3}RMP algorithm}{8}
-\contentsline {subsection}{\numberline {3.3.1}Graph-based implementation}{8}
-\contentsline {subsection}{\numberline {3.3.2}Voronoi-based implementation}{9}
-\contentsline {section}{\numberline {3.4}Thermal erosion algorithm}{9}
-\contentsline {section}{\numberline {3.5}Hydraulic erosion algorithm}{10}
-\contentsline {subsection}{\numberline {3.5.1}Implementation based on previous research}{10}
-\contentsline {subsection}{\numberline {3.5.2}Evaluation of various shallow water models}{12}
-\contentsline {subsection}{\numberline {3.5.3}Implementation based on Smoothed Particle Hydrodynamics (SPH)}{13}
-\contentsline {section}{\numberline {3.6}Tectonic plate simulation}{13}
-\contentsline {subsection}{\numberline {3.6.1}Implementation using Box2D physics engine}{14}
-\contentsline {subsection}{\numberline {3.6.2}Generation of mountain ranges due to tectonic plate collisions}{15}
-\contentsline {section}{\numberline {3.7}Visualization techniques}{15}
-\contentsline {subsection}{\numberline {3.7.1}Texture splatting}{15}
-\contentsline {subsection}{\numberline {3.7.2}Bloom shader effect}{16}
-\contentsline {subsubsection}{Bright-pass filter}{17}
-\contentsline {subsubsection}{Two-pass Gaussian filter}{18}
-\contentsline {subsection}{\numberline {3.7.3}Exporting heightmaps}{18}
-\contentsline {subsection}{\numberline {3.7.4}Capturing screenshots with stblib}{19}
-\contentsline {subsection}{\numberline {3.7.5}Video recording with ffmpeg}{19}
-\contentsline {chapter}{\numberline {4}Results}{21}
-\contentsline {section}{\numberline {4.1}Comparison of hydraulic erosion algorithms}{21}
-\contentsline {section}{\numberline {4.2}Mountain range generation algorithm alterations}{22}
-\contentsline {section}{\numberline {4.3}Thermal erosion algorithm variations}{22}
-\contentsline {section}{\numberline {4.4}Graph-based and Voronoi-based RMP performance analysis}{23}
-\contentsline {chapter}{\numberline {5}Conclusion \& Future Work}{27}
+\contentsline {chapter}{\numberline {2}Related Work}{5}
+\contentsline {chapter}{\numberline {3}Methods}{7}
+\contentsline {section}{\numberline {3.1}Diamond-Square algorithm}{7}
+\contentsline {section}{\numberline {3.2}Fault algorithm}{8}
+\contentsline {section}{\numberline {3.3}RMP algorithm}{9}
+\contentsline {subsection}{\numberline {3.3.1}Graph-based implementation}{9}
+\contentsline {subsection}{\numberline {3.3.2}Voronoi-based implementation}{10}
+\contentsline {section}{\numberline {3.4}Thermal erosion algorithm}{11}
+\contentsline {section}{\numberline {3.5}Hydraulic erosion algorithm}{12}
+\contentsline {subsection}{\numberline {3.5.1}Implementation based on previous research}{12}
+\contentsline {subsection}{\numberline {3.5.2}Evaluation of various shallow water models}{14}
+\contentsline {subsection}{\numberline {3.5.3}Implementation based on Smoothed Particle Hydrodynamics (SPH)}{14}
+\contentsline {section}{\numberline {3.6}Tectonic plate simulation}{15}
+\contentsline {subsection}{\numberline {3.6.1}Implementation using Box2D physics engine}{15}
+\contentsline {subsection}{\numberline {3.6.2}Generation of mountain ranges due to tectonic plate collisions}{17}
+\contentsline {section}{\numberline {3.7}Visualization techniques}{17}
+\contentsline {subsection}{\numberline {3.7.1}Texture splatting}{17}
+\contentsline {subsection}{\numberline {3.7.2}Bloom shader effect}{18}
+\contentsline {subsubsection}{Bright-pass filter}{19}
+\contentsline {subsubsection}{Two-pass Gaussian filter}{19}
+\contentsline {subsection}{\numberline {3.7.3}Exporting heightmaps}{20}
+\contentsline {subsection}{\numberline {3.7.4}Capturing screenshots with stblib}{21}
+\contentsline {subsection}{\numberline {3.7.5}Video recording with ffmpeg}{21}
+\contentsline {chapter}{\numberline {4}Results}{23}
+\contentsline {section}{\numberline {4.1}Comparison of hydraulic erosion algorithms}{23}
+\contentsline {section}{\numberline {4.2}Mountain range generation algorithm alterations}{24}
+\contentsline {section}{\numberline {4.3}Thermal erosion algorithm variations}{25}
+\contentsline {section}{\numberline {4.4}Graph-based and Voronoi-based RMP performance analysis}{25}
+\contentsline {chapter}{\numberline {5}Conclusion \& Future Work}{29}
+\contentsline {chapter}{\numberline {A}Diamond-Square pseudocode}{33}
