@@ -115,7 +115,7 @@ However, highly configurable synthetic terrain generation algorithms should not 
 
 To further enhance the realism of an arbitrary computer generated scenery, it is common practice to make use of geology-based erosion algorithms. Erosion describes all geological phenomena involved in giving mountains their distinctive shape. By taking advantage of cellular automata as well as smoothed particle hydrodynamics fluid simulations it will be shown how it was possible to simulate thermal weathering and hydraulic erosion while still complying with the real-time capability requirements mentioned before.
 
-Finally, several subtle GLSL shader techniques for enhancing the visual appearance of the rendered scene will be presented.
+Finally, several subtle GLSL shader techniques to enhance the visual appearance of the rendered scene will be presented.
 \medskip
 \noindent \\\textbf{Keywords} procedural, terrain, heightmap, generation, tectonic, plate, erosion, simulation, OpenGL, GLSL
 
@@ -175,19 +175,41 @@ The foundation of all algorithms and simulations discussed in this bachelor thes
 
 \noindent When speaking of heightmap resolution one can refer to the number of tiles it consists of. Usually heightmaps have square dimensions, meaning the number of columns and rows of tiles is the same.
 
-To model the geological phenomena responsible for the creation of mountain ranges on Earth, it is necessary to have a basic understanding of how they work. As research suggests, tectonic plate movement is one of the main contributors when it comes to the generation of rock formations. The key principles of plate tectonics are based on the two essential layers Earth consists of: the lithosphere and asthenosphere. The cool and rigid lithosphere is divided in distinct, solid tectonic plates, which float on top of the hot, fluid-like asthenosphere. There are several ways lithospheric plates can interact with each other:
+To model the geological phenomena responsible for the creation of mountain ranges on Earth, it is necessary to have a basic understanding of how they work. As research \cite{wiki:platetectonics} suggests, tectonic plate movement is one of the main contributors when it comes to the generation of rock formations. The key principles of plate tectonics are based on the two essential layers Earth consists of: the lithosphere and asthenosphere. The cool and rigid lithosphere is divided in distinct, solid tectonic plates, which float on top of the hot, fluid-like asthenosphere. There are several ways lithospheric plates can interact with each other:
 \begin{itemize}
-  \item They can grind past each other, which results in strong earthquakes leaving the plates involved in this process essentially unaffected.
-  \item They can slide apart from each other (diverging plates), which results in volcanic activity along the boundaries of the plates involved.
-  \item They can slide toward each other (converging plates) and cause one plate to move underneath the other (subduction), or they can collide and pile up.
+  \item They can grind past each other, as depicted in \Cref{fig:tectonictransform}, which results in strong earthquakes leaving the plates involved in this process essentially unaffected.
+  \item They can slide apart from each other, as depicted in \Cref{fig:tectonicdiverging}, which results in volcanic activity along the boundaries of the plates involved.
+  \item They can slide toward each other, as depicted in \Cref{fig:tectonicconverging}, and cause one plate to move underneath the other (subduction), or they can collide and pile up.
 \end{itemize}
 Tectonic plate movement is only one of many geological phenomena that directly influences shape and appearance of mountain ranges. Mountain features like distinct summits, ravines, valleys and cliffs are product of another type of geological phenomenon called erosion.
 
-Erosion describes the geological processes involved in the transportation of soil, rock or dissolved material from one location to another. The driving forces responsible for this phenomenon are:
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{tectonic-transform.png}
+    \caption{Transforming plates}
+    \label{fig:tectonictransform}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{tectonic-diverging.png}
+    \caption{Diverging plates}
+    \label{fig:tectonicdiverging}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{tectonic-converging.png}
+    \caption{Converging plates}
+    \label{fig:tectonicconverging}
+  \end{subfigure}
+  \caption{
+    Visualization of tectonic plate movement types \cite{wiki:platetectonics}
+  }
+\end{figure}
+
+\noindent Erosion describes the geological processes involved in the transportation of soil, rock or dissolved material from one location to another. The driving forces responsible for this phenomenon are:
 \begin{itemize}
   \item Water (i.e. hydraulic erosion)
   \\
-  Water in terms of rainfall, rivers or streams is able to dissolve sediment and carry it along potentially large distances before evaporating and leaving behind the dissolved material. This process is called hydraulic erosion and is commonly found in humid regions ($\rightarrow$ \Cref{sec:hydraulicerosion}).
+  Water in terms of rainfall, rivers or streams is able to dissolve sediment and carry it along potentially large distances before evaporating and leaving behind the dissolved material. This process is called hydraulic erosion and is commonly found in humid regions (\mbox{$\rightarrow$ \Cref{sec:hydraulicerosion}}).
   \item Wind (i.e. wind erosion)
   \\
   Wind erosion is primarily present in arid regions. Small airborne particles carried by wind are very capable to wear down rocks and produce new particles in the process of doing so.
@@ -333,19 +355,19 @@ u &= \frac{b_1 + v * e_1 - a_1}{d_1} \label{eq:rayrayint10}\\
 v &= \frac{(b_2 - a_2) * d_1 - (b_1 - a_1) * d_2}{e_1 * d_2 - e_2 * d_1} \label{eq:rayrayint11}
 \intertext{Substituting $v$ in \eqref{eq:rayrayint2} by \eqref{eq:rayrayint11} results in $\mathbf{p}$ if the two lines intersect, i.e. they are not parallel.}
 \end{align}
-These intersections are represented as vertices in an undirected graph. A line can have several intersections. Therefore, they will be iterated through from the start of the line to the end. Let $\mathbf{i}$ and $\mathbf{j}$ be two intersections on a line defined by origin $\mathbf{a}$ and direction $\mathbf{d}$ as seen in \eqref{eq:rayrayint1}. To determine which intersection is closer to the start of the line, one has to substitute $\mathbf{p}$ in \eqref{eq:rayrayint1} with $\mathbf{i}$ and $\mathbf{j}$ and solve both resulting equations for $u$. The smaller $u$ gets, the closer it is to the origin of the line. Intersections (i.e. vertices) along a line will be connected in order (closest to farthest) using graph edges. Once the graph is set up, a Depth-First-Search (DFS) based algorithm will be used to determine all minimal cycles. These cycles represent the polygon shapes produced by the previously placed cutting lines. Once the polygons are obtained, another undirected graph will be created. This time the vertices of the graph will represent the polygons. In this graph, two vertices are connected by an edge only if both polygons are next to each other. Once this newly generated graph is set up, another DFS will be performed. As starting point of this search, the polygon which should contain the desired mountain peak is chosen. The combined region of the first $r$ elements of the DFS will be raised in height. \Cref{fig:rmpoverlay} depicts an area (red) to be affected by height alterations using RMP with parameter $r = 1$.
+These intersections are represented as vertices in an undirected graph. A line can have several intersections. Therefore, they will be iterated through from the start of the line to the end. Let $\mathbf{i}$ and $\mathbf{j}$ be two intersections on a line defined by origin $\mathbf{a}$ and direction $\mathbf{d}$ as seen in \eqref{eq:rayrayint1}. To determine which intersection is closer to the start of the line, one has to substitute $\mathbf{p}$ in \eqref{eq:rayrayint1} with $\mathbf{i}$ and $\mathbf{j}$ and solve both resulting equations for $u$. The smaller $u$ gets, the closer it is to the origin of the line. Intersections (i.e. vertices) along a line will be connected in order (closest to farthest) using graph edges. Once the graph is set up, a Depth-First-Search (DFS) based algorithm will be used to determine all minimal cycles. These cycles represent the polygon shapes produced by the previously placed cutting lines. Once the polygons are obtained, another undirected graph will be created. This time the vertices of the graph will represent the polygons. In this graph, two vertices are connected by an edge only if both polygons are next to each other. Once this newly generated graph is set up, another DFS will be performed. As starting point of this search, the polygon which should contain the desired mountain peak is chosen. The combined region of the first $r$ elements of the DFS will be raised in height. \Cref{fig:rmpoverlay} depicts an area, colored in red, to be affected by height alterations using RMP with parameter $r = 1$.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.25\linewidth]{rmp_overlay1.png}
-\caption{RMP}\label{fig:rmpoverlay}
+\caption{Affected area of a single iteration of RMP}\label{fig:rmpoverlay}
 \end{figure}
 
 \noindent A point-in-polygon test, originated by Shirmat \cite{Shimrat:1962:APP:368637.368653} and later implemented in C by W. Randolph Franklin \cite{Franklin:1994}, was used to determine if a heightmap point should be affected by height alterations or not. The whole procedure will be repeated $n$ times. After several tests (results listed in \Cref{tab:graphperformanceanalysis}), it was clear that the graph-based implementation was too slow to be used for real-time applications. Therefore, an alternative implementation had to be considered.
 
 \subsection{Voronoi-based implementation}
 \label{subsec:voronoibasedimpl}
-Instead of using expensive graph algorithms, the idea is to use a Voronoi diagram that does the same job by providing randomly distributed polygons. Still, the problem remains. How should one cheaply generate these diagrams? Actually, there is an intuitive solution to this problem. Imagine an arbitrary amount of randomly colored, flat shaded, overlapping cone geometries that are randomly distributed on a plane. If one looks at this scene from the top using orthographic projection, a Voronoi diagram can be identified. In their paper \cite{hoff1999fast}, ``Fast computation of generalized Voronoi diagrams using graphics hardware'', Hoff et al. describe the foundations of cone-based rendering of Voronoi diagrams. The implementation presented in this bachelor thesis, relies on OpenGLs depth testing mechanism and is much faster than the graph-based approach. To combine this technique with RMP, one has to project the Voronoi diagram onto the heightmap, check the color of the polygon at the desired peak location and raise all heightmap vertices that have the same color projected onto them. By repeating the whole process $n$ times, mountains with predefined peak locations can be generated. The spread of the mountain can be altered by increasing or decreasing the amount of cones to be placed during Voronoi generation. The more cones there are on the plane, the more polygons will be created and the resulting mountain will be very steep. Using less cones will result in less polygons, and the mountain will therefore be more spread. The height of the mountain is proportional to the amount of iterations performed. \Cref{fig:voronoi1,fig:voronoi2,fig:voronoi3} depict three Voronoi diagrams using different amounts of cones.
+Instead of using expensive graph algorithms, the idea is to use a Voronoi diagram that does the same job by providing randomly distributed polygons. Still, the problem remains. How should one cheaply generate these diagrams? Actually, there is an intuitive solution to this problem. Imagine an arbitrary amount of randomly colored, flat shaded, overlapping cone geometries that are randomly distributed on a plane. If one looks at this scene from the top using orthographic projection, a Voronoi diagram can be identified. This technique was first described by Hoff et al in their paper \cite{hoff1999fast} ``Fast computation of generalized Voronoi diagrams using graphics hardware''. The implementation presented in this bachelor thesis, relies on OpenGLs depth testing mechanism and is much faster than the previously described graph-based approach (test results listed in \Cref{tab:voronoiperformanceanalysis}). To combine this technique with RMP, one has to project the Voronoi diagram onto the heightmap, check the color of the polygon at the desired peak location and raise all heightmap vertices that have the same color projected onto them. By repeating the whole process $n$ times, mountains with predefined peak locations can be generated. The spread of the mountain can be altered by increasing or decreasing the amount of cones to be placed during Voronoi generation. The more cones there are on the plane, the more polygons will be created and the resulting mountain will be very steep. Using less cones will result in less polygons, and the mountain will therefore be more spread. The height of the mountain is proportional to the amount of iterations performed. \Cref{fig:voronoi1,fig:voronoi2,fig:voronoi3} depict three Voronoi diagrams using different amounts of cones.
 
 \begin{figure}[h]
   \centering
@@ -394,7 +416,7 @@ There are two papers to be considered when thinking about implementing a custom 
 \begin{itemize}
 \item In the first step, a constant amount of water is added to each cell of the watermap.
 \item In the second step, water dissolves a specific amount of material. This behavior can be implemented by lowering heightmap vertices and simultaneously raising the corresponding sedimentmap vertices. A similar technique, as seen in \Cref{sec:thermalerosion}, is used to also consider material hardness. The only difference is that not the height but the steepness of the mountain influences the amount of material to be dissolved.
-\item In the third step, water will transport sediment to lower altitudes. Since water is a fluid, it will always try to level out, meaning it will always flow from higher to lower cells if they are next to each other. Olsen described a cellular automaton-based approach as depicted in \Cref{fig:hydrolicerosion} which is capable of simulating water flow. There are two cases to consider: If the main cell's water level $w$ is larger than the difference of the maximum altitude $a$ (i.e. sum of cell height and water level) and the average altitude $\overline{a}$, then the excess water will be distributed evenly among the neighboring cells while not causing them to overflow. In the other case, i.e., if the difference of $a$ and $\overline{a}$ is larger than the main cell's water level $w$, the water of the main cell will be fully depleted and distributed evenly among the neighboring cells.
+\item In the third step, water will transport sediment to lower altitudes. Since water is a fluid, it will always try to level out, meaning it will always flow from higher to lower cells if they are next to each other. Olsen described a cellular automaton-based approach as depicted in \Cref{fig:hydrolicerosion} which is capable of simulating such water flow. There are two cases to consider: If the main cell's water level $w$ is larger than the difference of the maximum altitude $a$ (i.e. sum of cell height and water level) and the average altitude $\overline{a}$, then the excess water will be distributed evenly among the neighboring cells while not causing them to overflow. In the other case, i.e., if the difference of $a$ and $\overline{a}$ is larger than the main cell's water level $w$, the water of the main cell will be fully depleted and distributed evenly among the neighboring cells.
 \item In the fourth step, water will be evaporated, and sediment will be deposited at its current position by lowering the cells of the water as well as sedimentmap and raising the cells of the heightmap. The whole process will be repeated $n$ times.
 \end{itemize}
 
@@ -404,10 +426,10 @@ There are two papers to be considered when thinking about implementing a custom 
 \caption{Hydraulic erosion cellular automaton rules}\label{fig:hydrolicerosion}
 \end{figure}
 
-\noindent The second paper \cite{mei:inria-00402079} by Mei et al. showcases a more advanced model of hydraulic erosion. The basic principle is still the same as described by Olsen, but Mei uses a more sophisticated water flow model, which also considers fluid velocity. Due to the force of flowing water, more sediment will be carried away, which generally results in a more realistic model of hydraulic erosion. After studying Mei's algorithm and implementing his water flow model, a flaw in his algorithm became evident. Given that Mei's algorithm is timestep-based, it gets unstable if too large timesteps are used. Water waves begin to oscillate and ultimately the water height calculation will result in an arithmetic overflow and render the simulation unusable. To keep the simulation stable, very small timesteps have to be used. In fact, the timesteps required to keep the simulation stable are so small (e.g. $\Delta t = 10$ms) that one cannot even notice any difference in water flow for a couple of minutes. For a real-time application this is unacceptable, and therefore, this model was disregarded.
+\noindent The second paper \cite{mei:inria-00402079} by Mei et al. showcases a more advanced model of hydraulic erosion. The basic principle is still the same as described by Olsen, but Mei uses a more sophisticated water flow model, which also considers fluid velocity. Due to the force of flowing water, more sediment will be carried away, which generally results in a more realistic model of hydraulic erosion. After studying Mei's algorithm and implementing his water flow model, a flaw in his algorithm became evident. Given that Mei's algorithm is timestep-based, it gets unstable if too large timesteps are used. Water waves begin to oscillate and ultimately the water height calculation will result in an arithmetic overflow and render the simulation unusable. To keep the simulation stable, very small timesteps have to be used. In fact, the timesteps required to keep the simulation stable are so small (e.g. $\Delta t = 10$ms) that this approach is impractical for real-time environments, since a single simulation step takes about a quarter-second to be calculated.
 
 \subsection{Evaluation of various shallow water models}
-After implementing Olsen's hydraulic erosion model and testing various parameters, it turned out that the results were not too realistic. Due to the lack of performance, the result of using Mei's variant was not too satisfying either. To achieve higher realism, a more sophisticated, yet performant model had to be considered. A model that matches these requirements would be shallow water equations. These equations are commonly used to predict tsunami movement but can also be utilized for other purposes such as hydraulic erosion simulation. Unfortunately, shallow water equations are quite complex and would require too much time to be implemented properly. As a result, the only solution was to rely on existing implementations: The first one \cite{Darcy}, written in C++ by Alex Darcy, used a Riemann solver to numerically solve the shallow water equations. The only problem was that he assumed that the terrain underneath the water was perfectly flat. This might be a valid assumption for tsunami simulations but not for this bachelor project.
+After implementing Olsen's hydraulic erosion model and testing various parameters, it turned out that the results were not too realistic. Due to the lack of performance, the result of using Mei's variant was not too satisfying either. To achieve higher realism, a more sophisticated, yet performant model had to be considered. A model that matches these requirements would be shallow water equations. These equations are commonly used to predict tsunami movement but can also be utilized for other purposes such as hydraulic erosion simulation. Unfortunately, shallow water equations are quite complex and it would require too much time to implement them properly. As a result, the idea was to rely on existing implementations: The first one \cite{Darcy}, written in C++ by Alex Darcy, used a Riemann solver to numerically solve the shallow water equations. The only problem was that he assumed that the terrain underneath the water was perfectly flat. This might be a valid assumption for tsunami simulations but not for this bachelor project.
 
 The second one \cite{Dixon}, implemented by Trevor Dixon seemed very promising. He implemented the shallow water equations using JavaScript and Three.js framework. His code was much more readable in comparison to Alex Darcy's. The only missing feature was water ground interaction. Spending a considerable amount of time trying to figure out how to include this feature, shallow water equations were ultimately dropped and the search for alternatives continued. Soon, another promising technique to model water flow was discovered: Smoothed particle hydrodynamics.
 
@@ -425,7 +447,10 @@ Due to the complexity of real tectonic plate movement, the design of the simulat
 \subsection{Implementation using Box2D physics engine}
 \label{subsec:implbox2d}
 When working with Box2D, it is very common to start off by writing a test application for \emph{testbed}. To make this test application available in \emph{testbed}, it is necessary to extend the class \emph{Test} provided by Box2D and list the newly created test class in \emph{TestEntries.cpp} as specified in the Box2D documentation. The advantage of \emph{testbed} is that it provides its own visualization interface as well as several debugging options. The downside is that \emph{testbed} tests can not be used for production systems right away and have to be altered during the integration process.
-Once the base test class is set up, several methods such as \emph{Step}, \emph{Create}, \emph{Keyboard}, etc. provided by the super class \emph{Test} can be overwritten. \emph{Step} will be called automatically by the test environment at each timestep. \emph{Create} will be called only once and should be used to initialize variables or data structures. Method \emph{Keyboard} will be triggered each time a key is pressed. Its parameters give information about which key was pressed. To add an object to the Box2D world, several steps are necessary. Firstly, a body object has to be defined. Secondly, a fixture object has to be defined and linked with the body object it corresponds to. In Box2D, bodies can either be static, dynamic or kinematic. Static bodies do not move. Even if a dynamic body collides with a static body, only the dynamic body will be affected by the collision. Dynamic bodies can move and are affected by all other bodies. Kinematic bodies can also move but are not affected by collisions caused by dynamic bodies. For the tectonic plate simulation, dynamic as well as kinematic bodies will be used. The dynamic bodies represent the tectonic plates and the kinematic bodies are responsible for keeping the simulation in motion as well as keeping the dynamic bodies contained within the simulation area. Body objects can be used to access information such as current position, angle, velocity, mass, etc. The shape of a Box2D body depends on its fixture. To define a fixture, it is necessary to set the fixture's density attribute and shape. Based on the fixture's density and area it consumes, the body's mass will be determined. Box2D offers basic shapes such as rectangles and circles as well as convex polygons with a maximum of eight vertices. The tectonic plate simulation will be initialized with five rectangle fixtures. Four of these will be used to define the kinematic bodies' shapes, i.e., thin beams. The last one will be used to define the dynamic body's shape, a big square. This square will be randomly split a specific amount of times during set up. Unfortunately, Box2D did not offer this splitting functionality per default, and it had to be implemented by hand. To implement splitting of polygons, it is important to know that Box2D only supports convex polygons with up to eight vertices, which need to be specified in counter clockwise winding. In order to split polygons, Box2D's raycasting feature can be very helpful. It allows the programmer to cast rays, and if a ray intersects with an object, a callback function will be called. When a ray is cast through a convex polygon, there should always be exactly one entry point and one exit point. For performance reasons, Box2D's raycasting only registers the first intersection point per object. Due to this, two rays had to be cast in opposite directions. Having both, the first ray's entry point and the second ray's entry point as well as all vertices the polygon consists of, the remaining task is to determine which vertex belongs to which slice of the polygon. The following pseudocode should adequately elaborate this procedure:
+
+To add an object to the Box2D world, several steps are necessary. Firstly, a body object has to be defined. Secondly, a fixture object has to be defined and linked with the body object it corresponds to. In Box2D, bodies can either be static, dynamic or kinematic. Static bodies do not move. Even if a dynamic body collides with a static body, only the dynamic body will be affected by the collision. Dynamic bodies can move and are affected by all other bodies. Kinematic bodies can also move but are not affected by collisions caused by dynamic bodies. For the tectonic plate simulation, dynamic as well as kinematic bodies will be used. The dynamic bodies represent the tectonic plates and the kinematic bodies are responsible for keeping the simulation in motion as well as keeping the dynamic bodies contained within the simulation area. Body objects can be used to access information such as current position, angle, velocity, mass, etc. The shape of a Box2D body depends on its fixture. To define a fixture, it is necessary to set the fixture's density attribute and shape. Based on the fixture's density and area it consumes, the body's mass will be determined. Box2D offers basic shapes such as rectangles and circles as well as convex polygons with a maximum of eight vertices. The tectonic plate simulation will be initialized with five rectangle fixtures. Four of these will be used to define the kinematic bodies' shapes, i.e., thin beams. The last one will be used to define the dynamic body's shape, a big square. This square will be randomly split a specific amount of times during set up. Unfortunately, Box2D did not offer this splitting functionality per default, and it had to be implemented by hand.
+
+To implement splitting of polygons, it is important to know that Box2D only supports convex polygons with up to eight vertices, which need to be specified in counter clockwise winding. In order to split polygons, Box2D's raycasting feature can be very helpful. It allows the programmer to cast rays, and if a ray intersects with an object, a callback function will be called. When a ray is cast through a convex polygon, there should always be exactly one entry point and one exit point. For performance reasons, Box2D's raycasting only registers the first intersection point per object. Due to this, two rays had to be cast in opposite directions. Having both, the first ray's entry point and the second ray's entry point as well as all vertices the polygon consists of, the remaining task is to determine which vertex belongs to which slice of the polygon. The following pseudocode should adequately elaborate this procedure:
 
 \begin{lstlisting}[caption=Point in slice check pseudocode][H]
 entry = entry point of first ray
@@ -463,7 +488,7 @@ Blending textures together is performed by the fragment shader. The OpenGL shade
 \item Second texel color
 \item A floating-point number between 0.0 and 1.0 representing the mixture ratio
 \end{itemize}
-At first only the height information was used to determine which texture should be applied to the terrain. Of course that model did not look too realistic since the slope information had not been considered yet. In nature, grass does not grow on steep slopes. Similarly, snow can mostly be found on flat areas. Therefore, in steep slopes grass and snow texels have to be overridden by rock texels. A common approach to determine the steepness of a slope is to use the normal vectors' $y$ coordinates. Using thresholds, it is again possible to utilize OpenGL's \emph{mix} function to mix two texels. Unfortunately, there are some special cases, namely steep slopes inside an area between two height thresholds, which required bilinear interpolation instead of linear interpolation. These cases were solved by calling \emph{mix} in a nested way, meaning the first or second parameter of \emph{mix} is itself the result of a previous \emph{mix} invocation. The following pseudocode should demonstrate how \emph{mix} can be used to blend textures together:
+At first only the height information was used to determine which texture should be applied to the terrain. Of course that model did not look too realistic since the slope information had not been considered yet. In nature, grass does not grow on steep slopes. Similarly, snow can mostly be found on flat areas. Therefore, in steep slopes, grass and snow texels have to be overridden by rock texels. A common approach to determine the steepness of a slope is to use the normal vectors' $y$ coordinates. Using thresholds, it is again possible to utilize OpenGL's \emph{mix} function to mix two texels. Unfortunately, there are some special cases, namely steep slopes inside an area between two height thresholds, which required bilinear interpolation instead of linear interpolation. These cases were solved by calling \emph{mix} in a nested way, meaning the first or second parameter of \emph{mix} is itself the result of a previous \emph{mix} invocation. The following pseudocode should demonstrate how \emph{mix} can be used to blend textures together:
 \begin{lstlisting}[caption=Fragment shader texture chooser pseudocode][h]
 color0 = sand texture
 color1 = grass texture
@@ -540,7 +565,7 @@ This filter makes bright regions even brighter while not modifying dark regions.
 \begin{align}
 L_d(x,y) = \frac{L(x,y) * \frac{1 + L(x,y)}{L_{white}^2}}{1 + L(x,y)}
 \end{align}
-This formula describes the calculation of display luminance $L_d$ at a specific pixel with coordinates $x$ and $y$. $L(x,y)$ describes the scaled luminance, which will, contrary to what Reihard suggested, simply be set to a constant value. $L_{white}$ describes the smallest luminance that will be mapped to pure white and should be set to the maximum luminance in the scene.
+This formula describes the calculation of display luminance $L_d$ at a specific pixel with coordinates $x$ and $y$. $L(x,y)$ describes the scaled luminance, which will, contrary to what Reihard suggested, simply be set to a constant value. $L_{white}$ describes the smallest luminance that will be mapped to pure white and should be set to the maximum luminance present in the scene.
 
 \subsubsection{Two-pass Gaussian filter}
 A two-pass Gaussian filter consists of two passes, namely a horizontal and a vertical Gaussian blur pass. During these passes, each pixel will be averaged using a one-dimensional Gaussian kernel. The two-pass Gaussian filter is computationally less expensive than the one-pass Gaussian filter using a two-dimensional Gaussian kernel. For this filter, the vertex shader ($\rightarrow$ \Cref{lst:gaussvert}) is responsible for setting up the pixel coordinates to be averaged by the fragment shader ($\rightarrow$ \Cref{lst:gaussfrag}) based on Gauss distributed weights.
@@ -568,7 +593,7 @@ for i between 0 and weights.length:
 
 \subsection{Exporting heightmaps}
 \label{subsec:exportingheightmaps}
-Obviously, once an interesting heightmap has been generated, it is desirable to save it for future usage. To generate heightmaps that are compatible with the huge variety of tools available, it is necessary to choose a common file format. Popular terrain generation tools like Terragen or Lithosphere for example, support 8-bit grayscale images using .png file format. It is important to note that 8-bit images allow only a maximum of 256 different height levels. For small heightmaps with equal or less than 512$\times$512 tiles this is more than enough. In general, to completely capture a heightmap consisting of $i \cdot j$ tiles, $(i+1) \cdot (j+1)$ pixels are necessary. Each pixel of the grayscale image will be used to store vertex $y$ coordinates. \Cref{fig:heightfield} depicts this process for a 1$\times$1 heighmap.
+Obviously, once an interesting heightmap has been generated, it is desirable to save it for future usage. To generate heightmaps that are compatible with the huge variety of tools available, it is necessary to choose a common file format. Popular terrain generation tools like Terragen and Lithosphere, support 8-bit grayscale images using .png file format. It is important to note that 8-bit images allow only a maximum of 256 different height levels. For small heightmaps with equal or less than 512$\times$512 tiles this is more than enough. In general, to completely capture a heightmap consisting of $i \cdot j$ tiles, $(i+1) \cdot (j+1)$ pixels are necessary. Each pixel of the grayscale image will be used to store vertex $y$ coordinates. \Cref{fig:heightfield} depicts this process for a 1$\times$1 heighmap.
 
 \begin{figure}[h]
 \centering
@@ -584,27 +609,7 @@ Obviously, once an interesting heightmap has been generated, it is desirable to 
   \item Heightmaps containing vertices with negative $y$ coordinates
   \item Heightmaps containing vertices with $y$ coordinates exceeding the upper bound
 \end{itemize}
-These problems can be resolved by translating and scaling the heightmap along the $y$ axis in a way that satisfies both requirements. The following pseudocode shows how this issue was dealt with programmatically:
-\newpage
-\begin{lstlisting}[caption=Heightmap export pseudocode][h]
-imageWidth = hm.getColumns() + 1
-imageHeight = hm.getRows() + 1
-image[] = array of length imageWidth*imageHeight
-
-for y between 0 and imageHeight:
-  for x between 0 and imageWidth:
-    image[y*imageWidth + x] = ((hm.getHeightAt(x,y) - hm.getMinHeight()) / (hm.getMaxHeight() - hm.getMinHeight())) * 256
-\end{lstlisting}
-
-\subsection{Capturing screenshots with stblib}
-OpenGL provides a function called \emph{glReadPixels}, which copies a specified region of pixels from the video card memory to the RAM. RGB images require $width \cdot height \cdot 3$ bytes per pixel. Since a \emph{char} requires exactly one byte of space, it is commonly used to represent color channel information. In fact, a library called \emph{stblib} written by Sean T. Barret et al. is perfectly capable of saving these kinds of character arrays in various file formats like .jpg or .png and was used for this purpose.
-
-\subsection{Video recording with ffmpeg}
-To efficiently record a video, it is necessary to allocate enough space beforehand. Reallocating space during the capturing process leads to noticeable stuttering and is not an option. The following formula was used to calculate the amount of required space:
-\begin{align}
-space(width, height, fps, t) = width \cdot height \cdot 3 \cdot fps \cdot t \; \mathrm{bytes}
-\end{align}
-By using OpenGL's \emph{glReadPixels} function, it is possible to save each frame into an array of type char. Once all the frames are captured, they need to be flipped vertically since ffmpeg uses a different coordinate system than OpenGL. Furthermore, ffmpeg's MPEG2 encoding algorithm requires the frames to be YCbCr color space compliant. Fortunately, the ffmpeg library offers a function to convert frames from RGB to YCbCr color space. Once all the frames are converted, they are ready to be encoded using ffmpeg's MPEG2 encoding algorithm. Once all frames are encoded, ffmpeg will save the video as .mpg file on the harddisk. The file format .mpg can be played with almost any video player and does not require too much space, due to the MPEG2 encoding algorithm provided by ffmpeg.
+These problems can be resolved by translating and scaling the heightmap along the $y$ axis in a way that satisfies both requirements.
 
 %----------------------------------------------------------------------------------------
 \chapter{Results}
@@ -641,7 +646,7 @@ Although Olsen's algorithm showed consistent results independently of the shape 
 
 \noindent All ditches measured about the same width and depth and looked very unoriginal. Performing the experiment several times did not bear any different results either.
 
-The SPH-based approach on the other hand showed very promising results: Firstly, the shape the algorithm was applied to directly influenced the erosion process. Secondly, the generated ditches had each different widths and depths. Performing the experiment several times resulted in different surface transformations each. This is due to the fact that the SPH-based approach simulates real particle movement, while Olsen's approach is an abstract model based on cellular automata and does not consider flow velocity. \Cref{fig:hydro4,fig:hydro5,fig:hydro6} depict the SPH-based algorithm applied to the shapes mentioned before.
+The SPH-based approach on the other hand showed very promising results: Firstly, the shape the algorithm was applied to directly influenced the erosion process. Secondly, the generated ditches had varying widths and depths. Performing the experiment several times resulted in different surface transformations each. This is due to the fact that the SPH-based approach simulates real particle movement, while Olsen's approach is an abstract model based on cellular automata and does not consider flow velocity. \Cref{fig:hydro4,fig:hydro5,fig:hydro6} depict the SPH-based algorithm applied to the shapes mentioned before.
 
 \begin{figure}[h]
   \centering
@@ -663,12 +668,21 @@ The SPH-based approach on the other hand showed very promising results: Firstly,
   \caption{SPH-based hydraulic erosion results}
 \end{figure}
 
-\noindent Concluding this experiment, it is evident that utilizing SPH simulations for hydraulic erosion algorithms bears very promising results. SPH simulations are capable of modelling fluid flow velocity autonomously. This behavior substantially influences the realism of the hydraulic erosion process, and therefore, SPH simulations should be preferred over cellular automata when it comes to modelling hydraulic erosion.
+\noindent Concluding this experiment, it is evident that utilizing SPH simulations for hydraulic erosion algorithms bears very promising results. SPH simulations are capable of modelling fluid flow velocity autonomously. This behavior substantially influences the realism of the hydraulic erosion process, and therefore, SPH simulations should be preferred over cellular automata when it comes to modelling hydraulic erosion. Compared to the results of Kri\v{s}tof et al., as depicted in \Cref{fig:sphcomparison}, there is a lot of room for improvement. For example, a speed-optimized SPH simulation would support larger quantities of particles and consequently result in a more fine-grained erosion process.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.33\linewidth]{sph-comparison.png}
+\caption{
+  Comparison results by Kri\v{s}tof et al. \cite{krivstof2009hydraulic}
+}
+\label{fig:sphcomparison}
+\end{figure}
 
 \section[Mountain range generation algorithm alterations]{Mountain range generation algorithm alterations%
 \sectionmark{Mountain range generation alterations}}
 \sectionmark{Mountain range generation alterations}
-The mountain range generation algorithm is a major component of the tectonic plate simulation, as previously described in \Cref{subsec:generationofmountainranges}. It uses a modified version of the Voronoi-based RMP algorithm to procedurally generate mountain ranges. By extracting the mountain range generation portion from the tectonic plate simulation and removing the randomness of tectonic plate movement, it was possible to reliably conduct an experiment. The goal for this experiment was to determine if slight alterations in the mountain range generation code, namely dynamic instead of static areal height assignments, would result in higher realism. \Cref{fig:voronoi2diagonal} might help to understand what the experiment is about. Instead of raising the whole bordered area, the goal is to raise each colored area inside the border individually. The experiment consisted of two iterations. To determine if the alterations had any effect, a control experiment was performed using the unaltered code as depicted in \Cref{fig:mountainrangenormal}. \Cref{fig:mountainrangealteration} shows the final result after the alterations.
+The mountain range generation algorithm is a major component of the tectonic plate simulation, as previously described in \Cref{subsec:generationofmountainranges}. It uses a modified version of the Voronoi-based RMP algorithm to procedurally generate mountain ranges. By extracting the mountain range generation portion from the tectonic plate simulation and removing the randomness of tectonic plate movement, it was possible to reliably conduct an experiment. The goal of this experiment was to determine if slight alterations in the mountain range generation code, namely dynamic instead of static areal height assignments, would result in higher realism. \Cref{fig:voronoi2diagonal} might help to understand what the experiment is about. Instead of raising the whole bordered area, the goal is to raise each colored area inside the border individually. The experiment consisted of two iterations. To determine if the alterations had any effect, a control experiment was performed using the unaltered code as depicted in \Cref{fig:mountainrangenormal}. \Cref{fig:mountainrangealteration} shows the final result after the alterations.
 
 \begin{figure}[h]
   \centering
@@ -782,8 +796,7 @@ speedup & 1.496 & 23.318 & 2932.024 \\ \hline
 
 The results clearly show the benefits of Voronoi-based RMP. The Voronoi-based RMP algorithm scales much better than the graph-based RMP algorithm. While the graph-based RMP algorithm already slows down significantly, generating eleven randomly distributed polygons, the Voronoi-based alternative seems to perform about the same regardless of the number of polygons to be generated. This behavior is very valuable for real-time applications, and therefore, the Voronoi-based RMP algorithm was chosen over the graph-based alternative.
 
-With the graph-based RMP algorithm out of the picture, it would also be interesting to find the limits of the Voronoi-based alternative. For this reason, another experiment was conducted. This time up to 100000 polygons were generated per iteration, and the duration $t$ was noted down after each task consisting of 100 iterations was completed. \Cref{fig:voronoiperformancestresstest} shows a plot of the data recorded during this experiment.
-
+With the graph-based RMP algorithm out of the picture, it would also be interesting to find the limits of the Voronoi-based alternative. For this reason, another experiment was conducted. This time up to 100000 polygons were generated per iteration, and the duration $t$ was noted down after each task consisting of 100 iterations was completed. \Cref{fig:voronoiperformancestresstest} depicts a plot of the data recorded during this experiment.
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}
@@ -804,8 +817,7 @@ With the graph-based RMP algorithm out of the picture, it would also be interest
 \caption{Voronoi performance stress test}
 \label{fig:voronoiperformancestresstest}
 \end{figure}
-
-\noindent The plot clearly shows that the Voronoi-based RMP algorithm is capable to generate up to 1000 polygons per iteration in real-time. For real-time terrain generation, fast generation of huge amounts of randomly distributed polygons is a huge deal. Not only is it possible to control the spread of a mountain with high precision, it is also possible to generate more detailed mountains in general.
+The plot clearly shows that the Voronoi-based RMP algorithm is capable to generate up to 1000 polygons per iteration in real-time. For real-time terrain generation, fast generation of huge amounts of randomly distributed polygons is a huge deal. Not only is it possible to control the spread of a mountain with high precision, it is also possible to generate more detailed mountains in general.
 
 %----------------------------------------------------------------------------------------
 \chapter{Conclusion \& Future Work}
@@ -876,5 +888,17 @@ procedure perform(hm, roughness):
     columns /= 2
     rows /= 2
 \end{lstlisting}
+
+\chapter{Screen capturing techniques}
+
+\section{Capturing screenshots with stblib}
+OpenGL provides a function called \emph{glReadPixels}, which copies a specified region of pixels from the video card memory to the RAM. RGB images require $width \cdot height \cdot 3$ bytes per pixel. Since a \emph{char} requires exactly one byte of space, it is commonly used to represent color channel information. In fact, a library called \emph{stblib} written by Sean T. Barret et al. is perfectly capable of saving these kinds of character arrays in various file formats like .jpg or .png and was used for this purpose.
+
+\section{Video recording with ffmpeg}
+To efficiently record a video, it is necessary to allocate enough space beforehand. Reallocating space during the capturing process leads to noticeable stuttering and is not an option. The following formula was used to calculate the amount of required space:
+\begin{align}
+space(width, height, fps, t) = width \cdot height \cdot 3 \cdot fps \cdot t \; \mathrm{bytes}
+\end{align}
+By using OpenGL's \emph{glReadPixels} function, it is possible to save each frame into an array of type char. Once all the frames are captured, they need to be flipped vertically since ffmpeg uses a different coordinate system than OpenGL. Furthermore, ffmpeg's MPEG2 encoding algorithm requires the frames to be YCbCr color space compliant. Fortunately, the ffmpeg library offers a function to convert frames from RGB to YCbCr color space. Once all the frames are converted, they are ready to be encoded using ffmpeg's MPEG2 encoding algorithm. Once all frames are encoded, ffmpeg will save the video as .mpg file on the harddisk. The file format .mpg can be played with almost any video player and does not require too much space, due to the MPEG2 encoding algorithm provided by ffmpeg.
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.15)  11 OCT 2016 22:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.15)  18 OCT 2016 21:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -719,6 +719,21 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 180.
+ <./images/tectonic-transform.png, id=66, 2117.511pt x 1191.652pt>
+File: ./images/tectonic-transform.png Graphic file (type png)
+ <use ./images/tectonic-transform.png>
+Package pdftex.def Info: ./images/tectonic-transform.png used on input line 189.
+(pdftex.def)             Requested size: 142.03946pt x 79.933pt.
+ <./images/tectonic-diverging.png, id=67, 2017.136pt x 1210.121pt>
+File: ./images/tectonic-diverging.png Graphic file (type png)
+ <use ./images/tectonic-diverging.png>
+Package pdftex.def Info: ./images/tectonic-diverging.png used on input line 194.
+(pdftex.def)             Requested size: 142.03946pt x 85.1972pt.
+ <./images/tectonic-converging.png, id=68, 2017.136pt x 1234.211pt>
+File: ./images/tectonic-converging.png Graphic file (type png)
+ <use ./images/tectonic-converging.png>
+Package pdftex.def Info: ./images/tectonic-converging.png used on input line 199.
+(pdftex.def)             Requested size: 142.03946pt x 86.89323pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -726,7 +741,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2] [3] [4
+[2 <./images/tectonic-transform.png> <./images/tectonic-diverging.png> <./images/tectonic-converging.png>] [3] [4
 
 ]
 Chapter 2.
@@ -734,68 +749,68 @@ Chapter 2.
 
 ]
 Chapter 3.
-<./images/mpd0.png, id=83, 642.4pt x 481.8pt>
+<./images/mpd0.png, id=90, 642.4pt x 481.8pt>
 File: ./images/mpd0.png Graphic file (type png)
  <use ./images/mpd0.png>
-Package pdftex.def Info: ./images/mpd0.png used on input line 225.
+Package pdftex.def Info: ./images/mpd0.png used on input line 247.
 (pdftex.def)             Requested size: 142.03946pt x 106.52563pt.
- <./images/mpd1.png, id=84, 642.4pt x 481.8pt>
+ <./images/mpd1.png, id=91, 642.4pt x 481.8pt>
 File: ./images/mpd1.png Graphic file (type png)
  <use ./images/mpd1.png>
-Package pdftex.def Info: ./images/mpd1.png used on input line 230.
+Package pdftex.def Info: ./images/mpd1.png used on input line 252.
 (pdftex.def)             Requested size: 142.03946pt x 106.52563pt.
- <./images/mpd2.png, id=85, 642.4pt x 481.8pt>
+ <./images/mpd2.png, id=92, 642.4pt x 481.8pt>
 File: ./images/mpd2.png Graphic file (type png)
  <use ./images/mpd2.png>
-Package pdftex.def Info: ./images/mpd2.png used on input line 235.
+Package pdftex.def Info: ./images/mpd2.png used on input line 257.
 (pdftex.def)             Requested size: 142.03946pt x 106.52563pt.
- <./images/ds1.png, id=86, 406.51875pt x 406.51875pt>
+ <./images/ds1.png, id=93, 406.51875pt x 406.51875pt>
 File: ./images/ds1.png Graphic file (type png)
  <use ./images/ds1.png>
-Package pdftex.def Info: ./images/ds1.png used on input line 247.
+Package pdftex.def Info: ./images/ds1.png used on input line 269.
 (pdftex.def)             Requested size: 110.96579pt x 110.96489pt.
- <./images/ds2.png, id=87, 406.51875pt x 406.51875pt>
+ <./images/ds2.png, id=94, 406.51875pt x 406.51875pt>
 File: ./images/ds2.png Graphic file (type png)
  <use ./images/ds2.png>
-Package pdftex.def Info: ./images/ds2.png used on input line 252.
+Package pdftex.def Info: ./images/ds2.png used on input line 274.
 (pdftex.def)             Requested size: 110.96579pt x 110.96489pt.
- <./images/ds3.png, id=88, 406.51875pt x 406.51875pt>
+ <./images/ds3.png, id=95, 406.51875pt x 406.51875pt>
 File: ./images/ds3.png Graphic file (type png)
  <use ./images/ds3.png>
-Package pdftex.def Info: ./images/ds3.png used on input line 257.
+Package pdftex.def Info: ./images/ds3.png used on input line 279.
 (pdftex.def)             Requested size: 110.96579pt x 110.96489pt.
- <./images/ds4.png, id=89, 406.51875pt x 406.51875pt>
+ <./images/ds4.png, id=96, 406.51875pt x 406.51875pt>
 File: ./images/ds4.png Graphic file (type png)
  <use ./images/ds4.png>
-Package pdftex.def Info: ./images/ds4.png used on input line 262.
+Package pdftex.def Info: ./images/ds4.png used on input line 284.
 (pdftex.def)             Requested size: 110.96579pt x 110.96489pt.
- <./images/ds5.png, id=90, 406.51875pt x 406.51875pt>
+ <./images/ds5.png, id=97, 406.51875pt x 406.51875pt>
 File: ./images/ds5.png Graphic file (type png)
  <use ./images/ds5.png>
-Package pdftex.def Info: ./images/ds5.png used on input line 267.
+Package pdftex.def Info: ./images/ds5.png used on input line 289.
 (pdftex.def)             Requested size: 110.96579pt x 110.96489pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7 <./images/mpd0.png> <./images/mpd1.png> <./images/mpd2.png>] <./images/fault0.png, id=99, 513.92pt x 513.92pt>
+ [7 <./images/mpd0.png> <./images/mpd1.png> <./images/mpd2.png>] <./images/fault0.png, id=105, 513.92pt x 513.92pt>
 File: ./images/fault0.png Graphic file (type png)
  <use ./images/fault0.png>
-Package pdftex.def Info: ./images/fault0.png used on input line 289.
+Package pdftex.def Info: ./images/fault0.png used on input line 311.
 (pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
- <./images/fault2.png, id=100, 513.92pt x 513.92pt>
+ <./images/fault2.png, id=106, 513.92pt x 513.92pt>
 File: ./images/fault2.png Graphic file (type png)
  <use ./images/fault2.png>
-Package pdftex.def Info: ./images/fault2.png used on input line 294.
+Package pdftex.def Info: ./images/fault2.png used on input line 316.
 (pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
- <./images/fault4.png, id=101, 513.92pt x 513.92pt>
+ <./images/fault4.png, id=107, 513.92pt x 513.92pt>
 File: ./images/fault4.png Graphic file (type png)
  <use ./images/fault4.png>
-Package pdftex.def Info: ./images/fault4.png used on input line 299.
+Package pdftex.def Info: ./images/fault4.png used on input line 321.
 (pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
- <./images/fault6.png, id=102, 513.92pt x 513.92pt>
+ <./images/fault6.png, id=108, 513.92pt x 513.92pt>
 File: ./images/fault6.png Graphic file (type png)
  <use ./images/fault6.png>
-Package pdftex.def Info: ./images/fault6.png used on input line 304.
+Package pdftex.def Info: ./images/fault6.png used on input line 326.
 (pdftex.def)             Requested size: 106.5296pt x 106.53053pt.
 
 
@@ -804,178 +819,190 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 Underfull \vbox (badness 6477) has occurred while \output is active []
 
- [8 <./images/ds1.png> <./images/ds2.png> <./images/ds3.png> <./images/ds4.png> <./images/ds5.png>] [9 <./images/fault0.png> <./images/fault2.png> <./images/fault4.png> <./images/fault6.png>] <./images/rmp_overlay1.png, id=124, 513.92pt x 513.92pt>
+ [8 <./images/ds1.png> <./images/ds2.png> <./images/ds3.png> <./images/ds4.png> <./images/ds5.png>] [9 <./images/fault0.png> <./images/fault2.png> <./images/fault4.png> <./images/fault6.png>] <./images/rmp_overlay1.png, id=130, 513.92pt x 513.92pt>
 File: ./images/rmp_overlay1.png Graphic file (type png)
  <use ./images/rmp_overlay1.png>
-Package pdftex.def Info: ./images/rmp_overlay1.png used on input line 340.
+Package pdftex.def Info: ./images/rmp_overlay1.png used on input line 362.
 (pdftex.def)             Requested size: 110.96579pt x 110.96115pt.
- [10 <./images/rmp_overlay1.png>] <./images/voronoi10.png, id=129, 1284.8pt x 963.6pt>
+ [10 <./images/rmp_overlay1.png>] <./images/voronoi10.png, id=135, 1284.8pt x 963.6pt>
 File: ./images/voronoi10.png Graphic file (type png)
  <use ./images/voronoi10.png>
-Package pdftex.def Info: ./images/voronoi10.png used on input line 353.
+Package pdftex.def Info: ./images/voronoi10.png used on input line 375.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/voronoi100.png, id=130, 1284.8pt x 963.6pt>
+ <./images/voronoi100.png, id=136, 1284.8pt x 963.6pt>
 File: ./images/voronoi100.png Graphic file (type png)
  <use ./images/voronoi100.png>
-Package pdftex.def Info: ./images/voronoi100.png used on input line 358.
+Package pdftex.def Info: ./images/voronoi100.png used on input line 380.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/voronoi1000.png, id=131, 1284.8pt x 963.6pt>
+ <./images/voronoi1000.png, id=137, 1284.8pt x 963.6pt>
 File: ./images/voronoi1000.png Graphic file (type png)
  <use ./images/voronoi1000.png>
-Package pdftex.def Info: ./images/voronoi1000.png used on input line 363.
+Package pdftex.def Info: ./images/voronoi1000.png used on input line 385.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/rotvonneumann.png, id=132, 513.92pt x 513.92pt>
+ <./images/rotvonneumann.png, id=138, 513.92pt x 513.92pt>
 File: ./images/rotvonneumann.png Graphic file (type png)
  <use ./images/rotvonneumann.png>
-Package pdftex.def Info: ./images/rotvonneumann.png used on input line 376.
+Package pdftex.def Info: ./images/rotvonneumann.png used on input line 398.
 (pdftex.def)             Requested size: 88.77127pt x 88.76892pt.
- [11 <./images/voronoi10.png (PNG copy)> <./images/voronoi100.png (PNG copy)> <./images/voronoi1000.png (PNG copy)> <./images/rotvonneumann.png>] <./images/thermalerosion.png, id=137, 586.19pt x 762.85pt>
+ [11 <./images/voronoi10.png (PNG copy)> <./images/voronoi100.png (PNG copy)> <./images/voronoi1000.png (PNG copy)> <./images/rotvonneumann.png>] <./images/thermalerosion.png, id=143, 586.19pt x 762.85pt>
 File: ./images/thermalerosion.png Graphic file (type png)
  <use ./images/thermalerosion.png>
-Package pdftex.def Info: ./images/thermalerosion.png used on input line 384.
+Package pdftex.def Info: ./images/thermalerosion.png used on input line 406.
 (pdftex.def)             Requested size: 177.54256pt x 231.0451pt.
  [12 <./images/thermalerosion.png>]
-<./images/hydraulicerosion.png, id=143, 659.46375pt x 516.93124pt>
+<./images/hydraulicerosion.png, id=149, 659.46375pt x 516.93124pt>
 File: ./images/hydraulicerosion.png Graphic file (type png)
  <use ./images/hydraulicerosion.png>
-Package pdftex.def Info: ./images/hydraulicerosion.png used on input line 403.
+Package pdftex.def Info: ./images/hydraulicerosion.png used on input line 425.
 (pdftex.def)             Requested size: 221.9316pt x 173.96378pt.
 
 Underfull \vbox (badness 1803) has occurred while \output is active []
 
  [13 <./images/hydraulicerosion.png>] [14] [15]
 
-Package Listings Warning: Text dropped after begin of listing on input line 430.
+Package Listings Warning: Text dropped after begin of listing on input line 455.
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 438.
-[16] [17]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 463.
 
-Package Listings Warning: Text dropped after begin of listing on input line 467.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-<./images/shader0-no-effect-screenshot.png, id=163, 1284.8pt x 963.6pt>
+ [16]
+
+Package Listings Warning: Text dropped after begin of listing on input line 492.
+
+[17] <./images/shader0-no-effect-screenshot.png, id=169, 1284.8pt x 963.6pt>
 File: ./images/shader0-no-effect-screenshot.png Graphic file (type png)
  <use ./images/shader0-no-effect-screenshot.png>
-Package pdftex.def Info: ./images/shader0-no-effect-screenshot.png used on input line 511.
+Package pdftex.def Info: ./images/shader0-no-effect-screenshot.png used on input line 536.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/shader1-brightpass-screenshot.png, id=164, 1284.8pt x 963.6pt>
+ <./images/shader1-brightpass-screenshot.png, id=170, 1284.8pt x 963.6pt>
 File: ./images/shader1-brightpass-screenshot.png Graphic file (type png)
  <use ./images/shader1-brightpass-screenshot.png>
-Package pdftex.def Info: ./images/shader1-brightpass-screenshot.png used on input line 516.
+Package pdftex.def Info: ./images/shader1-brightpass-screenshot.png used on input line 541.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/shader2-horizontal-blur-screenshot.png, id=165, 1284.8pt x 963.6pt>
+ <./images/shader2-horizontal-blur-screenshot.png, id=171, 1284.8pt x 963.6pt>
 File: ./images/shader2-horizontal-blur-screenshot.png Graphic file (type png)
  <use ./images/shader2-horizontal-blur-screenshot.png>
-Package pdftex.def Info: ./images/shader2-horizontal-blur-screenshot.png used on input line 521.
+Package pdftex.def Info: ./images/shader2-horizontal-blur-screenshot.png used on input line 546.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/shader3-vertical-blur-screenshot.png, id=166, 1284.8pt x 963.6pt>
+ <./images/shader3-vertical-blur-screenshot.png, id=172, 1284.8pt x 963.6pt>
 File: ./images/shader3-vertical-blur-screenshot.png Graphic file (type png)
  <use ./images/shader3-vertical-blur-screenshot.png>
-Package pdftex.def Info: ./images/shader3-vertical-blur-screenshot.png used on input line 526.
+Package pdftex.def Info: ./images/shader3-vertical-blur-screenshot.png used on input line 551.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/shader4-bloom-screenshot.png, id=167, 1284.8pt x 963.6pt>
+ <./images/shader4-bloom-screenshot.png, id=173, 1284.8pt x 963.6pt>
 File: ./images/shader4-bloom-screenshot.png Graphic file (type png)
  <use ./images/shader4-bloom-screenshot.png>
-Package pdftex.def Info: ./images/shader4-bloom-screenshot.png used on input line 531.
+Package pdftex.def Info: ./images/shader4-bloom-screenshot.png used on input line 556.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[18] [19 <./images/shader0-no-effect-screenshot.png (PNG copy)> <./images/shader1-brightpass-screenshot.png (PNG copy)> <./images/shader2-horizontal-blur-screenshot.png (PNG copy)> <./images/shader3-vertical-blur-screenshot.png (PNG copy)> <./images/shader4-bloom-screenshot.png (PNG copy)>] <./images/pixhfld.png, id=178, 642.4pt x 481.8pt>
+[18] [19 <./images/shader0-no-effect-screenshot.png (PNG copy)> <./images/shader1-brightpass-screenshot.png (PNG copy)> <./images/shader2-horizontal-blur-screenshot.png (PNG copy)> <./images/shader3-vertical-blur-screenshot.png (PNG copy)> <./images/shader4-bloom-screenshot.png (PNG copy)>] <./images/pixhfld.png, id=184, 642.4pt x 481.8pt>
 File: ./images/pixhfld.png Graphic file (type png)
  <use ./images/pixhfld.png>
-Package pdftex.def Info: ./images/pixhfld.png used on input line 575.
+Package pdftex.def Info: ./images/pixhfld.png used on input line 600.
 (pdftex.def)             Requested size: 177.54256pt x 133.15338pt.
  [20 <./images/pixhfld.png (PNG copy)>]
-
-Package Listings Warning: Text dropped after begin of listing on input line 589.
-
-[21] [22
-
-]
 Chapter 4.
 <./images/hydro-10mins-46k-iterations-crooked.png, id=188, 1284.8pt x 963.6pt>
 File: ./images/hydro-10mins-46k-iterations-crooked.png Graphic file (type png)
  <use ./images/hydro-10mins-46k-iterations-crooked.png>
-Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-crooked.png used on input line 625.
+Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-crooked.png used on input line 630.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 626--626
+Underfull \hbox (badness 10000) in paragraph at lines 631--631
 []\T1/cmr/m/n/10 (a) |In-clined sur-face eroded
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 626--626
+Underfull \hbox (badness 10000) in paragraph at lines 631--631
 \T1/cmr/m/n/10 by cel-lu-lar automaton-based
  []
 
 <./images/hydro-10mins-46k-iterations-pyramid.png, id=189, 1284.8pt x 963.6pt>
 File: ./images/hydro-10mins-46k-iterations-pyramid.png Graphic file (type png)
  <use ./images/hydro-10mins-46k-iterations-pyramid.png>
-Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-pyramid.png used on input line 630.
+Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-pyramid.png used on input line 635.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
 
-Underfull \hbox (badness 7963) in paragraph at lines 631--631
+Underfull \hbox (badness 7963) in paragraph at lines 636--636
 []\T1/cmr/m/n/10 (b) |Pyra-mid sur-face eroded
  []
 
 <./images/hydro-10mins-46k-iterations-hemisphere.png, id=190, 1284.8pt x 963.6pt>
 File: ./images/hydro-10mins-46k-iterations-hemisphere.png Graphic file (type png)
  <use ./images/hydro-10mins-46k-iterations-hemisphere.png>
-Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-hemisphere.png used on input line 635.
+Package pdftex.def Info: ./images/hydro-10mins-46k-iterations-hemisphere.png used on input line 640.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
  <./images/sph-hydro-10mins-crooked.png, id=191, 1284.8pt x 963.6pt>
 File: ./images/sph-hydro-10mins-crooked.png Graphic file (type png)
  <use ./images/sph-hydro-10mins-crooked.png>
-Package pdftex.def Info: ./images/sph-hydro-10mins-crooked.png used on input line 649.
+Package pdftex.def Info: ./images/sph-hydro-10mins-crooked.png used on input line 654.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
  <./images/sph-hydro-10mins-pyramid.png, id=192, 1284.8pt x 963.6pt>
 File: ./images/sph-hydro-10mins-pyramid.png Graphic file (type png)
  <use ./images/sph-hydro-10mins-pyramid.png>
-Package pdftex.def Info: ./images/sph-hydro-10mins-pyramid.png used on input line 654.
+Package pdftex.def Info: ./images/sph-hydro-10mins-pyramid.png used on input line 659.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
  <./images/sph-hydro-10mins-hemisphere.png, id=193, 1284.8pt x 963.6pt>
 File: ./images/sph-hydro-10mins-hemisphere.png Graphic file (type png)
  <use ./images/sph-hydro-10mins-hemisphere.png>
-Package pdftex.def Info: ./images/sph-hydro-10mins-hemisphere.png used on input line 659.
+Package pdftex.def Info: ./images/sph-hydro-10mins-hemisphere.png used on input line 664.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- [23 <./images/hydro-10mins-46k-iterations-crooked.png (PNG copy)> <./images/hydro-10mins-46k-iterations-pyramid.png (PNG copy)> <./images/hydro-10mins-46k-iterations-hemisphere.png (PNG copy)>] <./images/voronoi100-diagonal.png, id=197, 1284.8pt x 963.6pt>
+ [21
+
+ <./images/hydro-10mins-46k-iterations-crooked.png (PNG copy)> <./images/hydro-10mins-46k-iterations-pyramid.png (PNG copy)> <./images/hydro-10mins-46k-iterations-hemisphere.png (PNG copy)>] <./images/sph-comparison.png, id=197, 870.25125pt x 544.0325pt>
+File: ./images/sph-comparison.png Graphic file (type png)
+ <use ./images/sph-comparison.png>
+Package pdftex.def Info: ./images/sph-comparison.png used on input line 675.
+(pdftex.def)             Requested size: 146.47566pt x 91.56285pt.
+ <./images/voronoi100-diagonal.png, id=198, 1284.8pt x 963.6pt>
 File: ./images/voronoi100-diagonal.png Graphic file (type png)
  <use ./images/voronoi100-diagonal.png>
-Package pdftex.def Info: ./images/voronoi100-diagonal.png used on input line 676.
+Package pdftex.def Info: ./images/voronoi100-diagonal.png used on input line 690.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/mountain-range-normal.png, id=198, 1284.8pt x 963.6pt>
+ <./images/mountain-range-normal.png, id=199, 1284.8pt x 963.6pt>
 File: ./images/mountain-range-normal.png Graphic file (type png)
  <use ./images/mountain-range-normal.png>
-Package pdftex.def Info: ./images/mountain-range-normal.png used on input line 681.
-(pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- <./images/mountain-range-alteration.png, id=199, 1284.8pt x 963.6pt>
-File: ./images/mountain-range-alteration.png Graphic file (type png)
- <use ./images/mountain-range-alteration.png>
-Package pdftex.def Info: ./images/mountain-range-alteration.png used on input line 686.
+Package pdftex.def Info: ./images/mountain-range-normal.png used on input line 695.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
 
-[24 <./images/sph-hydro-10mins-crooked.png (PNG copy)> <./images/sph-hydro-10mins-pyramid.png (PNG copy)> <./images/sph-hydro-10mins-hemisphere.png (PNG copy)> <./images/voronoi100-diagonal.png> <./images/mountain-range-normal.png (PNG copy)> <./images/mountain-range-alteration.png (PNG copy)>] <./images/thermal-50-iterations-before.png, id=205, 1284.8pt x 963.6pt>
+<./images/mountain-range-alteration.png, id=200, 1284.8pt x 963.6pt>
+File: ./images/mountain-range-alteration.png Graphic file (type png)
+ <use ./images/mountain-range-alteration.png>
+Package pdftex.def Info: ./images/mountain-range-alteration.png used on input line 700.
+(pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22 <./images/sph-hydro-10mins-crooked.png (PNG copy)> <./images/sph-hydro-10mins-pyramid.png (PNG copy)> <./images/sph-hydro-10mins-hemisphere.png (PNG copy)> <./images/sph-comparison.png>] <./images/thermal-50-iterations-before.png, id=205, 1284.8pt x 963.6pt>
 File: ./images/thermal-50-iterations-before.png Graphic file (type png)
  <use ./images/thermal-50-iterations-before.png>
-Package pdftex.def Info: ./images/thermal-50-iterations-before.png used on input line 706.
+Package pdftex.def Info: ./images/thermal-50-iterations-before.png used on input line 720.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
  <./images/thermal-50-iterations-after1.png, id=206, 1284.8pt x 963.6pt>
 File: ./images/thermal-50-iterations-after1.png Graphic file (type png)
  <use ./images/thermal-50-iterations-after1.png>
-Package pdftex.def Info: ./images/thermal-50-iterations-after1.png used on input line 711.
+Package pdftex.def Info: ./images/thermal-50-iterations-after1.png used on input line 725.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
  <./images/thermal-50-iterations-after2.png, id=207, 1284.8pt x 963.6pt>
 File: ./images/thermal-50-iterations-after2.png Graphic file (type png)
  <use ./images/thermal-50-iterations-after2.png>
-Package pdftex.def Info: ./images/thermal-50-iterations-after2.png used on input line 716.
+Package pdftex.def Info: ./images/thermal-50-iterations-after2.png used on input line 730.
 (pdftex.def)             Requested size: 142.03946pt x 106.52565pt.
- [25 <./images/thermal-50-iterations-before.png (PNG copy)> <./images/thermal-50-iterations-after1.png (PNG copy)> <./images/thermal-50-iterations-after2.png (PNG copy)>] [26] [27] [28
+ [23 <./images/voronoi100-diagonal.png> <./images/mountain-range-normal.png (PNG copy)> <./images/mountain-range-alteration.png (PNG copy)> <./images/thermal-50-iterations-before.png (PNG copy)> <./images/thermal-50-iterations-after1.png (PNG copy)> <./images/thermal-50-iterations-after2.png (PNG copy)>]
 
-]
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[24] [25] [26]
 Chapter 5.
-[29] (./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl [30] (/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/data/uni-32.def
+[27
+
+] (./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.bbl [28] (/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
 Underfull \hbox (badness 2326) in paragraph at lines 54--61
@@ -987,41 +1014,45 @@ Underfull \hbox (badness 2285) in paragraph at lines 63--67
 []\T1/cmr/m/n/10.95 Saeed Ma-hani.  Physics-based sim-u-la-tion fi-nal project.  $\T1/cmtt/m/n/10.95 https : / / github . com /
  []
 
-[31
+[29
 
 ]
-Underfull \hbox (badness 1783) in paragraph at lines 125--130
+Underfull \hbox (badness 1783) in paragraph at lines 132--137
 []\T1/cmr/m/n/10.95 W. Ran-dolph Franklin (WRF).  PN-POLY - Point In-clu-sion in Poly-gon Test,
  []
 
 
-Underfull \hbox (badness 1297) in paragraph at lines 125--130
+Underfull \hbox (badness 1297) in paragraph at lines 132--137
 \T1/cmr/m/n/10.95 1994.  $\T1/cmtt/m/n/10.95 https : / / www . ecse . rpi . edu / Homepages / wrf / Research / Short _ Notes / pnpoly .
  []
 
-) [32]
+) [30]
 Appendix A.
 
-Package Listings Warning: Text dropped after begin of listing on input line 838.
+Package Listings Warning: Text dropped after begin of listing on input line 850.
 
-[33
+[31
 
-] (./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux) ) 
+] [32
+
+]
+Appendix B.
+[33] (./Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.aux) ) 
 Here is how much of TeX's memory you used:
- 29393 strings out of 493089
- 681518 string characters out of 6134841
- 927962 words of memory out of 5000000
- 32285 multiletter control sequences out of 15000+600000
+ 29428 strings out of 493089
+ 682561 string characters out of 6134841
+ 929437 words of memory out of 5000000
+ 32316 multiletter control sequences out of 15000+600000
  26187 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,16n,103p,3215b,1919s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr
-/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsl1095.pf
-b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf (46 pages, 28392347 bytes).
+ 62i,16n,103p,2765b,1919s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsl1095
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on Procedural-Generation-of-Mountain-Ranges-Based-on-Geology.pdf (46 pages, 32125193 bytes).
 PDF statistics:
- 322 PDF objects out of 1000 (max. 8388607)
+ 330 PDF objects out of 1000 (max. 8388607)
  188 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 208 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 228 words of extra memory for PDF output out of 10000 (max. 10000000)
 

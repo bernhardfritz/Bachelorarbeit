@@ -21,12 +21,13 @@
 \contentsline {subsubsection}{Bright-pass filter}{19}
 \contentsline {subsubsection}{Two-pass Gaussian filter}{19}
 \contentsline {subsection}{\numberline {3.7.3}Exporting heightmaps}{20}
-\contentsline {subsection}{\numberline {3.7.4}Capturing screenshots with stblib}{21}
-\contentsline {subsection}{\numberline {3.7.5}Video recording with ffmpeg}{21}
-\contentsline {chapter}{\numberline {4}Results}{23}
-\contentsline {section}{\numberline {4.1}Comparison of hydraulic erosion algorithms}{23}
-\contentsline {section}{\numberline {4.2}Mountain range generation algorithm alterations}{24}
-\contentsline {section}{\numberline {4.3}Thermal erosion algorithm variations}{25}
-\contentsline {section}{\numberline {4.4}Graph-based and Voronoi-based RMP performance analysis}{25}
-\contentsline {chapter}{\numberline {5}Conclusion \& Future Work}{29}
-\contentsline {chapter}{\numberline {A}Diamond-Square pseudocode}{33}
+\contentsline {chapter}{\numberline {4}Results}{21}
+\contentsline {section}{\numberline {4.1}Comparison of hydraulic erosion algorithms}{21}
+\contentsline {section}{\numberline {4.2}Mountain range generation algorithm alterations}{22}
+\contentsline {section}{\numberline {4.3}Thermal erosion algorithm variations}{23}
+\contentsline {section}{\numberline {4.4}Graph-based and Voronoi-based RMP performance analysis}{24}
+\contentsline {chapter}{\numberline {5}Conclusion \& Future Work}{27}
+\contentsline {chapter}{\numberline {A}Diamond-Square pseudocode}{31}
+\contentsline {chapter}{\numberline {B}Screen capturing techniques}{33}
+\contentsline {section}{\numberline {B.1}Capturing screenshots with stblib}{33}
+\contentsline {section}{\numberline {B.2}Video recording with ffmpeg}{33}

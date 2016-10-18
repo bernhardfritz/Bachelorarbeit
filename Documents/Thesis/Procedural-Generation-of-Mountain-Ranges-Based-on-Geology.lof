@@ -1,12 +1,13 @@
 \select@language {english}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Heightmap grid\relax }}{1}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Visualization of tectonic plate movement types \cite {wiki:platetectonics} \relax }}{2}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Midpoint-Displacement algorithm visualization\relax }}{7}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Diamond-Square algorithm visualization\relax }}{8}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Fault algorithm visualization\relax }}{9}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces RMP\relax }}{10}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Affected area of a single iteration of RMP\relax }}{10}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Voronoi diagrams with different amounts of cones\relax }}{11}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Rotated Von Neumann neighborhood\relax }}{11}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Thermal erosion cellular automaton rules\relax }}{12}
@@ -14,10 +15,12 @@
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Bloom filter rendering passes\relax }}{19}
 \contentsline {figure}{\numberline {3.10}{\ignorespaces Simplified heightmap export process \cite {POVRay:HeightField} \relax }}{20}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Cellular automaton-based hydraulic erosion results\relax }}{23}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces SPH-based hydraulic erosion results\relax }}{24}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Visualization of mountain range generation algorithm alterations\relax }}{24}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Visualization of thermal erosion algorithm alterations\relax }}{25}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Voronoi performance stress test\relax }}{26}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Cellular automaton-based hydraulic erosion results\relax }}{21}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces SPH-based hydraulic erosion results\relax }}{22}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Comparison results by Kri\v {s}tof et al. \cite {krivstof2009hydraulic} \relax }}{22}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Visualization of mountain range generation algorithm alterations\relax }}{23}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Visualization of thermal erosion algorithm alterations\relax }}{23}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Voronoi performance stress test\relax }}{26}
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

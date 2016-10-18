@@ -6,45 +6,45 @@ Database file #1: literature.bib
 Warning--can't use both volume and number fields in krivstof2009hydraulic
 Warning--empty journal in Olsen:2004
 Warning--empty school in Viitanen:2012
-You've used 20 entries,
+You've used 21 entries,
             2118 wiz_defined-function locations,
-            636 strings with 8192 characters,
-and the built_in function-call counts, 6373 in all, are:
-= -- 641
-> -- 255
+            641 strings with 8395 characters,
+and the built_in function-call counts, 6579 in all, are:
+= -- 660
+> -- 262
 < -- 8
-+ -- 101
-- -- 81
-* -- 368
-:= -- 1025
-add.period$ -- 68
-call.type$ -- 20
-change.case$ -- 100
++ -- 104
+- -- 83
+* -- 374
+:= -- 1059
+add.period$ -- 71
+call.type$ -- 21
+change.case$ -- 104
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 259
-empty$ -- 541
-format.name$ -- 81
-if$ -- 1395
+cite$ -- 24
+duplicate$ -- 266
+empty$ -- 563
+format.name$ -- 83
+if$ -- 1440
 int.to.chr$ -- 0
-int.to.str$ -- 20
+int.to.str$ -- 21
 missing$ -- 12
-newline$ -- 104
-num.names$ -- 42
-pop$ -- 148
+newline$ -- 109
+num.names$ -- 44
+pop$ -- 157
 preamble$ -- 1
-purify$ -- 79
+purify$ -- 82
 quote$ -- 0
-skip$ -- 198
+skip$ -- 205
 stack$ -- 0
-substring$ -- 328
-swap$ -- 74
+substring$ -- 333
+swap$ -- 75
 text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 80
+type$ -- 84
 warning$ -- 3
-while$ -- 64
-width$ -- 22
-write$ -- 224
+while$ -- 66
+width$ -- 23
+write$ -- 234
 (There were 3 warnings)
