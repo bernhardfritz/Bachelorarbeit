@@ -1,0 +1,223 @@
+Hello everybody!
+This final presentation is about my bachelor thesis called procedural generation of mountain ranges based on geology.
+
+Let me start with a motivational video.
+What you can see here, is an implementation of a basic tectonic plate movement simulation.
+Whenever two plates collide, there will be a change of height.
+I will tell you later in this presentation how this works in detail.
+
+Now that you are all excited, let me give you a brief overview.
+At first I will tell you what this thesis was all about and what challenges had to be encountered.
+Then I will explain the data structures that were absolutely essential for the algorithms and simulations I am going to present to you today.
+There are two categories of terrain generation algorithms.
+Geology and non-geology-based algorithms.
+Geology-based algorithms often depend on their non-geology-based counterparts, that is why both types will be discussed.
+At the end I will show you some visualization techniques that were used for this bachelor project.
+
+So what was this bachelor project all about.
+I started by implementing and testing several existing terrain generation algorithms.
+Doing that I learnt about the essential features a procedural terrain generation algorthm must provide and then implemented my own procedural terrain generation algorithm.
+
+In order to build geology-based algorithms and simulations, it is necessary to have a basic understanding of geology.
+
+The tectonic plate simulation is a simplified model of natural phenomena occuring on earth an was used to generate plate collision data.
+
+Besides terrain generation, it is also important to understand how nature degradates landscape and how this behavior can be implemented in code.
+I therefore studied two different kinds of erosion and implemented them both.
+
+So what what was challenging about this project?
+There are a lot of related papers available.
+Some of them are very well documented.
+Others aren't.
+At one particular case I had to combine information from different sources in order to reproduce the showcased results.
+
+When programming computer graphics algorithms and simulations, things can get out of hand quite quickly in terms of memory and processing requirements.
+As a result it was often necessary to review the code and optimize it wherever possible.
+
+Although it was difficult at times, I can say with confidence that all final versions of the algorithms and simulations that I will present today are in fact real-time capable.
+
+Alright now let's get started with the essential data structures.
+For terrain generation algorithms and simulations it is quite common to use heightmaps to encode elevation data.
+The reason for this is simple, heightmaps are fast and they are good enough for most applications.
+On heightmaps, height is well defined for any arbitrary position.
+This also means there cannot be any landscape overhangs.
+Alternatives to heightmaps would be voxel or marching cube-based models.
+These models would be able to handle overhanging landscapes but they are far less efficient and it would be much more difficult to use them for procedural terrain generation.
+Heightmaps consist of tiles.
+These tiles consist of triangles.
+And these triangles again consist of vertices.
+On the bottom left we can see a 3x3 heightmap.
+3x3 because it consists of 3 horizontal and 3 vertical tiles.
+Heightmaps can have any arbitrary dimension.
+Usually they have square dimensions though.
+A 3x3 heightmap consists of 4x4 vertices.
+These vertices are saved in an indexed datastructure to save space.
+This means a vertex can be used by several triangles.
+In case of heightmaps, a maximum of 6 triangles can contain the same vertex.
+Let's say I change this vertex in height, this would affect all 6 triangles since they contain the same vertex.
+When defining an indexed datastructure it is important to define the triangle vertices in a consistent order.
+In my case, I decided to define them in counter-clock-wise order.
+There are different ways how to arrange the triangles.
+I sticked to what most papers where using and this is what I ended up with.
+
+Since heightmaps only have one height value at any coordinate tuple (x,z) it is possible to simply save them as an 8-bit grayscale image.
+With 1 byte per pixel there are 256 different height values for each vertex.
+On the left you can see such a grayscale image.
+The dark regions represent low elevation and light regions high elevation respectively.
+On the right you can see a 3D representation of the same heightmap.
+Since heightmaps can simply be saved as an image, it is very easy to import them into other applications.
+
+This slide is just about categorization.
+We will talk about two types of non-geology-based terrain generation algorithms:
+Random, hardly controllable terrain generation algorithms and parametrically controllable terrain generation algorithms.
+The diamond-square and the fault algorithm are very limited in configurability.
+The repeated magnification and probing algorithm on the other hand can easily be customized by several parameters.
+
+Let me start with the random, hardly controllable terrain generation algorithms.
+There are two candidates that I want to talk to you about:
+The diamond-square and the fault algorithm.
+
+Before explaining diamond-square algorithm, I'd like to show you a closely related algorithm called midpoint-displacement.
+So the idea is that you recursively calculate the midpoints and displace them vertically by a random amount.
+
+Now the diamond-square algorithm is similar to midpoint-displacement.
+Diamond-square just adds another dimension.
+Here the midpoint is basically the center of the points in concern.
+And the displacement is based on the average height of the points in concern plus a random displacement.
+Here we can see diamond-square algorithm applied to a 4x4 heightmap.
+So it starts by initialization of the corner vertices.
+Orange vertices are being altered in height.
+Blue vertices are affecting the height calculation of the orange vertices.
+And the gray arrows are just additional indicators, which vertices affect which.
+A diamond step takes the average of each square and sets the midpoint of each square to be the average of its four corner vertices plus a random displacement.
+A square step takes the average of each diamond and sets the midpoint of each diamond to be the average of its corner vertices plus a random displacement.
+By recursively calling these steps in an alternating fashion a fairly random looking landscape can be generated.
+I prepared a little demonstration that should showcase these steps much more clearly.
+These screenshots showcase the landscape that can be generated using this approach.
+Keep in mind, this is a random, hardly controllable algorithm and it is not possible to control the location or spread of a mountain.
+The only thing that can be configured is the roughness of the terrain.
+By increasing the random displacement amount, it is possible to generate much rougher terrain for example.
+
+Besides diamond-square algorithm there is also another random, hardly controllable terrain generation algorithm called fault algorithm.
+The goal is to continuosly split the height map in two regions and then raise one and lower the other.
+So how can we split the heightmap in two regions?
+This can simply be done by vector math.
+The vector product alone is actually all that we need.
+Let's say we want to know if point p is in one or the other region defined by the intersection line from a to b.
+Then we first calculate two vectors that have the same origin, in this case p-a and b-a with origin a.
+The result of the vector product is a vector that points in a direction perpendicular to both input vectors.
+The direction of the resulting vector can be used as an indicator wheter point p is in one or the other region.
+A simple way to remember which direction the resulting vector is pointing to is by using the right hand rule.
+By pointing with your index finger along the first and your middle finger along the second vector, then your thumb will point in the direction of the result vector.
+In the program, the sign of the z-coordinate will indicate whether p is in one or the other region.
+This is due to the fact that vector p-a as well as b-a are on the xy-plane.
+Therefore the result vector must point directly along the positive or negative z-axis.
+Dark green represents low and light green high elevation.
+If you execute this algorithm for several 100 iterations, you can imagine that this might result in a fairly random looking landscape.
+The terrain produced by this algorithm is pretty rough looking.
+Usually after using fault algorithm it is recommended to erode the terrain using a thermal erosion algorithm as seen here.
+I will later show you how this algorithm works in detail.
+But now let's continue with parametrically controllable terrain generation algorithms.
+So the algorithms we talked before did not offer any configurability.
+It was not possible to control the location or shape of a mountain.
+I will now present to you an algorithm that is capable to do both of that.
+It is called repeated magnification and probing algorithm and was originally published by Kamal and Uddin.
+The graph-based version of RMP is closely related to the original version of Kamal and Uddin.
+The general idea is that you have these layers of polygon grids and you raise some of these polygons per iteration. The amount of connected polygons raised per iteration has influence on the spread of the mountain. The choice which polygons should be raised and which shouldn't influences the location of the resulting mountain.
+Now how can we generate these polygon grids?
+At first we generate four lines representing the borders of the heightmap.
+Then we place an arbitrary amount of random cutting lines.
+It is important to remember the start as well as end point of these lines.
+This information will later be used to create the graph edges.
+In the next step all lines will be iterated through and the intersections will be determined.
+These intersections will represent the vertices of the graph.
+Iterating through the vertices of the current line it is possible to add graph edges between the vertices along the line.
+If a vertex already is a part of the graph it will not be added again.
+Since two intersecting lines share the same intersection point it is obvious that the resulting vertex only has to be added to the graph once.
+Once all the vertices and edges have been added to the graph we can continue with the next step.
+Now what we care about are the polygons contained within the graph.
+Finding the polygons means we have to determine all minimal cycles of the graph.
+This is actually harder than it sounds.
+I will introduce you to a simple but inefficient algorithm that allows you to find all minimal cycles.
+The first step would be to find all cycles.
+And then in a second step filter out duplicates or cycles that contain other cycles.
+This can be done by using a depth-first-search.
+After the depth first search has been performed, it is possible to do quick checks to see if there are any connections between the current vertex and the other vertices on the DFS path.
+If there is a connection the resulting cycle will be added to the unfiltered cycle list.
+Once the full path has been expended, the whole procedure will start over again, using a different vertex as starting point of the DFS.
+Once this procedure has been performed using each and every vertex as starting point of the DFS, it can be guaranteed that all cycles have been added to unfiltered list at least once.
+In the next step all duplicates from the unfiltered list will be removed.
+After that cycles containing other cycles will be removed.
+A cycle contains another cycle if they share a path of 3 vertices.
+What you end up with is a filtered list of minimal cycles.
+These cycles represent the polygons needed for the next step.
+In the next step the polygons will be projected onto the heightmap.
+Then the polygon is selected that contains the desired mountain peak location.
+By raising only the heightmap vertices that lie in the selected polygon and repeating the same technique over and over using different sets of polygons it is possible to generate procedural mountains at arbitrary locations.
+How can you determine if a point is in a polygon or not?
+Actually there is a pretty intuitive solution to this problem.
+By drawing a line from the point in any direction and counting the intersections it is guaranteed that the point is outside if there is an even number of intersections and inside if there is an odd number of intersections.
+Here is a small demonstration of what would happen if you would perform 100 iterations of this algorithm with the desired mountain peak at the center of the heightmap.
+Unfortunately, graph-based RMP is not very efficient.
+This is due to minimal cycle search not scaling well with increasing number of polygons needed for RMP.
+All it comes down to is generating a set of random polygons.
+For this purpose, a graph is not absolutely necessary.
+Voronoi diagrams seem to produce a similar pattern, as seen with graph-based RMP.
+The question is, how can we cheaply generate these diagrams?
+Actually there is a intuitive solution to this problem.
+By generating cones at random positions, and looking at the scene from the top using orthogonal projection, a Voronoi diagram can be spotted.
+This algorithm takes advantage of OpenGLs depth testing and due to its nature is very fast.
+It scales much better than the graph-based alternative.
+Here you can see Voronoi diagrams with 10, 100 and 1000 cones / polygons.
+The result looks similar to graph-based RMP but there is a dramatic performance difference.
+Let's have a look.
+I prepared 3 tasks for each algorithm and compared them based on their execution time.
+I did 10 experiments per task and aggregated the results.
+The goal of task 1 was to generate 7 polygons per iteration for 100 iterations.
+Voronoi-based RMP was about 1 second faster than graph-based RMP.
+The goal of task 2 was to generate 11 polygons per iteration for 100 iterations.
+In this case Voronoi-based RMP took about 2 seconds while graph-based RMP took about 46.
+Graph-based RMP performs even worse on task 3.
+It took about one and a half hour on average.
+Voronoi on the other took again about 2 seconds for the same task.
+Since Voronoi was performing so well, I was interested in the limits of Voronoi.
+Therefore I conducted another experiment where I generated way more polygons than before.
+In fact I prepared a graph that should depict this experiment.
+On the horizontal axis you can the see the number of polygons to be generated for 100 iterations and on the vertical axis the time that passed by during generation.
+Closely to 1000 polygons the generation duration just starts rising.
+This is truly impressive and led to the abandonment of graph-based RMP, since Voronoi was much faster and guaranteed real-time capability.
+Ok, now that we got the basics covered, let's move on to the more advanced stuff.
+I will introduce you to two different categories.
+The geology-based terrain generation algorithms and the geology-based terrain degradation algorithms.
+Let's start with the geology-based terrain generation algorithms.
+For geology-based terrain generation it was necessary to somehow model the processes that were originally involved in the creation of mountains on earth.
+So how did mountains come into existance on earth?
+Earth consists of two essential layers:
+The solid lithosphere and the liquid asthenosphere.
+The solid lithosphere is divided into distinct plates which float on top of the liquid asthenosphere.
+There are several ways these plates can interact with each other:
+They can grind past each other, causing major earth quakes but no terrain generation or degradation.
+They can slide apart from each other, causing vulcanic activity at the seperation border, which can ultimately lead to terrain generation.
+They can slide toward each other and ultimately collide, causing them to pile up in this process. The highest mountains on earth, including the mount everest, were created by two lithospheric plates colliding with each other.
+As you can imagine, tectonic plate movement, is a complicated process and therefore it was necessary to reduce the simulation to two dimensions.
+I created a simplified tectonic plate simulation using freely moving polygons in a two dimensional space and kept track of polygon colissions. The produced collision data will be recorded and later used to generate mountain ranges along the collision borders.
+A physics engine called Box2D was used to detect polygon collisions.
+Unfortunately splitting of polygons was not supported by Box2D and had to be implemented by hand.
+I will now show you the basic concept behind splitting convex polygons.
+Now lets say you have an arbitrary convex polygon.
+The only thing you know about it are the vertices it consists of.
+Then you want to split it at an arbitrary location.
+One possible way is to shoot a ray towards the polygon and remember the entry and exit point of the ray.
+After that we iterate through all polygon vertices and decide whether they are on one or the other side of the ray.
+This can be done using the vector product similarly as we have seen before at the fault algorithm.
+The entry and exit point have to be added to both parts of the newly split polygon.
+Let's see how this technique is used for splitting tectonic plates during initialization.
+Box2D can be used to log collision events every time two polygons collide.
+A collision event contains data about which polygon vertices were involved in each collision.
+Since we have more than enough data, we filter for collisions in which exactly two polygon vertices are involved.
+This filtered collision data can be used to generate mountain ranges using an advanced version of Voronoi-based RMP algorithm.
+Before I explain the advanced version of Voronoi-based RMP algorithm, let's do a short recap of how the basic Voronoi-based RMP algorithm works.
+So the way the basic RMP algorithm works, is that it takes an arbitrary point on the heightmap, generates a Voronoi diagram, projects the diagram onto the heightmap, remembers the color that was projected on the selected point, checks which heightmap vertices have the same color projected onto them and raises them in height.
+Now the advanced version works in a similar fashion, but it is capable to generate mountain ranges between two arbitrary points.
+Instead of a single polygon, an array of polygons will be raised in height.
+To determine which polygons should get raised in height
