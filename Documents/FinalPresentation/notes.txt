@@ -1,12 +1,12 @@
 Hello everybody!
-This final presentation is about my bachelor thesis called procedural generation of mountain ranges based on geology.
+My name is Bernhard Fritz and I'd like to present you my bachelor project about procedural generation of mountain ranges based on geology.
 
 Let me start with a motivational video.
 What you can see here, is an implementation of a basic tectonic plate movement simulation.
-Whenever two plates collide, there will be a change of height.
+Whenever two plates collide, there will be a change in height.
 I will tell you later in this presentation how this works in detail.
 
-Now that you are all excited, let me give you a brief overview.
+Now that you are all motivated, let me give you a brief overview.
 At first I will tell you what this thesis was all about and what challenges had to be encountered.
 Then I will explain the data structures that were absolutely essential for the algorithms and simulations I am going to present to you today.
 There are two categories of terrain generation algorithms.
@@ -20,7 +20,7 @@ Doing that I learnt about the essential features a procedural terrain generation
 
 In order to build geology-based algorithms and simulations, it is necessary to have a basic understanding of geology.
 
-The tectonic plate simulation is a simplified model of natural phenomena occuring on earth an was used to generate plate collision data.
+The tectonic plate simulation is a simplified model of natural phenomena occuring on earth and was used to generate plate collision data.
 
 Besides terrain generation, it is also important to understand how nature degradates landscape and how this behavior can be implemented in code.
 I therefore studied two different kinds of erosion and implemented them both.
@@ -179,7 +179,7 @@ The goal of task 2 was to generate 11 polygons per iteration for 100 iterations.
 In this case Voronoi-based RMP took about 2 seconds while graph-based RMP took about 46.
 Graph-based RMP performs even worse on task 3.
 It took about one and a half hour on average.
-Voronoi on the other took again about 2 seconds for the same task.
+Voronoi on the other hand took again about 2 seconds for the same task.
 Since Voronoi was performing so well, I was interested in the limits of Voronoi.
 Therefore I conducted another experiment where I generated way more polygons than before.
 In fact I prepared a graph that should depict this experiment.
@@ -220,4 +220,188 @@ Before I explain the advanced version of Voronoi-based RMP algorithm, let's do a
 So the way the basic RMP algorithm works, is that it takes an arbitrary point on the heightmap, generates a Voronoi diagram, projects the diagram onto the heightmap, remembers the color that was projected on the selected point, checks which heightmap vertices have the same color projected onto them and raises them in height.
 Now the advanced version works in a similar fashion, but it is capable to generate mountain ranges between two arbitrary points.
 Instead of a single polygon, an array of polygons will be raised in height.
-To determine which polygons should get raised in height
+The array contains all polygons that are intersected by a straight line between the two points defining the mountain range.
+Let me demonstrate a single iteration of this algorithm to generate a mountain range between the top left and bottom right corner.
+The outlined polygons are the polygons we are interested in.
+The first step is to capture all polygon colors along the mountain range line.
+For this purpose Bresenham line algorithm can be used.
+Once all colors have been captured we can continue with the next step.
+I will now zoom a little bit closer.
+Let's assume the Voronoi diagram has been projected onto the heightmap and these are single heightmap tiles.
+To determine wheter a heightmap vertex has to be raised in height, we just have to check if any of the captured colors have been projected onto it.
+Now since we just do color checks, a concern might be that polygons could have duplicate colors, causing the wrong vertices to be raised in height.
+Luckily, polygons having the same color are very unlikely.
+In fact there are 2 to the power of 24 colors available.
+Here you can see the result of applying 50 iterations of this algorithm using the left top as start point and the bottom right as end point.
+If you look very closely you can see that the mountain range peak looks like it is cut off.
+This is due to the constant height incrementation each iteration.
+When we switch to a random height incrementation per iteration, the mountain peaks again are definite.
+The last type of advanced terrain algorithms, I want to talk about, are geology-based terrain degradation algorithms.
+Terrain degradation is mainly caused by terrain erosion.
+There are several types of terrain erosion, there is erosion due to temperature variations, erosion due to water, wind erosion and glazial erosion.
+In my bachelor project I studied and implemented two of these geological phenomena: thermal and hydraulic erosion.
+Thermal erosion is the kind of erosion that takes place due to temperature variations.
+Due to the lack of sun at night the terrain cools down and heats up again once the sun rises.
+These temperature variations as well as gravity as contributing factor can cause structural weakening of the terrain and ultimately wear it down as time passes by.
+Hydraulic erosion on the other hand is a medium-based type of erosion.
+Water is capable to dissolve terrain sediment and transport it to another location.
+As the water evaporates, the dissolved sediment will be deposited again.
+Modelling these types of geological phenomena can quite difficult.
+Fortunately there are models that are able to mimic similar behavior with a reasonable amount of detail.
+Let me begin with the cellular automata-based thermal and hydraulic erosion algorithm.
+So what is a cellular automaton in general?
+It consists of a grid of cells.
+It follows simple rules that tell it how cells interact with each other.
+There are so called neighborhoods.
+Each cell is part of a neighborhood and can only interact with other cells in its neighborhood.
+A cell can be part of more than one neighborhood.
+Cellular automata are step-based.
+
+Ok we will now do a small example with a 1D cellular automata.
+So each automaton has an initial state.
+In this case there are 9 cells, all initialized with 0 but the middle one which is initialized with one.
+The neighborhood definition is simply a group of three connected cells.
+The rules can be seen down here.
+So a neighborhood consisting of 3 zeros will result in a zero after performing a step.
+
+Lets play it through.
+The edge cases need a special treatment.
+They can either be set to a constant value, for example one or zero, or they can be solved by wrapping around the neighborhood.
+In this case i decided to use the wrapping around technique.
+So, a neighborhood of 3 zeros results in a zero.
+The next step is similar.
+So is the step after that.
+Now we have 001 which results in 1.
+Next we have 010 which results in 0.
+100 results in 1.
+And now we have all zeros again.
+The edge case again will be solved by wrapping around.
+Ok so this was a single step.
+If you repeat the same procedure several times, you can see that a pattern emerges.
+If you fill out all cells containing ones you can see it even better.
+Ok now this isn't too impressive is it?
+If we use a higher resolution though, the result is quite astonishing.
+Despite the simple ruleset, cellular automata can produce incredibly complex results.
+They can also be used to model geological phenomena like thermal and hydraulic erosion.
+Here we have a 2D cellular automata.
+The difference is that the neighborhood not only affects cells of a single row of cells but also cells of other rows.
+The neighborhood seen here is a so-called rotated Von-Neumann neighborhood and has been used for this purpose.
+The rules for thermal erosion are a little bit different.
+The three bars on the left side represent heightmap vertices before applying the first step.
+The bars on the right side display the change after performing the first step.
+Cells are altered in height, if the height difference between two cells next to each other is greater than the threshold T.
+To obey the rules it is necessary to distribute the currently observed cell's height to the other cells in its neighborhood.
+Here you can see a heightmap generated with fault algorithm.
+Fault algorithm is known to produce very rough and spiky terrain.
+Thermal erosion can be used to get rid of these spikes and make it look more realistic.
+Cellular automata-based hydraulic erosion algorithm is very similar to thermal erosion but yet different.
+Here we do not only have a single heightmap to manage but several ones, 3 in fact.
+One for the normal heightmap, one for the waterlevel and one for the dissolved sediment.
+The rules consider that fluids like water tend to level out and contain logic for water distribution.
+a is the sum of heightmap height and watermap height.
+a with a line on the top is the average sum of heightmap height and watermap height in the observed neighborhood.
+If a minus a with line on the top is smaller than w, then the excess water a - a with line on the top has to be distributed to the other cells in the neighborhood.
+If a minus a with line on the top is greater w, all the water w from the current cell has to be distributed to the other cells in the neighborhood.
+The result of the cellular automata-based hydraulic erosion algorithm is kinda subtle.
+I mean the effects are visible, but I expected more.
+The main problem is that with cellular automata-based hydraulic erosion it is very difficult to realistically model fluid velocity.
+That's why I started over and looked into a different way to model hydraulic erosion, namely smoothed particle hydrodynamics.
+So what is smoothed particle hydrodynamics?
+It is a technique to discretize fluid motion using particles based on Navier-Stokes equations.
+I decided not to write everything by myself and rely on an existing codebase instead.
+I stumbled upon an interesting project on github written by a guy called Saeed Mahani.
+He wrote a basic SPH simulation that simulates how particles behave in a box.
+The only thing missing was support for heightmaps.
+Ultimately we want the particles to be affected by the terrain and not just bounce around in a box.
+So how can we add this feature?
+Actually there are two intuitive solutions to this problem.
+We can either use static, non-moving particles, distributed all over the heightmap surface.
+Or we can apply an impulse on collision with the heightmap surface.
+I actually tried the first one but there were several problems.
+First of all, it was possible for particles to fall through small wholes inbetween the static particles.
+Secondly, the sheer amount of additional particles slowed down the whole simulation to a degree that it was no longer realtime capable.
+This was not an option and I decided to use the other solution.
+So how do impulses work?
+Most importantly, they need a point they are applied to and a direction.
+The point they need to be applied to is the collision point of the particle with the heightmap surface.
+To determine if a particle collided with the heightmap we have to compare the elevation of the heightmap at the particle coordinates p_x and p_z. If the heightmap elevation at position p_x and p_z is equal or larger than p_y then the particle collided with the heightmap.
+Now there is a slight problem.
+Since the heightmap elevation is only known at the vertex locations we have to figure out a way to estimate the height inbetween the triangle surface.
+I decided to use a ray-triangle intersection algorithm to estimate the height at the collision point.
+A cheaper solution would be to interpolate the height between the vertices in concern.
+This approach would work fine for large heightmap resolutions but the interpolation error becomes quite noticeable at low heightmap resolutions.
+Especially at steep slopes this leads to too much deviation as can be seen here.
+Using Möller-Trumbore triangle ray intersection this leads to much better results and the performance is still acceptable.
+Now that we have a pretty exact impulse origin location, we still need to determine the impulse direction.
+For this we can simply use the normal vectors of the heightmap.
+The normal vectors are available per vertex and simply have to be interpolated per triangle.
+Interpolation of unit vectors can simply be done by adding them up and then bringing them back to unit length.
+Now that we have both impulse origin and impulse direction we can make the particles affected by the heightmap.
+What's the purpose of bouncing particles?
+How does this help us to model hydraulic erosion?
+The idea is that each particle can absorb sediment when it touches the heightmap surface.
+Each particle has a sediment capacity.
+Each particle has a predefined lifetime and once it is over it evaporates and leaves behind the sediment it carried.
+Using these simple rules it is possible to create a very realistic model of hydraulic erosion as can be seen here.
+At the end I want to talk a little bit about 2 particular visualization techniques that were used in this bachelor thesis.
+Let's start with texture splatting.
+Texture splatting describes the technique used to transition from one texture to another.
+Here you can see the first row of pixels from the previous image.
+For simplicity we pretend we have a really bad resolution.
+Here you can see we simply have colors that somehow have to be merged together in a smooth fashion.
+For this purpose linear interpolation can be used.
+Each color consists of 3 color channels (red, green and blue) and is basicly a 3 dimensional vector.
+To interpolate between 2 colors the following formula can be used.
+c(t) = a + (b - a) * t
+t a real number between 0 and 1
+If t is 0.0, c is the same color as defined by a.
+If t is 1.0, c is the same color as defined by b.
+If t is 0.25, c is 25% of a and 75% of b.
+Ok now that we know how to interpolate between 2 colors how can we use this technique in practice?
+The heightmap you see down below has been textured automatically.
+The textures that have been used are snow, rock, grass and sand.
+I used 2 different metrics to achieve this result: height and slope thresholds.
+Let's talk about height thresholds.
+These thresholds are the bare minimum that any application working with heightmaps should provide.
+You basically have a seperate threshold for each texture that you want to use.
+At the threshold borders you blend together the textures to avoid visual discontinuities.
+A more advanced texturing technique is to use slope thresholds in addition to height thresholds.
+This allows to remove visible texture transition lines between texture thresholds.
+To determine the slope at an arbitrary location on the heightmap you can simply use the y-coordinate of the normalized normal vectors.
+In real life grass does not grow on steep slopes and therefore is overriden by the rock texture.
+Same goes with snow.
+Snow does not rest on steep slopes and as well gets overriden by the rock texture.
+By considering slope thresholds as well, some special cases occured that required a recursive invocation of the linear interpolation formula.
+In addition to texture transitions it is helpful to use seamless textures, in order to avoid visual borders between textures.
+Seamless textures can simply be tiled without producing visual inconsistencies.
+Besides texture splatting I also implemented a so called Bloom shader.
+The idea is to reproduce image imperfections caused by real-world cameras.
+If you take a picture of a brightly lit area with an ordinary camera it often appears to be glowing.
+This same effect can be achieved by using a combination of two different filters:
+A bright-bass filter and a Gauss-blur filter.
+The purpose of the bright-pass filter is to let bright colors pass in an unimpeded manner and to filter out dark colors.
+The Gauss-blur filter on the other hand is used to unsharpen the image.
+I prepared a simple example of a 3 by 3 Gauss-blur filter.
+To get the filtered color of a pixel we take the weighted average of the pixel color and all colors in its neighborhood.
+Of course this technique is not very efficient.
+You have to imagine that we have a HD resolution of 1280 by 720 pixels and render 60 frames per second.
+This would already be about 50 million operations per second.
+As a performance optimization, it has been suggested to use two seperate Gauss-blur filters:
+A horizontal Gauss-blur filter and a vertical Gauss-blur filter.
+If you apply them in a sequential fashion it has about the same effect but is much more efficient than the other version.
+The bright-pass is then the addition of the colors from the input image and the image that results if you apply the bright-pass filter followed by the horizontal and vertical gauss filter to the input image.
+Here you can see the image before.
+And here you can see the image after.
+Now that we're close to the end of the presentation, I'd like to mention what technologies have been used to implement this bachelor project.
+First of all, this is an OpenGL-based project.
+GLWF has been used as an OpenGL context provider.
+GLWF is a multi-platform library and offers native support for UNIX-based platforms as well as Windows.
+I wrote this project in C++ using the Xcode integrated development environment.
+I never worked with Xcode before, but I was surprised how easy it was to set it up with all the dependencies that I needed.
+This image is a screenshot of Saeed Mahani's smoothed particle hydrodynamics simulation that I extended and used to simulate for my hydraulic erosion algorithm.
+Box2D is the physics library that I have extended by adding support for splitting of arbitrary convex polygons and used to simulate tectonic plate movement.
+stblib is an amazing C library written by Sean Thomas Barret.
+It offers several general purpose functions such as a function that converts a character array filled with rgb pixel values to a compressed .png image file.
+ffmpeg was used to export an array of frames to a compressed .mpg video file.
+I hope you enjoyed my presentation and if you have any questions feel free to ask.
+Thanks for your attention.
